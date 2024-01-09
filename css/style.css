@@ -1,366 +1,907 @@
+
+
+--bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-black: #000;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-300: #dee2e6;
+    --bs-gray-400: #ced4da;
+    --bs-gray-500: #adb5bd;
+    --bs-gray-600: #6c757d;
+    --bs-gray-700: #495057;
+    --bs-gray-800: #343a40;
+    --bs-gray-900: #212529;
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-primary-rgb: 13,110,253;
+    --bs-secondary-rgb: 108,117,125;
+    --bs-success-rgb: 25,135,84;
+    --bs-info-rgb: 13,202,240;
+    --bs-warning-rgb: 255,193,7;
+    --bs-danger-rgb: 220,53,69;
+    --bs-light-rgb: 248,249,250;
+    --bs-dark-rgb: 33,37,41;
+    --bs-white-rgb: 255,255,255;
+    --bs-black-rgb: 0,0,0;
+    --bs-body-color-rgb: 33,37,41;
+    --bs-body-bg-rgb: 255,255,255;
+    --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --bs-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-body-color: #212529;
+    --bs-body-bg: #fff;
+    --bs-border-width: 1px;
+    --bs-border-style: solid;
+    --bs-border-color: #dee2e6;
+    --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+    --bs-border-radius: 0.375rem;
+    --bs-border-radius-sm: 0.25rem;
+    --bs-border-radius-lg: 0.5rem;
+    --bs-border-radius-xl: 1rem;
+    --bs-border-radius-2xl: 2rem;
+    --bs-border-radius-pill: 50rem;
+    --bs-link-color: #0d6efd;
+    --bs-link-hover-color: #0a58ca;
+    --bs-code-color: #d63384;
+    --bs-highlight-bg: #fff3cd;
+
+
+body{
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+	font-family: sans-serif;
+}
+
+
 *:fullscreen, *:-webkit-full-screen, *:-moz-full-screen {
     background-color: rgba(255,255,255,0);
+}
+#extension-floorplanner-content #h2 {
+  font-size:1.4em;
+}
+
+#extension-floorplanner-content .extension-floorplanner-color {
+  width:30px;
+  height:30px;
+  border:0.5px solid #eee;
+  border-radius:3px;
+  transition:  0.15s;
+  margin-right:5px;
+  float:left;
+}
+#extension-floorplanner-content .extension-floorplanner-color:hover {
+  border: 0.5px solid #aaa;
+  transform: scale(1.3);
+}
+
+#extension-floorplanner-content .extension-floorplanner-boxMouseOver {transition:0.2s;border:3px solid #fff;}
+#extension-floorplanner-content .extension-floorplanner-boxMouseOver:hover {
+  border:3px solid #08d;
+  border-radius:3px;
+  cursor: pointer;
+}
+
+#extension-floorplanner-content .extension-floorplanner-leftBox {
+  background:#fff;
+  box-shadow:2px 0px 3px #ccc;
+  top:0px;
+  width:100px;
+  height:100vh;
+  max-height:100vh;
+  overflow:auto;
+  /*overflow-y:auto;*/
+  padding:13px;
+  /*position:absolute;*/
+  z-index:2;
+  display:none;
+  font-size:0.9em;
+  box-sizing:border-box;
+}
+
+#extension-floorplanner-content #extension-floorplanner-panel {
+  display: block;
+  left:-100px;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+  transition-delay: 250ms;
+}
+
+#extension-floorplanner-content #extension-floorplanner-areaValue {
+  position:absolute;
+  top:0;
+  left:110px;
+  padding:5px;
+  color:rgba(0,0,0,.2);
+  font-size:1.5em
+}
+#extension-floorplanner-content header{display:none;font-size:11px}
+
+
+
+#extension-floorplanner-content input[type=range] {
+  -webkit-appearance: none;
+  margin: 1rem 0 .1rem 0;
+  width: 100%;
+}
+#extension-floorplanner-content input[type=range]:focus {
+  outline: none;
+}
+#extension-floorplanner-content input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+#extension-floorplanner-content input[type=range]::-webkit-slider-thumb {
+  border: 1px solid #000000;
+  height: 20px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+#extension-floorplanner-content input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+#extension-floorplanner-content input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+#extension-floorplanner-content input[type=range]::-moz-range-thumb {
+  border: 1px solid #000000;
+  height: 20px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+#extension-floorplanner-content input[type=range]::-moz-focus-outer {
+    border: 0;
     }
-    
-    h2 {
-      font-size:1.4em;
+#extension-floorplanner-content input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+#extension-floorplanner-content input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#extension-floorplanner-content input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#extension-floorplanner-content input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 20px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+#extension-floorplanner-content input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+#extension-floorplanner-content input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+
+#extension-floorplanner-content .extension-floorplanner-modalBox {
+  position:absolute;
+  display:none;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  z-index:1000
+}
+#extension-floorplanner-content .extension-floorplanner-modalBox::after {
+  content: "";
+  background-image: linear-gradient(#fff,#777);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  width:100vw;
+  height:100vh;
+  position: absolute;
+  z-index: -1;
+}
+#extension-floorplanner-content .extension-floorplanner-modalBoxContent {
+  position: relative;
+  margin: auto;
+  padding:20px;
+  width:300px;
+  border-radius:5px;
+  background:#fff;
+  font-size:1.5em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: extension-floorplanner-animatetop;
+  animation-duration: 0.3s
+}
+/* Add Animation */
+@keyframes extension-floorplanner-animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+@keyframes extension-floorplanner-animatedown {
+    from {top: 0px; opacity: 1}
+    to {top: -300px; opacity: 0}
+}
+
+#extension-floorplanner-content .extension-floorplanner-area {
+  display:block;
+  color:'#34e0be';
+  fontSize:'12.5px';
+  fontWeight:'normal';
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio div {
+clear: both;
+overflow: hidden;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio label {
+width: 100%;
+border-radius: 3px;
+border: 1px solid #D1D3D4;
+font-weight: normal;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:empty,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:empty {
+display: none;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:empty ~ label,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:empty ~ label {
+position: relative;
+/*line-height: 2rem;
+text-indent: 3.25em;*/
+cursor: pointer;
+-webkit-user-select: none;
+ -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
+
+/*
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:empty ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:empty ~ label:before {
+position: absolute;
+display: block;
+top: 0;
+bottom: 0;
+left: 0;
+content: '';
+width: 2.5em;
+background: #D1D3D4;
+border-radius: 3px 0 0 3px;
+}
+*/
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+color: #888;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+content: '\2714';
+text-indent: .9em;
+color: #C2C2C2;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:checked ~ label,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:checked ~ label {
+color: #777;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:checked ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:checked ~ label:before {
+content: '\2714';
+text-indent: .9em;
+color: #333;
+background-color: #ccc;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:focus ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:focus ~ label:before {
+box-shadow: 0 0 0 3px #999;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio-default input[type="radio"]:checked ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio-default input[type="checkbox"]:checked ~ label:before {
+color: #333;
+background-color: #ccc;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio-primary input[type="radio"]:checked ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+color: #fff;
+background-color: #337ab7;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio-success input[type="radio"]:checked ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio-success input[type="checkbox"]:checked ~ label:before {
+color: #fff;
+background-color: #5cb85c;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio-danger input[type="radio"]:checked ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+color: #fff;
+background-color: #d9534f;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio-warning input[type="radio"]:checked ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+color: #fff;
+background-color: #f0ad4e;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio-info input[type="radio"]:checked ~ label:before,
+#extension-floorplanner-content .extension-floorplanner-funkyradio-info input[type="checkbox"]:checked ~ label:before {
+color: #fff;
+background-color: #5bc0de;
+}
+#extension-floorplanner-content .extension-floorplanner-btn {margin-bottom:6px;transition:all 0.3s}
+#extension-floorplanner-content .extension-floorplanner-fully {width:100%}
+#extension-floorplanner-content .extension-floorplanner-halfy {width:47%}
+#extension-floorplanner-content .extension-floorplanner-btn:hover {background:#08d;}
+#extension-floorplanner-content .extension-floorplanner-ovv {transition:all 0.1s;}
+#extension-floorplanner-content .extension-floorplanner-circle_css {fill:#5cba79;fill-opacity:0.9;transition:all 0.4s}
+#extension-floorplanner-content .extension-floorplanner-circle_css_2 {stroke:#5cba79;stroke-width:0;fill:#5cba79;fill-opacity:0.9;animation: extension-floorplanner-myAnim 0.6s linear infinite;}
+@keyframes extension-floorplanner-myAnim{
+  0% {  stroke-width:0}
+  50% {  stroke-width:8}
+  100% {  stroke-width:0}
+}
+@keyframes extension-floorplanner-myAnim2{
+  0% {  stroke-width:4}
+  50% {  stroke-width:7}
+  100% {  stroke-width:4}
+}
+#extension-floorplanner-content .extension-floorplanner-circle_css_3 {stroke:#5cba79;stroke-width:5;fill:#d7f00b;fill-opacity:1;transition:all 0.4s}
+#extension-floorplanner-content .extension-floorplanner-circleGum  {fill-opacity:0.2;fill:#e1f410;stroke-width:4;stroke:#5cba79;transition:all 0.5s; animation: extension-floorplanner-myAnim2 0.6s linear infinite;}
+#extension-floorplanner-content .extension-floorplanner-line_css {stroke:transparent;stroke-width:15;transition:all 0.2s}
+/*.line_css:hover {stroke:#08d;stroke-width:15;stroke-opacity:0.5;cursor:pointer;}*/
+#extension-floorplanner-content .extension-floorplanner-trash_css {stroke:transparent;stroke-width:5;transition:all 0.2s}
+#extension-floorplanner-content .extension-floorplanner-trash_css:hover {stroke:#f00;stroke-width:5;stroke-opacity:0.5;cursor:pointer;}
+
+#extension-floorplanner-content .extension-floorplanner-tool_color {float:left;width:30px;height:30px;margin:2.2px}
+
+#extension-floorplanner-content #extension-floorplanner-ex1Slider .slider-selection {
+  background: #bec7cd;
+}
+
+
+
+@media print {
+    #extension-floorplanner-content .extension-floorplanner-leftBox {
+        display: none;
     }
-    
-    .color {
-      width:30px;
-      height:30px;
-      border:0.5px solid #eee;
-      border-radius:3px;
-      transition:  0.15s;
-      margin-right:5px;
-      float:left;
+    #extension-floorplanner-content header {display:block}
+    #extension-floorplanner-content #extension-floorplanner-boxScale {display:none;}
+    #extension-floorplanner-content #extension-floorplanner-boxbind {display:none;}
+    #extension-floorplanner-content #extension-floorplanner-boxScale {display:none;}
+    #extension-floorplanner-content #extension-floorplanner-moveBox {display:none;}
+    #extension-floorplanner-content #extension-floorplanner-zoomBox {display:none;}
+    #extension-floorplanner-content #extension-floorplanner-boxinfo {display:none;}
+    #extension-floorplanner-content #extension-floorplanner-lin {height:19cm;width:27cm}
+    #extension-floorplanner-content #extension-floorplanner-boxgrid {height:19cm;width:27cm}
+    #extension-floorplanner-content #extension-floorplanner-areaValue {left:0px;top:10px}
+    #extension-floorplanner-content *,
+    #extension-floorplanner-content *:before,
+    #extension-floorplanner-content *:after,
+    #extension-floorplanner-content *:first-letter,
+    #extension-floorplanner-content p:first-line,
+    #extension-floorplanner-content div:first-line,
+    #extension-floorplanner-content blockquote:first-line,
+    #extension-floorplanner-content li:first-line {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
     }
-    .color:hover {
-      border: 0.5px solid #aaa;
-      transform: scale(1.3);
-    }
-    
-    .boxMouseOver {transition:0.2s;border:3px solid #fff;}
-    .boxMouseOver:hover {
-      border:3px solid #08d;
-      border-radius:3px;
-      cursor: pointer;
-    }
-    
-    .leftBox {
-      background:#fff;
-      box-shadow:2px 0px 3px #ccc;
-      top:0px;
-      width:200px;
-      height:100vh;
-      padding:13px;
-      position:absolute;
-      z-index:2;
-      display:none;
-      font-size:0.9em;
-    }
-    
-    #panel {
-      display: block;
-      left:-200px;
-      transition-duration: 0.3s;
-      transition-timing-function: ease-in;
-      transition-delay: 250ms;
-    }
-    
-    #areaValue {
-      position:absolute;
-      top:0;
-      left:210px;
-      padding:5px;
-      color:#333;
-      font-size:1.5em
-    }
-    header{display:none;font-size:11px}
-    
-    @media print {
-        .leftBox {
-            display: none;
-        }
-        header {display:block}
-        #boxScale {display:none;}
-        #boxbind {display:none;}
-        #boxScale {display:none;}
-        #moveBox {display:none;}
-        #zoomBox {display:none;}
-        #boxinfo {display:none;}
-        #lin {height:19cm;width:27cm}
-        #boxgrid {height:19cm;width:27cm}
-        #areaValue {left:0px;top:10px}
-            *,
-        *:before,
-        *:after,
-        *:first-letter,
-        p:first-line,
-        div:first-line,
-        blockquote:first-line,
-        li:first-line {
-            background: transparent !important;
-            color: #000 !important;
-            box-shadow: none !important;
-            text-shadow: none !important;
-        }
-    }
-    body {font-family: 'Roboto', sans-serif;overflow:hidden}
-    input[type=range] {
-      -webkit-appearance: none;
-      margin: 18px 0;
-      width: 100%;
-    }
-    input[type=range]:focus {
-      outline: none;
-    }
-    input[type=range]::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      animate: 0.2s;
-      background: #3071a9;
-      border-radius: 1.3px;
-      border: 0.2px solid #010101;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      border: 1px solid #000000;
-      height: 20px;
-      width: 16px;
-      border-radius: 3px;
-      background: #ffffff;
-      cursor: pointer;
-      -webkit-appearance: none;
-      margin-top: -14px;
-    }
-    input[type=range]:focus::-webkit-slider-runnable-track {
-      background: #367ebd;
-    }
-    input[type=range]::-moz-range-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      animate: 0.2s;
-      background: #3071a9;
-      border-radius: 1.3px;
-      border: 0.2px solid #010101;
-    }
-    input[type=range]::-moz-range-thumb {
-      border: 1px solid #000000;
-      height: 20px;
-      width: 16px;
-      border-radius: 3px;
-      background: #ffffff;
-      cursor: pointer;
-    }
-    input[type=range]::-moz-focus-outer {
-        border: 0;
-        }
-    input[type=range]::-ms-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      animate: 0.2s;
-      background: transparent;
-      border-color: transparent;
-      border-width: 16px 0;
-      color: transparent;
-    }
-    input[type=range]::-ms-fill-lower {
-      background: #2a6495;
-      border: 0.2px solid #010101;
-      border-radius: 2.6px;
-      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    }
-    input[type=range]::-ms-fill-upper {
-      background: #3071a9;
-      border: 0.2px solid #010101;
-      border-radius: 2.6px;
-      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    }
-    input[type=range]::-ms-thumb {
-      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-      border: 1px solid #000000;
-      height: 20px;
-      width: 16px;
-      border-radius: 3px;
-      background: #ffffff;
-      cursor: pointer;
-    }
-    input[type=range]:focus::-ms-fill-lower {
-      background: #3071a9;
-    }
-    input[type=range]:focus::-ms-fill-upper {
-      background: #367ebd;
-    }
-    
-    .modalBox {
-      position:absolute;
-      display:none;
-      top:0;
-      left:0;
-      width:100vw;
-      height:100vh;
-      z-index:1000
-    }
-    .modalBox::after {
-      content: "";
-      background-image: linear-gradient(#fff,#777);
-      opacity: 0.5;
-      top: 0;
-      left: 0;
-      width:100vw;
-      height:100vh;
-      position: absolute;
-      z-index: -1;
-    }
-    .modalBoxContent {
-      position: relative;
-      margin: auto;
-      padding:20px;
-      width:300px;
-      border-radius:5px;
-      background:#fff;
-      font-size:1.5em;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-      animation-name: animatetop;
-      animation-duration: 0.3s
-    }
-    /* Add Animation */
-    @keyframes animatetop {
-        from {top: -300px; opacity: 0}
-        to {top: 0; opacity: 1}
-    }
-    @keyframes animatedown {
-        from {top: 0px; opacity: 1}
-        to {top: -300px; opacity: 0}
-    }
-    
-    .area {
-      display:block;
-      color:'#34e0be';
-      fontSize:'12.5px';
-      fontWeight:'normal';
-    }
-    
-    .funkyradio div {
-    clear: both;
-    overflow: hidden;
-    }
-    
-    .funkyradio label {
-    width: 100%;
-    border-radius: 3px;
-    border: 1px solid #D1D3D4;
-    font-weight: normal;
-    }
-    
-    .funkyradio input[type="radio"]:empty,
-    .funkyradio input[type="checkbox"]:empty {
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  modification / additions  */
+
+
+#extension-floorplanner-content button{
+	padding:.5rem .7rem;
+	border-radius:.5rem;
+	border:none;
+	background-color:#ccc;
+	cursor:pointer;
+}
+
+#extension-floorplanner-first-run-hint{
+	display:none;
+}
+
+
+
+.extension-floorplanner-list-unstyled{
+	padding:0;
+	list-style:none;
+}
+
+
+
+
+/*  Bootstrap copies  */
+
+
+
+
+.extension-floorplanner-fade:not(.show) {
+    /* opacity: 0; */
+}
+.extension-floorplanner-fade {
+    transition: opacity .15s linear;
+}
+
+
+
+
+
+.extension-floorplanner-modal{
+	position: fixed;
+    top: 10rem;
+    left: calc(50% - 250px);
+    z-index: 1055;
     display: none;
-    }
-    
-    .funkyradio input[type="radio"]:empty ~ label,
-    .funkyradio input[type="checkbox"]:empty ~ label {
-    position: relative;
-    line-height: 2.5em;
-    text-indent: 3.25em;
-    cursor: pointer;
-    -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-    }
-    
-    .funkyradio input[type="radio"]:empty ~ label:before,
-    .funkyradio input[type="checkbox"]:empty ~ label:before {
-    position: absolute;
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    content: '';
-    width: 2.5em;
-    background: #D1D3D4;
-    border-radius: 3px 0 0 3px;
-    }
-    
-    .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
-    .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-    color: #888;
-    }
-    
-    .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
-    .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-    content: '\2714';
-    text-indent: .9em;
-    color: #C2C2C2;
-    }
-    
-    .funkyradio input[type="radio"]:checked ~ label,
-    .funkyradio input[type="checkbox"]:checked ~ label {
-    color: #777;
-    }
-    
-    .funkyradio input[type="radio"]:checked ~ label:before,
-    .funkyradio input[type="checkbox"]:checked ~ label:before {
-    content: '\2714';
-    text-indent: .9em;
-    color: #333;
+    width: 500px;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+	background-color:white;
+	border-radius:1rem;
+	padding:2rem;
+}
+
+
+
+.extension-floorplanner-d-flex{
+	display:flex;
+}
+.extension-floorplanner-justify-content-center{
+	justify-content:center;
+}
+
+#extension-floorplanner-tool-root{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100vw;
+	height:100vh;
+	background-color:#beedfd;
+}
+
+/*
+.extension-floorplanner-btn-default{
+	background-color:green;
+}
+*/
+
+
+#extension-floorplanner-roomTools{
+	max-height:100vh;
+	overflow-y:auto;
+	box-sizing:border-box;
+}
+
+.extension-floorplanner-flex-between{
+	display:flex;
+	width:100%;
+	align-items:center;
+	justify-content: space-between;
+}
+.extension-floorplanner-flex-between > *{
+	width:47%;
+}
+
+.extension-floorplanner-flex-wrap{
+	flex-wrap:wrap;
+}
+
+#extension-floorplanner-undo,
+#extension-floorplanner-redo{
+	/*width:30%;
+	flex-grow:1;*/
+	line-height:1.1rem;
+	font-size:2rem;
+	
+}
+
+
+
+#extension-floorplanner-undo > span{
+	display:inline-block;
+	transform: rotate(-45deg);
+}
+#extension-floorplanner-redo > span{
+	display:inline-block;
+	transform: rotate(45deg);
+}
+
+#extension-floorplanner-content #extension-floorplanner-panel #extension-floorplanner-select_mode{
+    box-shadow: 2px 2px 3px #ccc;
+    padding: 1.5rem 0 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+#extension-floorplanner-select_mode > span{
+	display:inline-block;
+	transform: rotate(58deg);
+	font-size:2rem;
+	line-height:0;
+}
+
+.extension-floorplanner-unicode-icon-large{
+	font-size:2.5rem;
+}
+.extension-floorplanner-unicode-icon-medium{
+	font-size:1.5rem;
+}
+
+
+#extension-floorplanner-tool-root:not(.extension-floorplanner-has-room) .extension-floorplanner-show-if-room{
+	display:none;
+}
+
+
+.extension-floorplanner-boxMouseOver > img{
+	min-width:5rem;
+	min-height:5rem;
+	margin:1rem;
+}
+
+
+
+/*  hidden for Candle  */
+body:not(.developer) .extension-floorplanner-show-if-developer{
+	display:none;
+}
+
+
+
+.extension-floorplanner-zoom{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	font-weight:bold;
+}
+
+#extension-floorplanner-content #extension-floorplanner-objTools{
+	width:150px;
+}
+
+
+.extension-floorplanner-disabled{
+	opacity:.2;
+}
+
+
+#extension-floorplanner-multi-container{
+	height:2rem;
+	margin-bottom:.5rem;
+	background-color:#ddd;
+	/*border-bottom-left-radius:.5rem;*/
+	border-radius:.5rem;
+	overflow:hidden;
+    border-left: 0.5rem solid #ddd;
+    box-sizing: border-box;
+}
+#extension-floorplanner-multi-container > div{
+	width:10%;
+	flex-grow:1;
+}
+
+
+#extension-floorplanner-content #extension-floorplanner-multi-container #extension-floorplanner-multi-container-zigzag{
+	max-width:47%;
+}
+
+#extension-floorplanner-multi-container span{
+	display:inline-block;
+	transform:rotate(90deg);
+	font-size:3rem;
+    width: 0.8rem;
+    height: 5rem;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"] ~ label:before{
+    content: '✗';
+    text-indent: 0;
+    color: #999;
     background-color: #ccc;
-    }
-    
-    .funkyradio input[type="radio"]:focus ~ label:before,
-    .funkyradio input[type="checkbox"]:focus ~ label:before {
-    box-shadow: 0 0 0 3px #999;
-    }
-    
-    .funkyradio-default input[type="radio"]:checked ~ label:before,
-    .funkyradio-default input[type="checkbox"]:checked ~ label:before {
-    color: #333;
-    background-color: #ccc;
-    }
-    
-    .funkyradio-primary input[type="radio"]:checked ~ label:before,
-    .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
-    color: #fff;
-    background-color: #337ab7;
-    }
-    
-    .funkyradio-success input[type="radio"]:checked ~ label:before,
-    .funkyradio-success input[type="checkbox"]:checked ~ label:before {
-    color: #fff;
-    background-color: #5cb85c;
-    }
-    
-    .funkyradio-danger input[type="radio"]:checked ~ label:before,
-    .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
-    color: #fff;
-    background-color: #d9534f;
-    }
-    
-    .funkyradio-warning input[type="radio"]:checked ~ label:before,
-    .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
-    color: #fff;
-    background-color: #f0ad4e;
-    }
-    
-    .funkyradio-info input[type="radio"]:checked ~ label:before,
-    .funkyradio-info input[type="checkbox"]:checked ~ label:before {
-    color: #fff;
-    background-color: #5bc0de;
-    }
-    .roomColor {transition:all .1s ease-in-out;float:left;width:36px;height:36px;border-radius:5px 5px 18px 5px;margin:3px}
-    .roomColor:hover {transform: scale(1.1);cursor:pointer;border:1px solid #333;}
-    .btn {margin-bottom:6px;transition:all 0.3s}
-    .fully {width:100%}
-    .halfy {width:47%}
-    .btn:hover {background:#08d;}
-      .ovv {transition:all 0.1s;}
-    .circle_css {fill:#5cba79;fill-opacity:0.9;transition:all 0.4s}
-    .circle_css_2 {stroke:#5cba79;stroke-width:0;fill:#5cba79;fill-opacity:0.9;animation: myAnim 0.6s linear infinite;}
-    @keyframes myAnim{
-     0% {  stroke-width:0}
-     50% {  stroke-width:8}
-     100% {  stroke-width:0}
-      }
-      @keyframes myAnim2{
-       0% {  stroke-width:4}
-       50% {  stroke-width:7}
-       100% {  stroke-width:4}
-        }
-    .circle_css_3 {stroke:#5cba79;stroke-width:5;fill:#d7f00b;fill-opacity:1;transition:all 0.4s}
-    .circleGum  {fill-opacity:0.2;fill:#e1f410;stroke-width:4;stroke:#5cba79;transition:all 0.5s;animation: myAnim2 0.6s linear infinite;}
-    .line_css {stroke:transparent;stroke-width:15;transition:all 0.2s}
-    /*.line_css:hover {stroke:#08d;stroke-width:15;stroke-opacity:0.5;cursor:pointer;}*/
-    .trash_css {stroke:transparent;stroke-width:5;transition:all 0.2s}
-    .trash_css:hover {stroke:#f00;stroke-width:5;stroke-opacity:0.5;cursor:pointer;}
-    html {height:100%;margin:0;padding:0}
-    .tool_color {float:left;width:30px;height:30px;margin:2.2px}
-    html {padding:0;margin:0;height:100%}
-    
-    #ex1Slider .slider-selection {
-    background: #bec7cd;
-    }
-    
+    height: 1.6rem;
+    width: 1.6rem;
+    /*border:.2rem 0 .2rem .4rem solid #red;*/
+	margin:.2rem 0 .2rem .4rem;
+    border-radius: 0.4rem;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-indent: 0em;
+	box-sizing:border-box;
+	
+}
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:checked ~ label:before{
+	background-color: #5cb85c;
+	color: #fff;
+	text-indent: 0em;
+}
+
+#extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before{
+	background-color: #5cb85c;
+	text-indent: 0em;
+}
+
+#extension-floorplanner-layer_list{
+	box-shadow:2px 2px 3px #ccc;
+	display:none;background:#fff;
+	border-radius: 0 5px 5px 0; 
+	padding:10px;
+	position:absolute;
+	left:100px;
+	bottom:0px;
+	width:auto;
+}
+
+
+#extension-floorplanner-layer_list .extension-floorplanner-funkyradio{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	outline: none;
+}
+#extension-floorplanner-layer_list .extension-floorplanner-funkyradio:hover{
+	background-color:rgba(0,0,0,.1);
+}
+
+#extension-floorplanner-content #extension-floorplanner-layer_list .extension-floorplanner-funkyradio input[type="checkbox"] ~ label{
+	border:none;
+}
+
+#extension-floorplanner-layer_list .extension-floorplanner-unicode-icon-medium{
+	margin-left:.5rem;
+}
+
+
+#extension-floorplanner-content .extension-floorplanner-leftBox:not(#extension-floorplanner-panel) {
+	box-shadow: 0px 0 100px 100px rgba(0,0,0,0.4);
+}
+
+.extension-floorplanner-leftBox button{
+	width:100%;
+}
+
+#extension-floorplanner-content .extension-floorplanner-roomColor {
+	transition:all .1s ease-in-out;
+	width:47%;
+	height:2rem;
+	border-radius:1rem;
+	border:1px solid transparent;
+	box-sizing:border-box;
+	margin-bottom:.5rem;
+}
+#extension-floorplanner-content .extension-floorplanner-roomColor:hover {
+	transform: scale(1.1);
+	cursor:pointer;
+	border:1px solid #333;
+}
+
+
+#extension-floorplanner-content #extension-floorplanner-full_mode,
+#extension-floorplanner-content #extension-floorplanner-nofull_mode{
+	width: 58%;
+}
+#extension-floorplanner-content #extension-floorplanner-full_mode span,
+#extension-floorplanner-content #extension-floorplanner-nofull_mode span{
+	font-size:1.1rem;
+}
+
+#extension-floorplanner-content #extension-floorplanner-svg-download-button{
+	width:40%;
+}
+
+#extension-floorplanner-content .extension-floorplanner-btn-success{
+	background-color:blue;
+	color:white;
+}
+
+#extension-floorplanner-applySurface,
+#extension-floorplanner-content .extension-floorplanner-btn-done{
+	width:100%;
+	min-height:4rem;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background-color:green;
+	color:white;
+	font-weight:bold;
+}
+
+.extension-floorplanner-btn-danger{
+	background-color:#fc4e4e;
+}
+
+
+.extension-floorplanner-hidden{
+	display:none!important;
+}
+
+
+#extension-floorplanner-content .extension-floorplanner-vertical-flex-between{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	height:100%;
+}
+
+#extension-floorplanner-content #extension-floorplanner-panel{
+	height:100vh;
+	overflow-y:auto;
+	overflow-x:visible;
+}
+
+#extension-floorplanner-svg-container{
+	position:relative;
+	z-index:-1;
+}
+
+#extension-floorplanner-plan-exists-warning{
+	color:orange;
+}
+
+#extension-floorplanner-myModal{
+	display:none;
+	box-shadow:2px 1px 3px #ccc;
+}
+
+
+
+
+
+
+@media screen and ( max-height: 950px ){
+	#extension-floorplanner-content #extension-floorplanner-panel button{
+		padding:.3rem;
+	}
+}
+
+@media screen and ( max-height: 850px ){
+	.extension-floorplanner-vertical-shrinker{
+		display:flex;
+		justify-content:space-between;
+	}
+	.extension-floorplanner-vertical-shrinker > *{
+		width:47%;
+		max-width:47%;
+	}
+	
+	.extension-floorplanner-vertical-shrinker .extension-floorplanner-unicode-icon-large{
+		font-size:1.1rem;
+	}
+}
+
+
+@media screen and ( max-height: 750px ){
+	.extension-floorplanner-vertical-shrinker2{
+		display:flex;
+		justify-content:space-between;
+	}
+	.extension-floorplanner-vertical-shrinker2 > *{
+		width:47%;
+		max-width:47%;
+	}
+	#extension-floorplanner-wall-buttons .extension-floorplanner-vertical-shrinker2{
+		margin-bottom:.1rem;
+	}
+	
+	.extension-floorplanner-vertical-shrinker2 .extension-floorplanner-unicode-icon-large{
+		font-size:1.1rem;
+	}
+	
+	
+	
+	#extension-floorplanner-node_mode{
+		font-size:1.1rem;
+	}
+}
+
+@media screen and ( max-height: 650px ){
+	.extension-floorplanner-vertical-shrinker3{
+		display:flex;
+		justify-content:space-between;
+	}
+	.extension-floorplanner-vertical-shrinker3 > *{
+		width:47%;
+		max-width:47%;
+	}
+	
+	.extension-floorplanner-vertical-shrinker3 .extension-floorplanner-unicode-icon-large{
+		font-size:1.1rem;
+	}
+	
+	#extension-floorplanner-select_mode > span{
+		font-size:1.1rem;
+	}
+	
+	#extension-floorplanner-content #extension-floorplanner-panel #extension-floorplanner-select_mode{
+	    padding: .8rem 0 1rem 0;
+		
+	}
+	
+}
+
+
+@media screen and ( max-height: 600px ){
+	#extension-floorplanner-content #extension-floorplanner-panel button{
+		padding:.2rem;
+	}
+}
+
+

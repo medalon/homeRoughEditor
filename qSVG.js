@@ -8,12 +8,16 @@
 var qSVG = {
 
     create: function(id, shape, attrs) {
-        var shape = $(document.createElementNS("http://www.w3.org/2000/svg", shape));
+		//console.log("in createSVG. id, shape, attrs: ", id, shape, attrs);
+        var shape = document.createElementNS("http://www.w3.org/2000/svg", shape);
+		//console.log("create shape: shape: ", shape);
         for (var k in attrs) {
-            shape.attr(k, attrs[k]);
-            }
+			//console.log("setting shape attributes: ", k, attrs[k]);
+            shape.setAttribute(k, attrs[k]);
+        }
         if (id != 'none') {
-          $("#" + id).append(shape);
+		  //console.log("qSVG: create: id: ", id);
+          document.querySelector("#extension-floorplanner-" + id).append(shape);
           }
         return shape;
     },
@@ -898,6 +902,7 @@ var qSVG = {
   },
 
   textOnDiv:  function(label, pos, styled, div) {
+	  console.log('in textOnDiv.  label, pos, styled, div: ', label, pos, styled, div);
     if (typeof(pos) != 'undefined') {
       var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       text.setAttributeNS(null, 'x', pos.x);
@@ -905,7 +910,19 @@ var qSVG = {
       text.setAttribute("style","fill:"+styled.color+";font-weight:"+styled.fontWeight+";font-size:"+styled.fontSize);
       text.setAttributeNS(null, 'text-anchor', 'middle');
       text.textContent = label;
-      document.getElementById(div).appendChild(text);
+	  // This check shouldn't be here
+	  console.log("textOnDiv: div: ", div);
+	  if(div){
+		  if(typeof div == 'string'){
+		  	document.getElementById(div).appendChild(text);
+		  }
+		  else{
+		  	div.appendChild(text);
+		  }
+
+	  	
+	  }
+      
 
     }
   }
