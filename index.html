@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body style="background:#f2eee5;margin:0;padding:0;">
+<body style="background:#f2eee5;margin:0;padding:0;" class="developer">
 
 <div id="extension-floorplanner-content">
     
@@ -134,6 +134,7 @@
 				      <g id="extension-floorplanner-boxRib"></g>
 				      <g id="extension-floorplanner-boxScale"></g>
 				      <g id="extension-floorplanner-boxText"></g>
+							<g id="extension-floorplanner-boxMeasure"></g>
 				      <g id="extension-floorplanner-boxDebug"></g>
 				    </svg>
 			    </div>
@@ -192,19 +193,27 @@
 			      <div class="extension-floorplanner-vertical-flex-between">
 							<div>
 								<h2>Modify object</h2>
-					      <hr />
-					      <section id="extension-floorplanner-objBoundingBoxScale">
-					        <p>Width<span class="extension-floorplanner-show-if-developer"> [<span id="extension-floorplanner-bboxWidthScale"></span>]: <span id="extension-floorplanner-bboxWidthVal"></span> cm</span></span></p>
+					      
+					      <section id="extension-floorplanner-objBoundingBoxScale" class="extension-floorplanner-menu-area">
+					        <p>Width </p>
 					        <input type="range" id="extension-floorplanner-bboxWidth" step="1" class="extension-floorplanner-range" />
-					        <p>Length<span class="extension-floorplanner-show-if-developer"> [<span id="extension-floorplanner-bboxHeightScale"></span>]: <span id="extension-floorplanner-bboxHeightVal"></span> cm</span></span></p>
-					        <input type="range" id="extension-floorplanner-bboxHeight" step="1" class="extension-floorplanner-range" />
+					        <div class="extension-floorplanner-flex-between extension-floorplanner-scale-slider-min-max extension-floorplanner-show-if-developer"><span id="extension-floorplanner-bboxWidthScale-min"></span><span id="extension-floorplanner-bboxWidthScale-max"></span></div>
+									<div style="text-align:center"><span id="extension-floorplanner-bboxWidthVal" class="extension-floorplanner-slider-value"></span> cm</div>
+					        
+									<div id="extension-floorplanner-scale-link-toggle-button-container" class="extension-floorplanner-scale-linked"><div id="extension-floorplanner-scale-link-toggle-button"><span class="extension-floorplanner-scale-linked-true">🔗</span><span class="extension-floorplanner-scale-linked-false">┊</span></div></div>
+									<div>
+										<p>Length</p>
+						        <input type="range" id="extension-floorplanner-bboxHeight" step="1" class="extension-floorplanner-range" />
+										<div class="extension-floorplanner-flex-between extension-floorplanner-scale-slider-min-max extension-floorplanner-show-if-developer"><span id="extension-floorplanner-bboxHeightScale-min"></span><span id="extension-floorplanner-bboxHeightScale-max"></span></div>
+										<div style="text-align:center"><span id="extension-floorplanner-bboxHeightVal" class="extension-floorplanner-slider-value"></span> cm</div>
+									</div>
 					      </section>
 						
 								<hr />
-					      <section id="extension-floorplanner-objBoundingBoxRotation">
+					      <section id="extension-floorplanner-objBoundingBoxRotation" class="extension-floorplanner-menu-area">
 					        <p>Rotation</p>
 					        <input type="range" id="extension-floorplanner-bboxRotation" step="1" class="extension-floorplanner-range" min="-180" max="180" />
-									<div style="text-align:center"><span id="extension-floorplanner-bboxRotationVal"></span> °</div>
+									<div style="text-align:center"><span id="extension-floorplanner-bboxRotationVal" class="extension-floorplanner-slider-value"></span> °</div>
 					      </section>
 
 								<div class="extension-floorplanner-show-if-developer">
@@ -409,7 +418,7 @@
 
 
 			    <div id="extension-floorplanner-panel" class="extension-floorplanner-leftBox">
-						<div id="extension-floorplanner-panel-scroller">
+						<div id="extension-floorplanner-panel-scrollerX">
 					      <ul class="extension-floorplanner-list-unstyled">
 					        <li class="extension-floorplanner-flex-between"><button class="extension-floorplanner-btn extension-floorplanner-disabled extension-floorplanner-halfy" id="extension-floorplanner-undo" title="undo"><span>↺</span></button>
 					            <button class="extension-floorplanner-btn extension-floorplanner-disabled extension-floorplanner-halfy extension-floorplanner-pull-right" id="extension-floorplanner-redo" title="redo"><span>↻</span></button>
@@ -427,29 +436,20 @@
 										<div id="extension-floorplanner-multi-container" class="extension-floorplanner-funkyradio extension-floorplanner-flex-between" title="Draw multiple lines in a row">
 											<div id="extension-floorplanner-multi-container-zigzag"><span>⦚</span></div>
 					            <div class="extension-floorplanner-funkyradio-success">
-					              <input type="checkbox" id="extension-floorplanner-multi" />
+					              <input type="checkbox" id="extension-floorplanner-multi" checked />
 					              <label for="extension-floorplanner-multi"></label>
 					            </div>
 					          </div>
 					        </li>
 
-
-									 <li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-node_mode" title="Cut walls, giving them an extra joint to move"><span class="extension-floorplanner-unicode-icon-medium">✂</span></button></li>
-							 
-					        
-			       
-
-					        <li style="display:none"><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-distance_mode" data-toggle="tooltip" data-placement="right"
-					            title="Add a measurement">MEASURE</button></li>
-			        
-
-					        <div id="extension-floorplanner-door_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub"
-					          style="box-shadow:2px 2px 3px #ccc;display:none;background:#fff;border-radius: 0 5px 5px 0; padding:10px;position:absolute;left:100px;width:150px">
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="aperture" id="extension-floorplanner-aperture">Opening</button>
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="simple" id="extension-floorplanner-simple">Simple</button>
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="double" id="extension-floorplanner-double">Double</button>
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="pocket" id="extension-floorplanner-pocket">Pocket</button>
-					        </div>
+									<li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-node_mode" title="Cut walls, giving them an extra joint to move"><span class="extension-floorplanner-unicode-icon-medium">✂</span></button></li>
+									<!--
+					        <li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-distance_mode" data-toggle="tooltip" data-placement="right"
+					            title="Add a measurement"><span class="extension-floorplanner-unicode-icon-medium">📏</span></button></li>
+									-->
+					        <li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-distance_mode" data-toggle="tooltip" data-placement="right"
+					            title="Add a measurement"><div class="extension-floorplanner-tape-measure-icon"></div><div class="extension-floorplanner-tape-measure-icon-end"></div></button></li>
+									
 									
 									
 					        <li class="extension-floorplanner-show-if-room">
@@ -462,87 +462,14 @@
 										</div>
 									</li>
 			        
-					        <div id="extension-floorplanner-window_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub"
-					          style="box-shadow:2px 2px 3px #ccc;display:none;background:#fff;border-radius: 0 5px 5px 0; padding:10px;position:absolute;left:100px;width:150px">
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-fix">Fix</button>
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-flap">Simple</button>
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-twin">Double</button>
-					          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-bay">Slide</button>
-					        </div>
-							
 									<li class="extension-floorplanner-show-if-room">
 										<div class="extension-floorplanner-vertical-shrinker">
 											<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-stair_mode"
 							            onclick="hide_submenus();document.querySelector('#extension-floorplanner-door_list').style.display='none'" title="Add a staircase"><span class="extension-floorplanner-unicode-icon-large">🪜</span></button>
-
 							        <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-room_mode" title="Give rooms a background color"><span class="extension-floorplanner-unicode-icon-large">🎨</span></button>
 										</div>
 									</li>
 									
-
-					        <div id="extension-floorplanner-energy_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub"
-					          style="box-shadow:2px 2px 3px #ccc;display:none;background:#fff;border-radius: 0 5px 5px 0; padding:10px;position:absolute;left:100px;bottom:40px;width:600px">
-					          <div style="width:600px;float:left;padding:10px">
-					            <p>🛋️ Furniture</p>
-									
-					            <div style="float:left;padding:10px;margin:5px;border:1px solid #ddd;border-radius:5px">
-					              <p>Generic shapes</p>
-					              <div style="width:120px;float:left;padding:2px">
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-circle">◌ Circle</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-half-circle">◖ Half circle</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-square">□ Square</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rounded-square1">□ Rounded square</button>
-											
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-triangle">▲ Triangle</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-heart">♥ Heart</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-droplet">💧 Droplet</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-half-rounded-square">⥰ Half rounded square</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-chair">✿ Flower</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-button1">◘ Button</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-button2">◙ Button</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-paw">🐾 Paw</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-note">♪ Audio</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-wifi">⌔ Wifi</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-bed">🛏 Bed</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-star">★ Star</button>
-													<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-pill">💊 Pill</button>
-											
-												</div>
-					            </div>
-									
-					            <div style="float:left;padding:10px;margin:5px;border:1px solid #ddd;border-radius:5px">
-					              <p>High current</p>
-					              <div style="width:120px;float:left;padding:2px">
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-gtl">Switchboard</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-switch">Switch</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-doubleSwitch">Multiways</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-dimmer">◌ Variator</button>
-
-					              </div>
-					              <div style="width:120px;float:left;padding:2px">
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug">Electrical outlet</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug20">Outlet 20A</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug32">Outlet 32A</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rooflight extension-floorplanner-shadow">Ceiling lamp</button>
-					                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-walllight extension-floorplanner-shadow">Wall light</button>
-					              </div>
-					            </div>
-					            <div style="width:130px;float:left;padding:10px;margin:5px;border:1px solid #ddd;border-radius:5px">
-					              <p>Wall plugs</p>
-					              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-www">Internet access</button>
-					              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rj45">RJ45 plug</button>
-					              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tv">Antenna plug</button>
-					            </div>
-
-					            <div style="width:130px;float:left;padding:10px;margin:5px;border:1px solid #ddd;border-radius:5px">
-					              <p>Heating & Cooling</p>
-					              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-hidden" id="extension-floorplanner-boiler">Boiler</button>
-					              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-heater">◍ Water heater</button>
-					              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-radiator">▥ Radiator</button>
-					            </div>
-					          </div>
-
-					        </div>
 					        <li class="extension-floorplanner-show-if-room">
 										<div class="extension-floorplanner-vertical-shrinker3">
 											<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-object_mode"
@@ -554,41 +481,9 @@
 					        <!-- <li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-object_mode" onclick="hide_submenus();document.querySelector('#extension-floorplanner-object_list').style.display='block';">FURNITURE</button></li> -->
 
 
-					    <li class="extension-floorplanner-show-if-room"><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-layer_mode"
-					            onclick="toggle_layers();"><span style="display:inline-block;transform:rotate(90deg)">〣</span>  Layers</button></li>
+					    		<li class="extension-floorplanner-show-if-room"><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-layer_mode"
+					            onclick="toggle_layers();"><span style="display:inline-block;transform:rotate(90deg)">〣</span> Layers</button></li>
 					
-
-					        <div id="extension-floorplanner-layer_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub">
-					          <div class="extension-floorplanner-funkyradio">
-					            <div class="extension-floorplanner-funkyradio-info">
-					              <input type="checkbox" id="extension-floorplanner-showRib" checked />
-					              <label for="extension-floorplanner-showRib"></label>
-					            </div>
-											<div><span class="extension-floorplanner-unicode-icon-medium">📐</span></div>
-					          </div>
-										<!--
-					          <div class="extension-floorplanner-funkyradio" style="font-size:0.8em">
-					            <div class="extension-floorplanner-funkyradio-info">
-					              <input type="checkbox" id="extension-floorplanner-showArea" checked />
-					              <label for="extension-floorplanner-showArea">Surface area</label>
-					            </div>
-					          </div>
-										-->
-					          <div class="extension-floorplanner-funkyradio" title="Show or hide Background colors">
-					            <div class="extension-floorplanner-funkyradio-info">
-					              <input type="checkbox" id="extension-floorplanner-showLayerRoom" checked />
-					              <label for="extension-floorplanner-showLayerRoom"></label>
-					            </div>
-											<div><span class="extension-floorplanner-unicode-icon-medium">🎨</span></div>
-					          </div>
-					          <div class="extension-floorplanner-funkyradio">
-					            <div class="extension-floorplanner-funkyradio-info">
-					              <input type="checkbox" id="extension-floorplanner-showLayerEnergy" checked />
-					              <label for="extension-floorplanner-showLayerEnergy"></label>
-					            </div>
-											<div><span class="extension-floorplanner-unicode-icon-medium">🛋</span></div>
-					          </div>
-					        </div>
 
 					        <li class="extension-floorplanner-show-if-room"><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-show-if-developer" id="extension-floorplanner-report_mode" title="Show report">📊 Report</button></li>
 							
@@ -601,16 +496,138 @@
 											<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow" id="extension-floorplanner-svg-download-button" title="Download"><span class="extension-floorplanner-unicode-icon-medium" style="font-weight:bold">⤓</span></button>
 					        <li>
 
-					          <div style="clear:both"></div>
+					        <!--<div style="clear:both"></div>-->
 								
 								
 							    <li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-new-file-button"
-							            onclick="new_floorplan();"><span>📃</span> New</button></li>
+							            onclick="new_floorplan();"><span>⏍</span> New</button></li>
+										
+									<li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-new-file-button"
+																            onclick="clear_floorplan();"><span>⎚</span> Clear</button></li>
 								
 					      </ul>
 			      </div>
+						
 			    </div>
 
+
+
+					<div id="extension-floorplanner-panel-level2">
+		        <div id="extension-floorplanner-door_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub"
+		          style="box-shadow:2px 2px 3px #ccc;display:none;background:#fff;border-radius: 0 5px 5px 0; padding:10px;position:absolute;top:calc(50vh - 10rem);left:0;width:100px">
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="aperture" id="extension-floorplanner-aperture">Opening</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="simple" id="extension-floorplanner-simple">Simple</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="double" id="extension-floorplanner-double">Double</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-door" data-type="pocket" id="extension-floorplanner-pocket">Pocket</button>
+		        </div>
+						
+		        <div id="extension-floorplanner-window_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub"
+		          style="box-shadow:2px 2px 3px #ccc;display:none;background:#fff;border-radius: 0 5px 5px 0; padding:10px;position:absolute;top:calc(50vh - 10rem);left:0;width:100px">
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-fix">Fix</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-flap">Simple</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-twin">Double</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-bay">Slide</button>
+		        </div>
+						
+		        <div id="extension-floorplanner-energy_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub">
+		          <div style="padding:10px">
+		            <p>🛋️ Furniture</p>
+						
+		            <div style="float:left;padding:10px;margin:5px;border:1px solid #ddd;border-radius:5px">
+		              <p>Generic shapes</p>
+		              <div>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-circle">◌ Circle</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-half-circle">◖ Half circle</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-square">□ Square</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rounded-square">□ Rounded square</button>
+								
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-triangle">▲ Triangle</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-heart">♥ Heart</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-droplet">💧 Droplet</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-half-rounded-square">⥰ Half rounded square</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-flower">✿ Flower</button>
+										<!--
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-button1">◘ Button</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-button2">◙ Button</button>
+										-->
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-paw">🐾 Paw</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-note">♪ Audio</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-wifi">⌔ Wifi</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-bed">🛏 Bed</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-star">★ Star</button>
+										<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-pill">💊 Pill</button>
+								
+									</div>
+		            </div>
+						
+		            <div>
+		              <p>High current</p>
+		              <div>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-gtl">Switchboard</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-switch">Switch</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-doubleSwitch">Multiways</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-dimmer">◌ Variator</button>
+
+		              </div>
+		              <div>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug">Electrical outlet</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug20">Outlet 20A</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug32">Outlet 32A</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rooflight extension-floorplanner-shadow">Ceiling lamp</button>
+		                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-walllight extension-floorplanner-shadow">Wall light</button>
+		              </div>
+		            </div>
+		            <div>
+		              <p>Wall plugs</p>
+		              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-www">Internet access</button>
+		              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rj45">RJ45 plug</button>
+		              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tv">Antenna plug</button>
+		            </div>
+
+		            <div>
+		              <p>Heating & Cooling</p>
+		              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-hidden" id="extension-floorplanner-boiler">Boiler</button>
+		              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-heater">◍ Water heater</button>
+		              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-radiator">▥ Radiator</button>
+		            </div>
+		          </div>
+
+		        </div>
+						
+		        <div id="extension-floorplanner-layer_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub">
+		          <div class="extension-floorplanner-funkyradio">
+		            <div class="extension-floorplanner-funkyradio-info">
+		              <input type="checkbox" id="extension-floorplanner-showRib" checked />
+		              <label for="extension-floorplanner-showRib"></label>
+		            </div>
+								<div><span class="extension-floorplanner-unicode-icon-medium">📐</span></div>
+		          </div>
+							<!--
+		          <div class="extension-floorplanner-funkyradio" style="font-size:0.8em">
+		            <div class="extension-floorplanner-funkyradio-info">
+		              <input type="checkbox" id="extension-floorplanner-showArea" checked />
+		              <label for="extension-floorplanner-showArea">Surface area</label>
+		            </div>
+		          </div>
+							-->
+		          <div class="extension-floorplanner-funkyradio" title="Show or hide Background colors">
+		            <div class="extension-floorplanner-funkyradio-info">
+		              <input type="checkbox" id="extension-floorplanner-showLayerRoom" checked />
+		              <label for="extension-floorplanner-showLayerRoom"></label>
+		            </div>
+								<div><span class="extension-floorplanner-unicode-icon-medium">🎨</span></div>
+		          </div>
+		          <div class="extension-floorplanner-funkyradio">
+		            <div class="extension-floorplanner-funkyradio-info">
+		              <input type="checkbox" id="extension-floorplanner-showLayerEnergy" checked />
+		              <label for="extension-floorplanner-showLayerEnergy"></label>
+		            </div>
+								<div><span class="extension-floorplanner-unicode-icon-medium">🛋</span></div>
+		          </div>
+		        </div>
+						
+						
+					</div>
 
 
 
@@ -624,18 +641,21 @@
 			          </div>
 			          <div class="extension-floorplanner-modal-body m-2">
 			            <div id="extension-floorplanner-recover">
+										Select a plan type:
+										<!--
 			              <p>Would you like to continue working on your last plan?</p>
 			              <button class="extension-floorplanner-btn extension-floorplanner-btn-success extension-floorplanner-shadow" data-bs-dismiss="modal"
-			                onclick="initHistory('recovery');">YES</button></p>
+			                onclick="initHistory('recovery');">YES</button>
 			              <hr />
 			              <p>Or do you prefer start a new plan ?<br/></p>
+										-->
 			            </div>
 			            <div class="extension-floorplanner-w-100 extension-floorplanner-d-flex extension-floorplanner-justify-content-center">
-			              <div class="extension-floorplanner-boxMouseOver"><img src="/extension/floorplanner/images/newPlanEmpty.jpg" class="extension-floorplanner-img-fluid" onclick="initHistory('boot');"
+			              <div class="extension-floorplanner-boxMouseOver"><img src="img/newPlanEmpty.jpg" class="extension-floorplanner-img-fluid" onclick="clear_floorplan();initHistory('boot');"
 			                  data-bs-dismiss="modal" /></div>
-			              <div class="extension-floorplanner-boxMouseOver"><img src="/extension/floorplanner/images/newPlanSquare.jpg" class="extension-floorplanner-img-fluid"
-			                  onclick="initHistory('newSquare');" data-bs-dismiss="modal" /></div>
-			              <div class="extension-floorplanner-boxMouseOver"><img src="/extension/floorplanner/images/newPlanL.jpg" class="extension-floorplanner-img-fluid" onclick="initHistory('newL');"
+			              <div class="extension-floorplanner-boxMouseOver"><img src="img/newPlanSquare.jpg" class="extension-floorplanner-img-fluid"
+			                  onclick="clear_floorplan();initHistory('newSquare');" data-bs-dismiss="modal" /></div>
+			              <div class="extension-floorplanner-boxMouseOver"><img src="img/newPlanL.jpg" class="extension-floorplanner-img-fluid" onclick="clear_floorplan();initHistory('newL');"
 			                  data-bs-dismiss="modal" /></div>
 			            </div>
 			          </div>
@@ -655,48 +675,54 @@
 			      <div class="extension-floorplanner-modal-dialog" role="document">
 			        <div class="extension-floorplanner-modal-content">
 			          <div class="extension-floorplanner-modal-header">
-			            <button type="button" class="extension-floorplanner-btn-close" onclick="cancel_adding_text();" data-bs-dismiss="modal" aria-label="Close"><span
-			                aria-hidden="true">&times;</span></button>
-			            <h4 class="extension-floorplanner-modal-title" id="extension-floorplanner-textToLayerLabel">Text floorplanEditor</h4>
+			            <!--<button type="button" class="extension-floorplanner-btn-close" onclick="cancel_adding_text();" data-bs-dismiss="modal" aria-label="Close"><span
+			                aria-hidden="true">&times;</span></button>-->
+			            <h2 class="extension-floorplanner-modal-title" id="extension-floorplanner-textToLayerLabel">Add text</h2>
 			          </div>
 			          <div class="extension-floorplanner-modal-body">
-			            <p>Choose room color</p>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientRed"
-			              style="color:#f55847;background:linear-gradient(30deg, #f55847, #f00);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientYellow"
-			              style="color:#e4c06e;background:linear-gradient(30deg,#e4c06e, #ffb000);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientGreen"
-			              style="color:#88cc6c;background:linear-gradient(30deg,#88cc6c, #60c437);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientSky"
-			              style="color:#77e1f4;background:linear-gradient(30deg,#77e1f4, #00d9ff);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientBlue"
-			              style="color:#4f72a6;background:linear-gradient(30deg,#4f72a6, #284d7e);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientGrey"
-			              style="color:#666666;background:linear-gradient(30deg,#666666, #aaaaaa);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientWhite"
-			              style="color:#fafafa;background:linear-gradient(30deg,#fafafa, #eaeaea);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientOrange"
-			              style="color:#f9ad67;background:linear-gradient(30deg, #f9ad67, #f97f00);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientPurple"
-			              style="color:#a784d9;background:linear-gradient(30deg,#a784d9, #8951da);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientPink"
-			              style="color:#df67bd;background:linear-gradient(30deg,#df67bd, #e22aae);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientBlack"
-			              style="color:#3c3b3b;background:linear-gradient(30deg,#3c3b3b, #000000);"></div>
-			            <div class="extension-floorplanner-color textEditorColor" data-type="gradientNeutral"
-			              style="color:#e2c695;background:linear-gradient(30deg,#e2c695, #c69d56);"></div>
-			            <div style="clear:both"></div>
-			            <hr />
-			            <p>Room size</p>
-			            <input type="range" list="tickmarks" id="extension-floorplanner-sizePolice" step="0.1" min="10" max="30" value="15" class="extension-floorplanner-range"
-			              style="width:200px" />
-			            <hr />
-			            <p contenteditable="true" id="extension-floorplanner-labelBox" onfocus="this.innerHTML='';"
-			              style="font-size:15px;padding:5px;border-radius:5px;color:#333">Your text</p>
+									
+			            <input type="text" id="extension-floorplanner-labelBox" onfocus="this.innerHTML='';"
+			              style="width:100%;font-size:1.1rem;padding:5px;border-radius:5px;color:#333;border-bottom:2px dotted black;padding:1rem;box-sizing:border-box" placeholder="Your text">
+									
+			            <div style="display:flex; align-items:center;justify-content:flex-end;margin-bottom:2rem">
+										<p style="display:inline-block;margin-right:1rem;font-weight:bold">Size </p>
+			            	<input type="range" list="tickmarks" id="extension-floorplanner-sizePolice" step="0.1" min="10" max="30" value="15" class="extension-floorplanner-range" style="width:200px" />
+									</div>
+									
+									<div style="display:none">
+				            <p>Choose room color</p>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientRed"
+				              style="color:#f55847;background:linear-gradient(30deg, #f55847, #f00);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientYellow"
+				              style="color:#e4c06e;background:linear-gradient(30deg,#e4c06e, #ffb000);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientGreen"
+				              style="color:#88cc6c;background:linear-gradient(30deg,#88cc6c, #60c437);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientSky"
+				              style="color:#77e1f4;background:linear-gradient(30deg,#77e1f4, #00d9ff);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientBlue"
+				              style="color:#4f72a6;background:linear-gradient(30deg,#4f72a6, #284d7e);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientGrey"
+				              style="color:#666666;background:linear-gradient(30deg,#666666, #aaaaaa);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientWhite"
+				              style="color:#fafafa;background:linear-gradient(30deg,#fafafa, #eaeaea);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientOrange"
+				              style="color:#f9ad67;background:linear-gradient(30deg, #f9ad67, #f97f00);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientPurple"
+				              style="color:#a784d9;background:linear-gradient(30deg,#a784d9, #8951da);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientPink"
+				              style="color:#df67bd;background:linear-gradient(30deg,#df67bd, #e22aae);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientBlack"
+				              style="color:#3c3b3b;background:linear-gradient(30deg,#3c3b3b, #000000);"></div>
+				            <div class="extension-floorplanner-color textEditorColor" data-type="gradientNeutral"
+				              style="color:#e2c695;background:linear-gradient(30deg,#e2c695, #c69d56);"></div>
+				            <div style="clear:both"></div>
+				            <hr />
+									</div>
+			            
 			          </div>
-			          <div class="extension-floorplanner-modal-footer">
-			            <button id="extension-floorplanner-cancel-text" type="button" class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow"  onclick="document.querySelector('#extension-floorplanner-textToLayer').style.display='none';" data-bs-dismiss="modal">Cancel</button>
-			            <button id="extension-floorplanner-save-text" type="button" class="extension-floorplanner-btnextension-floorplanner-btn-primary" onclick="document.querySelector('#extension-floorplanner-textToLayer').style.display='none';">Apply</button>
+			          <div class="extension-floorplanner-modal-footer" style="text-align:right">
+			            <button id="extension-floorplanner-cancel-text" type="button" class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow" onclick="cancel_adding_text();" data-bs-dismiss="modal">Cancel</button>&nbsp;&nbsp;
+			            <button id="extension-floorplanner-save-text" type="button" class="extension-floorplanner-btnextension-floorplanner-btn-primary">Apply</button>
 			          </div>
 			        </div>
 			      </div>
@@ -727,17 +753,22 @@
 			    <div id="extension-floorplanner-zoomBox"
 			      style="position:absolute;z-index:100;right:-150px;bottom:20px;text-align:center;background:transparent;padding:0px;color:#fff;transition-duration: 0.2s;transition-timing-function: ease-in;">
 			      <div class="extension-floorplanner-pull-right" style="margin-right:10px">
-			        <button class="extension-floorplanner-btn expansion-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomin" style="box-shadow:2px 2px 3px #ccc;">+</button>
-			        <button class="extension-floorplanner-btn expansion-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomout" style="box-shadow:2px 2px 3px #ccc;">-</button>
+							<p>
+			        	<button class="extension-floorplanner-btn expansion-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomin" style="box-shadow:2px 2px 3px #ccc;">+</button>
+			        	<button class="extension-floorplanner-btn expansion-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomout" style="box-shadow:2px 2px 3px #ccc;">-</button>
+							</p>
 			      </div>
-			      <div style="clear:both"></div>
-			      <div id="extension-floorplanner-scaleVal" class="extension-floorplanner-pull-right"
-			        style="box-shadow:2px 2px 3px #ccc;width:60px;height:20px;background:#4b79aa;border-radius:4px;margin-right:10px">
-			        1m
-			      </div>
-
-			      <div style="clear:both"></div>
 			    </div>
+			    <div id="extension-floorplanner-zoomBox2"
+			      style="position:absolute;z-index:100;right:-150px;bottom:10px;text-align:center;background:transparent;padding:0px;color:#fff;transition-duration: 0.2s;transition-timing-function: ease-in;">
+						<div id="extension-floorplanner-scaleVal" class="extension-floorplanner-pull-right"
+							style="box-shadow:2px 2px 3px #ccc;width:60px;height:20px;background:#4b79aa;border-radius:4px;margin-right:10px">
+							1m
+						</div>
+					</div>
+					
+					
+					
 		    </div>
         </div>
         
@@ -787,6 +818,20 @@
 	let myModal = document.querySelector('#extension-floorplanner-myModal');
 	
 	
+	let linked_scaling = true;
+	const linked_scaling_container_el = document.querySelector('#extension-floorplanner-scale-link-toggle-button-container');
+	document.querySelector('#extension-floorplanner-scale-link-toggle-button').addEventListener("click", function (event) {
+		if(linked_scaling){
+			linked_scaling_container_el.classList.remove('extension-floorplanner-scale-linked');
+			linked_scaling = false;
+		}
+		else{
+			linked_scaling_container_el.classList.add('extension-floorplanner-scale-linked');
+			linked_scaling = true;
+		}
+		console.log("linked scaling is now: ", linked_scaling);
+	});
+	
 	function getOffset(element)
 	{
 	    var bound = element.getBoundingClientRect();
@@ -834,23 +879,23 @@
 	});
 
 	if(typeof window.floorplan_listeners_added == 'undefined'){
-		console.log("floorplan: engine.js: adding resize listeners");
+		//console.log("floorplan: engine.js: adding resize listeners");
 		window.floorplan_listeners_added = true;
 
 		window.addEventListener('resize', function (event) {
 			
 		  var rect = linElement.getBoundingClientRect(); // get the bounding rectangle
 
-		  console.log( rect.width );
-		  console.log( rect.height);
+		  //console.log( rect.width );
+		  //console.log( rect.height);
 		  
 		  //const lin_offset = getOffset(document.querySelector('#extension-floorplanner-lin'));
 		  //width_viewbox = linElement.getBBox().width; //document.querySelector('#extension-floorplanner-lin').offsetWidth;
 		  //height_viewbox = linElement.getBBox().height; //document.querySelector('#extension-floorplanner-lin').offsetHeight;
 		  width_viewbox = rect.width;
 		  height_viewbox = rect.height;
-		  console.error("!!! SETTING VIEWBOX 3: ", originX_viewbox, originY_viewbox, width_viewbox,height_viewbox);
-		  console.error("window resized.  originX_viewbox,width_viewbox: ", originX_viewbox, width_viewbox, originY_viewbox, height_viewbox);
+		  //console.error("!!! SETTING VIEWBOX 3: ", originX_viewbox, originY_viewbox, width_viewbox,height_viewbox);
+		  //console.error("window resized.  originX_viewbox,width_viewbox: ", originX_viewbox, width_viewbox, originY_viewbox, height_viewbox);
 		  document.querySelector('#extension-floorplanner-lin').setAttribute('viewBox', originX_viewbox + ' ' + originY_viewbox + ' ' + width_viewbox + ' ' + height_viewbox)
 		});
 
@@ -912,16 +957,16 @@
 
 		//console.log("ROOM: ", ROOM);
 		if(typeof binder != 'undefined'){
-			//console.log("-> mode, binder: ", mode, binder);
+			console.log("mousemove -> mode, binder: ", mode, binder);
 		}
 		else{
-			//console.log("-> mode (no binder): ", mode);
+			console.log("mousemove -> mode (no binder): ", mode);
 		}
 		
 		
 
 	  //**************************************************************************
-	  //********************   TEXT   MODE   *************************************
+	  //********************   MOUSE MOVE:   TEXT   MODE   *************************************
 	  //**************************************************************************
 	  if (mode == 'text_mode') {
 			console.log("in text_mode. action: ", action);
@@ -933,59 +978,67 @@
 	  }
 
 	  //**************************************************************************
-	  //*******************   OBJECT   MODE   ************************************
+	  //*******************   MOUSE MOVE:   OBJECT   MODE   ************************************
 	  //**************************************************************************
 	  if (mode == 'object_mode') {
 			console.log("---> in object mode");
 	    snap = calcul_snap(event, grid_snap);
-	    if (typeof (binder) != 'undefined' && typeof binder.family != 'undefined') {
-	      if ((binder.family != 'stick' && binder.family != 'collision') || WALLS.length == 0) {
-			    console.log("binder: ", binder);
-	        binder.x = snap.x;
-	        binder.y = snap.y;
-	        binder.oldX = binder.x;
-	        binder.oldY = binder.y;
-	        binder.update();
-	      }
-	      if (binder.family == 'collision') {
-	        var found = false;
+	    if (typeof (binder) != 'undefined') {
+				if(typeof binder.family != 'undefined'){
+		      if ((binder.family != 'stick' && binder.family != 'collision') || WALLS.length == 0) {
+						console.log("stick/collision type, but walls length is 0")
+				    console.log("binder: ", binder);
+		        binder.x = snap.x;
+		        binder.y = snap.y;
+		        binder.oldX = binder.x;
+		        binder.oldY = binder.y;
+		        binder.update();
+		      }
+					
+		      if (binder.family == 'collision') {
+		        var found = false;
 
-	        if (floorplanEditor.rayCastingWalls({ x: binder.bbox.left, y: binder.bbox.top })) found = true;
-	        if (!found && floorplanEditor.rayCastingWalls({ x: binder.bbox.left, y: binder.bbox.bottom })) found = true;
-	        if (!found && floorplanEditor.rayCastingWalls({ x: binder.bbox.right, y: binder.bbox.top })) found = true;
-	        if (!found && floorplanEditor.rayCastingWalls({ x: binder.bbox.right, y: binder.bbox.bottom })) found = true;
+		        if (floorplanEditor.rayCastingWalls({ x: binder.bbox.left, y: binder.bbox.top })) found = true;
+		        if (!found && floorplanEditor.rayCastingWalls({ x: binder.bbox.left, y: binder.bbox.bottom })) found = true;
+		        if (!found && floorplanEditor.rayCastingWalls({ x: binder.bbox.right, y: binder.bbox.top })) found = true;
+		        if (!found && floorplanEditor.rayCastingWalls({ x: binder.bbox.right, y: binder.bbox.bottom })) found = true;
 
-	        if (!found) {
-	          binder.x = snap.x;
-	          binder.y = snap.y;
-	          binder.oldX = binder.x;
-	          binder.oldY = binder.y;
-	          binder.update();
-	        }
-	        else {
-	          binder.x = binder.oldX;
-	          binder.y = binder.oldY;
-	          binder.update();
-	        }
-	      }
-	      if (binder.family == 'stick') {
-	        pos = floorplanEditor.stickOnWall(snap);
-	        binder.oldX = pos.x;
-	        binder.oldY = pos.y;
-	        var angleWall = qSVG.angleDeg(pos.wall.start.x, pos.wall.start.y, pos.wall.end.x, pos.wall.end.y);
-	        var v1 = qSVG.vectorXY({ x: pos.wall.start.x, y: pos.wall.start.y }, { x: pos.wall.end.x, y: pos.wall.end.y });
-	        var v2 = qSVG.vectorXY({ x: pos.wall.end.x, y: pos.wall.end.y }, snap);
-	        binder.x = pos.x - Math.sin(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
-	        binder.y = pos.y - Math.cos(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
-	        var newAngle = qSVG.vectorDeter(v1, v2);
-	        if (Math.sign(newAngle) == 1) {
-	          angleWall += 180;
-	          binder.x = pos.x + Math.sin(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
-	          binder.y = pos.y + Math.cos(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
-	        }
-	        binder.angle = angleWall;
-	        binder.update();
-	      }
+		        if (!found) {
+		          binder.x = snap.x;
+		          binder.y = snap.y;
+		          binder.oldX = binder.x;
+		          binder.oldY = binder.y;
+		          binder.update();
+		        }
+		        else {
+		          binder.x = binder.oldX;
+		          binder.y = binder.oldY;
+		          binder.update();
+		        }
+		      }
+		      if (binder.family == 'stick') {
+		        pos = floorplanEditor.stickOnWall(snap);
+		        binder.oldX = pos.x;
+		        binder.oldY = pos.y;
+		        var angleWall = qSVG.angleDeg(pos.wall.start.x, pos.wall.start.y, pos.wall.end.x, pos.wall.end.y);
+		        var v1 = qSVG.vectorXY({ x: pos.wall.start.x, y: pos.wall.start.y }, { x: pos.wall.end.x, y: pos.wall.end.y });
+		        var v2 = qSVG.vectorXY({ x: pos.wall.end.x, y: pos.wall.end.y }, snap);
+		        binder.x = pos.x - Math.sin(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
+		        binder.y = pos.y - Math.cos(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
+		        var newAngle = qSVG.vectorDeter(v1, v2);
+		        if (Math.sign(newAngle) == 1) {
+		          angleWall += 180;
+		          binder.x = pos.x + Math.sin(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
+		          binder.y = pos.y + Math.cos(pos.wall.angle * (360 / 2 * Math.PI)) * binder.thick / 2;
+		        }
+		        binder.angle = angleWall;
+		        binder.update();
+		      }
+				}
+				else{
+					console.log("binder,but no family");
+				}
+	      
 	    }
 	    else {
 				if(document.querySelector('#extension-floorplanner-object_list')){
@@ -997,13 +1050,13 @@
 	        binder = new floorplanEditor.obj2D("free", "energy", typeObj, snap, 0, 0, 0, "normal", 0);
 	      }
 
-	      //document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+	      document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 				
 	    }
 	  }
 
 	  //**************************************************************************
-	  //**************        DISTANCE MODE **************************************
+	  //**************        MOUSE MOVE:   DISTANCE MODE   ************************************
 	  //**************************************************************************
 	  if (mode == 'distance_mode') {
 	    snap = calcul_snap(event, grid_snap);
@@ -1027,7 +1080,7 @@
 	        fill: "#3672d9"
 	      });
 	      binder.graph.append(labelMeasure);
-	      //document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+	      document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 	    }
 	    else {
 	      x = snap.x;
@@ -1051,7 +1104,7 @@
 	        binder.angle = angleText.deg;
 	        valueText = (valueText / meter).toFixed(2) + ' m';
 	        //labelMeasure.context.textContent = valueText;
-	        labelMeasure[0].textContent = valueText;
+	        labelMeasure.textContent = valueText;
 
 	        binder.update();
 	      }
@@ -1059,7 +1112,7 @@
 	  }
 
 	  //**************************************************************************
-	  //**************        ROOM MODE *****************************************
+	  //**************      MOUSE MOVE:     ROOM MODE *****************************************
 	  //**************************************************************************
 
 	  if (mode == 'room_mode') {
@@ -1112,78 +1165,85 @@
 	  }
 
 	  //**************************************************************************
-	  //**************        DOOR/WINDOW MODE   *********************************
+	  //**************        MOUSE MOVE:   DOOR/WINDOW MODE   *********************************
 	  //**************************************************************************
 
 	  if (mode == 'door_mode') {
 		  //console.log("in door_mode");
+			
+			if (typeof (binder) != 'undefined' && typeof binder.update != 'undefined') {
+				if (binder.class == "boundingBox"){
+					bye_binder();
+				}
+			}
+			
 	    snap = calcul_snap(event, grid_snap);
 		  //console.log("--snap: ", snap)
 	    if (wallSelect = floorplanEditor.nearWall(snap)) {
-		  //console.log("-- got wall to snap to: ", wallSelect);
+		  console.log("--door_mode: got wall to snap to: ", wallSelect);
 	      var wall = wallSelect.wall;
 	      if (wall.type != 'separate') {
-			  //console.log("-- wall type is not separate: ", wall.type);
+			  	console.log("-- wall type is not separate: ", wall.type);
 	        if (typeof (binder) != 'undefined' && typeof binder.update != 'undefined') {
-  			  //console.log("binder already existed: ", binder);
-  	          var angleWall = qSVG.angleDeg(wall.start.x, wall.start.y, wall.end.x, wall.end.y);
-  	          var v1 = qSVG.vectorXY({ x: wall.start.x, y: wall.start.y }, { x: wall.end.x, y: wall.end.y });
-  	          var v2 = qSVG.vectorXY({ x: wall.end.x, y: wall.end.y }, snap);
-  	          var newAngle = qSVG.vectorDeter(v1, v2);
-  	          binder.angleSign = 0;
-  	          if (Math.sign(newAngle) == 1) {
-  	            binder.angleSign = 1;
-  	            angleWall += 180;
-  	          }
+  			  	console.log("--door_mode: binder already existed: ", binder);
+	          var angleWall = qSVG.angleDeg(wall.start.x, wall.start.y, wall.end.x, wall.end.y);
+	          var v1 = qSVG.vectorXY({ x: wall.start.x, y: wall.start.y }, { x: wall.end.x, y: wall.end.y });
+	          var v2 = qSVG.vectorXY({ x: wall.end.x, y: wall.end.y }, snap);
+	          var newAngle = qSVG.vectorDeter(v1, v2);
+	          binder.angleSign = 0;
+	          if (Math.sign(newAngle) == 1) {
+	            binder.angleSign = 1;
+	            angleWall += 180;
+	          }
 
-  	          var limits = limitObj(wall.equations.base, binder.size, wallSelect);
-  	          if (qSVG.btwn(limits[0].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[0].y, wall.start.y, wall.end.y) && qSVG.btwn(limits[1].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[1].y, wall.start.y, wall.end.y)) {
-  	            binder.x = wallSelect.x;
-  	            binder.y = wallSelect.y;
-  	            binder.angle = angleWall;
-  	            binder.thick = wall.thick;
-  	            binder.limit = limits;
-  	            binder.update();
-  	          }
+	          var limits = limitObj(wall.equations.base, binder.size, wallSelect);
+	          if (qSVG.btwn(limits[0].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[0].y, wall.start.y, wall.end.y) && qSVG.btwn(limits[1].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[1].y, wall.start.y, wall.end.y)) {
+	            binder.x = wallSelect.x;
+	            binder.y = wallSelect.y;
+	            binder.angle = angleWall;
+	            binder.thick = wall.thick;
+	            binder.limit = limits;
+	            binder.update();
+	          }
 
-  	          if ((wallSelect.x == wall.start.x && wallSelect.y == wall.start.y) || (wallSelect.x == wall.end.x && wallSelect.y == wall.end.y)) {
-  	            if (qSVG.btwn(limits[0].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[0].y, wall.start.y, wall.end.y)) {
-  	              binder.x = limits[0].x;
-  	              binder.y = limits[0].y;
-  	            }
-  	            if (qSVG.btwn(limits[1].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[1].y, wall.start.y, wall.end.y)) {
-  	              binder.x = limits[1].x;
-  	              binder.y = limits[1].y;
-  	            }
-  	            binder.limit = limits;
-  	            binder.angle = angleWall;
-  	            binder.thick = wall.thick;
-  	            binder.update();
-  	          }
+	          if ((wallSelect.x == wall.start.x && wallSelect.y == wall.start.y) || (wallSelect.x == wall.end.x && wallSelect.y == wall.end.y)) {
+	            if (qSVG.btwn(limits[0].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[0].y, wall.start.y, wall.end.y)) {
+	              binder.x = limits[0].x;
+	              binder.y = limits[0].y;
+	            }
+	            if (qSVG.btwn(limits[1].x, wall.start.x, wall.end.x) && qSVG.btwn(limits[1].y, wall.start.y, wall.end.y)) {
+	              binder.x = limits[1].x;
+	              binder.y = limits[1].y;
+	            }
+	            binder.limit = limits;
+	            binder.angle = angleWall;
+	            binder.thick = wall.thick;
+	            binder.update();
+	          }
 	        }
 	        else {
-  			  console.log("-- binder is undefined, making doorWindow object.  modeOption, wallSelect,wall.thick:", modeOption, wallSelect,wall.thick);
-  	          // family, classe, type, pos, angle, angleSign, size, hinge, thick 
-  	          binder = new floorplanEditor.obj2D("inWall", "doorWindow", modeOption, wallSelect, 0, 0, 60, "normal", wall.thick);
-			  console.log("new door binder, should be obj2D: ", binder);
-  	          var angleWall = qSVG.angleDeg(wall.start.x, wall.start.y, wall.end.x, wall.end.y);
-			  console.log("angleWall: ", angleWall);
-  	          var v1 = qSVG.vectorXY({ x: wall.start.x, y: wall.start.y }, { x: wall.end.x, y: wall.end.y });
-  	          var v2 = qSVG.vectorXY({ x: wall.end.x, y: wall.end.y }, snap);
-  	          var newAngle = qSVG.vectorDeter(v1, v2);
-			  console.log("newAngle: ", newAngle);
-  	          if (Math.sign(newAngle) == 1) {
-  	            angleWall += 180;
-  	            binder.angleSign = 1;
-  	          }
-  	          var startCoords = qSVG.middle(wall.start.x, wall.start.y, wall.end.x, wall.end.y);
-			  console.log("startCoords: ", startCoords);
-  	          binder.x = startCoords.x;
-  	          binder.y = startCoords.y;
-  	          binder.angle = angleWall;
-  	          binder.update();
-			  console.log("door mode: appending binder.graph: ", binder.graph);
-  	          //document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+  			  	console.log("-- binder is undefined, making doorWindow object.  modeOption, wallSelect,wall.thick:", modeOption, wallSelect,wall.thick);
+	          // family, classe, type, pos, angle, angleSign, size, hinge, thick 
+	          binder = new floorplanEditor.obj2D("inWall", "doorWindow", modeOption, wallSelect, 0, 0, 60, "normal", wall.thick);
+						console.log("new door binder, should be obj2D: ", binder);
+	          var angleWall = qSVG.angleDeg(wall.start.x, wall.start.y, wall.end.x, wall.end.y);
+						console.log("angleWall: ", angleWall);
+	          var v1 = qSVG.vectorXY({ x: wall.start.x, y: wall.start.y }, { x: wall.end.x, y: wall.end.y });
+	          var v2 = qSVG.vectorXY({ x: wall.end.x, y: wall.end.y }, snap);
+	          var newAngle = qSVG.vectorDeter(v1, v2);
+						console.log("newAngle: ", newAngle);
+	          if (Math.sign(newAngle) == 1) {
+	            angleWall += 180;
+	            binder.angleSign = 1;
+	          }
+	          var startCoords = qSVG.middle(wall.start.x, wall.start.y, wall.end.x, wall.end.y);
+						console.log("startCoords: ", startCoords);
+	          binder.x = startCoords.x;
+	          binder.y = startCoords.y;
+	          binder.angle = angleWall;
+	          binder.update();
+						console.log("door mode: appending binder.graph: ", binder.graph);
+	          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 	        }
 	      }
 	    }
@@ -1198,7 +1258,7 @@
 	  } // END DOOR MODE
 
 	  //**************************************************************************
-	  //**************        NODE MODE *****************************************
+	  //**************        MOUSE MOVE:   NODE MODE *****************************************
 	  //**************************************************************************
 
 	  if (mode == 'node_mode') {
@@ -1265,10 +1325,17 @@
 	  if (mode == 'select_mode' && drag == 'off') { // FIRST TEST ON SELECT MODE (and drag OFF) to detect MOUSEOVER DOOR
 		  //console.log("in select_mode.  drag,OBJDATA: ", drag, OBJDATA);
 	    snap = calcul_snap(event, 'off');
-			//console.log("select mode: snap: ", snap);
-	    var objTarget = false;
-			//console.log("select_mode: OBJDATA: ", OBJDATA);
-	    for (var i = 0; i < OBJDATA.length; i++) {
+			console.log("select mode: snap: ", snap);
+	    
+			var objTarget = false;
+			console.log("select_mode: OBJDATA: ", OBJDATA);
+	    //for (var i = OBJDATA.length -1; i >= 0; i--) {
+			for (var i = 0; i < OBJDATA.length; i++) {
+				console.log(i, ": OBJ: ",  OBJDATA[i]);
+				if(typeof OBJDATA[i].type == 'undefined'){
+					console.error("OBJ has undefined type. This should not happen.");
+					//OBJDATA.slice(i,1);
+				}
 	      var objX1 = OBJDATA[i].bbox.left;
 	      var objX2 = OBJDATA[i].bbox.right;
 	      var objY1 = OBJDATA[i].bbox.top;
@@ -1276,46 +1343,76 @@
 	      var realBboxCoords = OBJDATA[i].realBbox;
 				//console.log("realBboxCoords: ", realBboxCoords);
 	      if (qSVG.rayCasting(snap, realBboxCoords)) {
-					//console.warn("FOUND NEARBY OBJECT");
+					console.warn("FOUND NEARBY OBJECT: ", OBJDATA[i]);
 	        objTarget = OBJDATA[i];
 					//binder = OBJDATA[i];
+					// TODO: why not break here?
 	      }
 	    }
+			
+			if(objTarget == false){
+				console.log("did not find a nearby object");
+				//hideAllSize();
+			}
+			
 			//console.log("select_mode: objTarget:", objTarget);
 			if (typeof (binder) != 'undefined'){
-				//console.log("select_mode: binder:", binder);
+				console.log("select_mode: binder:", binder);
 			}
 			
 			
 	    if (objTarget !== false) {
+				console.log("selectMode found a target object: ", objTarget);
 	      if (typeof (binder) != 'undefined' && (binder.type == 'segment')) {
+					console.log("select_mode: removing existing binder of segment type first");
 					//console.log("removing binder that is segment type");
-	        //binder.graph.remove();
+	        binder.graph.remove();
 	        //delete binder;
 					bye_binder();
 	        cursor('default');
 	      }
+				
 	      if (objTarget.params.bindBox) { // OBJ -> BOUNDINGBOX TOOL
-					console.log("OBJ -> BOUNDINGBOX TOOL");
-	        //if (typeof (binder) == 'undefined') {
+					console.warn("select_mode:  OBJTARGET HAS BINDBOX -> setting binder as obj2D boundingbox");
+	        if (typeof (binder) == 'undefined') {
 	          binder = new floorplanEditor.obj2D("free", "boundingBox", "", objTarget.bbox.origin, objTarget.angle, 0, objTarget.size, "normal", objTarget.thick, objTarget.realBbox);
 	          binder.update();
 	          binder.obj = objTarget;
 	          binder.type = 'boundingBox';
 	          binder.oldX = binder.x;
 	          binder.oldY = binder.y;
-	          //document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+	          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 	          if (!objTarget.params.move) cursor('trash'); // LIKE MEASURE ON PLAN
-	          if (objTarget.params.move) cursor('move');
-					//}
+	          if (objTarget.params.move) {
+							console.log("this objTarget.params.move is true, setting move cursor");
+							cursor('move');
+						}
+					}
 	      }
 	      else {  // DOOR, WINDOW, APERTURE.. -- OBJ WITHOUT BINDBOX (params.bindBox = False) -- !!!!
-			    console.log("select_mode: DOOR, WINDOW, APERTURE.. -- OBJ WITHOUT BINDBOX");
-	        
-					if(typeof (binder) != 'undefined'){
+			    console.log("select_mode: DOOR, WINDOW, APERTURE.. -- NEARBY OBJTARGET, but WITHOUT BINDBOX");
+	        console.log("++objTarget: ", objTarget);
+					
+					if(typeof (binder) == 'undefined'){
 						console.log("select_mode: binder already existed: ", binder);
+						
+						var wallList = floorplanEditor.rayCastingWall(objTarget);
+	          if (wallList.length > 1) wallList = wallList[0];
+	          inWallRib(wallList);
+	          var thickObj = wallList.thick;
+	          var sizeObj = objTarget.size;
+						
+	          binder = new floorplanEditor.obj2D("inWall", "socle", "", objTarget, objTarget.angle, 0, sizeObj, "normal", thickObj);
+	          binder.update();
+						
+	          binder.oldXY = { x: objTarget.x, y: objTarget.y }; // FOR OBJECT MENU
+	          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+						
+						
+						/*
 						//console.log("event.target =?= binder.graph.firstChild: ", event.target, binder.graph.firstChild)
-	          if (typeof binder.graph != 'undefined' && event.target == binder.graph.firstChild) {
+	          
+						if (typeof binder.graph != 'undefined' && event.target == binder.graph.firstChild) {
 	            cursor('move');
 	            binder.graph.firstChild.setAttribute("class", "extension-floorplanner-circle_css_2");
 	            binder.type = "obj";
@@ -1327,11 +1424,79 @@
 	            binder.type = false;
 	          }
 						else{
-							console.error("eh? binder but no graph, unexpectely");
+							console.error("eh? binder but no graph, unexpectedly");
 							bye_binder();
+							
+		          var wallList = floorplanEditor.rayCastingWall(objTarget);
+		          if (wallList.length > 1) wallList = wallList[0];
+		          inWallRib(wallList);
+		          var thickObj = wallList.thick;
+		          var sizeObj = objTarget.size;
+
+		          binder = new floorplanEditor.obj2D("inWall", "socle", "", objTarget, objTarget.angle, 0, sizeObj, "normal", thickObj);
+				  		console.log("select_mode: binder or inWall type: ", binder);
+		          binder.update();
+
+		          binder.oldXY = { x: objTarget.x, y: objTarget.y }; // FOR OBJECT MENU
+		          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 						}
+						*/
 					}
 					else {
+						
+						if(typeof binder != 'undefined'){
+		          //if (event.target == binder.graph.get(0).firstChild) {
+							if (typeof binder.graph != 'undefined' && event.target == binder.graph.firstChild) {
+		            cursor('move');
+		            //binder.graph.get(0).firstChild.setAttribute("class", "circle_css_2");
+								
+		            binder.type = "obj";
+		            binder.obj = objTarget;
+								if(typeof binder.graph != 'undefined'){
+									if(typeof binder.graph.firstChild != 'undefined'){
+										console.log("binder.graph.firstChild: ", binder.graph.firstChild);
+										if(binder.graph.firstChild != null){
+											binder.graph.firstChild.setAttribute("class", "extension-floorplanner-circle_css_2");
+										}
+										
+									}
+									else{
+										console.error("missing binder.graph.firstChild: ", binder.graph);
+									}
+								}
+								else{
+									console.error("expected a binder.graph");
+								}
+								
+		          }
+		          else {
+		            cursor('default');
+		            //binder.graph.get(0).firstChild.setAttribute("class", "circle_css_1");
+								
+		            binder.type = false;
+								if(typeof binder.graph != 'undefined'){
+									if(typeof binder.graph.firstChild != 'undefined'){
+										console.log("binder.graph.firstChild: ", binder.graph.firstChild);
+										if(binder.graph.firstChild != null){
+											binder.graph.firstChild.setAttribute("class", "extension-floorplanner-circle_css_1");
+										}
+									}
+									else{
+										console.error("missing binder.graph.firstChild: ", binder.graph);
+									}
+								}
+								else{
+									console.error("expected a binder.graph");
+								}
+								
+		          }
+						}
+						else{
+							console.error("expected a binder");
+						}
+	          
+						
+						/*
 	          var wallList = floorplanEditor.rayCastingWall(objTarget);
 	          if (wallList.length > 1) wallList = wallList[0];
 	          inWallRib(wallList);
@@ -1343,32 +1508,25 @@
 	          binder.update();
 
 	          binder.oldXY = { x: objTarget.x, y: objTarget.y }; // FOR OBJECT MENU
-	          //document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+	          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+						*/
 	        }
 	      }
 	    }
-	    
+	    else{
+	    	console.log("Did not find an objTarget");
+	    }
 
 	    // BIND CIRCLE IF nearNode and GROUP ALL SAME XY SEG POINTS
-	    else if (wallNode = floorplanEditor.nearWallNode(snap, 20)) {
+	    if (wallNode = floorplanEditor.nearWallNode(snap, 20)) {
 				console.log("POINTER IS NEAR WALL NODE");
 				if(typeof binder != 'undefined'){
 					console.log("--binder already exists: ", binder);
 				}
-        binder = qSVG.create('boxbind', 'circle', {
-          id: "extension-floorplanner-circlebinder",
-          class: "extension-floorplanner-circle_css_2",
-          cx: wallNode.x,
-          cy: wallNode.y,
-          r: Rcirclebinder
-        });
-        binder.data = wallNode;
-        binder.type = "node";
-				if (document.querySelectorAll('#extension-floorplanner-linebinder').length) document.querySelector('#extension-floorplanner-linebinder').remove();
-				
-				/*
-	      if (typeof binder == 'undefined' || (typeof binder != 'undefined' && typeof binder.type != 'undefined ' && binder.type == 'segment')) {
-	        binder = qSVG.create('boxbind', 'circle', {
+	      if (typeof binder == 'undefined' || (typeof binder != 'undefined' && typeof binder.type != 'undefined' && binder.type == 'segment')) {
+	        console.log("replacing binder of type segment with unkillable circlebinder");
+					bye_binder();
+					binder = qSVG.create('boxbind', 'circle', {
 	          id: "extension-floorplanner-circlebinder",
 	          class: "extension-floorplanner-circle_css_2",
 	          cx: wallNode.x,
@@ -1388,10 +1546,10 @@
 	        //     });
 	        // }
 	      }
-				*/
+				
 	      cursor('move');
 	    }
-			else if (typeof (binder) != "undefined" && binder.type == 'node') {
+			else if (typeof (binder) != "undefined" && typeof binder.type != "undefined" && binder.type == 'node') {
 				console.log("select_mode: not near wall node, but binder type is node, so calling bye_binder");
 				bye_binder();
         //binder.remove();
@@ -1402,20 +1560,32 @@
 	      
 	    }
 	    else if (typeof binder != 'undefined') {
-				console.log("select_mode, but nothing near the mouse pointer?");
+				console.log("select_mode, but nothing near the mouse pointer? HOWEVER, binder was not undefined: ", binder);
 	      
 				//console.log("clearing binder")
         //if (typeof (binder.graph) != 'undefined') binder.graph.remove();
-        bye_binder();
+        
 				//if (binder.type == 'node') binder.remove();
         //delete binder;
-        cursor('default');
-        rib();
+				//document.querySelector('#extension-floorplanner-boxbind').replaceChildren(); // experiment
+        
+				//bye_binder();
+				//cursor('default');
+        //rib();
 
 	    }
+			
+			if (typeof binder != "undefined"){
+				console.log("Heyyyy, a binder still exists just before wall checking: ", binder);
+			}
+			else{
+				console.log("before wall checking binder is gone");
+			}
+			
 
 	    // BIND WALL WITH NEARPOINT function ---> WALL BINDER CREATION
 	    if (wallBind = floorplanEditor.rayCastingWalls(snap, WALLS)) {
+				console.log("wallBinder creation. wallBind: ", wallBind);
 	      if (wallBind.length > 1) wallBind = wallBind[wallBind.length - 1];
 	      if (wallBind && typeof (binder) == 'undefined') {
 	        var objWall = floorplanEditor.objFromWall(wallBind);
@@ -1442,13 +1612,16 @@
 	        binder.graph.append(line);
 	        binder.graph.append(ball1);
 	        binder.graph.append(ball2);
-	        //document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+	        document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 	        binder.type = "segment";
 	        cursor('pointer');
 	      }
 	    } else {
+				console.log("doing nearWall");
 	      if (wallBind = floorplanEditor.nearWall(snap, 6)) {
+					console.log("got wallbind after doing nearwall: ", wallBind);
 	        if (wallBind && typeof (binder) == 'undefined') {
+						console.log("got wallbind after doing nearwall, but binder was undefined. Creating an SVG of a line between two balls.");
 	          wallBind = wallBind.wall;
 	          var objWall = floorplanEditor.objFromWall(wallBind);
 	          if (objWall.length > 0) floorplanEditor.inWallRib2(wallBind);
@@ -1474,20 +1647,80 @@
 	          binder.graph.append(line);
 	          binder.graph.append(ball1);
 	          binder.graph.append(ball2);
-	          //document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
+	          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 	          binder.type = "segment";
 	          cursor('pointer');
 	        }
 	      }
 	      else {
-	        if (typeof (binder) != "undefined" && binder.type == 'segment') {
-	          //binder.graph.remove();
-	          //delete binder;
+					console.log("not near a wall");
+					if (typeof (binder) != "undefined"){
+						console.log("I'd like to delete this binder: ", binder);
+		        if (typeof (binder) != "undefined" && typeof binder.type != 'undefined' && binder.type == 'segment') {
+							console.log("not near a wall, and binder was of type segment, so removing that old wall indicator.");
+		          //binder.graph.remove();
+		          //delete binder;
+							bye_binder();
+		          hideAllSize();
+		          cursor('default');
+		          rib();
+		        }
+						else if(objTarget == false){
+							if(typeof binder.obj != 'undefined'){
+								bye_binder();
+			          hideAllSize();
+			          cursor('default');
+			          rib();
+							}
+							else if( isNaN(binder.height) ){
+								bye_binder();
+			          hideAllSize();
+			          cursor('default');
+			          rib();
+							}
+						}
+						else{
+							if(typeof binder.obj != 'undefined'){
+								if(objTarget == binder.obj){
+									console.log("GOOD, the binder is the currently nearest object.");
+								}
+								else{
+									bye_binder();
+				          hideAllSize();
+				          cursor('default');
+				          rib();
+								}
+							}
+							else if( isNaN(binder.height) ){
+								bye_binder();
+			          hideAllSize();
+			          cursor('default');
+			          rib();
+							}
+							
+							
+							
+						}
+						console.log("but should check if it's actually nearby.  objTarget: ", objTarget);
+						/*
+						if(typeof binder.obj != 'undefined'){
+							bye_binder();
+		          hideAllSize();
+		          cursor('default');
+		          rib();
+						}
+						*/
+						
+					}
+	        
+					/*
+					else if (typeof (binder) != "undefined"){
 						bye_binder();
 	          hideAllSize();
 	          cursor('default');
 	          rib();
-	        }
+					}
+					*/
 	      }
 	    }
 	  } // END mode == 'select_mode' && drag == 'off'
@@ -1619,8 +1852,13 @@
 	            });
 	          }
 						
-			  document.querySelector('#extension-floorplanner-line_construc').setAttribute('x2',wallNode.x);
-			  document.querySelector('#extension-floorplanner-line_construc').setAttribute('y2',wallNode.y);
+						const testje = document.querySelectorAll('#extension-floorplanner-line_construc');
+						if(testje.length > 1){
+							console.error("yikes, there are multiple linecontructs with the same ID");
+						}
+						
+						document.querySelector('#extension-floorplanner-line_construc').setAttribute('x2',wallNode.x);
+						document.querySelector('#extension-floorplanner-line_construc').setAttribute('y2',wallNode.y);
   
 	          x = wallNode.x;
 	          y = wallNode.y;
@@ -1664,8 +1902,11 @@
 	          if (found) document.querySelector('#extension-floorplanner-line_construc').setAttribute( "stroke-opacity",1);
 	          else document.querySelector('#extension-floorplanner-line_construc').setAttribute( "stroke-opacity",0.7);
 	        }
-	        document.querySelector('#extension-floorplanner-line_construc').setAttribute( "x2",x);
-			document.querySelector('#extension-floorplanner-line_construc').setAttribute( "y2",y);
+					if(document.querySelector('#extension-floorplanner-line_construc')){
+		        document.querySelector('#extension-floorplanner-line_construc').setAttribute( "x2",x);
+						document.querySelector('#extension-floorplanner-line_construc').setAttribute( "y2",y);
+					}
+	        
 
 	        // SHOW WALL SIZE -------------------------------------------------------------------------
 	        var startText = qSVG.middle(pox, poy, x, y);
@@ -1747,6 +1988,7 @@
 					}
 					else{
 						console.log("circlebinder el did not exist");
+						/*
 						bye_binder();
 		        binder = qSVG.create('boxbind', 'circle', {
 		          id: "extension-floorplanner-circlebinder",
@@ -1757,6 +1999,7 @@
 		        });
 		        //binder.data = wallNode;
 		        //binder.type = "node";
+						*/
 					}
 					
 	        cursor('grab');
@@ -1780,6 +2023,7 @@
 	          cursor('move');
 	        }
 	        binder.remove()
+					//bye_binder();
 	        //document.querySelector('#extension-floorplanner-circlebinder').attr({"class": "circle_css", cx: coords.x, cy: coords.y});
 	      }
 	      for (var k in wallListRun) {
@@ -2059,7 +2303,27 @@
 	    // poy = event.pageY;
 	    zoom_maker('zoomdrag', distX, distY);
 	  }
-	} // END MOUSEMOVE
+	} 
+	
+	
+	// END MOUSEMOVE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// *****************************************************************************************************
 	// *****************************************************************************************************
@@ -2070,7 +2334,7 @@
 	// *****************************************************************************************************
 
 	function _MOUSEDOWN(event) {
-		
+		console.warn("MOUSEDOWN");
 	  event.preventDefault();
 		hide_submenus();
 	  // *******************************************************************
@@ -2113,7 +2377,19 @@
 	  // **********************   SELECT MODE + BIND   *********************
 	  // *******************************************************************
 	  if (mode == 'select_mode') {
-	    if (typeof (binder) != 'undefined' && (binder.type == 'segment' || binder.type == 'node' || binder.type == 'obj' || binder.type == 'boundingBox')) {
+			if (typeof (binder) != 'undefined'){
+				if(typeof (binder.type) != 'undefined'){
+					console.log("MOUSEDOWN: OK, binder is defined and has type: ", binder, binder.type);
+				}
+				else{
+					console.log("MOUSEDOWN: binder is defined but has no type: ", binder);
+				}
+			}
+			else{
+				console.error("MOUSEDOWN: binder is undefined");
+			}
+			// the binder.type check shouldn't be here...
+	    if (typeof (binder) != 'undefined' && typeof (binder.type) != 'undefined' && (binder.type == 'segment' || binder.type == 'node' || binder.type == 'obj' || binder.type == 'boundingBox')) {
 	      mode = 'bind_mode';
 
 	      if (binder.type == 'obj') {
@@ -2325,6 +2601,7 @@
 	    }
 
 	    else {
+				console.log("mousedown: assuming this is a start of a drag because binder did not exist or had no type");
 	      action = 0;
 	      drag = 'on';
 	      snap = calcul_snap(event, grid_snap);
@@ -2343,7 +2620,12 @@
 	//**********************************  ******************************************************************
 
 	function _MOUSEUP(event) {
-	  if (showRib) document.querySelector('#extension-floorplanner-boxScale').style.display = 'block'
+		console.warn("MOUSEUP");
+	  if (showRib) document.querySelector('#extension-floorplanner-boxScale').style.display = 'block';
+		if(drag == 'on'){
+			console.log("MOUSEUP: END OF A DRAG");
+		}
+		
 	  drag = 'off';
 	  cursor('default');
 		
@@ -2353,9 +2635,11 @@
 		
 	  if (mode == 'select_mode') {
 	    if (typeof (binder) != 'undefined') {
+				console.log("mouseup, and binder still existed, which is not supposed to happen. calling byebinder");
 	      //binder.remove();
 	      //delete binder;
 				bye_binder();
+				//hideAllSize();
 	      floorplanSave();
 	    }
 	  }
@@ -2377,16 +2661,34 @@
 	  //**************        OBJECT   MODE **************************************
 	  //**************************************************************************
 	  if (mode == 'object_mode') {
-		  console.log("in object_mode. this fixates an object?");
-	    OBJDATA.push(binder);
-		 console.log("OBJDATA is now: ", OBJDATA);
+		  console.log("mouse_up: in object_mode. this fixates an object?");
+	    if(typeof binder.graph != 'undefined' && typeof binder.type != 'undefined'){
+				if(binder.type != 'boundingBox'){
+					console.warn("adding boundingbox to OBJDATA: ", binder);
+					//OBJDATA.push(binder);
+				}
+				else{
+					//console.error("almost added boundingbox to OBJDATA.  binder: ", binder);
+				}
+	    	OBJDATA.push(binder);
+				
+	    }
+			else{
+				console.error("attempted to save an svg element to object list! ", binder);
+			}
+			
+		  console.log("OBJDATA is now: ", OBJDATA);
 	    if(typeof binder.graph != 'undefined') binder.graph.remove();
 	    var targetBox = 'boxcarpentry';
 	    if (OBJDATA[OBJDATA.length - 1].class == 'energy') targetBox = 'boxEnergy';
 	    if (OBJDATA[OBJDATA.length - 1].class == 'furniture') targetBox = 'boxFurniture';
+			if (OBJDATA[OBJDATA.length - 1].class == 'measure'){
+				console.log("setting measurement object targetBox to boxMeasure");
+				targetBox = 'boxMeasure';
+			}
 	    document.querySelector('#extension-floorplanner-' + targetBox).append(OBJDATA[OBJDATA.length - 1].graph);
 	    //delete binder;
-			bye_binder();
+		  bye_binder();
 	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Object added';
 	    fonc_button('select_mode');
 	    floorplanSave();
@@ -2400,7 +2702,7 @@
 	    if (action == 1) {
 	      action = 0;
 	      // MODIFY BBOX FOR BINDER ZONE (TXT)
-	      var bbox = labelMeasure[0].getBoundingClientRect();
+	      var bbox = labelMeasure.getBoundingClientRect();
 	      bbox.x = (bbox.x * factor) - (offset.left * factor) + originX_viewbox;
 	      bbox.y = (bbox.y * factor) - (offset.top * factor) + originY_viewbox;
 	      bbox.origin = { x: bbox.x + (bbox.width / 2), y: bbox.y + (bbox.height / 2) };
@@ -2411,14 +2713,25 @@
 	      binder.thick = binder.bbox.height;
 	      binder.graph.append(labelMeasure);
 	      OBJDATA.push(binder);
-	      if(typeof binder.graph != 'undefine') binder.graph.remove();
-	      document.querySelector('#extension-floorplanner-boxcarpentry').append(OBJDATA[OBJDATA.length - 1].graph);
+	      if(typeof binder.graph != 'undefined'){
+					
+					document.querySelector('#extension-floorplanner-boxMeasure').append(OBJDATA[OBJDATA.length - 1].graph);
+					//document.querySelector('#extension-floorplanner-boxMeasure').append(binder.graph);
+					binder.graph.remove();
+				}
+	      
 	      //delete binder;
 				bye_binder();
 	      //delete labelMeasure;
 	      cross.remove();
-	      //delete cross;
-	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measure added';
+				try{
+					delete cross;
+				}
+				catch(e){
+					console.error("could not delete cross: ", e);
+				}
+	      //
+	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measurement added';
 	      fonc_button('select_mode');
 	      floorplanSave();
 	    }
@@ -2435,12 +2748,12 @@
 	    }
 
 	    var area = binder.area / 3600;
-		binder.setAttribute('fill', 'none');
-		binder.setAttribute('stroke', '#ddf00a');
-		binder.setAttribute('stroke-width', 7);
+		  binder.setAttribute('fill', 'none');
+		  binder.setAttribute('stroke', '#ddf00a');
+		  binder.setAttribute('stroke-width', 7);
 	    document.querySelector('.extension-floorplanner-size').innerHTML = area.toFixed(2) + " m²";
 	    document.querySelector('#extension-floorplanner-roomIndex').value = binder.id;
-	    if (ROOM[binder.id].surface != '') document.querySelector('#extension-floorplanner-roomSurface').value = ROOM[binder.id].surface;
+	    if (typeof ROOM[binder.id] != 'undefined'  && typeof ROOM[binder.id].surface != 'undefined' && ROOM[binder.id].surface != '') document.querySelector('#extension-floorplanner-roomSurface').value = ROOM[binder.id].surface;
 	    else document.querySelector('#extension-floorplanner-roomSurface').value = '';
 	    document.querySelector('#extension-floorplanner-seeArea').checked = ROOM[binder.id].showSurface;
 	    document.querySelector('#extension-floorplanner-roomBackground').value = ROOM[binder.id].color;
@@ -2508,9 +2821,9 @@
 
 	  if (mode == 'line_mode' || mode == 'partition_mode') {
 		  // This shouldn't be here.. of maybe it should.
-		  //if(document.querySelector('#extension-floorplanner-linetemp')){
+		  if(document.querySelector('#extension-floorplanner-linetemp')){
 		  	document.querySelector('#extension-floorplanner-linetemp').remove(); // DEL LINE HELP CONSTRUC 0 45 90
-		  //}
+		  }
 		
 		  
 	    intersectionOff();
@@ -2529,7 +2842,7 @@
 	        action = 1;
 	      }
 	      else action = 0;
-	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Wall added <span style=\'font-size:0.6em\'>Moy. ' + (qSVG.measure(
+	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Wall added <span style=\'font-size:0.6em\'> ' + (qSVG.measure(
 	        { x: pox, y: poy }, { x: x, y: y }) / 60).toFixed(2) + ' m</span>';
 	      document.querySelector('#extension-floorplanner-line_construc').remove(); // DEL LINE CONSTRUC HELP TO VIEW NEW SEG PATH
 	      lengthTemp.remove();
@@ -2561,13 +2874,17 @@
 	  //**************************************************************************************
 	  //**********************      BIND MODE MOUSE UP    ************************************
 	  //**************************************************************************************
-
+ 
 	  if (mode == 'bind_mode') {
-		  console.log("in bind_mode");
+		  console.log("mouseup: in bind_mode");
 	    action = 0;
 	    construc = 0; // CONSTRUC 0 TO FREE BINDER GROUP NODE WALL MOVING
 	    if (typeof (binder) != 'undefined') {
+				console.log("mouseup: binder exists, switching from bind_mode to select mode");
 	      fonc_button('select_mode');
+				if (typeof binder.type == 'undefined') {
+					console.error("mouseup: binder.type was undefined, which is unexpected");
+				}
 	      if (binder.type == 'node') {
 
 	      } // END BINDER NODE
@@ -2576,7 +2893,7 @@
 
 	        var found = false;
 	        if (binder.wall.start == binder.before) {
-	          found = true;
+	          //found = true;
 	        }
 
 	        if (found) {
@@ -2614,10 +2931,11 @@
 	      }
 
 	      if (binder.type == 'obj') {
+					console.log("setting edit_door_mode");
 	        var moveObj = Math.abs(binder.oldXY.x - binder.x) + Math.abs(binder.oldXY.y - binder.y);
 	        if (moveObj < 1) {
-			  document.querySelector('#extension-floorplanner-panel').style.display='none';
-			  document.querySelector('#extension-floorplanner-objTools').style.display='block';
+				    document.querySelector('#extension-floorplanner-panel').style.display='none';
+				    document.querySelector('#extension-floorplanner-objTools').style.display='block';
 	          document.querySelector('#extension-floorplanner-lin').style.cursor = 'default';
 	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Config. the door/window';
 	          //console.log('obj ??', obj);
@@ -2627,10 +2945,9 @@
 	          document.getElementById("extension-floorplanner-doorWindowWidth").value = binder.obj.size;
 	          document.getElementById("extension-floorplanner-doorWindowWidthVal").textContent = binder.obj.size;
 	          mode = 'edit_door_mode';
-			  console.log("setting edit_door_mode");
 	        }
 	        else {
-						console.log("modify door failure")
+						console.log("modify door failure because object has moved: ", moveObj);
 	          mode = "select_mode";
 	          action = 0;
 	          if(typeof binder.graph != 'undefined') binder.graph.remove();
@@ -2646,7 +2963,7 @@
 	          // TO REMOVE MEASURE ON PLAN
 	          objTarget.graph.remove();
 	          OBJDATA.splice(OBJDATA.indexOf(objTarget), 1);
-	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measure deleted !';
+	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measurement deleted';
 	        }
 	        if (moveObj < 1 && objTarget.params.move) {
 	          if (!objTarget.params.resize) document.querySelector('#extension-floorplanner-objBoundingBoxScale').style.display='none';
@@ -2664,10 +2981,14 @@
 							
 		          document.getElementById('extension-floorplanner-bboxWidth').setAttribute('min', objTarget.params.resizeLimit.width.min);
 		          document.getElementById('extension-floorplanner-bboxWidth').setAttribute('max', objTarget.params.resizeLimit.width.max);
-		          document.getElementById('extension-floorplanner-bboxWidthScale').textContent = objTarget.params.resizeLimit.width.min + "-" + objTarget.params.resizeLimit.height.max;
-		          document.getElementById('extension-floorplanner-bboxHeight').setAttribute('min', objTarget.params.resizeLimit.height.min);
+		          //document.getElementById('extension-floorplanner-bboxWidthScale').textContent = objTarget.params.resizeLimit.width.min + "-" + objTarget.params.resizeLimit.height.max;
+							document.getElementById('extension-floorplanner-bboxWidthScale-min').textContent = objTarget.params.resizeLimit.width.min;
+		          document.getElementById('extension-floorplanner-bboxWidthScale-max').textContent = objTarget.params.resizeLimit.width.max;
+							document.getElementById('extension-floorplanner-bboxHeight').setAttribute('min', objTarget.params.resizeLimit.height.min);
 		          document.getElementById('extension-floorplanner-bboxHeight').setAttribute('max', objTarget.params.resizeLimit.height.max);
-		          document.getElementById('extension-floorplanner-bboxHeightScale').textContent = objTarget.params.resizeLimit.height.min + "-" + objTarget.params.resizeLimit.height.max;
+		          //document.getElementById('extension-floorplanner-bboxHeightScale').textContent = objTarget.params.resizeLimit.height.min + "-" + objTarget.params.resizeLimit.height.max;
+							document.getElementById('extension-floorplanner-bboxHeightScale-min').textContent = objTarget.params.resizeLimit.height.min;
+							document.getElementById('extension-floorplanner-bboxHeightScale-max').textContent = objTarget.params.resizeLimit.height.max;
 						}
 	          
 	          document.querySelector('#extension-floorplanner-stepsCounter').style.display='none';
@@ -2762,7 +3083,7 @@
 	let modeOption;
 	console.log("linElement: ", linElement);
 	
-	
+	let binder
 	
 	var rect = linElement.getBoundingClientRect(); // get the bounding rectangle
 
@@ -2808,12 +3129,21 @@
 	function initHistory(boot = false) {
 		console.log("in initHistory. boot: ", boot);
 		document.getElementById('extension-floorplanner-myModal').style.display = 'none';
-	    HISTORY.index = 0;
-	    if (!boot && localStorage.getItem('extension-floorplanner-history')) localStorage.removeItem('extension-floorplanner-history');
+		//clear_floorplan();
+	  HISTORY.index = 0;
+	  
+		  if (!boot && localStorage.getItem('extension-floorplanner-history')) localStorage.removeItem('extension-floorplanner-history');
 	    if (localStorage.getItem('extension-floorplanner-history') && boot === "recovery") {
+				try{
 	        let historyTemp = JSON.parse(localStorage.getItem('extension-floorplanner-history'));
 	        floorplanLoad(historyTemp.length - 1, "boot");
 	        floorplanSave("boot");
+				}
+	      catch(e){
+	      	console.error("could not parse history from localStorage: ", e);
+					localStorage.removeItem('extension-floorplanner-history');
+					clear_floorplan();
+	      }
 	    }
 	    if (boot === "newSquare") {
 	        if (localStorage.getItem('extension-floorplanner-history')) localStorage.removeItem('extension-floorplanner-history');
@@ -2896,7 +3226,7 @@
 	        floorplanLoad(0);
 	        floorplanSave();
 	    }
-	    if (boot === "newL") {
+	    else if (boot === "newL") {
 	        if (localStorage.getItem('extension-floorplanner-history')) localStorage.removeItem('extension-floorplanner-history');
 	        HISTORY.push({
 	            "objData": [],
@@ -3003,6 +3333,15 @@
 	        floorplanLoad(0);
 	        floorplanSave();
 	    }
+			else{
+				/*
+				WALLS = [];
+				OBJDATA = [];
+				ROOM = [];
+				HISTORY = [];
+				floorplanSave("boot");
+				*/
+			}
 	}
 
 	document.getElementById('extension-floorplanner-redo').addEventListener("click", function () {
@@ -3016,7 +3355,7 @@
         HISTORY.index++;
         document.querySelector('#extension-floorplanner-undo').classList.remove('extension-floorplanner-disabled');
         if (HISTORY.index === HISTORY.length) {
-            document.querySelector('#extension-floorplanner-redo').classList.add('extension-floorplanner-disabled');
+          document.querySelector('#extension-floorplanner-redo').classList.add('extension-floorplanner-disabled');
         }
     }
 	}
@@ -3042,9 +3381,11 @@
 		console.log("WALLS: ", WALLS);
 		console.log("OBJDATA: ", OBJDATA);
 		console.log("ROOM: ", ROOM);
-		console.log("HISTORY: ", HISTORY);
+		console.log("HISTORY.length: ", HISTORY.length);
 		
 		//console.log("HISTORY[HISTORY.length - 1]: ", HISTORY[HISTORY.length - 1]);
+		
+		//document.querySelector("g#extension-floorplanner-boxbind").replaceChildren();
 		
 		if(ROOM.length){
 			root_el.classList.add('extension-floorplanner-has-room');
@@ -3082,9 +3423,9 @@
         document.querySelector('#extension-floorplanner-redo').classList.add('extension-floorplanner-disabled');
     }
     HISTORY.push(JSON.stringify({ objData: OBJDATA, wallData: WALLS, roomData: ROOM }));
-		console.log("pushed HISTORY: ", HISTORY);
+		//console.log("pushed HISTORY: ", HISTORY);
     localStorage.setItem('extension-floorplanner-history', JSON.stringify(HISTORY));
-		console.log("localstorage: ", localStorage.getItem('extension-floorplanner-history'));
+		//console.log("localstorage: ", localStorage.getItem('extension-floorplanner-history'));
     HISTORY.index++;
     if (HISTORY.index > 1) document.querySelector('#extension-floorplanner-undo').classList.remove('extension-floorplanner-disabled');
     for (let k in WALLS) {
@@ -3100,42 +3441,59 @@
 
 
 	function floorplanLoad(index = HISTORY.index, boot = false) {
-	    if (HISTORY.length === 0 && !boot) return false;
+	    if (HISTORY.length === 0 && !boot){
+	    	console.error("floorplanLoad exited early. No history, and boot was false");
+	    };
 	    for (let k in OBJDATA) {
 	        OBJDATA[k].graph.remove();
 	    }
 	    OBJDATA = [];
 	    let historyTemp = [];
-	    historyTemp = JSON.parse(localStorage.getItem('extension-floorplanner-history'));
-	    historyTemp = JSON.parse(historyTemp[index]);
-		  console.log("floorplanLoad: historyTemp: ", historyTemp);
+			if(localStorage.getItem('extension-floorplanner-history') != null){
+		    historyTemp = JSON.parse(localStorage.getItem('extension-floorplanner-history'));
+		    historyTemp = JSON.parse(historyTemp[index]);
+				
+			  console.log("floorplanLoad: historyTemp: ", historyTemp);
 		
-	    for (let k in historyTemp.objData) {
-	        let OO = historyTemp.objData[k];
-	        // if (OO.family === 'energy') OO.family = 'byObject';
-	        let obj = new floorplanEditor.obj2D(OO.family, OO.class, OO.type, {
-	            x: OO.x,
-	            y: OO.y
-	        }, OO.angle, OO.angleSign, OO.size, OO.hinge = 'normal', OO.thick, OO.value);
-	        obj.limit = OO.limit;
-	        OBJDATA.push(obj);
-	        document.querySelector('#extension-floorplanner-boxEnergy').append(OBJDATA[OBJDATA.length - 1].graph);
-	        obj.update();
-	    }
-	    WALLS = historyTemp.wallData;
-	    for (let k in WALLS) {
-			console.log("recreating walls? WALLS[k]",WALLS[k]);
-	        if (WALLS[k].child != null) {
-	            WALLS[k].child = WALLS[WALLS[k].child];
-	        }
-	        if (WALLS[k].parent != null) {
-	            WALLS[k].parent = WALLS[WALLS[k].parent];
-	        }
-	    }
-	    ROOM = historyTemp.roomData;
-	    floorplanEditor.architect(WALLS);
-	    floorplanEditor.showScaleBox();
-	    rib();
+		    for (let k in historyTemp.objData) {
+		        let OO = historyTemp.objData[k];
+						console.log("RESTORING OBJECTS. OO:", OO);
+		        // if (OO.family === 'energy') OO.family = 'byObject';
+		        let obj = new floorplanEditor.obj2D(OO.family, OO.class, OO.type, {
+		            x: OO.x,
+		            y: OO.y
+		        }, OO.angle, OO.angleSign, OO.size, OO.hinge = 'normal', OO.thick, OO.value);
+		        obj.limit = OO.limit;
+						console.log("obj.limit? ", obj.limit);
+		        OBJDATA.push(obj);
+						
+						if(obj.family == 'inWall'){
+							document.querySelector('#extension-floorplanner-boxcarpentry').append(OBJDATA[OBJDATA.length - 1].graph);
+						}
+						else{
+							document.querySelector('#extension-floorplanner-boxEnergy').append(OBJDATA[OBJDATA.length - 1].graph);
+						}
+						
+		        
+		        obj.update();
+		    }
+		    WALLS = historyTemp.wallData;
+		    for (let k in WALLS) {
+				console.log("recreating walls? WALLS[k]",WALLS[k]);
+		        if (WALLS[k].child != null) {
+		            WALLS[k].child = WALLS[WALLS[k].child];
+		        }
+		        if (WALLS[k].parent != null) {
+		            WALLS[k].parent = WALLS[WALLS[k].parent];
+		        }
+		    }
+		    ROOM = historyTemp.roomData;
+		    floorplanEditor.architect(WALLS);
+		    floorplanEditor.showScaleBox();
+		    rib();
+			}
+	    
+		  
 	}
 
 	document.querySelectorAll('#extension-floorplanner-tool-root svg').forEach(function (element) {
@@ -3159,7 +3517,7 @@
 	    let number = 1;
 	    let reportRoom = '<div class="row">\n';
 	    for (let k in ROOM) {
-	        let nameRoom = "Room n°" + number + " <small>(sans nom)</small>";
+	        let nameRoom = "Room n°" + number;
 	        if (ROOM[k].name != "") nameRoom = ROOM[k].name;
 	        reportRoom += '<div class="col-md-6"><p>' + nameRoom + '</p></div>\n';
 	        reportRoom += '<div class="col-md-6"><p>Surface : <b>' + ((ROOM[k].area) / 3600).toFixed(2) + '</b> m²</p></div>\n';
@@ -3400,9 +3758,6 @@
 
 	    document.getElementById('extension-floorplanner-reportRooms').innerHTML = reportRoom;
 	    document.querySelector('#extension-floorplanner-reportRooms').style.display='block'
-
-
-
 	});
 
 	document.getElementById('extension-floorplanner-wallWidth').addEventListener("input", function () {
@@ -3529,35 +3884,38 @@
 	// CANDLE TODO onclick klopt hier niet
 	document.querySelector('#extension-floorplanner-save-text').addEventListener("click",function (e) {
 		console.log("saving text");
-	    fonc_button('select_mode');
-	    action = 0;
-	    let textToMake = document.getElementById('extension-floorplanner-labelBox').textContent;
-			console.log("new text: ", textToMake);
-	    if (textToMake != "" && textToMake != "Your text") {
-					console.log("creating text binder")
-	        binder = new floorplanEditor.obj2D("free", "text", document.getElementById('extension-floorplanner-labelBox').style.color, snap, 0, 0, 0, "normal", 0, {
-	            text: textToMake,
-	            size: document.getElementById('extension-floorplanner-sizePolice').value
-	        });
-					console.log("binder with text before update: ", binder);
-	        binder.update();
-					console.log("binder with text after update: ", binder);
-	        OBJDATA.push(binder);
-	        if(typeof binder.graph != 'undefined') binder.graph.remove();
-	        document.querySelector('#extension-floorplanner-boxText').append(OBJDATA[OBJDATA.length - 1].graph);
-	        OBJDATA[OBJDATA.length - 1].update();
-	        //delete binder;
-					bye_binder();
-	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Added text';
-	        floorplanSave();
-	    } else {
-				console.warn("no relevant text provided");
-	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Selection mode';
-	    }
-	    document.getElementById('extension-floorplanner-labelBox').textContent = "Your text";
-	    document.getElementById('extension-floorplanner-labelBox').style.color = "#333333";
-	    document.getElementById('extension-floorplanner-labelBox').style.fontSize = "15px";
-	    document.getElementById('extension-floorplanner-sizePolice').value = 15;
+		document.querySelector('#extension-floorplanner-textToLayer').style.display='none';
+    fonc_button('select_mode');
+    action = 0;
+    let textToMake = document.getElementById('extension-floorplanner-labelBox').value; //textContent;
+		
+		console.log("new text: ", textToMake);
+    if (textToMake != "" && textToMake != "Your text") {
+				console.log("creating text binder")
+        binder = new floorplanEditor.obj2D("free", "text", document.getElementById('extension-floorplanner-labelBox').style.color, snap, 0, 0, 0, "normal", 0, {
+            text: textToMake,
+            size: document.getElementById('extension-floorplanner-sizePolice').value
+        });
+				console.log("binder with text before update: ", binder);
+        binder.update();
+				console.log("binder with text after update: ", binder);
+        OBJDATA.push(binder);
+        if(typeof binder.graph != 'undefined') binder.graph.remove();
+        document.querySelector('#extension-floorplanner-boxText').append(OBJDATA[OBJDATA.length - 1].graph);
+        OBJDATA[OBJDATA.length - 1].update();
+        //delete binder;
+				bye_binder();
+        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Added text';
+        floorplanSave();
+    } else {
+			console.warn("no relevant text provided");
+        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Selection mode';
+    }
+    //document.getElementById('extension-floorplanner-labelBox').textContent = "Your text";
+		document.getElementById('extension-floorplanner-labelBox').value == '';
+    document.getElementById('extension-floorplanner-labelBox').style.color = "#333333";
+    document.getElementById('extension-floorplanner-labelBox').style.fontSize = "15px";
+    document.getElementById('extension-floorplanner-sizePolice').value = 15;
 	});
 
 	if (!Array.prototype.includes) {
@@ -4380,10 +4738,10 @@
 
 	function cursor(tool) {
 	    if (tool === 'grab') tool =
-	        "url('https://wiki.openmrs.org/s/en_GB/7502/b9217199c27dd617c8d51f6186067d7767c5001b/_/images/icons/emoticons/add.png') 8 8, auto";
-	    if (tool === 'scissor') tool = "url('https://maxcdn.icons8.com/windows10/PNG/64/Hands/hand_scissors-64.png'), auto";
-	    if (tool === 'trash') tool = "url('https://cdn4.iconfinder.com/data/icons/common-toolbar/36/Cancel-32.png'), auto";
-	    if (tool === 'validation') tool = "url('https://images.fatguymedia.com/wp-content/uploads/2015/09/check.png'), auto";
+	        "url('img/add.png') 8 8, auto";
+	    if (tool === 'scissor') tool = "url('img/scissors.svg'), auto";
+	    if (tool === 'trash') tool = "url('img/cancel.png'), auto";
+	    if (tool === 'validation') tool = "url('img/check.svg'), auto";
 	    linElement.style.cursor = tool;
 	}
 
@@ -4451,9 +4809,10 @@
 
 	function fonc_button(modesetting, option) {
 		console.error("in fonc_button.  modesetting, option: ", modesetting, option);
-		//if(modesetting == 'door_mode'){
-		//	binder.remove();
-		//}
+		if(modesetting == 'door_mode'){
+			//bye_binder();
+		}
+			//bye_binder();
 	    floorplanSave();
 
 	    hide_submenus();
@@ -4465,6 +4824,8 @@
 	    mode = modesetting;
 	    modeOption = option;
 
+			document.getElementById('extension-floorplanner-title').innerText = mode;
+
 	    if (typeof (lineIntersectionP) != 'undefined') {
 	        lineIntersectionP.remove();
 	        //delete lineIntersectionP;
@@ -4473,26 +4834,28 @@
 
 
 	document.querySelector('#extension-floorplanner-distance_mode').addEventListener('click',function () {
-	    linElement.style.cursor = 'crosshair';
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add a measurement';
-	    fonc_button('distance_mode');
+		//document.querySelector('#extension-floorplanner-boxMeasure').replaceChildren();
+	  linElement.style.cursor = 'crosshair';
+	  document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add a measurement';
+	  fonc_button('distance_mode');
 	});
 
 	document.querySelector('#extension-floorplanner-room_mode').addEventListener('click',function () {
-	    linElement.style.cursor = 'pointer';
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select a room';
-	    fonc_button('room_mode');
+	  linElement.style.cursor = 'pointer';
+	  document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select a room';
+	  fonc_button('room_mode');
 	});
 
 	document.querySelector('#extension-floorplanner-select_mode').addEventListener('click',function () {
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select';
-	    if (typeof (binder) != 'undefined') {
-	        //binder.remove();
-	        //delete binder;
-					bye_binder();
-	    }
+    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select';
+    if (typeof (binder) != 'undefined') {
+        //binder.remove();
+        //delete binder;
+				bye_binder();
+    }
 
-	    fonc_button('select_mode');
+		hideAllSize(); // experiumentke
+    fonc_button('select_mode');
 	});
 
 	document.querySelector('#extension-floorplanner-line_mode').addEventListener('click',function () {
@@ -4515,6 +4878,7 @@
 	    fonc_button('partition_mode');
 	});
 
+/*
 	if(document.querySelector('#extension-floorplanner-rect_mode')){
 		document.querySelector('#extension-floorplanner-rect_mode').addEventListener('click',function () {
 		    linElement.style.cursor = 'crosshair';
@@ -4522,7 +4886,7 @@
 		    fonc_button('rect_mode');
 		});
 	}
-	
+*/
 
 	document.querySelectorAll('.extension-floorplanner-door').forEach(function (element) {
 		element.addEventListener('click',function () {
@@ -4562,7 +4926,7 @@
 */
 	document.querySelector('#extension-floorplanner-stair_mode').addEventListener('click',function () {
 	    cursor('move');
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add stair';
+	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add staircase';
 	    fonc_button('object_mode', 'simpleStair');
 	});
 
@@ -4612,9 +4976,12 @@
 	    construc.params.rotate = false;
 
 	    if (classObj === 'socle') {
+				console.warn("carpentrycalc: mysterious socle spotted.");
+					
 	        pushToConstruc(construc, "M " + (-sizeObj / 2) + "," + (-thickObj / 2) + " L " + (-sizeObj / 2) + "," +
 	            thickObj / 2 + " L " + sizeObj / 2 + "," + thickObj / 2 + " L " + sizeObj / 2 + "," + (-thickObj / 2) +
 	            " Z", "#5cba79", "#5cba79", '');
+				
 	    }
 
 
@@ -4743,12 +5110,12 @@
 	    }
 
 	    if (classObj === 'boundingBox') {
-
+				
 	        pushToConstruc(construc,
 	            "M" + (-sizeObj / 2 - 10) + "," + (-thickObj / 2 - 10) + " L" + (sizeObj / 2 + 10) + "," + (-thickObj / 2 - 10) + " L" +
 	            (sizeObj / 2 + 10) + "," + (thickObj / 2 + 10) + " L" + (-sizeObj / 2 - 10) + "," + (thickObj / 2 + 10) + " Z", 'none',
 	            "#aaa", '');
-
+				
 	        // construc.push({'path':"M"+dividerObj[0].x+","+dividerObj[0].y+" L"+dividerObj[1].x+","+dividerObj[1].y+" L"+dividerObj[2].x+",
 	        // "+dividerObj[2].y+" L"+dividerObj[3].x+","+dividerObj[3].y+" Z", 'fill':'none', 'stroke':"#000", 'strokeDashArray': ''});
 	    }
@@ -4793,15 +5160,25 @@
 
 	    }
 
+			// Added new options via:
+			// 1. create and shave svg shape in Pixelmator, placing center of shape in top-left corner (so only a quarter of the shape is visible)
+			// 2. copy svg path from svg file in here, and translate to relative svg path: https://svg-path.com/
+			// 3. copy relative svg path below
+
 	    if (classObj === 'energy') {
 	        construc.params.bindBox = true;
 	        construc.params.move = true;
 	        construc.params.resize = true;
 	        construc.params.rotate = true;
           construc.params.resizeLimit = {};
-					construc.params.resizeLimit.width = { min: 20, max: 200 };
-          construc.params.resizeLimit.height = { min: 20, max: 200 };
+					construc.params.resizeLimit.width = { min: 20, max: 300 };
+          construc.params.resizeLimit.height = { min: 20, max: 300 };
 					
+					/*
+          pushToConstruc(construc,
+              "M " + (-sizeObj / 2) + "," + (-thickObj / 2) + " L " + (-sizeObj / 2) + "," + thickObj / 2 + " L " + sizeObj / 2 + "," +
+              thickObj / 2 + " L " + sizeObj / 2 + "," + (-thickObj / 2) + " Z", "#fff", "#000", '');
+					*/
 	        if (typeObj === 'circle') {
             pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#333", '');
             construc.params.width = 36;
@@ -4838,15 +5215,15 @@
 	            //pushToConstruc(construc, "m 0,0 c-15,-25,-64,0,-30,35 l30,30 l30,-30 c34,-40,-15,-60,-30,-35", "#f00", "#333", '');
 							pushToConstruc(construc, "m 11.73 2.96 C 10.7 4.85 9.24 6.69 7.35 8.49 C 5.46 10.28 3.22 11.99 0.63 13.62 C 0.47 13.72 0.3 13.81 0.13 13.88 C -0.18 14.04 -0.55 14.04 -0.86 13.88 C -1.03 13.81 -1.2 13.72 -1.36 13.62 C -3.94 11.99 -6.18 10.28 -8.07 8.49 C -9.97 6.69 -11.43 4.85 -12.46 2.96 C -13.49 1.06 -14 -0.91 -14 -2.84 C -14 -4.44 -13.66 -5.8 -12.98 -7.04 C -12.35 -8.24 -11.4 -9.24 -10.24 -9.95 C -9.08 -10.65 -7.75 -11.02 -6.39 -11 C -5.04 -11 -3.82 -10.66 -2.81 -9.98 C -1.79 -9.31 -0.95 -8.4 -0.36 -7.34 C 0.22 -8.4 1.06 -9.31 2.08 -9.98 C 3.1 -10.66 4.32 -11 5.66 -11 C 7.02 -11.02 8.36 -10.65 9.51 -9.95 C 10.67 -9.24 11.62 -8.24 12.26 -7.04 C 12.93 -5.8 13.27 -4.44 13.27 -2.84 C 13.27 -0.91 12.76 1.06 11.73 2.96 Z", "#f00", "#333", '');
 							
-	            construc.params.width = 60;
-	            construc.params.height = 60;
+	            construc.params.width = 6;
+	            construc.params.height = 6;
 	            construc.family = 'free';
 	        }
 					
 	        if (typeObj === 'droplet') {
 	            pushToConstruc(construc, "m 2 13a5 5 0 0 0 10 0c0-1.73-1.66-5.03-5-9.65C3.66 7.97 2 11.27 2 13zM7 0c4.67 6.09 7 10.42 7 13a7 7 0 0 1-14 0c0-2.58 2.33-6.91 7-13z", "#fff", "#333", '');
-	            construc.params.width = 40;
-	            construc.params.height = 40;
+	            construc.params.width = 20;
+	            construc.params.height = 20;
 	            construc.family = 'free';
 	        }
 					
@@ -4878,8 +5255,8 @@
 	            construc.family = 'free';
 	        }
 					
-	        if (typeObj === 'rounded-square1') {
-	            pushToConstruc(construc, "m 9.92 20 C 4.44 20 0 15.52 0 10 C 0 4.48 4.44 0 9.92 0 L 30.08 0 C 35.56 0 40 4.48 40 10 C 40 15.52 35.56 20 30.08 20 L 9.92 20 Z", "#8f8", "#333", '');
+	        if (typeObj === 'rounded-square') {
+	            pushToConstruc(construc, "m -18 11 C -18 15.97 -13.97 20 -9 20 L 11 20 C 15.97 20 20 15.97 20 11 L 20 -9 C 20 -13.97 15.97 -18 11 -18 L -9 -18 C -13.97 -18 -18 -13.97 -18 -9 Z", "#8f8", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -5131,13 +5508,13 @@
 	            construc.params.width = 40;
 	            construc.params.height = 20;
 	            construc.family = 'stick';
-
 	        }
 	    }
 
 	    if (classObj === 'furniture') {
-	        construc.params.bindBox = true;
-	        construc.params.move = true;
+	        //construc.params.bindBox = true;
+	        construc.params.bindBox = false;
+					construc.params.move = true;
 	        construc.params.resize = true;
 	        construc.params.rotate = true;
 	    }
@@ -5293,21 +5670,123 @@
 		document.querySelector('#extension-floorplanner-myModal').style.display = 'block';
 	}
 	
+
+	function clear_floorplan(){
+		console.log("in clear_floorplan");
+		
+		
+		localStorage.removeItem('extension-floorplanner-history');
+		
+		WALLS = [];
+		OBJDATA = [];
+		ROOM = [];
+		HISTORY = [];
+		wallSize = 20;
+		partitionSize = 8;
+		drag = 'off';
+		action = 0;
+		magnetic = 0;
+		construc = 0;
+		Rcirclebinder = 8;
+		mode = 'select_mode';
+		grid = 20;
+		meter = 60;
+		colorline = "#fff";
+		colorroom = "#f0daaf";
+		colorWall = "#666";
+		pox = 0;
+		poy = 0;
+		segment = 0;
+		xpath = 0;
+		ypath = 0;
+		width_viewbox = taille_w;
+		height_viewbox = taille_h;
+		ratio_viewbox = height_viewbox / width_viewbox;
+		originX_viewbox = 0;
+		originY_viewbox = 0;
+		zoom = 9;
+		factor = 1;
+
+		sizeText = [];
+		showAllSizeStatus = 0;
+		
+		
+		
+		document.querySelector("g#extension-floorplanner-boxgrid").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxScale").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxRib").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxbind").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxArea").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxpath").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxSurface").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxwall").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxRoom").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxcarpentry").replaceChildren();
+		document.querySelector("g#extension-floorplanner-boxEnergy").replaceChildren();
+	}
+
+	
 	
 	function bye_binder(){
 		//console.log("in bye_binder. binder: ", binder);
+		console.log("bye_binder: typeof binder: ", typeof binder);
 		if (typeof (binder) != 'undefined') {
+			console.log("bye_binder: typeof binder.remove: ", typeof binder.remove);
+			
+			if(typeof binder.graph != 'undefined'){
+				//binder.graph.remove();
+			}
+			if(typeof binder.remove != 'undefined'){
+				binder.remove();
+			}
+			
+			binder = (function () { return; })();
+			/*
+			if(typeof binder.remove != 'undefined'){
+				binder.remove();
+			}
+			else{
+				binder = {};
+				delete binder;
+			}
+			*/
+			/*
 			if (typeof (binder.graph) == 'undefined'){
 				binder.remove();
 			}
 			else{
+				binder.graph.remove();
 				delete binder;
 			}
+			*/
 		}
+		
+		if (typeof (binder) != 'undefined') {
+			console.error("bye_binder: failed. binder still exists: ", binder);
+			console.log("bye_binder: typeof binder: ", typeof binder);
+			if(typeof binder.remove != 'undefined'){
+				binder.remove();
+			}
+			else{
+				binder = {};
+				delete binder;
+			}
+			
+		}
+		if (typeof (binder) != 'undefined') {
+			console.error("bye_binder: still failed! unkillable binder still exists: ", binder);
+			console.log("bye_binder: binder parent: ", binder.parentElement);
+			delete binder;
+		}
+		if (typeof (binder) != 'undefined') {
+			console.error("bye_binder: OMG OMG still failed! unkillable binder STILL exists: ", binder);
+		}
+		
 	}
 	
 	
 	function save_object(){
+		console.log("in save_object");
 		fonc_button('select_mode');
 		document.querySelector('#extension-floorplanner-boxinfo').innerHTML='Selection mode';
 		document.querySelector('#extension-floorplanner-objBoundingBox').style.display='none';
@@ -5315,28 +5794,111 @@
 		if(typeof binder != 'undefined' && typeof binder.graph != 'undefined') binder.graph.remove(); // superfluous..
 		bye_binder();
 	}
-	
-	/*
-	export default class {
-	   constructor(mouse_wheel_listener) {  
-	      mouse_wheel_listener = mouse_wheel_listener || {}; //this is default value for param.
-	      this.id = mouse_wheel_listener.id; 
-	      this.title = mouse_wheel_listener.title;
-				
-				var toFix  = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'],
-		    toBind = ( 'onwheel' in document || document.documentMode >= 9 ) ?
-		                ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'],
-		    slice  = Array.prototype.slice,
-		    nullLowestDeltaTimeout, lowestDelta;
-				
-	   }
-	}
-	*/
+
+
 	
 
 	//let element = document.getElementById('extension-floorplanner-lin');
 	let scale = 1.0;
 	let half_scale = 1.0;
+	
+	linElement.addEventListener("wheel", throttle(function (event) { _MOUSEWHEEL(event); }, 50));
+	
+	function _MOUSEWHEEL(ev){
+	  // This is crucial. Without it, the browser will do a full page zoom
+	  ev.preventDefault();
+
+		//console.log("ev.deltaY: ", ev.deltaY);
+
+	  // This is an empirically determined heuristic.
+	  // Unfortunately I don't know of any way to do this better.
+	  // Typical deltaY values from a trackpad pinch are under 1.0
+	  // Typical deltaY values from a mouse wheel are more than 100.
+		const absolute_deltaY = Math.abs(ev.deltaY);
+	  let isPinch = absolute_deltaY < 50;
+
+		console.log("mousewheel deltaY: ", ev.deltaY);
+		console.log("zoom: ",zoom);
+		if(absolute_deltaY < 10){
+	    if (ev.deltaY > 0) {
+	        zoom_maker('zoomin', 20 * absolute_deltaY);
+	    } else {
+	        zoom_maker('zoomout', 20 * absolute_deltaY);
+	    }
+		}
+		else{
+	    if (ev.deltaY > 0) {
+	        zoom_maker('zoomin', 200);
+	    } else {
+	        zoom_maker('zoomout', 200);
+	    }
+		}
+    
+
+		/*
+		// TODO: also move the offset. Attempted with the 'halfscale' variable, but couldnt get it to work quickly enough.
+		
+	  if (isPinch) {
+	    // This is a pinch on a trackpad
+			//console.log("scale: ", scale);
+			let factor = 1 - (0.01 * ev.deltaY);
+			let half_factor = 1 - (0.005 * ev.deltaY);
+			//console.log("factor initial : ", factor);
+			factor = ((factor - 1) * -1) + 1;
+			half_factor = ((half_factor - 1) * -1) + 1;
+
+	    scale *= factor;
+			half_scale *= half_factor;
+			
+			
+			
+			//originX_viewbox = originX_viewbox * half_scale;
+			//originY_viewbox = originY_viewbox * half_scale;
+      //originX_viewbox = originX_viewbox - ((width_viewbox / 2) * scale);
+      //originY_viewbox = originY_viewbox - ((height_viewbox / 2 * ratio_viewbox) * scale);
+			
+	    
+			
+	  } else {
+	    // This is a mouse wheel
+	    let strength = 1.4;
+	    let factor = ev.deltaY < 0 ? strength : 1.0 / strength;
+	    scale *= factor;
+			console.log("mouse scale: ", scale);
+	    //element.innerText = `Mouse: scale is ${scale}`;
+	  }
+		
+		if(scale < 0.5){scale=0.5}
+		if(scale > 2){scale=2}
+		
+		//console.log("pinch scale: ", scale);
+		//console.log("pinch scale * -1: ", scale/-1);
+    //element.innerText = `Pinch: scale is ${scale}`;
+		
+		//console.log("taille_w: ", taille_w);
+		//console.log("taille_h: ", taille_h);
+		//console.log("offset.top: ", offset.top);
+		//console.log("offset.left: ", offset.left);
+		width_viewbox = taille_w * scale;
+		height_viewbox = taille_h * scale;
+		//taille_w
+		
+    //width_viewbox += xmove;
+    //let ratioWidthZoom = taille_w / width_viewbox;
+    //height_viewbox = width_viewbox * ratio_viewbox;
+    myDiv = document.getElementById("extension-floorplanner-scaleVal");
+    myDiv.style.width = 60 * scale + 'px';
+		
+		bye_binder();
+		
+    document.querySelectorAll('#extension-floorplanner-tool-root svg').forEach(function (element) {
+		  //console.error("!!! SETTING VIEWBOX 2: ", originX_viewbox, originY_viewbox, width_viewbox,height_viewbox);
+      linElement.setAttribute('viewBox', originX_viewbox + ' ' + originY_viewbox + ' ' + width_viewbox + ' ' + height_viewbox);
+    });
+		*/
+	}
+	
+	/*
 	linElement.addEventListener('wheel', (ev) => {
 	  // This is crucial. Without it, the browser will do a full page zoom
 	  ev.preventDefault();
@@ -5402,12 +5964,14 @@
     myDiv = document.getElementById("extension-floorplanner-scaleVal");
     myDiv.style.width = 60 * scale + 'px';
 		
+		bye_binder();
+		
     document.querySelectorAll('#extension-floorplanner-tool-root svg').forEach(function (element) {
 		  //console.error("!!! SETTING VIEWBOX 2: ", originX_viewbox, originY_viewbox, width_viewbox,height_viewbox);
       linElement.setAttribute('viewBox', originX_viewbox + ' ' + originY_viewbox + ' ' + width_viewbox + ' ' + height_viewbox);
     });
 	});
-
+*/
 	
 	
 	
@@ -5424,9 +5988,15 @@
 	    });
 			*/
       document.getElementById('extension-floorplanner-moveBox').style.transform = "translateX(-165px)";
-      document.getElementById('extension-floorplanner-zoomBox').style.transform = "translateX(-165px)";
+			setTimeout(()=>{
+				document.getElementById('extension-floorplanner-zoomBox').style.transform = "translateX(-165px)";
+			},300);
+      setTimeout(()=>{
+				document.getElementById('extension-floorplanner-zoomBox2').style.transform = "translateX(-165px)";
+				},300);
 			
-			document.querySelector('#extension-floorplanner-recover').innerHTML = "<p>Select a plan type.";
+			
+			//document.querySelector('#extension-floorplanner-recover').innerHTML = "<p>Select a plan type.</p>";
 	    
 			
 	    if (localStorage.getItem('extension-floorplanner-history')) {
@@ -5440,6 +6010,9 @@
 	});
 	
 	
+	// Unicode lookup  https://symbl.cc/en/unicode/table/#arrows
+	// Make SVG path relative https://svg-path.com/
+ 	
 	
 </script>
 

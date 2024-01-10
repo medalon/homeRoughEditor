@@ -1,5 +1,5 @@
 
-
+/*
 --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
@@ -66,7 +66,7 @@
     --bs-link-hover-color: #0a58ca;
     --bs-code-color: #d63384;
     --bs-highlight-bg: #fff3cd;
-
+*/
 
 body{
 	-webkit-text-size-adjust: 100%;
@@ -122,7 +122,8 @@ body{
 
 #extension-floorplanner-content #extension-floorplanner-panel {
   display: block;
-  left:-100px;
+  position:fixed;
+  /*left:-100px;*/
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
   transition-delay: 250ms;
@@ -388,9 +389,15 @@ background-color: #5bc0de;
 }
 #extension-floorplanner-content .extension-floorplanner-btn {margin-bottom:6px;transition:all 0.3s}
 #extension-floorplanner-content .extension-floorplanner-fully {width:100%}
-#extension-floorplanner-content .extension-floorplanner-halfy {width:47%}
+#extension-floorplanner-content .extension-floorplanner-halfy {
+	width:47%
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #extension-floorplanner-content .extension-floorplanner-btn:hover {background:#08d;}
 #extension-floorplanner-content .extension-floorplanner-ovv {transition:all 0.1s;}
+
 #extension-floorplanner-content .extension-floorplanner-circle_css {fill:#5cba79;fill-opacity:0.9;transition:all 0.4s}
 #extension-floorplanner-content .extension-floorplanner-circle_css_2 {stroke:#5cba79;stroke-width:0;fill:#5cba79;fill-opacity:0.9;animation: extension-floorplanner-myAnim 0.6s linear infinite;}
 @keyframes extension-floorplanner-myAnim{
@@ -516,6 +523,7 @@ background-color: #5bc0de;
 	background-color:white;
 	border-radius:1rem;
 	padding:2rem;
+	box-shadow: 2px 2px 3px #ccc;
 }
 
 
@@ -611,9 +619,10 @@ background-color: #5bc0de;
 
 
 .extension-floorplanner-boxMouseOver > img{
-	min-width:5rem;
-	min-height:5rem;
-	margin:1rem;
+	min-width:3rem;
+	min-height:3rem;
+	margin:.5rem;
+	border-radius:.5rem;
 }
 
 
@@ -704,10 +713,11 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	display:none;background:#fff;
 	border-radius: 0 5px 5px 0; 
 	padding:10px;
-	position:absolute;
+	position:fixed;
 	left:100px;
 	bottom:0px;
 	width:auto;
+	z-index:4;
 }
 
 
@@ -784,13 +794,27 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	font-weight:bold;
 }
 
-.extension-floorplanner-btn-danger{
+#extension-floorplanner-content .extension-floorplanner-btn-danger{
 	background-color:#fc4e4e;
 }
 
 
 .extension-floorplanner-hidden{
 	display:none!important;
+}
+
+
+
+.extension-floorplanner-scale-linked-true{display:none;}
+.extension-floorplanner-scale-linked-false{display:inline-block;}
+.extension-floorplanner-scale-linked .extension-floorplanner-scale-linked-true{display:inline-block;}
+.extension-floorplanner-scale-linked .extension-floorplanner-scale-linked-false{display:none;}
+
+.extension-floorplanner-scale-linked + div{
+	opacity:.2;
+}
+.extension-floorplanner-scale-linked + div *{
+	pointer-events:none;
 }
 
 
@@ -813,13 +837,103 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 }
 
 #extension-floorplanner-plan-exists-warning{
-	color:orange;
+	color:red;
 }
 
 #extension-floorplanner-myModal{
 	display:none;
 	box-shadow:2px 1px 3px #ccc;
 }
+
+
+#extension-floorplanner-panel-level2{
+	position:fixed;
+	left:100px;
+	top:0;
+	width:auto;
+	z-index:6;
+	border:1px solid red;
+}
+
+
+.extension-floorplanner-slider-value{
+	font-weight:bold;
+}
+.extension-floorplanner-scale-slider-min-max > span{font-size:.6rem;line-height:.4rem;margin-top:.1rem;}
+#extension-floorplanner-bboxWidthScale-max,
+#extension-floorplanner-bboxHeightScale-max{
+	text-align:right;
+}
+
+
+
+.extension-floorplanner-menu-area{
+	background-color:rgba(0,0,0,.15);
+	border-radius:.5rem;
+	padding:.1rem 0 .8rem 0;
+}
+.extension-floorplanner-menu-area p{
+	text-align:center;
+}
+
+#extension-floorplanner-scale-link-toggle-button-container{
+	text-align:center;
+	padding:0 .5rem;
+}
+#extension-floorplanner-scale-link-toggle-button{
+	background-color:rgba(0,0,0,.2);
+	border-radius:.5rem;
+	font-size:2rem;
+	margin:1rem 0;
+	cursor:pointer;
+}
+
+#extension-floorplanner-scale-link-toggle-button:hover{
+	background-color:rgba(0,0,0,.5);
+}
+
+
+#extension-floorplanner-energy_list{
+	overflow-y:auto;
+	max-height:100vh;
+	box-shadow:2px 2px 3px #ccc;
+	display:none;
+	background:#fff;
+	border-radius: 0 .5rem .5rem 0; 
+	padding:2rem;
+	left:100px;
+	bottom:40px;
+	width:600px; 
+	max-width:calc(100vw - 200px);
+}
+
+
+#extension-floorplanner-content #extension-floorplanner-energy_list button{
+	word-spacing: 10rem;
+	font-size:.8rem;
+	width:5rem;
+    /*-webkit-filter: contrast(0) sepia(100%) hue-rotate(190deg) saturate(2000%) brightness(100%);*/
+    filter: saturate(0%)
+}
+#extension-floorplanner-content #extension-floorplanner-energy_list button:hover{
+	color:white;
+}
+
+#extension-floorplanner-energy_list button::first-letter{
+	font-size:2rem;
+	display:block;
+	width:100%;
+	line-height:1.3rem;
+    
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -904,4 +1018,76 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	}
 }
 
+#extension-floorplanner-distance_mode{
+	display:flex;
+	justify-content:center;
+	
+}
 
+.extension-floorplanner-tape-measure-icon{ 
+	width:2rem;
+	height:1.5rem;
+	overflow:hidden;
+	background-repeat: no-repeat;
+	background-size: 10rem;
+	background-image: url('../img/tape_measure.svg');
+	background-position: left center;
+	transition: width 1s ease-in-out;
+	opacity:.8;
+}
+.extension-floorplanner-tape-measure-icon:hover{
+	width:5rem;
+	transition: width 1s ease-in-out;
+	opacity:1;
+}
+.extension-floorplanner-tape-measure-icon-end{ 
+	width: 2px;
+    min-width: 1px;
+    height: 1.5rem;
+    overflow: hidden;
+    background-repeat: repeat-x;
+    background-size: 4px 1.5rem;
+    background-image: url(../img/tape_measure_end.svg);
+    background-position: left center;
+}
+
+button.extension-floorplanner-btn-success .extension-floorplanner-tape-measure-icon{
+	width:5rem;
+	opacity:1;
+}
+
+
+/*
+g#extension-floorplanner-boxbind{
+	opacity:.3;
+}
+*/
+
+.extension-floorplanner-pull-right p{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.extension-floorplanner-pull-right button{
+	line-height:0;
+	width:0;
+	padding:2rem;
+	font-size:1.5rem;
+	min-height:2rem;
+	min-width:2rem;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin:.3rem;
+}
+
+
+/*
+#extension-floorplanner-content .extension-floorplanner-circle_css_1 {
+	stroke:#5cba79;
+	stroke-width:0;
+	fill:#5cba79;
+	fill-opacity:0.9;
+	animation: extension-floorplanner-myAnim 0.1s linear infinite;
+}
+*/

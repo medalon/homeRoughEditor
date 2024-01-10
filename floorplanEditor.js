@@ -416,6 +416,7 @@ var floorplanEditor = {
 
   // RETURN OBJDATA INDEX LIST FROM AN WALL
   objFromWall: function (wall, typeObj = false) {
+	  console.log("objFromWall:  wall,typeObj: ", wall,typeObj);
     var objList = [];
     for (var scan = 0; scan < OBJDATA.length; scan++) {
       var search;
@@ -570,6 +571,7 @@ var floorplanEditor = {
           "stroke-width": 1,
           fill: cc[tt].fill,
           stroke: cc[tt].stroke,
+			  'class':'blabla' + tt,
           'stroke-dasharray': cc[tt].strokeDashArray,
           opacity: cc[tt].opacity
         });
@@ -587,6 +589,7 @@ var floorplanEditor = {
         });
         blank.textContent = cc[tt].text;
       }
+		console.log("blank: ", blank);
       this.graph.append(blank);
 
     } // ENDFOR
@@ -604,8 +607,16 @@ var floorplanEditor = {
 
     this.update = function () {
 		console.log("in update. this.size, this.thick, meter: ", this.size, this.thick, meter);
+		if(this.class == 'energy'){
+			if(document.querySelector('#extension-floorplanner-scale-link-toggle-button-container').classList.contains('extension-floorplanner-scale-linked')){
+				this.thick = this.size;
+			}
+		}
       this.width = (this.size / meter).toFixed(2);
       this.height = (this.thick / meter).toFixed(2);
+		
+		
+		
       cc = carpentryCalc(this.class, this.type, this.size, this.thick, this.value);
       for (var tt = 0; tt < cc.length; tt++) {
         if (cc[tt].path) {
@@ -628,6 +639,10 @@ var floorplanEditor = {
 			console.log("new this.thick: ", this.thick);
 			console.log("new this.width: ", this.width);
 			console.log("new this.height: ", this.height);
+			
+			if(document.querySelector('#extension-floorplanner-scale-link-toggle-button-container').classList.contains('extension-floorplanner-scale-linked')){
+				this.height = this.width;
+			}
 			
 			this.graph.setAttribute("transform", "translate(" + (this.x) + "," + (this.y) + ") rotate(" + this.angle + ",0,0) scale(" + this.width + ", " + this.height + ")" );
 		}
