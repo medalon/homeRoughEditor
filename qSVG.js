@@ -8,18 +8,31 @@
 var qSVG = {
 
     create: function(id, shape, attrs) {
-		//console.log("in createSVG. id, shape, attrs: ", id, shape, attrs);
-        var shape = document.createElementNS("http://www.w3.org/2000/svg", shape);
-		//console.log("create shape: shape: ", shape);
-        for (var k in attrs) {
-			//console.log("setting shape attributes: ", k, attrs[k]);
-            shape.setAttribute(k, attrs[k]);
-        }
-        if (id != 'none') {
-		  //console.log("qSVG: create: id: ", id);
-          document.querySelector("#extension-floorplanner-" + id).append(shape);
-          }
-        return shape;
+			//console.log("in createSVG. id, shape, attrs: ", id, shape, attrs);
+			var shape = document.createElementNS("http://www.w3.org/2000/svg", shape);
+			//console.log("create shape: shape: ", shape);
+			if(typeof attrs != 'undefined'){
+				for (var k in attrs) {
+					//console.log("setting shape attributes: ", k, attrs[k]);
+					if(k == 'fill' && attrs[k] == ''){
+						console.log("path with empty fill");
+						shape.setAttribute('fill-opacity', '.5');
+					}
+					shape.setAttribute(k, attrs[k]); 
+				}
+			}
+			else{
+				//console.error("qSVG: create: attrs was undefined");
+			}
+        
+			if (id != 'none') {
+			  //console.log("qSVG: create: id: ", id);
+				document.querySelector("#extension-floorplanner-" + id).append(shape);
+			}
+			else{
+				//console.error("qSVG: create: id was undefined");
+			}
+      return shape;
     },
 
     angleDeg: function(cx, cy, ex, ey) {

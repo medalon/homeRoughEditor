@@ -1,77 +1,28 @@
-
-/*
---bs-blue: #0d6efd;
-    --bs-indigo: #6610f2;
-    --bs-purple: #6f42c1;
-    --bs-pink: #d63384;
-    --bs-red: #dc3545;
-    --bs-orange: #fd7e14;
-    --bs-yellow: #ffc107;
-    --bs-green: #198754;
-    --bs-teal: #20c997;
-    --bs-cyan: #0dcaf0;
-    --bs-black: #000;
-    --bs-white: #fff;
-    --bs-gray: #6c757d;
-    --bs-gray-dark: #343a40;
-    --bs-gray-100: #f8f9fa;
-    --bs-gray-200: #e9ecef;
-    --bs-gray-300: #dee2e6;
-    --bs-gray-400: #ced4da;
-    --bs-gray-500: #adb5bd;
-    --bs-gray-600: #6c757d;
-    --bs-gray-700: #495057;
-    --bs-gray-800: #343a40;
-    --bs-gray-900: #212529;
-    --bs-primary: #0d6efd;
-    --bs-secondary: #6c757d;
-    --bs-success: #198754;
-    --bs-info: #0dcaf0;
-    --bs-warning: #ffc107;
-    --bs-danger: #dc3545;
-    --bs-light: #f8f9fa;
-    --bs-dark: #212529;
-    --bs-primary-rgb: 13,110,253;
-    --bs-secondary-rgb: 108,117,125;
-    --bs-success-rgb: 25,135,84;
-    --bs-info-rgb: 13,202,240;
-    --bs-warning-rgb: 255,193,7;
-    --bs-danger-rgb: 220,53,69;
-    --bs-light-rgb: 248,249,250;
-    --bs-dark-rgb: 33,37,41;
-    --bs-white-rgb: 255,255,255;
-    --bs-black-rgb: 0,0,0;
-    --bs-body-color-rgb: 33,37,41;
-    --bs-body-bg-rgb: 255,255,255;
-    --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    --bs-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-    --bs-body-font-family: var(--bs-font-sans-serif);
-    --bs-body-font-size: 1rem;
-    --bs-body-font-weight: 400;
-    --bs-body-line-height: 1.5;
-    --bs-body-color: #212529;
-    --bs-body-bg: #fff;
-    --bs-border-width: 1px;
-    --bs-border-style: solid;
-    --bs-border-color: #dee2e6;
-    --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
-    --bs-border-radius: 0.375rem;
-    --bs-border-radius-sm: 0.25rem;
-    --bs-border-radius-lg: 0.5rem;
-    --bs-border-radius-xl: 1rem;
-    --bs-border-radius-2xl: 2rem;
-    --bs-border-radius-pill: 50rem;
-    --bs-link-color: #0d6efd;
-    --bs-link-hover-color: #0a58ca;
-    --bs-code-color: #d63384;
-    --bs-highlight-bg: #fff3cd;
-*/
+:root {
+  color-scheme: light dark;
+}
 
 body{
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent;
 	font-family: sans-serif;
+}
+
+input::placeholder{
+	opacity:.5;
+}
+
+
+#extension-floorplanner-lin{
+	margin:0;
+	padding:0;
+	width:100vw;
+	height:100vh;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0
 }
 
 
@@ -105,7 +56,7 @@ body{
 
 #extension-floorplanner-content .extension-floorplanner-leftBox {
   background:#fff;
-  box-shadow:2px 0px 3px #ccc;
+  box-shadow:2px 0px 3px rgba(128,128,128,.3);
   top:0px;
   width:100px;
   height:100vh;
@@ -113,8 +64,8 @@ body{
   overflow:auto;
   /*overflow-y:auto;*/
   padding:13px;
-  /*position:absolute;*/
-  z-index:2;
+  position:absolute;
+  z-index:6;
   display:none;
   font-size:0.9em;
   box-sizing:border-box;
@@ -131,11 +82,12 @@ body{
 
 #extension-floorplanner-content #extension-floorplanner-areaValue {
   position:absolute;
-  top:0;
-  left:110px;
+  bottom: 6rem;
+  right: 1.6rem;
   padding:5px;
   color:rgba(0,0,0,.2);
-  font-size:1.5em
+  font-size:1.5em;
+  pointer-events:none;
 }
 #extension-floorplanner-content header{display:none;font-size:11px}
 
@@ -143,7 +95,7 @@ body{
 
 #extension-floorplanner-content input[type=range] {
   -webkit-appearance: none;
-  margin: 1rem 0 .1rem 0;
+  margin: 1rem 0 .9rem 0;
   width: 100%;
 }
 #extension-floorplanner-content input[type=range]:focus {
@@ -160,8 +112,8 @@ body{
 }
 #extension-floorplanner-content input[type=range]::-webkit-slider-thumb {
   border: 1px solid #000000;
-  height: 20px;
-  width: 16px;
+  height: 30px;
+  width: 24px;
   border-radius: 3px;
   background: #ffffff;
   cursor: pointer;
@@ -390,7 +342,7 @@ background-color: #5bc0de;
 #extension-floorplanner-content .extension-floorplanner-btn {margin-bottom:6px;transition:all 0.3s}
 #extension-floorplanner-content .extension-floorplanner-fully {width:100%}
 #extension-floorplanner-content .extension-floorplanner-halfy {
-	width:47%
+	width:47%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -508,22 +460,32 @@ background-color: #5bc0de;
 
 
 
-
-.extension-floorplanner-modal{
+#extension-floorplanner-modals-container{
 	position: fixed;
-    top: 10rem;
-    left: calc(50% - 250px);
-    z-index: 1055;
+	top:0;
+	left:0;
+	height:100vh;
+	width:100vw;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	pointer-events:none;
+	z-index: 1055;
+}
+.extension-floorplanner-modal{
     display: none;
-    width: 500px;
+    width: auto;
+	max-width:90vw;
     height: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
+	max-height:90vh;
+    overflow: auto;
     outline: 0;
 	background-color:white;
 	border-radius:1rem;
 	padding:2rem;
-	box-shadow: 2px 2px 3px #ccc;
+	box-shadow: 2px 2px 5px #ccc;
+	pointer-events:auto;
+	box-sizing: border-box;
 }
 
 
@@ -542,6 +504,10 @@ background-color: #5bc0de;
 	width:100vw;
 	height:100vh;
 	background-color:#beedfd;
+}
+
+.extension-floorplanner-btn img{
+	max-width:100%;
 }
 
 /*
@@ -563,8 +529,9 @@ background-color: #5bc0de;
 	align-items:center;
 	justify-content: space-between;
 }
-.extension-floorplanner-flex-between > *{
+#extension-floorplanner-tool-root .extension-floorplanner-flex-between > *{
 	width:47%;
+	box-sizing:border-box;
 }
 
 .extension-floorplanner-flex-wrap{
@@ -592,7 +559,6 @@ background-color: #5bc0de;
 }
 
 #extension-floorplanner-content #extension-floorplanner-panel #extension-floorplanner-select_mode{
-    box-shadow: 2px 2px 3px #ccc;
     padding: 1.5rem 0 2rem 0;
     display: flex;
     justify-content: center;
@@ -709,15 +675,44 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 }
 
 #extension-floorplanner-layer_list{
-	box-shadow:2px 2px 3px #ccc;
-	display:none;background:#fff;
-	border-radius: 0 5px 5px 0; 
-	padding:10px;
+	display:none;
 	position:fixed;
 	left:100px;
 	bottom:0px;
 	width:auto;
-	z-index:4;
+	z-index:-1;
+}
+
+#extension-floorplanner-layer_list-checkboxes{
+	width:4rem;
+}
+
+#extension-floorplanner-layer_list > div{
+	box-shadow:2px 2px 3px #ccc;
+	background:#fff;
+	border-radius: 0 5px 5px 0; 
+	padding:.5rem .5rem .5rem 0;
+}
+
+#extension-floorplanner-object_list{
+	/*
+	box-shadow:2px 2px 3px #ccc;
+	display:none;
+	background:#fcf;
+	border-radius: 0 5px 5px 0; 
+	padding:10px;
+	position:fixed;
+	left:100px;
+	top:0px;
+	width:auto;
+	z-index:-1;
+	max-height:calc(100vh - 20rem);
+	*/
+	margin-bottom:2rem;
+	width:2rem;
+}
+#extension-floorplanner-object_list:empty{
+	display:none;
 }
 
 
@@ -726,7 +721,12 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	align-items:center;
 	justify-content:space-between;
 	outline: none;
+	width:6rem;
 }
+#extension-floorplanner-layer_list .extension-floorplanner-funkyradio:after{
+	
+}
+
 #extension-floorplanner-layer_list .extension-floorplanner-funkyradio:hover{
 	background-color:rgba(0,0,0,.1);
 }
@@ -735,9 +735,40 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	border:none;
 }
 
+/*
 #extension-floorplanner-layer_list .extension-floorplanner-unicode-icon-medium{
 	margin-left:.5rem;
 }
+*/
+
+#extension-floorplanner-object_list{
+	
+	/*
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-auto-flow: column;
+	*/
+	/*
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: 1px;
+	grid-template-columns: repeat(3, 1fr); 
+	/*grid-template-rows: repeat(5, auto);*/
+	/*grid-template-rows: auto;
+	
+	column-count: 3;*/
+	
+}
+
+
+.extension-floorplanner-object-item-name{
+	font-size: 0;
+	display:inline-block;
+}
+.extension-floorplanner-object-item-name:first-letter {
+	font-size: 1.5rem;
+}
+
 
 
 #extension-floorplanner-content .extension-floorplanner-leftBox:not(#extension-floorplanner-panel) {
@@ -763,7 +794,7 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	border:1px solid #333;
 }
 
-
+/*
 #extension-floorplanner-content #extension-floorplanner-full_mode,
 #extension-floorplanner-content #extension-floorplanner-nofull_mode{
 	width: 58%;
@@ -772,10 +803,13 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 #extension-floorplanner-content #extension-floorplanner-nofull_mode span{
 	font-size:1.1rem;
 }
+*/
 
+/*
 #extension-floorplanner-content #extension-floorplanner-svg-download-button{
 	width:40%;
 }
+*/
 
 #extension-floorplanner-content .extension-floorplanner-btn-success{
 	background-color:blue;
@@ -798,7 +832,6 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	background-color:#fc4e4e;
 }
 
-
 .extension-floorplanner-hidden{
 	display:none!important;
 }
@@ -810,10 +843,10 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 .extension-floorplanner-scale-linked .extension-floorplanner-scale-linked-true{display:inline-block;}
 .extension-floorplanner-scale-linked .extension-floorplanner-scale-linked-false{display:none;}
 
-.extension-floorplanner-scale-linked + div{
+.extension-floorplanner-scale-linked #extension-floorplanner-scale-link-toggle-button-container + div{
 	opacity:.2;
 }
-.extension-floorplanner-scale-linked + div *{
+.extension-floorplanner-scale-linked #extension-floorplanner-scale-link-toggle-button-container + div *{
 	pointer-events:none;
 }
 
@@ -831,10 +864,41 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	overflow-x:visible;
 }
 
+#extension-floorplanner-svg-container-bg-image,
 #extension-floorplanner-svg-container{
 	position:relative;
-	z-index:-1;
+	/*z-index:-1;*/
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+	background-size:contain;
+	background-repeat: no-repeat;
 }
+
+#extension-floorplanner-svg-container-bg-image{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100vw;
+	height:100vh;
+	opacity:0.3;
+}
+
+#extension-floorplanner-svg-container-bg-image > svg{
+    width: 100vw;
+    height: 100vh;
+}
+
+.extension-floorplanner-slow-fade-out{
+	animation: extension-floorplanner-slow-fade-out 15s linear 1;
+}
+
+@keyframes extension-floorplanner-slow-fade-out{
+	0% {opacity:.3;}
+ 	100% {opacity:0;}
+}
+
+
 
 #extension-floorplanner-plan-exists-warning{
 	color:red;
@@ -849,19 +913,33 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 #extension-floorplanner-panel-level2{
 	position:fixed;
 	left:100px;
-	top:0;
+	top:5vh;
 	width:auto;
-	z-index:6;
-	border:1px solid red;
+	box-sizing:border-box;
+	max-height:90vh;
+	overflow:auto;
+	z-index:5;
+	border-top-right-radius:1rem;
+	border-bottom-right-radius:1rem;
 }
 
+/*
+.extension-floorplanner-sub{
+	box-shadow:2px 1px 3px #ccc;
+}
+*/
+
+#extension-floorplanner-panel-level2 > div{
+	/*box-shadow:2px 1px 3px #ccc;*/
+	display:none;
+}
+	
 
 .extension-floorplanner-slider-value{
 	font-weight:bold;
 }
 .extension-floorplanner-scale-slider-min-max > span{font-size:.6rem;line-height:.4rem;margin-top:.1rem;}
-#extension-floorplanner-bboxWidthScale-max,
-#extension-floorplanner-bboxHeightScale-max{
+.extension-floorplanner-scale-slider-min-max > span:last-of-type{
 	text-align:right;
 }
 
@@ -870,7 +948,7 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 .extension-floorplanner-menu-area{
 	background-color:rgba(0,0,0,.15);
 	border-radius:.5rem;
-	padding:.1rem 0 .8rem 0;
+	padding:.1rem .5rem .8rem .5rem;
 }
 .extension-floorplanner-menu-area p{
 	text-align:center;
@@ -884,8 +962,13 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	background-color:rgba(0,0,0,.2);
 	border-radius:.5rem;
 	font-size:2rem;
-	margin:1rem 0;
+	margin:1rem auto;
 	cursor:pointer;
+	max-width:6rem;
+	height:3rem;
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
 
 #extension-floorplanner-scale-link-toggle-button:hover{
@@ -894,18 +977,31 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 
 
 #extension-floorplanner-energy_list{
-	overflow-y:auto;
-	max-height:100vh;
-	box-shadow:2px 2px 3px #ccc;
+	/*box-shadow:2px 2px 3px #ccc;*/
 	display:none;
 	background:#fff;
-	border-radius: 0 .5rem .5rem 0; 
 	padding:2rem;
-	left:100px;
-	bottom:40px;
+	position:relative;
+	left:0;
+	top:0;
 	width:600px; 
-	max-width:calc(100vw - 200px);
+	max-width:calc(100vw - 150px);
+	box-sizing:border-box;
 }
+
+#extension-floorplanner-energy_list > div > p{
+	width:100%;
+	font-weight:bold;
+}
+#extension-floorplanner-energy_list > div{
+	padding:1rem;
+	margin:.5rem;
+	border:1px solid #ddd;
+	border-radius:.5rem;
+	display:flex;
+	flex-wrap:wrap;
+}
+
 
 
 #extension-floorplanner-content #extension-floorplanner-energy_list button{
@@ -913,18 +1009,239 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	font-size:.8rem;
 	width:5rem;
     /*-webkit-filter: contrast(0) sepia(100%) hue-rotate(190deg) saturate(2000%) brightness(100%);*/
-    filter: saturate(0%)
+    filter: saturate(0%);
+	padding:.5rem 0.7rem 0.5rem 0.7rem;
+	margin:.3rem;
 }
 #extension-floorplanner-content #extension-floorplanner-energy_list button:hover{
 	color:white;
 }
 
-#extension-floorplanner-energy_list button::first-letter{
+#extension-floorplanner-content #extension-floorplanner-energy_list button::first-letter{
 	font-size:2rem;
 	display:block;
 	width:100%;
-	line-height:1.3rem;
-    
+	line-height:2.7rem;
+    margin-bottom:1rem;
+	border-bottom:1rem solid transparent;
+	padding-bottom:1rem;
+}
+
+
+
+
+#extension-floorplanner-door_list,
+#extension-floorplanner-window_list{
+	width:100px;
+	padding:1rem;
+	background-color:white;
+	margin-top: calc(50vh - 10rem);
+	box-sizing:border-box;
+	border-top-right-radius:1rem;
+	border-bottom-right-radius:1rem;
+}
+
+
+
+
+
+
+
+
+
+#extension-floorplanner-distance_mode{
+	display:flex;
+	justify-content:center;
+	
+}
+
+.extension-floorplanner-tape-measure-icon{ 
+	width:2rem;
+	height:1.5rem;
+	overflow:hidden;
+	background-repeat: no-repeat;
+	background-size: 10rem;
+	background-image: url('../img/tape_measure.svg');
+	background-position: left center;
+	transition: width 1s ease-in-out;
+	opacity:.8;
+}
+#extension-floorplanner-distance_mode:hover .extension-floorplanner-tape-measure-icon{
+	width:5rem;
+	transition: width 1s ease-in-out;
+	opacity:1;
+}
+.extension-floorplanner-tape-measure-icon-end{ 
+	width: 2px;
+    min-width: 1px;
+    height: 1.5rem;
+    overflow: hidden;
+    background-repeat: repeat-x;
+    background-size: 4px 1.5rem;
+    background-image: url(../img/tape_measure_end.svg);
+    background-position: left center;
+}
+
+button.extension-floorplanner-btn-success .extension-floorplanner-tape-measure-icon{
+	width:5rem;
+	opacity:1;
+}
+
+
+
+g#extension-floorplanner-boxbind{
+	opacity:.7;
+}
+
+
+#extension-floorplanner-content .extension-floorplanner-pull-right p{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+#extension-floorplanner-content .extension-floorplanner-pull-right button{
+	line-height:0;
+	width:0;
+	padding:1.4rem;
+	font-size:1.5rem;
+	min-height:2rem;
+	min-width:2rem;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin:.3rem;
+}
+
+
+
+#extension-floorplanner-boxArea{
+	opacity:.5;
+}
+
+/*
+#extension-floorplanner-content .extension-floorplanner-circle_css_1 {
+	stroke:#5cba79;
+	stroke-width:0;
+	fill:#5cba79;
+	fill-opacity:0.9;
+	animation: extension-floorplanner-myAnim 0.1s linear infinite;
+}
+*/
+
+
+#extension-floorplanner-content #extension-floorplanner-objBoundingBox{
+	width:200px;
+}
+#extension-floorplanner-content #extension-floorplanner-objBoundingBox p{
+	margin-bottom:.2rem;
+	font-weight:bold;
+}
+
+#extension-floorplanner-title{
+	margin:0;
+	font-size:1rem;
+	font-family:sans-serif;
+}
+
+
+
+#extension-floorplanner-wall-slider-container{
+	height:15rem;
+	max-height:50vh;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+#extension-floorplanner-content #extension-floorplanner-wallWidth{
+	width:15rem;
+	transform:rotate(-90deg);
+	max-width:48vh;
+}
+
+
+/*  TEXT MODAL  */
+
+#extension-floorplanner-textToLayerLabel{
+	margin:0;
+}
+
+#extension-floorplanner-content #extension-floorplanner-tool-root #extension-floorplanner-text-toggle-emojis-button{
+	padding:.75rem;
+	font-size:1.5rem;
+}
+
+#extension-floorplanner-text-emojis-list{
+	display:flex;
+	flex-wrap:wrap;
+	width:100%;
+	padding:1rem;
+	border-radius:.2rem;
+	background-color:rgba(0,0,0,.1);
+	height:12rem;
+	max-height:50vh;
+	overflow:auto;
+	margin-bottom:1rem;
+	border:1px solid rgba(0,0,0,.3);
+	box-sizing:border-box;
+	overflow:scroll;
+}
+#extension-floorplanner-text-emojis-list > span{
+	display:inline-block;
+	margin:.3rem;
+	font-size:1.5rem;
+	cursor:pointer;
+}
+
+#extension-floorplanner-textToLayer.extension-floorplanner-hide-emojis-list #extension-floorplanner-text-emojis-list{
+	display:none;
+}
+
+#extension-floorplanner-labelBox{
+	width:100%;
+	font-size:1.1rem;
+	border-radius:5px;
+	background-color:white;
+	color:#333;
+	border-bottom:2px dotted black;
+	padding:1rem;
+	box-sizing:border-box;
+	margin:1rem 0;
+}
+
+
+
+
+/*
+#extension-floorplanner-content #extension-floorplanner-tool-root  g#extension-floorplanner-boxbind{
+	animation: extension-floorplanner-pulsate 0.3s linear infinite;
+}
+*/
+
+
+
+#extension-floorplanner-content #extension-floorplanner-tool-root:not(.extension-floorplanner-do-not-pulsate) #extension-floorplanner-boxbind path {
+	animation: extension-floorplanner-bg-animation .5s linear infinite;
+}
+
+@keyframes extension-floorplanner-pulsate{
+	0% {opacity:.5;}
+ 	50% {opacity:1;}
+ 	100% {opacity:.5;}
+}
+
+
+@keyframes extension-floorplanner-col {
+	0%{stroke:green;}
+	33% {stroke:blue;}
+	66% {stroke:red;}
+	100% {stroke:green}
+}
+
+@keyframes extension-floorplanner-bg-animation {
+	0%{fill:green;}
+	33% {fill:blue;}
+	66% {fill:red;}
+	100% {fill:green}
 }
 
 
@@ -936,7 +1253,260 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 
 
 
+#extension-floorplanner-floorplans-list{
+	position:fixed;
+	right:2rem;
+	top:15rem;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+}
 
+
+#extension-floorplanner-floorplans-list:empty{
+	display:none
+}
+
+
+.extension-floorplanner-floorplan-item{
+	width:6rem;
+	max-width:6rem;
+	border-radius:.5rem;
+	background-color:rgba(128,128,128,.5);
+	margin-bottom:.5rem;
+	padding:.5rem;
+	cursor:pointer;
+	overflow:hidden;
+}
+.extension-floorplanner-floorplan-item:hover{
+	background-color:#ccc;
+	color:black;
+}
+.extension-floorplanner-floorplan-item-icon{
+	width:100%;
+	height:auto;
+	cursor:pointer;
+}
+.extension-floorplanner-floorplan-item-icon > svg{
+	pointer-events:none;
+}
+.extension-floorplanner-floorplan-item-name{
+	display:block;
+	text-align:center;
+	color:black;
+}
+
+
+
+#extension-floorplanner-upload-background-image-label{
+	padding: 0.3rem;
+	width: 40%;
+    margin-bottom: 6px;
+    transition: all 0.3s;
+    /*padding: 0.5rem 0.7rem;*/
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	color:black;
+}
+#extension-floorplanner-upload-background-image-label:hover{
+	background: #08d;
+}
+
+/* style="box-shadow:2px 2px 3px #ccc;display:none;background:#fff;border-radius: 0 5px 5px 0; padding:10px;position:absolute;top:calc(50vh - 10rem);left:0;width:100px" */
+
+
+#extension-floorplanner-current-filename-container{
+	display:none;
+	text-align:center;
+	opacity:.7;
+	z-index:2;
+	position:absolute;
+	top:1rem;
+	left:100px;
+	width:calc(100vw - 100px);
+	font-size:1rem;
+	color:#08d;
+	font-style:italic;
+	pointer-events:none;
+}
+#extension-floorplanner-current-filename{
+	background-color:white;
+	display:inline-block;
+	padding:.2rem .4rem;
+	border-radius:.2rem;
+}
+
+
+#extension-floorplanner-save-to-server{
+	margin-bottom:0;
+}
+#extension-floorplanner-new-file-button{
+	opacity:.8;
+}
+
+
+.extension-floorplanner-object-item{
+	background-color:rgba(0,0,0,.1);
+	padding:.3rem;
+	margin-bottom:.1rem;
+	width:1.5rem;
+	text-align:center;
+	cursor:pointer;
+}
+
+
+/*
+#extension-floorplanner-content #extension-floorplanner-layer_list-checkboxes .extension-floorplanner-funkyradio-info label:after{
+	content:'X';
+	z-index:300;
+}
+*/
+/*
+#extension-floorplanner-content #extension-floorplanner-layer_list-checkboxes .extension-floorplanner-funkyradio-info input + label:after{
+	width:4rem;
+	height:2rem;
+	background-color:blue;
+	z-index:3;
+}
+*/
+/*
+, #extension-floorplanner-content .extension-floorplanner-funkyradio-info input[type="checkbox"]:checked ~ label:before
+*/
+
+.extension-floorplanner-funkyradio-info-icon{
+	position:absolute;
+	left:2.5rem;
+}
+
+#extension-floorplanner-content #extension-floorplanner-layer_list-checkboxes .extension-floorplanner-funkyradio-info{
+	width:4.5rem;
+	z-index:2;
+}
+
+#extension-floorplanner-layer_list-checkboxes .extension-floorplanner-funkyradio label{
+	width:9rem;
+}
+
+
+
+/*  drag and drop floorplan icons*/
+.extension-floorplanner-slist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.extension-floorplanner-slist li {
+  /*margin: 10px;
+  padding: 15px;
+  border: 1px solid #dfdfdf;
+  background: #f5f5f5;*/
+}
+
+.extension-floorplanner-slist li.extension-floorplanner-slist-hint {
+  border: 1px solid #ffc49a;
+  background: #feffb4;
+}
+.extension-floorplanner-slist li.extension-floorplanner-slist-active {
+  border: 1px solid #ffa5a5;
+  background: #ffe7e7;
+}
+
+
+/*  VIEW MODE  */
+
+
+.extension-floorplanner-view-mode #extension-floorplanner-panel,
+.extension-floorplanner-view-mode #extension-floorplanner-boxgrid{
+	display:none!important;
+}
+
+.extension-floorplanner-view-mode #extension-floorplanner-svg-container-bg-image{
+	opacity:1;
+}
+
+
+.extension-floorplanner-view-mode #extension-floorplanner-lin{
+	opacity:0;
+}
+.extension-floorplanner-view-mode #extension-floorplanner-lin
+
+
+#extension-floorplanner-start-floorplanner-button{
+	display:none;
+	position:absolute;
+	z-index:100;
+	left:1rem;
+	bottom:1rem;
+}
+.extension-floorplanner-view-mode #extension-floorplanner-start-floorplanner-button{
+	display:flex;
+}
+
+#extension-floorplanner-delete-button{
+	background-color: #fc4e4e;
+}
+
+.extension-floorplanner-floorplan-icon-current{
+	background-color:red;
+}
+
+
+
+
+
+
+
+
+#extension-floorplanner-moveBox{
+	position:absolute;
+	right:-200px;
+	top:10px;
+	color:#08d;
+	background:transparent;
+	z-index:2;
+	text-align:center;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+}
+
+#extension-floorplanner-zoomBox2,
+#extension-floorplanner-zoomBox{
+	position:absolute;
+	z-index:100;
+	right:-150px;
+	bottom:20px;
+	text-align:center;
+	background:transparent;
+	padding:0px;
+	color:#fff;
+	transition-duration: 0.2s;transition-timing-function: ease-in;
+	
+}
+#extension-floorplanner-zoomBox2{
+	bottom:10px
+}
+
+#extension-floorplanner-scaleVal{
+	width:60px;
+	height:20px;
+	background:#4b79aa;
+	border-radius:4px;
+	margin-right:1rem;
+}
+
+
+
+#extension-floorplanner-start-floorplanner-button-container{
+	position:fixed;
+	bottom:1rem;
+	left:1rem;
+}
 
 
 
@@ -1006,7 +1576,6 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	
 	#extension-floorplanner-content #extension-floorplanner-panel #extension-floorplanner-select_mode{
 	    padding: .8rem 0 1rem 0;
-		
 	}
 	
 }
@@ -1018,76 +1587,105 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	}
 }
 
-#extension-floorplanner-distance_mode{
-	display:flex;
-	justify-content:center;
+
+@media screen and ( max-height: 600px ){
+	#extension-floorplanner-content #extension-floorplanner-panel button{
+		padding:.2rem;
+	}
+}
+
+@media screen and (max-height: 850px), (max-width: 850px) {
+	#extension-floorplanner-content .extension-floorplanner-pull-right button{
+		padding:1rem;
+		font-size:1rem;
+		min-width:1rem;
+		min-height:1rem;
+	}
 	
-}
+	#extension-floorplanner-moveBox{
+		right: -215px;
+	}
+	#extension-floorplanner-zoomBox{
+		right: -165px;
+	}
+	#extension-floorplanner-scaleVal{
+		margin-right:0;
+	}
+	#extension-floorplanner-floorplans-list{
+		right:1rem;
+	}
 
-.extension-floorplanner-tape-measure-icon{ 
-	width:2rem;
-	height:1.5rem;
-	overflow:hidden;
-	background-repeat: no-repeat;
-	background-size: 10rem;
-	background-image: url('../img/tape_measure.svg');
-	background-position: left center;
-	transition: width 1s ease-in-out;
-	opacity:.8;
-}
-.extension-floorplanner-tape-measure-icon:hover{
-	width:5rem;
-	transition: width 1s ease-in-out;
-	opacity:1;
-}
-.extension-floorplanner-tape-measure-icon-end{ 
-	width: 2px;
-    min-width: 1px;
-    height: 1.5rem;
-    overflow: hidden;
-    background-repeat: repeat-x;
-    background-size: 4px 1.5rem;
-    background-image: url(../img/tape_measure_end.svg);
-    background-position: left center;
-}
-
-button.extension-floorplanner-btn-success .extension-floorplanner-tape-measure-icon{
-	width:5rem;
-	opacity:1;
-}
-
-
-/*
-g#extension-floorplanner-boxbind{
-	opacity:.3;
-}
-*/
-
-.extension-floorplanner-pull-right p{
-	display:flex;
-	align-items:center;
-	justify-content:center;
-}
-.extension-floorplanner-pull-right button{
-	line-height:0;
-	width:0;
-	padding:2rem;
-	font-size:1.5rem;
-	min-height:2rem;
-	min-width:2rem;
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	margin:.3rem;
+	#extension-floorplanner-boxinfo{
+		display:none;
+	}
+	
+	#extension-floorplanner-energy_list{
+		padding:0;
+		margin:0;
+	}
+	#extension-floorplanner-energy_list > div{
+		padding:0;
+		border:none;
+	}
+	
+	.extension-floorplanner-floorplan-item{
+		width:4rem;
+		padding:0;
+	}
+	.extension-floorplanner-floorplan-item .extension-floorplanner-floorplan-item-name{
+		display:none;
+	}
+	
+	#extension-floorplanner-content button{
+		padding:.4rem .5rem;
+	}
 }
 
 
-/*
-#extension-floorplanner-content .extension-floorplanner-circle_css_1 {
-	stroke:#5cba79;
-	stroke-width:0;
-	fill:#5cba79;
-	fill-opacity:0.9;
-	animation: extension-floorplanner-myAnim 0.1s linear infinite;
+
+
+
+
+
+
+@media (prefers-color-scheme: dark) {
+  #extension-floorplanner-tool-root {
+    background-color:black;
+	color:#666;
+  }
+  
+  #extension-floorplanner-content #extension-floorplanner-tool-root button{
+ 	 color:black
+  }
+  #extension-floorplanner-content #extension-floorplanner-tool-root button.extension-floorplanner-btn-done{
+ 	 color:white
+  }
+  
+  #extension-floorplanner-content #extension-floorplanner-tool-root #extension-floorplanner-text_mode.extension-floorplanner-btn-success > span{
+  	color:white;
+  }  
+  #extension-floorplanner-content #extension-floorplanner-areaValue {
+    color:rgba(255,255,255,.4);
+  }
+  #extension-floorplanner-content #extension-floorplanner-panel{
+	background-color:#444;
+  }
+  #extension-floorplanner-content #extension-floorplanner-panel #extension-floorplanner-select_mode{
+	color:white;
+  }
+  
+  #extension-floorplanner-content #extension-floorplanner-panel .extension-floorplanner-leftBox button{
+	  text:white;
+  }
+  .extension-floorplanner-floorplan-item-name{
+	  color:white;
+  }
+  #extension-floorplanner-current-filename{
+	  background-color:black;
+  }
+
 }
-*/
+
+
+
+
