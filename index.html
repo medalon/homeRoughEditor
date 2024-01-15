@@ -31,7 +31,7 @@
 		</div>
 		-->
     <div id="extension-floorplanner-main">
-	    <div id="extension-floorplanner-tool-root" class="extension-floorplanner-scale-linked extension-floorplanner-view-mode">
+	    <div id="extension-floorplanner-tool-root" class="extension-floorplanner-view-mode">
 		    <header>Floorplanner</header>
 				<div id="extension-floorplanner-svg-container-bg-image"></div>
 			  <div id="extension-floorplanner-svg-container">
@@ -982,9 +982,24 @@
 
 <script>
 	
+	var currently_editing = true;
+	if(localStorage.getItem('extension-floorplanner-currently-editing') != null){
+		currently_editing = localStorage.getItem('extension-floorplanner-currently-editing');
+	}
+	else{
+		localStorage.setItem('extension-floorplanner-currently-editing',true);
+	}
 	
-	
-	
+	let touch_ui = false;
+	function is_touch_device() {  
+	  try {  
+	    document.createEvent("TouchEvent");  
+	    return true;  
+	  } catch (e) {  
+	    return false;  
+	  }  
+	}
+	touch_ui = is_touch_device();
 	
 	// Additions
 	
@@ -1007,6 +1022,9 @@
 	}
 	
 	
+	
+	
+	
 	let floorplans = JSON.parse(localStorage.getItem('extension-floorplanner-floorplans'));
 	if(floorplans == null){floorplans = {};}else{console.log("FLOORPLANS FROM LOCAL STORAGE: ", floorplans)}
 	generate_floorplans_list();
@@ -1014,7 +1032,7 @@
 	
 	let bounding_padding = -10;
 	let rotation_snappyness = 5;
-	let linked_scaling = true;
+	let linked_scaling = false;
 	let unsaved = false;
 	let manual_bg_upload = false;
 	
@@ -1083,14 +1101,20 @@
 	//
 	
 	
-	linElement.addEventListener("mouseup", _MOUSEUP);
-	linElement.addEventListener("mousemove", throttle(function (event) { _MOUSEMOVE(event); }, 30));
-	linElement.addEventListener("mousedown", _MOUSEDOWN, true);
+	
 	
 	// Make compatible with touch UI's
-	linElement.addEventListener("touchend", _MOUSEUP);
-	linElement.addEventListener("touchmove", throttle(function (event) { _MOUSEMOVE(event); }, 30));
-	linElement.addEventListener("touchstart", _TOUCH_START, true);
+	if(touch_ui){
+		linElement.addEventListener("touchend", _MOUSEUP);
+		linElement.addEventListener("touchmove", throttle(function (event) { _MOUSEMOVE(event); }, 30));
+		linElement.addEventListener("touchstart", _TOUCH_START, true);
+	}
+	else{
+		linElement.addEventListener("mouseup", _MOUSEUP);
+		linElement.addEventListener("mousemove", throttle(function (event) { _MOUSEMOVE(event); }, 30));
+		linElement.addEventListener("mousedown", _MOUSEDOWN, true);
+	}
+	
 	
 	linElement.addEventListener("click", function (event) {
 	  event.preventDefault();
@@ -1203,7 +1227,7 @@
 	// *****************************************************************************************************
 
 	function _MOUSEMOVE(event) {
-		console.log("in _MOUSEMOVE. event, mode: ", event, mode);
+		//console.log("in _MOUSEMOVE. event, mode: ", event, mode);
 	  event.preventDefault();
 	  document.querySelector('.extension-floorplanner-sub').style.display='none';
 
@@ -1244,7 +1268,7 @@
 	    if (typeof (binder) != 'undefined') {
 				if(typeof binder.family != 'undefined'){
 		      if ((binder.family != 'stick' && binder.family != 'collision') || WALLS.length == 0) {
-						console.log("stick/collision type, but walls length is 0")
+						console.log("object mode: not stick/collision type, and walls length is 0")
 				    console.log("binder: ", binder);
 		        binder.x = snap.x;
 		        binder.y = snap.y;
@@ -1294,7 +1318,7 @@
 		      }
 				}
 				else{
-					console.log("binder,but no family");
+					console.log("binder, but no family");
 				}
 	      
 	    }
@@ -3820,6 +3844,11 @@
     }
     HISTORY.push(JSON.stringify({ objData: OBJDATA, wallData: WALLS, roomData: ROOM }));
 		//console.log("pushed HISTORY: ", HISTORY);
+		
+		if(HISTORY.length > 10){
+			HISTORY = HISTORY.slice(-10);
+		}
+		
     localStorage.setItem('extension-floorplanner-history', JSON.stringify(HISTORY));
 		//console.log("localstorage: ", localStorage.getItem('extension-floorplanner-history'));
     HISTORY.index++;
@@ -4799,11 +4828,11 @@
 	tactile = false;
 
 	function calcul_snap(event, state) {
-		console.log("calcul_snap:  event, state:",event, state);
+		//console.log("calcul_snap:  event, state:",event, state);
 		
     if (event.touches) {
         let touches = event.changedTouches;
-        console.log("calcul_snap touches");
+        //console.log("calcul_snap touches");
         eX = touches[0].pageX;
         eY = touches[0].pageY;
         tactile = true;
@@ -4813,8 +4842,8 @@
     }
     x_mouse = (eX * factor) - (offset.left * factor) + originX_viewbox;
     y_mouse = (eY * factor) - (offset.top * factor) + originY_viewbox;
-		console.log("calculsnap: x_mouse: ", x_mouse);
-		console.log("calculsnap: y_mouse: ", y_mouse);
+		//console.log("calculsnap: x_mouse: ", x_mouse);
+		//console.log("calculsnap: y_mouse: ", y_mouse);
 		
     if (state === 'on') {
         x_grid = Math.round(x_mouse / grid) * grid;
@@ -5493,8 +5522,9 @@
 	});
 
 	document.querySelector('#extension-floorplanner-text_mode').addEventListener('click',function () {
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add text<br/><span style=\"font-size:0.7em\">Place the cursor at the desired location</span>';
-	    fonc_button('text_mode');
+		document.getElementById('extension-floorplanner-labelBox').value = '';
+		document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add text<br/><span style=\"font-size:0.7em\">Place the cursor at the desired location</span>';
+		fonc_button('text_mode');
 	});
 
 	if(document.querySelector('#extension-floorplanner-grid_mode')){
@@ -5754,7 +5784,7 @@
               thickObj / 2 + " L " + sizeObj / 2 + "," + (-thickObj / 2) + " Z", "#fff", "#000", '');
 					*/
 	        if (typeObj === 'circle') {
-            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#333", '');
+            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "", "#333", '');
             construc.params.width = 80;
             construc.params.height = 80;
             construc.family = 'free';
@@ -5767,7 +5797,7 @@
 	        }
 					
 	        if (typeObj === 'square') {
-	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#333", '');
+	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -5797,21 +5827,21 @@
 	        }
 					
 	        if (typeObj === 'droplet') {
-	            pushToConstruc(construc, "m 2 13a5 5 0 0 0 10 0c0-1.73-1.66-5.03-5-9.65C3.66 7.97 2 11.27 2 13zM7 0c4.67 6.09 7 10.42 7 13a7 7 0 0 1-14 0c0-2.58 2.33-6.91 7-13z", "#fff", "#333", '');
+	            pushToConstruc(construc, "m 2 13a5 5 0 0 0 10 0c0-1.73-1.66-5.03-5-9.65C3.66 7.97 2 11.27 2 13zM7 0c4.67 6.09 7 10.42 7 13a7 7 0 0 1-14 0c0-2.58 2.33-6.91 7-13z", "#44f", "#333", '');
 	            construc.params.width = 20;
 	            construc.params.height = 40;
 	            construc.family = 'free';
 	        }
 					
 	        if (typeObj === 'triangle') {
-	            pushToConstruc(construc, "m 0 -16.5 L -18 15 L 18 15 Z", "#fff", "#333", '');
+	            pushToConstruc(construc, "m 0 -16.5 L -18 15 L 18 15 Z", "", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
 	        }
 					
 	        if (typeObj === 'dome') {
-	            pushToConstruc(construc, "m 20 0 L 20 0 C 20 -11.05 11.05 -20 0 -20 C -11.05 -20 -20 -11.05 -20 0 L -20 20 L 20 20 L 20 0 Z", "#fff", "#333", '');
+	            pushToConstruc(construc, "m 20 0 L 20 0 C 20 -11.05 11.05 -20 0 -20 C -11.05 -20 -20 -11.05 -20 0 L -20 20 L 20 20 L 20 0 Z", "", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -5839,7 +5869,7 @@
 	        }
 					
 	        if (typeObj === 'rounded-square') {
-	            pushToConstruc(construc, "m -18 11 C -18 15.97 -13.97 20 -9 20 L 11 20 C 15.97 20 20 15.97 20 11 L 20 -9 C 20 -13.97 15.97 -18 11 -18 L -9 -18 C -13.97 -18 -18 -13.97 -18 -9 Z", "#8f8", "#333", '');
+	            pushToConstruc(construc, "m -18 11 C -18 15.97 -13.97 20 -9 20 L 11 20 C 15.97 20 20 15.97 20 11 L 20 -9 C 20 -13.97 15.97 -18 11 -18 L -9 -18 C -13.97 -18 -18 -13.97 -18 -9 Z", "", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -6706,7 +6736,7 @@
 		console.log("in load_from_floorplans. details: ", details);
 		if(typeof details == 'object'){
 			clear_floorplan(true);
-			zoom_maker('zoomreset',0,0);
+			//zoom_maker('zoomreset',0,0);
 			//let moisturized = JSON.parse(details.floorplan);
 			//console.log("moisturized: ", moisturized );
 			HISTORY = [details.floorplan];
@@ -6730,9 +6760,9 @@
 	
 	function bye_binder(){
 		//console.log("in bye_binder. binder: ", binder);
-		console.log("bye_binder: typeof binder: ", typeof binder);
+		//console.log("bye_binder: typeof binder: ", typeof binder);
 		if (typeof (binder) != 'undefined') {
-			console.log("bye_binder: typeof binder.remove: ", typeof binder.remove);
+			//console.log("bye_binder: typeof binder.remove: ", typeof binder.remove);
 			
 			if(typeof binder.graph != 'undefined'){
 				//binder.graph.remove();
@@ -6742,46 +6772,12 @@
 			}
 			
 			binder = (function () { return; })();
-			/*
-			if(typeof binder.remove != 'undefined'){
-				binder.remove();
-			}
-			else{
-				binder = {};
-				delete binder;
-			}
-			*/
-			/*
-			if (typeof (binder.graph) == 'undefined'){
-				binder.remove();
-			}
-			else{
-				binder.graph.remove();
-				delete binder;
-			}
-			*/
+
 		}
 		
 		if (typeof (binder) != 'undefined') {
 			console.error("bye_binder: failed. binder still exists: ", binder);
-			console.log("bye_binder: typeof binder: ", typeof binder);
-			if(typeof binder.remove != 'undefined'){
-				binder.remove();
-			}
-			else{
-				binder = {};
-				delete binder;
-			}
 		}
-		if (typeof (binder) != 'undefined') {
-			console.error("bye_binder: still failed! unkillable binder still exists: ", binder);
-			console.log("bye_binder: binder parent: ", binder.parentElement);
-			delete binder;
-		}
-		if (typeof (binder) != 'undefined') {
-			console.error("bye_binder: OMG OMG still failed! unkillable binder STILL exists: ", binder);
-		}
-		
 	}
 	
 	
@@ -6809,6 +6805,7 @@
 	*/
 
 	function generate_object_list(){
+		return;
 		if(!floorplanner_started){return}
 		object_list_el = document.getElementById('extension-floorplanner-object_list');
 		object_list_el.innerHTML = '';
@@ -7045,7 +7042,7 @@
 			document.getElementById('extension-floorplanner-zoomBox2').style.transform = "translateX(-165px)";
 		},300);
 		
-		if(Object.keys(floorplans).length < 2){
+		if(Object.keys(floorplans).length == 0 || currently_editing == true){
 			start_floorplanner();
 		}
 	});
@@ -7055,6 +7052,7 @@
 	function start_floorplanner(){
 		console.log("STARTING FLOORPLANNER");
 		floorplanner_started = true;
+		localStorage.setItem('extension-floorplanner-currently-editing',true);
 
 		//document.querySelector('#extension-floorplanner-recover').innerHTML = "<p>Select a plan type.</p>";
     
@@ -7111,11 +7109,14 @@
 		else{
 			myModal.style.display='block';
 		}
+		bg_image_el.style.backgroundImage = "none";
 	}	
 			
 	
 	function stop_floorplanner(){
 		floorplanner_started = false;
+		localStorage.setItem('extension-floorplanner-currently-editing',false);
+		
 		if(Object.keys(floorplans).length == 0){
 			save_to_floorplans();
 		}
@@ -7133,6 +7134,7 @@
 		}
 		floorplanner_started = false;
 		generate_floorplans_list();
+		
 	}
 	
 	

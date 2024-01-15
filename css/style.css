@@ -695,6 +695,7 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 }
 
 #extension-floorplanner-object_list{
+	display:none;
 	/*
 	box-shadow:2px 2px 3px #ccc;
 	display:none;
@@ -711,8 +712,9 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	margin-bottom:2rem;
 	width:2rem;
 }
-#extension-floorplanner-object_list:empty{
-	display:none;
+
+#extension-floorplanner-content #extension-floorplanner-object_list:empty{
+	display:none!important;
 }
 
 
@@ -890,11 +892,15 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 }
 
 .extension-floorplanner-slow-fade-out{
-	animation: extension-floorplanner-slow-fade-out 15s linear 1;
+	animation: extension-floorplanner-slow-fade-out 10s linear 1;
+	animation-fill-mode: forwards;
 }
 
 @keyframes extension-floorplanner-slow-fade-out{
-	0% {opacity:.3;}
+	0% {opacity:0;}
+	3% {opacity:0;}
+	6% {opacity:.3;}
+	99% {opacity:0;}
  	100% {opacity:0;}
 }
 
