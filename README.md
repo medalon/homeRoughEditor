@@ -22,7 +22,7 @@ Data is stored in the browser's local storage, so if you clear your cookies, the
 
 
 ### Screenshot
-[![homeRoughEditor](https://raw.githubusercontent.com/candlesmarthome/homeRoughEditor/master/screenshot.png)](https://candlesmarthome.github.io/homeRoughEditor/)]
+![Floorplanner example](screenshot.png?raw=true "Floorplanner example")
 
 ## License
 
