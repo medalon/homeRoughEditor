@@ -17,7 +17,7 @@ Start by clicking on the wall button, and then press and hold the mouse button t
 
 ## Features
 - Easy to use, with touch screen support.
-- 100% privacy friendly. It runs 100% in your own browser, and has no third party dependencies.
+- 100% privacy friendly. It runs in your own browser, and has no third party dependencies.
 - Download your floorplan as an SVG file.
 - Upload an existing home blueprint to use as a drawing template.
 - Work on multiple floorplans at once.
