@@ -704,7 +704,7 @@
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-dome">ᑎ Dome</button>
 					
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-triangle">▲ Triangle</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-arrow">→ Arrow</button>
+							
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-star">★ Star</button>
 							
 							<!--
@@ -731,6 +731,7 @@
 							<p>Furniture</p>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-bed">🛏 Single bed</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-double-bed">🛏 Double bed</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-closet">◫ Closet</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-couch">🛋️ Couch</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tv">📺 TV</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-leaf">🌿 Plant</button>
@@ -767,6 +768,19 @@
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-heater">◍ Boiler</button>
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-radiator">▥ Radiator</button>
             </div>
+
+						
+            <div>
+              <p>Fire</p>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-arrow">→ Arrow</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-line-with-dot">⊸ Line with ball</button>
+              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-red-rectangle">▥ Red rectangle</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-fire-extinguisher">🧯 Fire extinguisher</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-fire-exit">⌫ Fire exit</button>
+							
+            </div>
+						
+
 
 	        </div>
 					
@@ -1640,7 +1654,7 @@
 	      var realBboxCoords = OBJDATA[i].realBbox;
 				//console.log("realBboxCoords: ", realBboxCoords);
 	      if (qSVG.rayCasting(snap, realBboxCoords)) {
-					console.warn("FOUND NEARBY OBJECT: ", OBJDATA[i]);
+					//console.warn("FOUND NEARBY OBJECT: ", OBJDATA[i]);
 	        objTarget = OBJDATA[i];
 					//binder = OBJDATA[i];
 					// TODO: why not break here?
@@ -2022,7 +2036,7 @@
 						else{
 							if(typeof binder.obj != 'undefined'){
 								if(objTarget == binder.obj){
-									console.log("GOOD, the binder is the currently nearest object.");
+									//console.log("GOOD, the binder is the currently nearest object.");
 								}
 								else{
 									bye_binder();
@@ -5869,13 +5883,6 @@
 	            construc.family = 'free';
 	        }
 					
-	        if (typeObj === 'arrow') {
-	            pushToConstruc(construc, "m 50 1 L 36 15 L 36 4.08 L -49 4.08 L -49 -2.08 L 36 -2.08 L 36 -13 Z", "#f00", "#888", '');
-							construc.params.width = 100;
-	            construc.params.height = 30;
-	            construc.family = 'free';
-	        }
-					
 	        if (typeObj === 'eye') {
 	            pushToConstruc(construc, "m 0.35 14.13 C -12.25 14.14 -22.47 1.83 -22.68 1.21 C -23.17 -0.3 -12.63 -11.74 -0.03 -11.76 C 12.58 -11.77 23.18 0.12 23 1.16 C 22.93 1.57 13.39 13.9 1.03 14.12 L 0.35 14.13 Z M 0.67 8.18 C 0.93 8.18 1.19 8.17 1.46 8.14 C 5.69 7.72 8.78 4.03 8.36 -0.12 C 7.93 -4.26 4.16 -7.28 -0.08 -6.88 L -0.15 -6.87 C -4.39 -6.43 -7.46 -2.72 -7.02 1.42 C -6.6 5.3 -3.24 8.19 0.67 8.18 Z", "#f66", "#933", '');
 	            construc.params.width = 40;
@@ -5985,6 +5992,13 @@
 	            construc.family = 'free';
 	        }
 					
+	        if (typeObj === 'closet') {
+	            pushToConstruc(construc, "m -3 37 L -53 26 M 2 37 L 47 26 M -53 26 L 47 26 L 47 -24 L -53 -24 Z", "", "#888", '');
+	            construc.params.width = 80;
+	            construc.params.height = 30;
+	            construc.family = 'free';
+	        }
+					
 	        if (typeObj === 'couch') {
 	            pushToConstruc(construc, "m 25.97 17 L -19.49 17 C -24.32 17 -28.28 13.04 -28.28 8.21 L -28.28 -8.14 C -28.28 -12.98 -24.32 -16.93 -19.49 -16.93 L 25.97 -16.93 C 30.81 -16.93 34.76 -12.98 34.76 -8.14 L 34.76 8.21 C 34.76 13.04 30.81 17 25.97 17", "#fff", "#333", '');
 							pushToConstruc(construc, "m 36.87 6.88 L 34.22 6.88 C 32.55 6.88 31.18 5.52 31.18 3.85 L 31.18 -13.9 C 31.18 -15.57 32.55 -16.93 34.22 -16.93 L 36.87 -16.93 C 38.54 -16.93 39.9 -15.57 39.9 -13.9 L 39.9 3.85 C 39.9 5.52 38.54 6.88 36.87 6.88 M -27.73 6.88 L -30.38 6.88 C -32.05 6.88 -33.42 5.52 -33.42 3.85 L -33.42 -13.9 C -33.42 -15.57 -32.05 -16.93 -30.38 -16.93 L -27.73 -16.93 C -26.07 -16.93 -24.7 -15.57 -24.7 -13.9 L -24.7 3.85 C -24.7 5.52 -26.07 6.88 -27.73 6.88", "#ccc", "#333", '');
@@ -6046,6 +6060,62 @@
 					
 					
 					
+					// Fire escape map
+					
+	        if (typeObj === 'arrow') {
+	            pushToConstruc(construc, "m 50 1 L 36 15 L 36 4.08 L -49 4.08 L -49 -2.08 L 36 -2.08 L 36 -13 Z", "#f00", "#888", '');
+							construc.params.width = 100;
+	            construc.params.height = 30;
+	            construc.family = 'free';
+	        }
+					
+	        if (typeObj === 'line-with-dot') {
+	            pushToConstruc(construc, "m 144 7 C 141.03 7 138.56 4.84 138.08 2 L -150 2 L -150 0 L 138.08 0 C 138.56 -2.84 141.03 -5 144 -5 C 147.31 -5 150 -2.31 150 1 C 150 4.31 147.31 7 144 7 Z", "#f00", "#f00", '');
+							construc.params.width = 100;
+	            construc.params.height = 30;
+	            construc.family = 'free';
+	        }
+					
+	        if (typeObj === 'red-rectangle') {
+	            pushToConstruc(construc, "m -70 20 L 70 20 L 70 -20 L -70 -20 Z", "#f00", "#f00", '');
+							construc.params.width = 100;
+	            construc.params.height = 30;
+	            construc.family = 'free';
+	        }
+					
+	        if (typeObj === 'fire-extinguisher') {
+	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#333", '');
+	            construc.push({
+	                'text': "🧯",
+	                'x': '0',
+	                'y': '10',
+	                'fill': "#333333",
+	                'stroke': "none",
+	                'fontSize': '1.5em',
+	                "strokeWidth": "0.4px"
+	            });
+	            construc.params.width = 40;
+	            construc.params.height = 40;
+	            construc.family = 'free';
+	        }
+					
+	        if (typeObj === 'fire-exit') {
+	            pushToConstruc(construc, "m -40,-20 l 80,0 l0,40 l-80,0 Z", "#0f0", "#333", '');
+	            construc.push({
+	                'text': "EXIT",
+	                'x': '0',
+	                'y': '6',
+	                'fill': "#333333",
+	                'stroke': "none",
+	                'fontSize': '1.2em',
+	                "strokeWidth": "0.4px"
+	            });
+	            construc.params.width = 40;
+	            construc.params.height = 40;
+	            construc.family = 'free';
+	        }
+					
+					
 					
 	        if (typeObj === 'gtl') {
 	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#333", '');
@@ -6062,6 +6132,7 @@
 	            construc.params.height = 40;
 	            construc.family = 'stick';
 	        }
+					
 	        if (typeObj === 'switch') {
 	            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#333", '');
 	            pushToConstruc(construc, qSVG.circlePath(-2, 4, 5), "none", "#333", '');

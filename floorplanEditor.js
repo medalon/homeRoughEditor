@@ -592,7 +592,11 @@ var floorplanEditor = {
 		 catch(e){
 			 console.error("floorplaneditor.js: tt error: ", e);
 		 }
-		
+		 console.log("obj2D: type: ", type);
+		 if(type == 'boundingBox'){
+			 //continue
+		 }
+		 let stroke_opacity = 1;
      if (cc[tt].path) {
 			 	if(classe == 'boundingBox' || classe == 'text' || classe == 'measure'){
 			  	cc[tt].opacity = '1'; // not needed anymore?
@@ -600,11 +604,16 @@ var floorplanEditor = {
 			
 				//newpath = document.createElementNS('http://www.w3.org/2000/svg',"path"); 
 			
+				if(type == 'boundingBox'){
+					//cc[tt].opacity = '0';
+					stroke_opacity = 0;
+				}
         blank = qSVG.create('none', 'path', {
           d: cc[tt].path,
           "stroke-width": 1,
           fill: cc[tt].fill,
           stroke: cc[tt].stroke,
+					"stroke-opacity":stroke_opacity,
 					'class':'path-' + type + '-' + tt,
           'stroke-dasharray': cc[tt].strokeDashArray,
           opacity: cc[tt].opacity
@@ -625,7 +634,9 @@ var floorplanEditor = {
         blank.textContent = cc[tt].text;
       }
 			//console.log("blank: ", blank);
+			
       this.graph.append(blank);
+			
     } // ENDFOR
     var bbox = this.graph.getBoundingClientRect();
     bbox.x = (bbox.x * factor) - (offset.left * factor) + originX_viewbox;
@@ -669,17 +680,17 @@ var floorplanEditor = {
  		}
     
     
- 		console.log("floorplanEditor: obj2D: update: calling cc with:  classe, type, size, thick, value", this.class, this.type, this.size, this.thick, this.value);
+ 		//console.log("floorplanEditor: obj2D: update: calling cc with:  classe, type, size, thick, value", this.class, this.type, this.size, this.thick, this.value);
 		cc = carpentryCalc(this.class, this.type, this.size, this.thick, this.value);
- 		console.log("floorplanEditor: obj2D: update: cc result: ", cc);
+ 		//console.log("floorplanEditor: obj2D: update: cc result: ", cc);
  		
 		for (var tt = 0; tt < cc.length; tt++) {
- 			console.log("tt: ", tt, cc[tt]);
-			console.log("cc[tt]: ", cc[tt]);
+ 			//console.log("tt: ", tt, cc[tt]);
+			//console.log("cc[tt]: ", cc[tt]);
 			if (cc[tt].path) {
-				console.log("tt path exists: ", cc[tt].path);
-				console.log("tt this.graph.querySelectorAll('path'): ", this.graph.querySelectorAll('path'));
-				console.log("tt this.graph.querySelectorAll('path')[tt]: ", this.graph.querySelectorAll('path')[tt]);
+				//console.log("tt path exists: ", cc[tt].path);
+				//console.log("tt this.graph.querySelectorAll('path'): ", this.graph.querySelectorAll('path'));
+				//console.log("tt this.graph.querySelectorAll('path')[tt]: ", this.graph.querySelectorAll('path')[tt]);
 				this.graph.querySelectorAll('path')[tt].setAttribute("d", cc[tt].path);
 			}
 			else {
