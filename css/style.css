@@ -1203,7 +1203,7 @@ g#extension-floorplanner-boxbind{
 }
 
 #extension-floorplanner-labelBox{
-	width:100%;
+	width:30rem;
 	font-size:1.1rem;
 	border-radius:5px;
 	background-color:white;
@@ -1262,7 +1262,9 @@ g#extension-floorplanner-boxbind{
 #extension-floorplanner-floorplans-list{
 	position:fixed;
 	right:2rem;
-	top:15rem;
+	top:17rem;
+	bottom:10rem;
+	overflow:auto;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
@@ -1328,7 +1330,7 @@ g#extension-floorplanner-boxbind{
 
 
 #extension-floorplanner-current-filename-container{
-	display:none;
+	opacity:.3;
 	text-align:center;
 	opacity:.7;
 	z-index:2;
@@ -1459,7 +1461,7 @@ g#extension-floorplanner-boxbind{
 }
 
 .extension-floorplanner-floorplan-icon-current{
-	background-color:red;
+	background-color:red!important;
 }
 
 
@@ -1513,6 +1515,23 @@ g#extension-floorplanner-boxbind{
 	bottom:1rem;
 	left:1rem;
 }
+
+
+
+#extension-floorplanner-modal-new-floorplan-name-input{
+	background-color:#eee;
+	color:black;
+	padding:1rem;
+	font-size:1.6rem;
+	margin-bottom:2rem;
+	width:100%;
+	box-sizing: border-box;
+	border-radius:.5rem;
+}
+
+
+
+
 
 
 
@@ -1644,6 +1663,16 @@ g#extension-floorplanner-boxbind{
 	
 	#extension-floorplanner-content button{
 		padding:.4rem .5rem;
+	}
+	
+	#extension-floorplanner-floorplans-list{
+		top:12rem;
+		bottom:8rem;
+	}
+	#extension-floorplanner-content #extension-floorplanner-areaValue{
+		bottom:5rem;
+		right:1rem;
+		padding:0;
 	}
 }
 

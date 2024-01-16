@@ -515,8 +515,6 @@ var floorplanEditor = {
             else shift = -shift + 10;
           }
 
-
-
           sizeText[n] = document.createElementNS('http://www.w3.org/2000/svg', 'text');
           var startText = qSVG.middle(ribMaster[t][n - 1].coords.x, ribMaster[t][n - 1].coords.y, ribMaster[t][n].coords.x, ribMaster[t][n].coords.y);
           sizeText[n].setAttributeNS(null, 'x', startText.x);
@@ -604,7 +602,7 @@ var floorplanEditor = {
           "stroke-width": 1,
           fill: cc[tt].fill,
           stroke: cc[tt].stroke,
-			 'class':'path-' + type + '-' + tt,
+					'class':'path-' + type + '-' + tt,
           'stroke-dasharray': cc[tt].strokeDashArray,
           opacity: cc[tt].opacity
         });
@@ -618,7 +616,7 @@ var floorplanEditor = {
           "stroke-width": cc[tt].strokeWidth,
           'font-family': 'sans-serif',
           'text-anchor': 'middle',
-			 'class':'path-text-' + type + '-' + tt,
+					'class':'path-text-' + type + '-' + tt,
           fill: cc[tt].fill
         });
         blank.textContent = cc[tt].text;
@@ -632,8 +630,9 @@ var floorplanEditor = {
     bbox.y = (bbox.y * factor) - (offset.top * factor) + originY_viewbox;
     bbox.origin = { x: this.x, y: this.y };
     this.bbox = bbox;
-    this.realBbox = [{ x: -this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: this.thick / 2 }, { x: -this.size / 2, y: this.thick / 2 }];
-	 //this.realBbox = [{ x: -this.size, y: -this.thick }, { x: this.size, y: -this.thick }, { x: this.size, y: this.thick }, { x: -this.size, y: this.thick }];
+    //this.realBbox = [{ x: -this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: this.thick / 2 }, { x: -this.size / 2, y: this.thick / 2 }];
+		this.realBbox = [{ x: -this.size / 4, y: -this.thick / 4 }, { x: this.size / 4, y: -this.thick / 4 }, { x: this.size / 4, y: this.thick / 4 }, { x: -this.size / 4, y: this.thick / 4 }];
+	 	//this.realBbox = [{ x: -this.size, y: -this.thick }, { x: this.size, y: -this.thick }, { x: this.size, y: this.thick }, { x: -this.size, y: this.thick }];
     if (family == "byObject") this.family = cc.family;
     this.params = cc.params; // (bindBox, move, resize, rotate)
 	 if(load == false && typeof cc.params.width != 'undefined'){
@@ -645,13 +644,13 @@ var floorplanEditor = {
 		this.thick = thick
 	 }
    
-	 console.log("obj2D: original size and thick at end of init: ", this.size);
+	 //console.log("obj2D: original size and thick at end of init: ", this.size);
 	 this.original_size = this.size;
 	 this.original_thick = this.thick;
 	 
 
     this.update = function () {
-		console.log("in update. this.size, this.thick, meter: ", this.size, this.thick);
+		//console.log("in update. this.size, this.thick, meter: ", this.size, this.thick);
 		if(this.class == 'energy' || this.class == 'text'){
 			if(document.querySelector('#extension-floorplanner-tool-root.extension-floorplanner-scale-linked')){
 				this.thick = this.size;
@@ -667,26 +666,26 @@ var floorplanEditor = {
 		}
       
 		
-		console.log("floorplanEditor: obj2D: update: calling cc with:  classe, type, size, thick, value", this.class, this.type, this.size, this.thick, this.value);
-      cc = carpentryCalc(this.class, this.type, this.size, this.thick, this.value);
-			console.log("floorplanEditor: obj2D: update: cc result: ", cc);
-      for (var tt = 0; tt < cc.length; tt++) {
-        if (cc[tt].path) {
-          this.graph.querySelectorAll('path')[tt].setAttribute("d", cc[tt].path);
-        }
-        else {
-			  console.error("cc update would have set text now...");
-          //this.graph.find('text').context.textContent = cc[tt].text;
-			 //this.graph.querySelectorAll('text')[tt].context.textContent = cc[tt].text;
-        }
+		//console.log("floorplanEditor: obj2D: update: calling cc with:  classe, type, size, thick, value", this.class, this.type, this.size, this.thick, this.value);
+    cc = carpentryCalc(this.class, this.type, this.size, this.thick, this.value);
+		//console.log("floorplanEditor: obj2D: update: cc result: ", cc);
+    for (var tt = 0; tt < cc.length; tt++) {
+      if (cc[tt].path) {
+        this.graph.querySelectorAll('path')[tt].setAttribute("d", cc[tt].path);
       }
-      var hingeStatus = this.hinge; // normal - reverse
-      var hingeUpdate;
-      if (hingeStatus == 'normal') hingeUpdate = 1;
-      else hingeUpdate = -1;
+      else {
+				console.error("cc update would have set text now...  cc[tt]:", cc[tt]);
+				//this.graph.find('text').context.textContent = cc[tt].text;
+				//this.graph.querySelectorAll('text')[tt].context.textContent = cc[tt].text;
+      }
+    }
+    var hingeStatus = this.hinge; // normal - reverse
+    var hingeUpdate;
+    if (hingeStatus == 'normal') hingeUpdate = 1;
+    else hingeUpdate = -1;
 		
 		if(this.class == 'energy' || this.class == 'text'){ //  || this.class == 'measure'
-			console.warn("UPDATE: this.width: ", this.width);
+			//console.warn("UPDATE: this.width: ", this.width);
 			if(this.class != 'measure' && document.querySelector('#extension-floorplanner-scale-link-toggle-button-container').classList.contains('extension-floorplanner-scale-linked')){
 				this.height = this.width;
 			}
@@ -713,8 +712,11 @@ var floorplanEditor = {
 		*/
 		
     var angleRadian = -(this.angle) * (Math.PI / 180);
-    this.realBbox = [{ x: -this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: this.thick / 2 }, { x: -this.size / 2, y: this.thick / 2 }];
-    var newRealBbox = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }];
+    //this.realBbox = [{ x: -this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: -this.thick / 2 }, { x: this.size / 2, y: this.thick / 2 }, { x: -this.size / 2, y: this.thick / 2 }];
+    //this.realBbox = [{ x: -this.size / 4, y: -this.thick / 4 }, { x: this.size / 4, y: -this.thick / 4 }, { x: this.size / 4, y: this.thick / 4 }, { x: -this.size / 4, y: this.thick / 4 }];
+		this.realBbox = [{ x: -this.size / 3, y: -this.thick / 3 }, { x: this.size / 3, y: -this.thick / 3 }, { x: this.size / 3, y: this.thick / 3 }, { x: -this.size / 3, y: this.thick / 3 }];
+    
+		var newRealBbox = [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }];
     newRealBbox[0].x = (this.realBbox[0].y * Math.sin(angleRadian) + this.realBbox[0].x * Math.cos(angleRadian)) + this.x;
     newRealBbox[1].x = (this.realBbox[1].y * Math.sin(angleRadian) + this.realBbox[1].x * Math.cos(angleRadian)) + this.x;
     newRealBbox[2].x = (this.realBbox[2].y * Math.sin(angleRadian) + this.realBbox[2].x * Math.cos(angleRadian)) + this.x;

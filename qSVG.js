@@ -15,7 +15,7 @@ var qSVG = {
 				for (var k in attrs) {
 					//console.log("setting shape attributes: ", k, attrs[k]);
 					if(k == 'fill' && attrs[k] == ''){
-						console.log("path with empty fill");
+						//console.log("path with empty fill");
 						shape.setAttribute('fill-opacity', '.5');
 					}
 					shape.setAttribute(k, attrs[k]); 
@@ -915,7 +915,7 @@ var qSVG = {
   },
 
   textOnDiv:  function(label, pos, styled, div) {
-	  console.log('in textOnDiv.  label, pos, styled, div: ', label, pos, styled, div);
+	  //console.log('in textOnDiv.  label, pos, styled, div: ', label, pos, styled, div);
     if (typeof(pos) != 'undefined') {
       var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       text.setAttributeNS(null, 'x', pos.x);
@@ -923,22 +923,19 @@ var qSVG = {
       text.setAttribute("style","fill:"+styled.color+";font-weight:"+styled.fontWeight+";font-size:"+styled.fontSize);
       text.setAttributeNS(null, 'text-anchor', 'middle');
       text.textContent = label;
-	  // This check shouldn't be here
-	  console.log("textOnDiv: div: ", div);
-	  if(div){
-		  if(typeof div == 'string'){
-		  	document.getElementById(div).appendChild(text);
-		  }
-		  else{
-		  	div.appendChild(text);
-		  }
-
-	  	
-	  }
-      
-
+	  	// This check shouldn't be here
+	  	//console.log("textOnDiv: div: ", div);
+	  	if(div){
+		  	if(typeof div == 'string'){
+		  		document.getElementById(div).appendChild(text);
+		  	}
+		  	else{
+		  		div.appendChild(text);
+		  	}
+	  	}
     }
   }
+	
 };
 
 //----------------------- END Quick SVG LIBRARY --------------------------------------------------s
