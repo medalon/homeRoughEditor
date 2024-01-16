@@ -15,7 +15,7 @@ Data is stored in the browser's local storage, so if you clear your cookies, the
 https://createcandle.github.io/homeRoughEditor/
 
 ## Features
-- Easy to use, with touch support.
+- Easy to use, with touch screen support.
 - 100% privacy friendly. It runs 100% in your own browser, and has no third party dependencies.
 - Download your floorplan as an SVG file.
 - Upload an existing home blueprint to use as a drawing template.
