@@ -30,6 +30,10 @@ Start by clicking on the wall button, and then press and hold the mouse button t
 
 ![Floorplanner example](screenshot.png?raw=true "Floorplanner example")
 
+### Other options / BETA
+- Add a CSS class called "developer" to the HTML body tag to see additional hidden options.
+- There is a layer list of objects, which allows you to quickly edit furniture. This is currently disabled.
+
 ## License
 
 This project is based on [HomeRoughEditor Version 0.95](https://github.com/ekymoz/homeRoughEditor)
