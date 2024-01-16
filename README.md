@@ -10,6 +10,10 @@ Download the project as a zip file and open index.html. Or upload it to your web
 
 Data is stored in the browser's local storage, so if you clear your cookies, then your creations will also be deleted.
 
+## DEMO
+
+https://createcandle.github.io/homeRoughEditor/
+
 ## Features
 - Easy to use, with touch support.
 - 100% privacy friendly. It runs 100% in your own browser, and has no third party dependencies.
