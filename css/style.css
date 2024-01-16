@@ -475,7 +475,7 @@ background-color: #5bc0de;
 .extension-floorplanner-modal{
     display: none;
     width: auto;
-	max-width:90vw;
+	max-width:75vw;
     height: auto;
 	max-height:90vh;
     overflow: auto;
