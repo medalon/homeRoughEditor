@@ -1,18 +1,19 @@
 # Floorplanner
 
+Design your own floorplans.
 
-
-This project is based on HomeRoughEditor Version 0.95
 
 ## Getting Started
 
-Download the project as a zip file and open index.html. Or upload it to your webserver.
+Download the project as a zip file and open index.html. Or upload the folder to your webserver.
 
-Data is stored in the browser's local storage, so if you clear your cookies, then your creations will also be deleted.
+Data is only stored in the browser's local storage, so if you clear your cookies, then your creations will also be deleted.
 
 ## DEMO
 
 https://createcandle.github.io/homeRoughEditor/
+
+Start by clicking on the wall button, and then press and hold the mouse button to draw a wall.
 
 ## Features
 - Easy to use, with touch screen support.
@@ -26,11 +27,14 @@ https://createcandle.github.io/homeRoughEditor/
 
 
 ### Screenshot
+
 ![Floorplanner example](screenshot.png?raw=true "Floorplanner example")
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://en.wikipedia.org/wiki/MIT_License) for details.
+This project is based on [HomeRoughEditor Version 0.95](https://github.com/ekymoz/homeRoughEditor)
+
+It is available under the MIT License - see the [LICENSE.md](https://en.wikipedia.org/wiki/MIT_License) for details.
 
 
 
