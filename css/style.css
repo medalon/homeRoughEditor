@@ -1548,6 +1548,13 @@ g#extension-floorplanner-boxbind{
 
 
 
+#extension-floorplanner-content button#extension-floorplanner-fire-exit:first-letter{
+	transform:rotate(45deg);
+	transform: scaleX(-1);
+}
+
+
+
 @media screen and ( max-height: 950px ){
 	#extension-floorplanner-content #extension-floorplanner-panel button{
 		padding:.3rem;

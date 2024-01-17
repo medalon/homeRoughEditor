@@ -38,6 +38,27 @@
 			    <svg id="extension-floorplanner-lin" class="extension-floorplanner-current-svg" viewBox="0 0 1100 700" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
 
 			      <defs>
+							<filter id="filter1" x="0" y="0">
+							           <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+							           <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" flood-opacity="0.5"/>
+							           <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+							</filter>
+							
+							<filter id="dropshadow" x="0" y="0">
+								<feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+								<feDropShadow result="blurOut" in="offOut" dx="0" dy="0" stdDeviation="0.5" flood-color="cyan" flood-opacity="0.5"/>
+								<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+							</filter>
+							
+							<filter id="shadow3">
+							      <feDropShadow
+							        dx="-0.8"
+							        dy="-0.8"
+							        stdDeviation="0"
+							        flood-color="pink"
+							        flood-opacity="0.5" />
+							    </filter>
+							
 			        <linearGradient id="extension-floorplanner-gradientRed" x1="0%" y1="0%" x2="100%" y2="100%" spreadMethod="pad">
 			          <stop offset="0%" stop-color="#e65d5e" stop-opacity="1" />
 			          <stop offset="100%" stop-color="#e33b3c" stop-opacity="1" />
@@ -183,7 +204,7 @@
 				      </ul>
 							<ul class="extension-floorplanner-list-unstyled">
 				        <li><button class="extension-floorplanner-btn extension-floorplanner-btn-info extension-floorplanner-btn-done extension-floorplanner-fully" style="margin-top:2rem"
-				            onclick="fonc_button('select_mode');document.querySelector('#extension-floorplanner-boxinfo').innerHTML='Selection mode';document.querySelector('#extension-floorplanner-wallTools').style.display='none';document.querySelector('#extension-floorplanner-panel').style.display='block'">DONE</button></li>
+				            onclick="fonc_button('select_mode');document.querySelector('#extension-floorplanner-boxinfo').innerHTML='';document.querySelector('#extension-floorplanner-wallTools').style.display='none';document.querySelector('#extension-floorplanner-panel').style.display='block'">DONE</button></li>
 							</ul>
 						</div>
 						<div>
@@ -205,7 +226,7 @@
 				        <div class="extension-floorplanner-flex-between extension-floorplanner-scale-slider-min-max"><span id="extension-floorplanner-bboxWidthScale-min"></span><span id="extension-floorplanner-bboxWidthScale-max"></span></div>
 								<div style="text-align:center"><span id="extension-floorplanner-bboxWidthVal" class="extension-floorplanner-slider-value"></span> cm</div>
 				        
-								<div id="extension-floorplanner-scale-link-toggle-button-container"><div id="extension-floorplanner-scale-link-toggle-button"><span class="extension-floorplanner-scale-linked-true">🔗</span><span class="extension-floorplanner-scale-linked-false">┊</span></div></div>
+								<div id="extension-floorplanner-scale-link-toggle-button-container"><div id="extension-floorplanner-scale-link-toggle-button"><span class="extension-floorplanner-scale-linked-true">🔗</span><span class="extension-floorplanner-scale-linked-false">┊︙</span></div></div>
 								<div>
 									<p>Length</p>
 					        <input type="range" id="extension-floorplanner-bboxHeight" step="1" class="extension-floorplanner-range" />
@@ -657,7 +678,7 @@
 								<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully extension-floorplanner-pull-right"
 			                onclick="fullscreen();this.style.display='none';document.querySelector('#extension-floorplanner-nofull_mode').style.display='block';" id="extension-floorplanner-full_mode"
 			                title="Full screen"><span class="extension-floorplanner-unicode-icon-medium"><sup>⇱</sup><sub>⇲</sub></span></button>
-			          <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-halfy extension-floorplanner-pull-right" style="display:none"
+			          <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully extension-floorplanner-pull-right" style="display:none"
 			                onclick="outFullscreen();this.style.display='none';document.querySelector('#extension-floorplanner-full_mode').style.display='block';" id="extension-floorplanner-nofull_mode"
 			                data-toggle="tooltip" data-placement="right" title="Full screen"><span class="extension-floorplanner-unicode-icon-medium" style="transform:rotate(-90deg);display:inline-block"><sup>⇲</sup><sub>⇱</sub></span></button>
 							</li>
@@ -693,6 +714,36 @@
 
             <h2 style="text-align:center"><span class="extension-floorplanner-unicode-icon-large">🛋️</span> Add items</h2>
 				
+				
+				
+						<div>
+							<p>Furniture</p>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-bed">🛏 Single bed</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-double-bed">🛏 Double bed</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-closet">◫ Closet</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-couch">🛋️ Couch</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-sofa-seat">💺 Sofa seat</button>
+							
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tv">📺 TV</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-stove">𓃌 Stove</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-sink">🚰 Sink</button>
+							
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-toilet">🚽 Toilet</button>
+              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-shower">🚿 Shower</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-roofLight">💡 Ceiling lamp</button>
+              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-wallLight">💡 Wall light</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-standing-lamp">💡 Standing lamp</button>
+							
+						</div>
+						
+						<div>
+							<p>Plants</p>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-leaf">🌿 Plant</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tree">🌳 Tree</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-flower">✿ Flower</button>
+						</div>
+						
+						
             <div>
 							<p>Geometric shapes</p>
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-circle">◌ Circle</button>
@@ -714,10 +765,10 @@
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-pill">💊 Pill shape</button>
             </div>
 				
+				
 						<div>
 							<p>Specific shapes</p>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-eye">👁 Eye</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-flower">✿ Flower</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-paw">🐾 Paw</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-note">♪ Audio</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-wifi">⌔ Wifi</button>
@@ -727,44 +778,33 @@
 						</div>
 						
 						
-						<div>
-							<p>Furniture</p>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-bed">🛏 Single bed</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-double-bed">🛏 Double bed</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-closet">◫ Closet</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-couch">🛋️ Couch</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tv">📺 TV</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-leaf">🌿 Plant</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-sink">🚰 Sink</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-toilet">🚽 Toilet</button>
-              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rooflight">💡 Ceiling lamp</button>
-              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-walllight">💡 Wall light</button>
-						</div>
+						
 				
             <div>
               <p>Wall plugs</p>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug">⚇ Electrical outlet</button>
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-www">🌐 Internet access</button>
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-rj45">⧈ RJ45 plug</button>
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tv-plug">ᛉ Antenna plug</button>
             </div>
 				
-            <div>
+						<!--
+            <div class="extension-floorplanner-show-if-developer">
               <p>Energy</p>
               <div>
-                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plug">⚇ Electrical outlet</button>
-                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-gtl">Switchboard</button>
-                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-switch">Switch</button>
+                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-show-if-developer" id="extension-floorplanner-gtl">Switchboard</button>
+                <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-show-if-developer" id="extension-floorplanner-switch">Switch</button>
                 <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-show-if-developer" id="extension-floorplanner-doubleSwitch">Multiways</button>
                 <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-show-if-developer" id="extension-floorplanner-dimmer">◌ Variator</button>
                 <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-show-if-developer" id="extension-floorplanner-plug20">Outlet 20A</button>
                 <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-show-if-developer" id="extension-floorplanner-plug32">Outlet 32A</button>
               </div>
             </div>
-            
+            -->
 
             <div>
               <p>Heating & Cooling</p>
-              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-hidden" id="extension-floorplanner-boiler">Boiler</button>
+              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object extension-floorplanner-hidden" id="extension-floorplanner-boiler">🫠 Boiler</button>
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-heater">◍ Boiler</button>
               <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-radiator">▥ Radiator</button>
             </div>
@@ -773,13 +813,22 @@
             <div>
               <p>Fire</p>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-arrow">→ Arrow</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-line-with-dot">⊸ Line with ball</button>
-              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-red-rectangle">▥ Red rectangle</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-line-with-dot">⊸ Ball line</button>
+              <button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-red-rectangle">🟥 Red rectangle</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-fire-extinguisher">🧯 Fire extinguisher</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-fire-exit">⌫ Fire exit</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-fire-hose">꩜ Fire hose</button>
 							
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-fire-exit">⌫ Fire exit</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-fire-exit2">🏃 Fire exit</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-meeting-point">🚩 Meeting point</button>
             </div>
 						
+
+            <div>
+              <p>Outside</p>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-car">🚗 Car</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-pond">🌊 Pond</button>
+            </div>
 
 
 	        </div>
@@ -1046,7 +1095,7 @@
 	let myModal = document.querySelector('#extension-floorplanner-myModal');
 	
 	
-	let emojis = ['🧯','💘','💝','💖','💗','💓','💞','💕','💟','❣️','💔','❤️','🧡','💛','💚','💙','💜','🤎','🖤','🤍','❤️‍','🔥','❤️‍','🩹','💯','♨️','💢','💬','👁️‍🗨️','🗨️','🗯️','💭','💤','🌐','♠️','♥️','♦️','♣️','🃏','🀄️','🎴','🎭️','🔇','🔈️','🔉','🔊','🔔','🔕','🎼','🎵','🎶','💹','🏧','🚮','🚰','♿️','🚹️','🚺️','🚻','🚼️','🚾','🛂','🛃','🛄','🛅','⚠️','🚸','⛔️','🚫','🚳','🚭️','🚯','🚱','🚷','📵','🔞','☢️','☣️','⬆️','↗️','↕️','↔️','↩️','↪️','⤴️','⤵️','🔃','🔄','🔙','🔚','🔛','🔜','🔝','🛐','⚛️','🕉️','✡️','☸️','☯️','✝️','☦️','☪️','☮️','🕎','🔯','♈️','♉️','♊️','♋️','♌️','♍️','♎️','♏️','♐️','♑️','♒️','♓️','⛎','🔀','🔁','▶️','⏩️','⏭️','⏯️','⏸️','⏹️','⏺️','⏏️','🎦','🔅','🔆','📶','📳','📴','♀️','♂️','⚧','♾️','〰️','💱','⚕️','♻️','⚜️','🔱','📛','🔰','⭕️','✅','☑️','✔️','❌','❎','➰','➿','〽️','✳️','✴️','❇️','©️','®️','™️','#️⃣','*️⃣','0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟','🔠','🔡','🔢','🔣','🔤','🅰️','🆎','🅱️','🆑','🆒','🆓','ℹ️','🆔','Ⓜ️','🆕','🆖','🅾️','🆗','🅿️','🆘','🆙','🆚','🈁','🈂️','🈷️','🈶','🈯️','🉐','🈹','🈚️','🈲','🉑','🈸','🈴','🈳','㊗️','㊙️','🈺','🈵','🔴','🟠','🟡','🟢','🔵','🟣','🟤','⚫️','⚪️','🟥','🟧','🟨','🟩','🟦','🟪','🟫','⬛️','⬜️','◼️','◻️','🔶','🔷','🔺','💠','🔘','🔳','🔲','🛎️','🧳','⌛️','⏳️','⌚️','⏰','🕔️','⏱️','⏲️','🕰️','🌡️','🗺️','🧭','🎃','🎄','🧨','🎈','🎉','🎊','🎎','🎏','🎐','🎀','🎁','🎗️','🎟️','🎫','🔮','🧿','🎮️','🕹️','🎰','🎲','♟️','🧩','🧸','🖼️','🎨','🧵','🧶','👓️','🕶️','🥽','🥼','🦺','👔','👕','👖','🧣','🧤','🧥','🧦','👗','👘','🥻','🩱','🩲','🩳','👙','👚','👛','👜','👝','🛍️','🎒','👞','👟','🥾','🥿','👠','👡','🩰','👢','👑','👒','🎩','🎓️','🧢','⛑️','📿','💄','💍','💎','📢','📣','📯','🎙️','🎚️','🎛️','🎤','🎧️','📻️','🎷','🎸','🎹','🎺','🎻','🪕','🥁','📱','📲','☎️','📞','📟️','📠','🔋','🔌','💻️','🖥️','🖨️','⌨️','🖱️','🖲️','💽','💾','💿️','📀','🧮','🎥','🎞️','📽️','🎬️','📺️','📷️','📸','📹️','📼','🔍️','🔎','🕯️','💡','🔦','🏮','🪔','📔','📕','📖','📗','📘','📙','📚️','📓','📒','📃','📜','📄','📰','🗞️','📑','🔖','🏷️','💰️','💴','💵','💶','💷','💸','💳️','🧾','✉️','💌','📧','🧧','📨','📩','📤️','📥️','📦️','📫️','📪️','📬️','📭️','📮','🗳️','✏️','✒️','🖋️','🖊️','🖌️','🖍️','📝','💼','📁','📂','🗂️','📅','📆','🗒️','🗓️','📇','📈','📉','📊','📋️','📌','📍','📎','🖇️','📏','📐','✂️','🗃️','🗄️','🗑️','🔒️','🔓️','🔏','🔐','🔑','🗝️','🔨','🪓','⛏️','⚒️','🛠️','🗡️','⚔️','💣️','🏹','🛡️','🔧','🔩','⚙️','🗜️','⚖️','🦯','🔗','⛓️','🧰','🧲','⚗️','🧪','🧫','🧬','🔬','🔭','📡','💉','🩸','💊','🩹','🩺','🚪','🛏️','🛋️','🪑','🚽','🚿','🛁','🪒','🧴','🧷','🧹','🧺','🧻','🧼','🧽','🛒','🚬','⚰️','⚱️','🏺','🕳️','🏔️','⛰️','🌋','🗻','🏕️','🏖️','🏜️','🏝️','🏟️','🏛️','🏗️','🧱','🏘️','🏚️','🏠️','🏡','🏢','🏣','🏤','🏥','🏦','🏨','🏩','🏪','🏫','🏬','🏭️','🏯','🏰','💒','🗼','🗽','⛪️','🕌','🛕','🕍','⛩️','🕋','⛲️','⛺️','🌁','🌃','🏙️','🌄','🌅','🌆','🌇','🌉','🗾','🏞️','🎠','🎡','🎢','💈','🎪','🚂','🚃','🚄','🚅','🚆','🚇️','🚈','🚉','🚊','🚝','🚞','🚋','🚌','🚍️','🚎','🚐','🚑️','🚒','🚓','🚔️','🚕','🚖','🚗','🚘️','🚙','🚚','🚛','🚜','🏎️','🏍️','🛵','🦽','🦼','🛺','🚲️','🛴','🛹','🚏','🛣️','🛤️','🛢️','⛽️','🚨','🚦','🛑','🚧','⚓️','⛵️','🛶','🚤','🛳️','⛴️','🛥️','🚢','✈️','🛩️','🛫','🛬','🪂','💺','🚁','🚟','🚠','🚡','🛰️','🚀','🛸','🎆','🎇','🎑','🗿','⚽️','⚾️','🥎','🏀','🏐','🏈','🏉','🎾','🥏','🎳','🏏','🏑','🏒','🥍','🏓','🏸','🥊','🥋','🥅','⛳️','⛸️','🎣','🤿','🎽','🎿','🛷','🥌','🎯','🪀','🪁','🎱','🎖️','🏆️','🏅','🥇','🥈','🥉','🍇','🍈','🍉','🍊','🍋','🍌','🍍','🥭','🍎','🍏','🍐','🍑','🍒','🍓','🥝','🍅','🥥','🥑','🍆','🥔','🥕','🌽','🌶️','🥒','🥬','🥦','🧄','🧅','🍄','🥜','🌰','🍞','🥐','🥖','🥨','🥯','🥞','🧇','🧀','🍖','🍗','🥩','🥓','🍔','🍟','🍕','🌭','🥪','🌮','🌯','🥙','🧆','🥚','🍳','🥘','🍲','🥣','🥗','🍿','🧈','🧂','🥫','🍱','🍘','🍙','🍚','🍛','🍜','🍝','🍠','🍢','🍣','🍤','🍥','🥮','🍡','🥟','🥠','🥡','🍦','🍧','🍨','🍩','🍪','🎂','🍰','🧁','🥧','🍫','🍬','🍭','🍮','🍯','🍼','🥛','☕️','🍵','🍶','🍾','🍷','🍸️','🍹','🍺','🍻','🥂','🥃','🥤','🧃','🧉','🧊','🥢','🍽️','🍴','🥄','🔪','🐵','🐒','🦍','🦧','🐶','🐈️','🐕️','🦮','🦺','🐩','🐺','🦊','🦝','🐱','🦁','🐯','🐅','🐆','🐴','🐎','🦄','🦓','🦌','🐮','🐂','🐃','🐄','🐷','🐖','🐗','🐽','🐏','🐑','🐐','🐪','🐫','🦙','🦒','🐘','🦏','🦛','🐭','🐁','🐀','🐹','🐰','🐇','🐿️','🦔','🦇','🐻','🐻‍','❄️','🐨','🐼','🦥','🦦','🦨','🦘','🦡','🐾','🦃','🐔','🐓','🐣','🐤','🐥','🐦️','🐧','🕊️','🦅','🦆','🦢','🦉','🦩','🦚','🦜','🐸','🐊','🐢','🦎','🐍','🐲','🐉','🦕','🦖','🐳','🐋','🐬','🐟️','🐠','🐡','🦈','🐙','🦑','🦀','🦞','🦐','🦪','🐚','🐌','🦋','🐛','🐜','🐝','🐞','🦗','🕷️','🕸️','🦂','🦟','🦠','💐','🌸','💮','🏵️','🌹','🥀','🌺','🌻','🌼','🌷','🌱','🌲','🌳','🌴','🌵','🎋','🎍','🌾','🌿','☘️','🍀','🍁','🍂','🍃','🌍️','🌎️','🌏️','🌑','🌒','🌓','🌔','🌕️','🌖','🌗','🌘','🌙','🌚','🌛','🌜️','☀️','🌝','🌞','🪐','💫','⭐️','🌟','✨','🌠','🌌','☁️','⛅️','⛈️','🌤️','🌥️','🌦️','🌧️','🌨️','🌩️','🌪️','🌫️','🌬️','🌀','🌈','🌂','☂️','☔️','⛱️','⚡️','❄️','☃️','⛄️','☄️','🔥','💧','🌊','💥','💦','💨','😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐️','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','😮‍','💨','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','😶‍','🌫️','🥴','😵‍','💫','😵','🤯','🤠','🥳','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽️','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🙈','🙉','🙊','👋','🤚','🖐️','✋','🖖','👌','🤏','✌️','🤞','🤟','🤘','🤙','👈️','👉️','👆️','🖕','👇️','☝️','👍️','👎️','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','✍️','💅','🤳','💪','🦾','🦿','🦵','🦶','👂️','🦻','👃','🧠','🦷','🦴','👀','👁️','👅','👄','💋','👶','🧒','👦','👧','🧑','👨','👩','👴','👵','🙍','🙍‍♂️','🙍‍♀️','🍼','🎄','🚶','🚶‍♂️','🚶‍♀️','🧍','🧍‍♂️','🧍‍♀️','🧎','🧎‍♂️','🧎‍♀️','🦽','🏃','🏃‍♂️','🏃‍♀️','💃','🕺','🕴️','🤾','🤹‍♀️','🧘','🛀','🛌','🤝‍','👭','👫','👬','💏','👩‍❤️‍💋‍👨','👨‍❤️‍💋‍👨','🗣️','👤','👥','👣','∥','⨻','⟁','▢','⬨','⊠','▤','▥','▦','▦','▦','▦','⧇','⊡','⊞','⧄','◫','◰','❑','⛋','⌑','⟤','◙','⬟','⬡','⏣','◉','⌾','⊕','◴','⎉','⎊','◌','⌽','⊖','⊜','⬬','⬭','⌂','▱','▰','➟','➞','⭤','⮂','᭚']; 
+	let emojis = ['🧯','🚪','🛏️','🛋️','🪑','🚽','🚿','🛁','🚰','💘','💝','💖','💗','💓','💞','💕','💟','❣️','💔','❤️','🧡','💛','💚','💙','💜','🤎','🖤','🤍','❤️‍','🔥','❤️‍','🩹','💯','♨️','💢','💬','👁️‍🗨️','🗨️','🗯️','💭','💤','🌐','♠️','♥️','♦️','♣️','🃏','🀄️','🎴','🎭️','🔇','🔈️','🔉','🔊','🔔','🔕','🎼','🎵','🎶','💹','🏧','🚮','♿️','🚹️','🚺️','🚻','🚼️','🚾','🛂','🛃','🛄','🛅','⚠️','🚸','⛔️','🚫','🚳','🚭️','🚯','🚱','🚷','📵','🔞','☢️','☣️','⬆️','↗️','↕️','↔️','↩️','↪️','⤴️','⤵️','🔃','🔄','🔙','🔚','🔛','🔜','🔝','🛐','⚛️','🕉️','✡️','☸️','☯️','✝️','☦️','☪️','☮️','🕎','🔯','♈️','♉️','♊️','♋️','♌️','♍️','♎️','♏️','♐️','♑️','♒️','♓️','⛎','🔀','🔁','▶️','⏩️','⏭️','⏯️','⏸️','⏹️','⏺️','⏏️','🎦','🔅','🔆','📶','📳','📴','♀️','♂️','⚧','♾️','〰️','💱','⚕️','♻️','⚜️','🔱','📛','🔰','⭕️','✅','☑️','✔️','❌','❎','➰','➿','〽️','✳️','✴️','❇️','©️','®️','™️','#️⃣','*️⃣','0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟','🔠','🔡','🔢','🔣','🔤','🅰️','🆎','🅱️','🆑','🆒','🆓','ℹ️','🆔','Ⓜ️','🆕','🆖','🅾️','🆗','🅿️','🆘','🆙','🆚','🈁','🈂️','🈷️','🈶','🈯️','🉐','🈹','🈚️','🈲','🉑','🈸','🈴','🈳','㊗️','㊙️','🈺','🈵','🔴','🟠','🟡','🟢','🔵','🟣','🟤','⚫️','⚪️','🟥','🟧','🟨','🟩','🟦','🟪','🟫','⬛️','⬜️','◼️','◻️','🔶','🔷','🔺','💠','🔘','🔳','🔲','🛎️','🧳','⌛️','⏳️','⌚️','⏰','🕔️','⏱️','⏲️','🕰️','🌡️','🗺️','🧭','🎃','🎄','🧨','🎈','🎉','🎊','🎎','🎏','🎐','🎀','🎁','🎗️','🎟️','🎫','🔮','🧿','🎮️','🕹️','🎰','🎲','♟️','🧩','🧸','🖼️','🎨','🧵','🧶','👓️','🕶️','🥽','🥼','🦺','👔','👕','👖','🧣','🧤','🧥','🧦','👗','👘','🥻','🩱','🩲','🩳','👙','👚','👛','👜','👝','🛍️','🎒','👞','👟','🥾','🥿','👠','👡','🩰','👢','👑','👒','🎩','🎓️','🧢','⛑️','📿','💄','💍','💎','📢','📣','📯','🎙️','🎚️','🎛️','🎤','🎧️','📻️','🎷','🎸','🎹','🎺','🎻','🪕','🥁','📱','📲','☎️','📞','📟️','📠','🔋','🔌','💻️','🖥️','🖨️','⌨️','🖱️','🖲️','💽','💾','💿️','📀','🧮','🎥','🎞️','📽️','🎬️','📺️','📷️','📸','📹️','📼','🔍️','🔎','🕯️','💡','🔦','🏮','🪔','📔','📕','📖','📗','📘','📙','📚️','📓','📒','📃','📜','📄','📰','🗞️','📑','🔖','🏷️','💰️','💴','💵','💶','💷','💸','💳️','🧾','✉️','💌','📧','🧧','📨','📩','📤️','📥️','📦️','📫️','📪️','📬️','📭️','📮','🗳️','✏️','✒️','🖋️','🖊️','🖌️','🖍️','📝','💼','📁','📂','🗂️','📅','📆','🗒️','🗓️','📇','📈','📉','📊','📋️','📌','📍','📎','🖇️','📏','📐','✂️','🗃️','🗄️','🗑️','🔒️','🔓️','🔏','🔐','🔑','🗝️','🔨','🪓','⛏️','⚒️','🛠️','🗡️','⚔️','💣️','🏹','🛡️','🔧','🔩','⚙️','🗜️','⚖️','🦯','🔗','⛓️','🧰','🧲','⚗️','🧪','🧫','🧬','🔬','🔭','📡','💉','🩸','💊','🩹','🩺','🪒','🧴','🧷','🫧','🧹','🧺','🧻','🧼','🧽','🛒','🚬','⚰️','⚱️','🏺','🕳️','🏔️','⛰️','🌋','🗻','🏕️','🏖️','🏜️','🏝️','🏟️','🏛️','🏗️','🧱','🏘️','🏚️','🏠️','🏡','🏢','🏣','🏤','🏥','🏦','🏨','🏩','🏪','🏫','🏬','🏭️','🏯','🏰','💒','🗼','🗽','⛪️','🕌','🛕','🕍','⛩️','🕋','⛲️','⛺️','🌁','🌃','🏙️','🌄','🌅','🌆','🌇','🌉','🗾','🏞️','🎠','🎡','🎢','💈','🎪','🚂','🚃','🚄','🚅','🚆','🚇️','🚈','🚉','🚊','🚝','🚞','🚋','🚌','🚍️','🚎','🚐','🚑️','🚒','🚓','🚔️','🚕','🚖','🚗','🚘️','🚙','🚚','🚛','🚜','🏎️','🏍️','🛵','🦽','🦼','🛺','🚲️','🛴','🛹','🚏','🛣️','🛤️','🛢️','⛽️','🚨','🚦','🛑','🚧','⚓️','⛵️','🛶','🚤','🛳️','⛴️','🛥️','🚢','✈️','🛩️','🛫','🛬','🪂','💺','🚁','🚟','🚠','🚡','🛰️','🚀','🛸','🎆','🎇','🎑','🗿','⚽️','⚾️','🥎','🏀','🏐','🏈','🏉','🎾','🥏','🎳','🏏','🏑','🏒','🥍','🏓','🏸','🥊','🥋','🥅','⛳️','⛸️','🎣','🤿','🎽','🎿','🛷','🥌','🎯','🪀','🪁','🎱','🎖️','🏆️','🏅','🥇','🥈','🥉','🍇','🍈','🍉','🍊','🍋','🍌','🍍','🥭','🍎','🍏','🍐','🍑','🍒','🍓','🥝','🍅','🥥','🥑','🍆','🥔','🥕','🌽','🌶️','🥒','🥬','🥦','🧄','🧅','🍄','🥜','🌰','🍞','🥐','🥖','🥨','🥯','🥞','🧇','🧀','🍖','🍗','🥩','🥓','🍔','🍟','🍕','🌭','🥪','🌮','🌯','🥙','🧆','🥚','🍳','🥘','🍲','🥣','🥗','🍿','🧈','🧂','🥫','🍱','🍘','🍙','🍚','🍛','🍜','🍝','🍠','🍢','🍣','🍤','🍥','🥮','🍡','🥟','🥠','🥡','🍦','🍧','🍨','🍩','🍪','🎂','🍰','🧁','🥧','🍫','🍬','🍭','🍮','🍯','🍼','🥛','☕️','🍵','🍶','🍾','🍷','🍸️','🍹','🍺','🍻','🥂','🥃','🥤','🧃','🧉','🧊','🥢','🍽️','🍴','🥄','🔪','🐵','🐒','🦍','🦧','🐶','🐈️','🐕️','🦮','🦺','🐩','🐺','🦊','🦝','🐱','🦁','🐯','🐅','🐆','🐴','🐎','🦄','🦓','🦌','🐮','🐂','🐃','🐄','🐷','🐖','🐗','🐽','🐏','🐑','🐐','🐪','🐫','🦙','🦒','🐘','🦏','🦛','🐭','🐁','🐀','🐹','🐰','🐇','🐿️','🦔','🦇','🐻','🐻‍','❄️','🐨','🐼','🦥','🦦','🦨','🦘','🦡','🐾','🦃','🐔','🐓','🐣','🐤','🐥','🐦️','🐧','🕊️','🦅','🦆','🦢','🦉','🦩','🦚','🦜','🐸','🐊','🐢','🦎','🐍','🐲','🐉','🦕','🦖','🐳','🐋','🐬','🐟️','🐠','🐡','🦈','🐙','🦑','🦀','🦞','🦐','🦪','🐚','🐌','🦋','🐛','🐜','🐝','🐞','🦗','🕷️','🕸️','🦂','🦟','🦠','💐','🌸','💮','🏵️','🌹','🥀','🌺','🌻','🌼','🌷','🌱','🌲','🌳','🌴','🌵','🎋','🎍','🌾','🌿','☘️','🍀','🍁','🍂','🍃','🌍️','🌎️','🌏️','🌑','🌒','🌓','🌔','🌕️','🌖','🌗','🌘','🌙','🌚','🌛','🌜️','☀️','🌝','🌞','🪐','💫','⭐️','🌟','✨','🌠','🌌','☁️','⛅️','⛈️','🌤️','🌥️','🌦️','🌧️','🌨️','🌩️','🌪️','🌫️','🌬️','🌀','🌈','🌂','☂️','☔️','⛱️','⚡️','❄️','☃️','⛄️','☄️','🔥','💧','🌊','💥','💦','💨','😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐️','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','😮‍','💨','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','😶‍','🌫️','🥴','😵‍','💫','😵','🤯','🤠','🥳','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽️','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🙈','🙉','🙊','👋','🤚','🖐️','✋','🖖','👌','🤏','✌️','🤞','🤟','🤘','🤙','👈️','👉️','👆️','🖕','👇️','☝️','👍️','👎️','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','✍️','💅','🤳','💪','🦾','🦿','🦵','🦶','👂️','🦻','👃','🧠','🦷','🦴','👀','👁️','👅','👄','💋','👶','🧒','👦','👧','🧑','👨','👩','👴','👵','🙍','🙍‍♂️','🙍‍♀️','🍼','🎄','🚶','🚶‍♂️','🚶‍♀️','🧍','🧍‍♂️','🧍‍♀️','🧎','🧎‍♂️','🧎‍♀️','🦽','🏃','🏃‍♂️','🏃‍♀️','💃','🕺','🕴️','🤾','🤹‍♀️','🧘','🛀','🛌','🤝‍','👭','👫','👬','💏','👩‍❤️‍💋‍👨','👨‍❤️‍💋‍👨','🗣️','👤','👥','👣','🔫','∥','⨻','⟁','▢','⬨','⊠','▤','▥','▦','▦','▦','▦','⧇','⊡','⊞','⧄','◫','◰','❑','⛋','⌑','⟤','◙','⬟','⬡','⏣','◉','⌾','⊕','◴','⎉','⎊','◌','⌽','⊖','⊜','⬬','⬭','⌂','▱','▰','➟','➞','⭤','⮂','᭚']; 
 	// '
 	
 	
@@ -1634,7 +1683,7 @@
 
 	  //**********************************  SELECT MODE ***************************************************************
 	  if (mode == 'select_mode' && drag == 'off') { // FIRST TEST ON SELECT MODE (and drag OFF) to detect MOUSEOVER DOOR
-		  //console.log("in select_mode.  drag,OBJDATA: ", drag, OBJDATA);
+		  console.log("in select_mode.  drag: ", drag);
 	    snap = calcul_snap(event, 'off');
 			//console.log("select mode: snap: ", snap);
 	    
@@ -1642,11 +1691,22 @@
 			//console.log("select_mode: OBJDATA: ", OBJDATA);
 	    //for (var i = OBJDATA.length -1; i >= 0; i--) {
 			for (var i = 0; i < OBJDATA.length; i++) {
-				//console.log(i, ": OBJ: ",  OBJDATA[i]);
+				console.log(i, ": OBJDATA[i]: ",  OBJDATA[i]);
+				console.log(i, ": OBJDATA[i].type: ", OBJDATA[i].type);
 				if(typeof OBJDATA[i].type == 'undefined'){
-					console.error("OBJ has undefined type. This should not happen.");
-					//OBJDATA.slice(i,1);
+					console.error("OBJ has undefined type. This should not happen. position: ", i);
+					console.log("OBJDATA type?", typeof OBJDATA, OBJDATA.constructor);
+					console.log("OBJDATA.length before slice: ", OBJDATA.length);
+					//OBJDATA.splice(i,1);
+					//OBJDATA.array.splice(index, 1);
+					console.log("OBJDATA.length after slice: ", OBJDATA.length);
+					//objTarget = false;
+					//bye_binder();
+					continue;
+					return;
+					break;
 				}
+				//console.log("I should not happen after the error");
 	      var objX1 = OBJDATA[i].bbox.left;
 	      var objX2 = OBJDATA[i].bbox.right;
 	      var objY1 = OBJDATA[i].bbox.top;
@@ -2149,7 +2209,7 @@
 
 
 	    if (starter > grid) {
-		      if (!document.querySelectorAll('#extension-floorplanner-line_construc').length) {
+		    if (!document.querySelectorAll('#extension-floorplanner-line_construc').length) {
 	        var ws = 20;
 	        if (mode == 'partition_mode') ws = 10;
 	        lineconstruc = qSVG.create("boxbind", "line", {
@@ -2176,11 +2236,11 @@
 	        });
 	      } else { // THE LINES AND BINDER ARE CREATED
 
-			  // TODO: this check shouldn't exist.. maybe?
-			  if(document.querySelector('#extension-floorplanner-linetemp')){
-				  document.querySelector('#extension-floorplanner-linetemp').setAttribute('x2',x);
-				  document.querySelector('#extension-floorplanner-linetemp').setAttribute('y2',y);
-			  }
+				  // TODO: this check shouldn't exist.. maybe?
+				  if(document.querySelector('#extension-floorplanner-linetemp')){
+					  document.querySelector('#extension-floorplanner-linetemp').setAttribute('x2',x);
+					  document.querySelector('#extension-floorplanner-linetemp').setAttribute('y2',y);
+				  }
 			  
 
 	        if (helpConstrucEnd = intersection(snap, 10)) {
@@ -2574,6 +2634,51 @@
 	    // **********************************************************************
 	    // binder.obj.params.move ---> FOR MEASURE DONT MOVE
 	    if (binder.type == 'boundingBox' && action == 1 && binder.obj.params.move) {
+				
+				
+				if(typeof binder.obj != 'undefined' &&  typeof binder.obj.graph != 'undefined'){
+					if(OBJDATA.indexOf(binder.obj) != -1 && OBJDATA.indexOf(binder.obj) != OBJDATA.length - 1){
+						console.log("attempting to move object to end of OBJDATA array");
+						console.log("objTarget.graph: ", binder.obj.graph);
+						console.log("objTarget.graph.parentElement: ", binder.obj.graph.parentElement);
+				
+						binder.obj.graph.parentElement.appendChild(binder.obj.graph);
+						// removeChild(objTarget.graph)
+						//parent.removeChild(tooltip);
+				
+						//let spliced_object = OBJDATA.splice(OBJDATA.indexOf(objTarget), 1);
+						OBJDATA.push(OBJDATA.splice(OBJDATA.indexOf(binder.obj),1)[0]);
+						//console.log("moved object to end of OBJDATA array. length halfway: ", OBJDATA.length);
+						//console.log("spliced object: ", typeof spliced_object, spliced_object, JSON.stringify(spliced_object));
+						//OBJDATA.push(spliced_object);
+						console.log("moving object to end of OBJDATA array. length at the end: ", OBJDATA.length);
+						console.log("spliced OBJDATA: ", OBJDATA, JSON.stringify(OBJDATA));
+					}
+					else{
+						console.log("object was already at the end of the OBJDATA array, no need to shift it");
+					}
+					
+					binder.obj.graph.style.filter = 'drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))';
+					/*
+					let paths = binder.obj.graph.querySelectorAll('path');
+					console.log("paths: ", paths);
+					if(paths.length){
+						//paths[0].setAttribute('filter','url(#filter1)');
+					}
+					
+					for(var p=0; p<paths.length; ++p) {
+						console.log("paths[p]: ", paths[p]);
+						paths[p].setAttribute('filter','url(#shadow3)');
+					  //paths[p].setAttribute('filter','url(#dropshadow)');
+					}
+					*/
+					
+					
+				}
+				
+				
+				
+				
 	      binder.x = snap.x;
 	      binder.y = snap.y;
 	      binder.obj.x = snap.x;
@@ -2744,8 +2849,10 @@
 	  // *******************************************************************
 	  if (mode == 'select_mode') {
 			root_el.classList.add('extension-floorplanner-do-not-pulsate');
+
 			if (typeof (binder) != 'undefined'){
-				if(typeof (binder.type) != 'undefined'){
+				
+				if(typeof binder.obj != 'undefined')
 					console.log("MOUSEDOWN: OK, binder is defined and has type: ", binder, binder.type);
 				}
 				else{
@@ -2758,7 +2865,7 @@
 			// the binder.type check shouldn't be here...
 	    if (typeof (binder) != 'undefined' && typeof (binder.type) != 'undefined' && (binder.type == 'segment' || binder.type == 'node' || binder.type == 'obj' || binder.type == 'boundingBox')) {
 	      mode = 'bind_mode';
-				console.log("mouse down -> segment/node/obj/boundingbox -> select_mode switching to bind_mode");
+				console.log("mouse down -> select_mode switching to bind_mode.");
 				
 
 	      if (binder.type == 'obj') {
@@ -2816,6 +2923,7 @@
 	        magnetic = 0;
 	        action = 1;
 	      }
+				
 	      if (binder.type == 'segment') {
 
 	        document.querySelector('#extension-floorplanner-boxScale').style.display='none'
@@ -2972,6 +3080,7 @@
 	    else {
 				console.log("mousedown: assuming this is a start of a drag because binder did not exist or had no type");
 	      action = 0;
+				console.warn("DRAG ON");
 	      drag = 'on';
 	      snap = calcul_snap(event, grid_snap);
 	      pox = snap.xMouse;
@@ -2979,7 +3088,7 @@
 				document.getElementById('extension-floorplanner-tool-root').classList.add("extension-floorplanner-do-not-pulsate");
 	    }
 	  }
-	}
+	//}
 
 	//******************************************************************************************************
 	//*******************  *****  ******        ************************************************************
@@ -2994,6 +3103,10 @@
 	  if (showRib) document.querySelector('#extension-floorplanner-boxScale').style.display = 'block';
 		if(drag == 'on'){
 			console.log("MOUSEUP: END OF A DRAG");
+		}
+		
+		if(typeof binder != 'undefined' && typeof binder.type != 'undefined' && typeof binder.obj.graph != 'undefined'){
+			binder.obj.graph.style.filter = 'none';
 		}
 		
 		if(document.querySelector('#extension-floorplanner-room_mode.extension-floorplanner-btn-success') == null
@@ -3220,7 +3333,7 @@
 	  }
 
 	  // *******************************************************************  ***** ****      *******  ******  ******  *****
-	  // **************************   OBJ MODE   ***************************  *   * *******     *****  ******  ******   **
+	  // **************************   UP: OBJ MODE   ***************************  *   * *******     *****  ******  ******   **
 	  // *******************************************************************  ***** ****       ******  ******  ******  ***
 
 	  if (mode == 'door_mode') {
@@ -3240,7 +3353,7 @@
 	  }
 
 	  // *******************************************************************
-	  // ********************   LINE MODE MOUSE UP   ***********************
+	  // ********************   UP: LINE MODE MOUSE UP   ***********************
 	  // *******************************************************************
 
 	  if (mode == 'line_mode' || mode == 'partition_mode') {
@@ -3289,7 +3402,7 @@
 	    else {
 	      action = 0;
 	      construc = 0;
-	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select mode';
+	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = ''; // Select mode
 	      fonc_button('select_mode');
 	      if (typeof (binder) != 'undefined') {
 	        //binder.remove();
@@ -3331,7 +3444,7 @@
 	        if (found) {
 	          document.querySelector('#extension-floorplanner-panel').style.display='none'
 	          var objWall = floorplanEditor.objFromWall(wallBind);
-	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Modify a wall<br/><span style="font-size:0.7em;color:#de9b43">This wall can\'t become a separation (it contains doors or windows)</span>';
+	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Modify a wall'; // <br/><span style="font-size:0.7em;color:#de9b43">This wall can\'t become a separation (it contains doors or windows)</span>
 	          if (objWall.length > 0) document.querySelector('#extension-floorplanner-separate').style.display='none';
 	          else if (binder.wall.type == 'separate') {
 	            document.querySelector('#extension-floorplanner-separate').style.display='none';
@@ -3401,6 +3514,34 @@
 	          OBJDATA.splice(OBJDATA.indexOf(objTarget), 1);
 	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measurement deleted';
 	        }
+					console.log("prior OBJDATA: ", OBJDATA);
+					console.log("moving object to end of OBJDATA array. length before: ", OBJDATA.length);
+					// Move selected item to the end of the array, to ensure it's draw on top.
+					//objTarget.graph.remove();
+					/*
+					if(OBJDATA.indexOf(objTarget) != OBJDATA.length - 1){
+						console.log("attempting to move object to end of OBJDATA array");
+						console.log("objTarget.graph: ", objTarget.graph);
+						console.log("objTarget.graph.parentElement: ", objTarget.graph.parentElement);
+						
+						objTarget.graph.parentElement.appendChild(objTarget.graph);
+						// removeChild(objTarget.graph)
+						//parent.removeChild(tooltip);
+						
+						//let spliced_object = OBJDATA.splice(OBJDATA.indexOf(objTarget), 1);
+						OBJDATA.push(OBJDATA.splice(OBJDATA.indexOf(objTarget),1)[0]);
+						//console.log("moved object to end of OBJDATA array. length halfway: ", OBJDATA.length);
+						//console.log("spliced object: ", typeof spliced_object, spliced_object, JSON.stringify(spliced_object));
+						//OBJDATA.push(spliced_object);
+						console.log("moving object to end of OBJDATA array. length at the end: ", OBJDATA.length);
+						console.log("spliced OBJDATA: ", OBJDATA, JSON.stringify(OBJDATA));
+					}
+					else{
+						console.log("object was already at the end of the OBJDATA array, no need to shift it");
+					}
+					*/
+					
+					
 	        if (moveObj < 1 && objTarget.params.move) {
 	          if (!objTarget.params.resize) document.querySelector('#extension-floorplanner-objBoundingBoxScale').style.display='none';
 	          else document.querySelector('#extension-floorplanner-objBoundingBoxScale').style.display='block';
@@ -3942,7 +4083,9 @@
 			return false;
     };
     for (let k in OBJDATA) {
-        OBJDATA[k].graph.remove();
+			if(typeof OBJDATA[k].graph != 'undefined'){
+				OBJDATA[k].graph.remove();
+			}
     }
     OBJDATA = [];
     let historyTemp = [];
@@ -3959,6 +4102,7 @@
 					if(OO.class == 'measure'){
 						//console.warn("\n\nABOUT TO RESTORE MEASURE");
 						//load = false;
+						continue;
 					}
 	        //if (OO.family === 'energy') OO.family = 'byObject';
 	        let obj = new floorplanEditor.obj2D(OO.family, OO.class, OO.type, {
@@ -4039,7 +4183,7 @@
 	        if (OBJDATA[k].class === 'energy') {
 	            if (OBJDATA[k].type === 'switch' || OBJDATA[k].type === 'doubleSwitch' || OBJDATA[k].type === 'dimmer') switchNumber++;
 	            if (OBJDATA[k].type === 'plug' || OBJDATA[k].type === 'plug20' || OBJDATA[k].type === 'plug32') plugNumber++;
-	            if (OBJDATA[k].type === 'wallLight' || OBJDATA[k].type === 'roofLight') lampNumber++;
+	            if (OBJDATA[k].type === 'wallLight' || OBJDATA[k].type === 'roofLight' || OBJDATA[k].type === 'standing-lamp') lampNumber++;
 	        }
 	    }
 	    reportRoom += '<p>Switch number : ' + switchNumber + '</p>';
@@ -4096,7 +4240,7 @@
 	                        }
 	                    }
 	                }
-	                if (OBJDATA[i].type === 'wallLight' || OBJDATA[i].type === 'roofLight') {
+	                if (OBJDATA[i].type === 'wallLight' || OBJDATA[i].type === 'roofLight' || OBJDATA[i].type === 'standing-lamp') {
 	                    if (roomTarget = floorplanEditor.rayCastingRoom(OBJDATA[i])) {
 	                        if (isObjectsEquals(ROOM[k], roomTarget)) {
 	                            lampNumber++;
@@ -5198,7 +5342,7 @@
 	}
 
 	function rib(shift = 5) {
-			console.log("in rib. shift: ", shift);
+			console.log("in rib. shift (5 by defalt): ", shift);
 	    // return false;
 	    let ribMaster = [];
 	    ribMaster.push([]);
@@ -5497,7 +5641,7 @@
 	});
 
 	function do_select_mode(){
-    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select';
+    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = ''; // Select
     if (typeof (binder) != 'undefined') {
 				bye_binder();
     }
@@ -5524,7 +5668,7 @@
 
 	document.querySelector('#extension-floorplanner-partition_mode').addEventListener('click',function () {
 	    linElement.style.cursor = 'crosshair';
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Creation of thin wall(s)';
+	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Create thin walls';
 	    multi = 0;
 	    fonc_button('partition_mode');
 			setTimeout(()=>{
@@ -5586,7 +5730,7 @@
 
 	document.querySelector('#extension-floorplanner-node_mode').addEventListener('click',function () {
 	    document.querySelector('#extension-floorplanner-boxinfo')
-					.innerHTML = 'Add a joint to a wall<br/><span style=\"font-size:0.7em\">Note: this may delete rooms or doors already on that wall.</span>';
+					.innerHTML = 'Add a joint to a wall<br/><span style=\"font-size:0.7em\">Note: this may remove windows or doors already on that wall.</span>';
 	    fonc_button('node_mode');
 			setTimeout(()=>{
 				root_el.classList.add('extension-floorplanner-do-not-pulsate');
@@ -5920,7 +6064,9 @@
 	        }
 					
 	        if (typeObj === 'flower') {
-	            pushToConstruc(construc, "m 4.1 -9.9 C 9.13 -22.03 -9.13 -22.03 -4.1 -9.9 C -9.13 -22.03 -22.03 -9.13 -9.9 -4.1 C -22.03 -9.13 -22.03 9.13 -9.9 4.1 C -22.03 9.13 -9.13 22.03 -4.1 9.9 C -9.13 22.03 9.13 22.03 4.1 9.9 C 9.13 22.03 22.03 9.13 9.9 4.1 C 22.03 9.13 22.03 -9.13 9.9 -4.1 C 22.03 -9.13 9.12 -22.03 4.1 -9.9 Z", "#8f8", "#333", '');
+						let random_color = getRandomColor();
+						console.log("random color: ", random_color);
+	            pushToConstruc(construc, "m 4.1 -9.9 C 9.13 -22.03 -9.13 -22.03 -4.1 -9.9 C -9.13 -22.03 -22.03 -9.13 -9.9 -4.1 C -22.03 -9.13 -22.03 9.13 -9.9 4.1 C -22.03 9.13 -9.13 22.03 -4.1 9.9 C -9.13 22.03 9.13 22.03 4.1 9.9 C 9.13 22.03 22.03 9.13 9.9 4.1 C 22.03 9.13 22.03 -9.13 9.9 -4.1 C 22.03 -9.13 9.12 -22.03 4.1 -9.9 Z", random_color, "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -5956,7 +6102,7 @@
 					
 					// 17.85 28.54
 	        if (typeObj === 'note') {
-	            pushToConstruc(construc, "m 8.85 8.54 C 10.55 6.59 11.47 3.73 11.47 0.59 C 11.47 -5.7 3.62 -8.84 3.62 -8.84 L 3.62 12.96 L 3.62 12.96 C 3.62 14.91 2.1 17.06 -0.35 18.22 C -1.38 18.72 -2.5 18.98 -3.64 19 C -5.49 19 -7.06 18.24 -7.7 16.83 C -7.9 16.4 -8 15.94 -8 15.47 C -8 13.52 -6.47 11.37 -4.03 10.21 C -3 9.71 -1.88 9.44 -0.74 9.43 C 0.53 9.42 1.66 9.79 2.46 10.47 L 2.46 -19 L 3.62 -19 C 3.62 -14.2 6.82 -12.24 9.58 -8.4 C 11.26 -6.05 12.63 -3.42 12.63 -0.29 C 12.63 3.24 11.24 6.33 8.85 8.54 Z", "#8f8", "#333", '');
+	            pushToConstruc(construc, "m 8.85 8.54 C 10.55 6.59 11.47 3.73 11.47 0.59 C 11.47 -5.7 3.62 -8.84 3.62 -8.84 L 3.62 12.96 L 3.62 12.96 C 3.62 14.91 2.1 17.06 -0.35 18.22 C -1.38 18.72 -2.5 18.98 -3.64 19 C -5.49 19 -7.06 18.24 -7.7 16.83 C -7.9 16.4 -8 15.94 -8 15.47 C -8 13.52 -6.47 11.37 -4.03 10.21 C -3 9.71 -1.88 9.44 -0.74 9.43 C 0.53 9.42 1.66 9.79 2.46 10.47 L 2.46 -19 L 3.62 -19 C 3.62 -14.2 6.82 -12.24 9.58 -8.4 C 11.26 -6.05 12.63 -3.42 12.63 -0.29 C 12.63 3.24 11.24 6.33 8.85 8.54 Z", "#ff8", "#333", '');
 	            construc.params.width = 30;
 	            construc.params.height = 60;
 	            construc.family = 'free';
@@ -5970,9 +6116,9 @@
 	        }
 					
 	        if (typeObj === 'bed') {
-	            pushToConstruc(construc, "m 10 10 L -10 10 L -10 20 L 10 20 Z", "#fff", "#333", '');
-							pushToConstruc(construc, "m 10 -20 L -10 -20 L -10 10 L 10 10 Z", "#ccc", "#333", '');
-							pushToConstruc(construc, "m 7 14.5 C 7 13.12 5.88 12 4.5 12 L -4.5 12 C -5.88 12 -7 13.12 -7 14.5 C -7 15.88 -5.88 17 -4.5 17 L 4.5 17 C 5.88 17 7 15.88 7 14.5 Z", "#ccc", "#333", '');
+	            pushToConstruc(construc, "m 10 10 L -10 10 L -10 20 L 10 20 Z", "#ccc", "none", '');
+							pushToConstruc(construc, "m 10 -20 L -10 -20 L -10 10 L 10 10 Z", "#aaa", "none", '');
+							pushToConstruc(construc, "m 7 14.5 C 7 13.12 5.88 12 4.5 12 L -4.5 12 C -5.88 12 -7 13.12 -7 14.5 C -7 15.88 -5.88 17 -4.5 17 L 4.5 17 C 5.88 17 7 15.88 7 14.5 Z", "#999", "#ccc", '');
 	            construc.params.width = 120;
 	            construc.params.height = 200;
 	            construc.family = 'free';
@@ -5984,16 +6130,16 @@
 						  //pushToConstruc(construc, "m 100 -100 L -100 -100 L -100 50 L 100 50 Z", "#ccc", "#333", '');
 						  //pushToConstruc(construc, "m 80 72.5 C 80 65.6 74.4 60 67.5 60 L 22.5 60 C 15.6 60 10 65.6 10 72.5 C 10 79.4 15.6 85 22.5 85 L 67.5 85 C 74.4 85 80 79.4 80 72.5 Z", "#ccc", "#333", '');
             	
-	            pushToConstruc(construc, "m 20 10 L -20 10 L -20 20 L 20 20 Z", "#fff", "#333", '');
-							pushToConstruc(construc, "m 20 -20 L -20 -20 L -20 10 L 20 10 Z", "#ccc", "#333", '');
-							pushToConstruc(construc, "m 16 14.5 C 16 13.12 14.88 12 13.5 12 L 4.5 12 C 3.12 12 2 13.12 2 14.5 C 2 15.88 3.12 17 4.5 17 L 13.5 17 C 14.88 17 16 15.88 16 14.5 Z M -3 14.5 C -3 13.12 -4.12 12 -5.5 12 L -14.5 12 C -15.88 12 -17 13.12 -17 14.5 C -17 15.88 -15.88 17 -14.5 17 L -5.5 17 C -4.12 17 -3 15.88 -3 14.5 Z", "#ccc", "#333", '');
+	            pushToConstruc(construc, "m 20 10 L -20 10 L -20 20 L 20 20 Z", "#ccc", "none", '');
+							pushToConstruc(construc, "m 20 -20 L -20 -20 L -20 10 L 20 10 Z", "#aaa", "none", '');
+							pushToConstruc(construc, "m 16 14.5 C 16 13.12 14.88 12 13.5 12 L 4.5 12 C 3.12 12 2 13.12 2 14.5 C 2 15.88 3.12 17 4.5 17 L 13.5 17 C 14.88 17 16 15.88 16 14.5 Z M -3 14.5 C -3 13.12 -4.12 12 -5.5 12 L -14.5 12 C -15.88 12 -17 13.12 -17 14.5 C -17 15.88 -15.88 17 -14.5 17 L -5.5 17 C -4.12 17 -3 15.88 -3 14.5 Z", "#aaa", "none", '');
 	            construc.params.width = 200;
 	            construc.params.height = 200;
 	            construc.family = 'free';
 	        }
 					
 	        if (typeObj === 'closet') {
-	            pushToConstruc(construc, "m -3 37 L -53 26 M 2 37 L 47 26 M -53 26 L 47 26 L 47 -24 L -53 -24 Z", "", "#888", '');
+	            pushToConstruc(construc, "m -3 37 L -53 26 M 2 37 L 47 26 M -53 26 L 47 26 L 47 -24 L -53 -24 Z", "#ccc", "#333", '');
 	            construc.params.width = 80;
 	            construc.params.height = 30;
 	            construc.family = 'free';
@@ -6003,10 +6149,21 @@
 	            pushToConstruc(construc, "m 25.97 17 L -19.49 17 C -24.32 17 -28.28 13.04 -28.28 8.21 L -28.28 -8.14 C -28.28 -12.98 -24.32 -16.93 -19.49 -16.93 L 25.97 -16.93 C 30.81 -16.93 34.76 -12.98 34.76 -8.14 L 34.76 8.21 C 34.76 13.04 30.81 17 25.97 17", "#fff", "#333", '');
 							pushToConstruc(construc, "m 36.87 6.88 L 34.22 6.88 C 32.55 6.88 31.18 5.52 31.18 3.85 L 31.18 -13.9 C 31.18 -15.57 32.55 -16.93 34.22 -16.93 L 36.87 -16.93 C 38.54 -16.93 39.9 -15.57 39.9 -13.9 L 39.9 3.85 C 39.9 5.52 38.54 6.88 36.87 6.88 M -27.73 6.88 L -30.38 6.88 C -32.05 6.88 -33.42 5.52 -33.42 3.85 L -33.42 -13.9 C -33.42 -15.57 -32.05 -16.93 -30.38 -16.93 L -27.73 -16.93 C -26.07 -16.93 -24.7 -15.57 -24.7 -13.9 L -24.7 3.85 C -24.7 5.52 -26.07 6.88 -27.73 6.88", "#ccc", "#333", '');
 							pushToConstruc(construc, "m 31.73 17 L -25.24 17 C -28.88 17 -31.86 14.02 -31.86 10.38 L -31.86 10.38 C -31.86 6.75 -28.88 3.77 -25.24 3.77 L 31.73 3.77 C 35.37 3.77 38.34 6.75 38.34 10.38 L 38.34 10.38 C 38.34 14.02 35.37 17 31.73 17", "#fff", "#333", '');
-							construc.params.width = 80;
-	            construc.params.height = 40;
+							construc.params.width = 130;
+	            construc.params.height = 80;
 	            construc.family = 'free';
 	        }
+					
+	        if (typeObj === 'sofa-seat') {
+	            pushToConstruc(construc, "m 11.78 19 L -10.06 19 C -12.38 19 -14.28 15.04 -14.28 10.21 L -14.28 -6.14 C -14.28 -10.98 -12.38 -14.93 -10.06 -14.93 L 11.78 -14.93 C 14.1 -14.93 16 -10.98 16 -6.14 L 16 10.21 C 16 15.04 14.1 19 11.78 19", "#fff", "#333", '');
+							pushToConstruc(construc, "m -20 6 C -20 8.76 -17.76 11 -15 11 C -12.24 11 -10 8.76 -10 6 L -10 -10 C -10 -12.76 -12.24 -15 -15 -15 C -17.76 -15 -20 -12.76 -20 -10 Z M 11 6 C 11 8.76 13.24 11 16 11 C 18.76 11 21 8.76 21 6 L 21 -10 C 21 -12.76 18.76 -15 16 -15 C 13.24 -15 11 -12.76 11 -10 Z", "#ccc", "#333", '');
+							pushToConstruc(construc, "m 15.53 19 L -14.39 19 C -16.3 19 -17.86 16.02 -17.86 12.38 L -17.86 12.38 C -17.86 8.75 -16.3 5.77 -14.39 5.77 L 15.53 5.77 C 17.44 5.77 19 8.75 19 12.38 L 19 12.38 C 19 16.02 17.44 19 15.53 19", "#fff", "#333", '');
+							construc.params.width = 75;
+	            construc.params.height = 75;
+	            construc.family = 'free';
+	        }
+					
+					
 					
 	        if (typeObj === 'tv') {
 	            pushToConstruc(construc, "m-25.972872-4.574562h51.567162l5.769916 11.19516h-63.106718z", "#fff", "#333", '');
@@ -6026,14 +6183,45 @@
 	            construc.family = 'free';
 	        }
 					
+	        if (typeObj === 'stove') {
+	            //pushToConstruc(construc, "m160 49.5c0-70.968597-57.531403-128.5-128.5-128.5-70.96859 0-128.5 57.531403-128.5 128.5 0 70.96859 57.53141 128.5 128.5 128.5 70.968597 0 128.5-57.53141 128.5-128.5z", "#fff", "#333", '');
+							pushToConstruc(construc, "m -30 30 L -30 -30 L 30 -30 L 30 30 L -30 30 Z M -12.38 20.25 C -8.44 20.25 -5.25 17.06 -5.25 13.13 C -5.25 9.19 -8.44 6 -12.38 6 C -16.31 6 -19.5 9.19 -19.5 13.13 C -19.5 17.06 -16.31 20.25 -12.38 20.25 Z M 12.38 20.25 C 16.31 20.25 19.5 17.06 19.5 13.13 C 19.5 9.19 16.31 6 12.38 6 C 8.44 6 5.25 9.19 5.25 13.13 C 5.25 17.06 8.44 20.25 12.38 20.25 Z M -12.38 -4.5 C -8.44 -4.5 -5.25 -7.69 -5.25 -11.63 C -5.25 -15.56 -8.44 -18.75 -12.38 -18.75 C -16.31 -18.75 -19.5 -15.56 -19.5 -11.63 C -19.5 -7.69 -16.31 -4.5 -12.38 -4.5 Z M 12.38 -4.5 C 16.31 -4.5 19.5 -7.69 19.5 -11.63 C 19.5 -15.56 16.31 -18.75 12.38 -18.75 C 8.44 -18.75 5.25 -15.56 5.25 -11.63 C 5.25 -7.69 8.44 -4.5 12.38 -4.5 Z", "#ddd", "#333", '');
+				      construc.params.width = 40;
+	            construc.params.height = 40;
+	            construc.family = 'free';
+	        }
+					
+					
+	        if (typeObj === 'standing-lamp') {
+	            pushToConstruc(construc, "m 0 36 C -19.88 36 -36 19.88 -36 0 C -36 -19.88 -19.88 -36 0 -36 C 19.88 -36 36 -19.88 36 0 C 36 19.88 19.88 36 0 36 Z M 0 19 C 10.49 19 19 10.49 19 0 C 19 -10.49 10.49 -19 0 -19 C -10.49 -19 -19 -10.49 -19 0 C -19 10.49 -10.49 19 0 19 Z M 0 -19 L 1 -1 L 16 9.23 L 0 1 L -16 9.23 L -1 -1 L 0 -19 Z", "#bbb", "#ddd", '');
+							//pushToConstruc(construc, "m 6 0 C 6 -3.31 3.31 -6 0 -6 C -3.31 -6 -6 -3.31 -6 0 C -6 3.31 -3.31 6 0 6 C 3.31 6 6 3.31 6 0 Z", "#FFFC67", "$FFF", '');
+	            pushToConstruc(construc, qSVG.circlePath(0, 0, 12), "#FFFC67", "#FFFC67", '');
+							construc.params.width = 25;
+	            construc.params.height = 25;
+	            construc.family = 'free';
+	        }
+					
+					
+					
 	        if (typeObj === 'toilet') {
 	            //pushToConstruc(construc, "m160 49.5c0-70.968597-57.531403-128.5-128.5-128.5-70.96859 0-128.5 57.531403-128.5 128.5 0 70.96859 57.53141 128.5 128.5 128.5 70.968597 0 128.5-57.53141 128.5-128.5z", "#fff", "#333", '');
 							pushToConstruc(construc, "m -20 -8.5 C -20 5.58 -11.49 17 -1 17 C 9.49 17 18 5.58 18 -8.5 C 18 -22.58 9.49 -34 -1 -34 C -11.49 -34 -20 -22.58 -20 -8.5 Z", "", "#333", '');
 				      pushToConstruc(construc, "m 20 18 C 20 15.79 18.21 14 16 14 L -18 14 C -20.21 14 -22 15.79 -22 18 L -22 29 C -22 31.21 -20.21 33 -18 33 L 16 33 C 18.21 33 20 31.21 20 29 Z", "#fff", "#333", '');
-							construc.params.width = 25;
-	            construc.params.height = 50;
+							construc.params.width = 32;
+	            construc.params.height = 40;
 	            construc.family = 'free';
 	        }
+					
+	        if (typeObj === 'shower') {
+	            //pushToConstruc(construc, "m160 49.5c0-70.968597-57.531403-128.5-128.5-128.5-70.96859 0-128.5 57.531403-128.5 128.5 0 70.96859 57.53141 128.5 128.5 128.5 70.968597 0 128.5-57.53141 128.5-128.5z", "#fff", "#333", '');
+							pushToConstruc(construc, "m -0.31 15.15 C -1.87 15.16 -3.3 14.13 -3.73 12.55 C -4.23 10.69 -3.12 8.77 -1.25 8.27 C 0.62 7.77 2.53 8.87 3.04 10.74 L 6.15 15.15 L 0.56 15.03 C 0.27 15.11 -0.02 15.14 -0.31 15.15 Z M -11.78 11.45 C -12.7 11.41 -13.52 10.79 -13.77 9.85 C -14.08 8.71 -13.4 7.53 -12.25 7.22 C -11.1 6.91 -9.92 7.59 -9.62 8.74 L -9.06 10.82 L -11.14 11.38 C -11.35 11.43 -11.57 11.46 -11.78 11.45 Z M 9.53 10.44 L -15.93 -16.44 L 10.94 9.02 L 9.53 10.44 Z M 14.15 8.15 L 10.08 3.91 C 8.41 2.94 7.83 0.8 8.8 -0.87 C 9.77 -2.55 11.91 -3.12 13.58 -2.15 C 15.25 -1.19 15.83 0.95 14.86 2.63 L 14.15 8.15 Z M -5.21 4.55 C -5.94 4.52 -6.59 4.03 -6.79 3.29 C -7.03 2.38 -6.49 1.45 -5.58 1.2 C -4.68 0.96 -3.74 1.5 -3.5 2.41 L -3.06 4.05 L -4.7 4.49 C -4.87 4.54 -5.04 4.56 -5.21 4.55 Z M 6.25 -5.87 L 4.39 -6.94 C 3.36 -7.54 3.01 -8.85 3.6 -9.88 C 4.2 -10.91 5.51 -11.26 6.54 -10.67 C 7.57 -10.08 7.92 -8.76 7.33 -7.73 L 6.25 -5.87 Z M 15.28 -6.41 L 13.81 -7.26 C 12.99 -7.73 12.72 -8.77 13.19 -9.59 C 13.66 -10.4 14.7 -10.68 15.51 -10.21 C 16.32 -9.74 16.6 -8.7 16.13 -7.88 L 15.28 -6.41 Z M 19.52 -29 L 18.5 8 L 20.5 8 Z M -32 21.48 L 5 22.5 L 5 20.5 Z", "#47aae7", "#47aae7", '');
+				      pushToConstruc(construc, "m 9.15 21.65 C 9.15 27.45 13.86 32.15 19.65 32.15 C 25.45 32.15 30.15 27.45 30.15 21.65 C 30.15 15.85 25.45 11.15 19.65 11.15 C 13.86 11.15 9.15 15.85 9.15 21.65 Z", "#ccc", "#aaa", '');
+							construc.params.width = 32;
+	            construc.params.height = 40;
+	            construc.family = 'free';
+	        }
+					
+					
 					
 	        if (typeObj === 'lock') {
 	            pushToConstruc(construc, "m 10.31 20 L -10.88 20 C -12.6 20 -14 18.61 -14 16.9 L -14 -0.16 C -14 -1.87 -12.6 -3.26 -10.88 -3.26 L -10.73 -3.26 L -10.73 -9.61 C -10.73 -15.35 -6.05 -20 -0.29 -20 C 5.48 -20 10.16 -15.35 10.16 -9.61 L 10.16 -3.26 L 10.31 -3.26 C 12.03 -3.26 13.43 -1.87 13.43 -0.16 L 13.43 16.9 C 13.43 18.61 12.03 20 10.31 20 Z M 7.04 -9.61 C 7.04 -13.64 3.76 -16.9 -0.29 -16.9 C -4.33 -16.9 -7.61 -13.64 -7.61 -9.61 L -7.61 -3.26 L 7.04 -3.26 L 7.04 -9.61 Z", "#990", "#333", '');
@@ -6058,6 +6246,43 @@
 	        }
 					
 					
+					
+					
+	        if (typeObj === 'car') {
+	            //pushToConstruc(construc, "m -31.47 250.32 C -63.88 250.2 -96.24 243.96 -107.4 193.71 C -108.88 162.16 -109.25 136.92 -107.4 102.41 C -106 99.78 -104.6 97.17 -103.2 94.54 C -104.89 33.9 -106.95 -25.63 -103.82 -89.61 C -105.67 -94.69 -107.53 -99.76 -109.38 -104.82 C -116.18 -235.92 -90.35 -244.21 -1.87 -248.78 L -1.87 -248.78 C 55.93 -246.76 87.99 -240.94 101 -202.3 C 101.45 -201.49 101.89 -200.66 102.31 -199.81 C 101.61 -202.54 100.91 -205.28 100.09 -208 C 109.14 -186.2 110.94 -152.63 107.03 -100.64 C 106.78 -100.06 106.53 -99.48 106.28 -98.9 C 104.78 -95.85 103.63 -92.63 102.05 -89.62 C 102.14 -88.4 102.22 -87.17 102.31 -85.95 C 102.35 -85.94 102.38 -85.93 102.42 -85.92 C 104.24 -25.75 105.94 34.76 102.31 94.55 C 108.33 101.13 105.46 109.94 107.03 117.63 C 109.6 137.45 110.7 165.44 108.08 192.67 C 106.29 217.72 94.56 231.57 78.84 239.27 C 56.07 250.96 24.45 249.21 2.71 249.85 C -8.02 249.61 -19.75 250.37 -31.47 250.32 Z", "#f44", "#333", '');
+							//pushToConstruc(construc, "m -2.93 244.87 C -13.45 244.84 -23.85 244.47 -33.91 243.92 C -32.8 241.2 -31.87 238.66 -31.69 235.75 C -7.59 236.74 16.88 236.62 39.5 234.27 C 39.93 237.73 40.92 240.45 42.46 242.43 C 28.25 244.17 13.62 244.85 -0.82 244.87 C -1.52 244.87 -2.23 244.88 -2.93 244.87 Z M -68.2 237.08 C -74.75 234.86 -90.94 225.21 -87.85 215.94 C -83.52 212.6 -61.03 221.87 -58.19 227.07 C -57.82 232.63 -62.64 237.08 -68.2 237.08 Z M 73.61 236.12 C 68.04 236.12 63.23 231.67 63.6 226.11 C 66.44 220.91 88.93 211.63 93.26 214.97 C 96.35 224.25 80.16 233.9 73.61 236.12 Z M 1.03 208.92 C -23.59 208.92 -48.02 201.84 -69.69 188.46 C -70.04 163.8 -70.38 139.14 -70.73 114.48 L -70.73 114.48 C -19.7 119.9 27.66 123.22 72.93 111.86 L 72.93 186.89 C 50.47 201.84 25.65 208.92 1.03 208.92 Z M -88.56 148.06 C -90.66 135.12 -92.23 121.65 -94.33 108.71 C -96.95 35.42 -98 -34.71 -93.28 -110.62 C -88.21 -78.35 -83.93 -48.71 -81.22 -14.6 C -78.16 48.8 -82.18 116.14 -88.56 148.06 Z M 91.23 142.13 C 84.84 110.21 80.83 42.87 83.89 -20.53 C 86.6 -54.63 90.88 -84.28 95.95 -116.55 C 100.66 -40.64 99.62 29.49 97 102.77 C 94.89 115.72 93.32 129.19 91.23 142.13 Z M -77.54 -52.38 C -80.69 -77.91 -83.84 -103.45 -86.99 -128.98 C -86.96 -129.02 -86.93 -129.05 -86.9 -129.08 L -87.25 -129.08 C -84.1 -199.63 -54.22 -232.98 0.05 -236.56 C 67.51 -234.54 83.6 -191.46 87.61 -128.8 L 87.34 -128.8 C 87.43 -128.68 87.52 -128.57 87.61 -128.46 C 84.81 -103.97 82.02 -79.49 79.23 -55 C 41.13 -63.57 -19 -72.67 -77.54 -52.38 Z M -87.5 -197.47 C -90.36 -197.42 -92.24 -199.74 -92.99 -205.25 C -92.64 -211.77 -78.78 -223.6 -76.14 -224.52 C -63.08 -222.41 -64.62 -215.44 -76.06 -203.99 C -80.77 -199.97 -84.63 -197.53 -87.5 -197.47 Z M 90.88 -197.96 C 88.04 -197.92 84.09 -200.02 79.22 -203.54 C 66.9 -214.03 64.8 -220.86 77.65 -224 C 80.36 -223.3 95.13 -212.64 96 -206.16 C 95.69 -200.44 93.91 -197.99 90.88 -197.96 Z", "#000", "#333", '');
+				      pushToConstruc(construc, "m -4.92 42.05 C -10.46 42.08 -16.07 41.17 -17.97 32.54 C -18.22 27.24 -18.28 23 -17.97 17.21 C -17.74 16.76 -17.51 16.32 -17.27 15.88 C -17.56 5.69 -17.9 -4.31 -17.38 -15.05 C -17.69 -15.91 -18 -16.76 -18.31 -17.61 C -19.44 -39.64 -15.12 -41.03 -0.31 -41.79 C 9.36 -41.45 14.73 -40.48 16.91 -33.98 C 16.98 -33.84 17.05 -33.71 17.12 -33.57 C 17.01 -34.03 16.89 -34.49 16.75 -34.95 C 18.27 -31.28 18.57 -25.64 17.91 -16.91 C 17.87 -16.81 17.83 -16.71 17.79 -16.62 C 17.54 -16.1 17.34 -15.56 17.08 -15.06 C 17.09 -14.85 17.11 -14.65 17.12 -14.44 C 17.13 -14.44 17.14 -14.44 17.14 -14.44 C 17.45 -4.33 17.73 5.84 17.12 15.88 C 18.13 16.99 17.65 18.47 17.91 19.76 C 18.34 23.09 18.53 27.79 18.09 32.37 C 17.8 36.48 15.92 38.79 13.38 40.1 C 13.34 40.12 13.3 40.15 13.25 40.17 C 13.24 40.17 13.23 40.18 13.21 40.19 C 9.4 42.16 4.1 41.87 0.45 41.97 C -1.24 41.94 -3.08 42.05 -4.92 42.05 Z", "#f44", "#f44", '');
+							pushToConstruc(construc, "m -0.14 41.14 C -2.02 41.14 -3.88 41.08 -5.68 40.98 C -5.49 40.52 -5.33 40.09 -5.3 39.61 C -1.27 39.77 2.82 39.75 6.61 39.36 C 6.68 39.94 6.85 40.4 7.11 40.73 C 4.73 41.02 2.28 41.13 -0.14 41.14 Z M -11.41 39.83 C -12.51 39.46 -15.22 37.84 -14.7 36.28 C -13.98 35.72 -10.21 37.27 -9.74 38.15 C -9.68 39.08 -10.48 39.83 -11.41 39.83 Z M 12.32 39.67 C 11.39 39.67 10.58 38.92 10.64 37.99 C 11.12 37.11 14.88 35.55 15.61 36.12 C 16.12 37.67 13.41 39.29 12.32 39.67 Z M 0.17 35.1 C -3.95 35.1 -8.04 33.91 -11.66 31.66 C -11.72 27.52 -11.78 23.38 -11.84 19.23 C -3.3 20.14 4.63 20.7 12.21 18.79 L 12.21 31.4 C 8.45 33.91 4.29 35.1 0.17 35.1 Z M -14.82 24.87 C -15.17 22.7 -15.44 20.44 -15.79 18.26 C -16.23 5.95 -16.4 -5.83 -15.61 -18.58 C -14.76 -13.16 -14.05 -8.18 -13.59 -2.45 C -13.08 8.2 -13.75 19.51 -14.82 24.87 Z M 15.27 23.88 C 14.2 18.51 13.53 7.2 14.04 -3.45 C 14.49 -9.18 15.21 -14.16 16.06 -19.58 C 16.85 -6.83 16.67 4.95 16.23 17.27 C 15.88 19.44 15.62 21.7 15.27 23.88 Z M -12.98 -8.8 C -13.51 -13.09 -14.03 -17.38 -14.56 -21.67 C -14.55 -21.68 -14.55 -21.68 -14.54 -21.69 L -14.6 -21.69 C -14.08 -33.54 -9.07 -39.14 0.01 -39.74 C 11.3 -39.4 13.99 -32.17 14.66 -21.64 L 14.62 -21.64 C 14.63 -21.62 14.65 -21.6 14.66 -21.58 C 14.19 -17.47 13.73 -13.35 13.26 -9.24 C 6.88 -10.68 -3.18 -12.21 -12.98 -8.8 Z M -14.64 -33.18 C -15.12 -33.17 -15.44 -33.56 -15.56 -34.48 C -15.51 -35.58 -13.18 -37.56 -12.74 -37.72 C -10.56 -37.37 -10.81 -36.19 -12.73 -34.27 C -13.52 -33.59 -14.16 -33.19 -14.64 -33.18 Z M 15.21 -33.26 C 14.74 -33.25 14.07 -33.6 13.26 -34.2 C 11.2 -35.96 10.85 -37.1 13 -37.63 C 13.45 -37.52 15.92 -35.72 16.07 -34.63 C 16.01 -33.67 15.72 -33.26 15.21 -33.26 Z", "#222", "#333", '');
+							
+							construc.params.width = 200;
+	            construc.params.height = 200;
+	            construc.family = 'free';
+	        }
+					
+					
+	        if (typeObj === 'tree') {
+	            pushToConstruc(construc, "m -15.27 18.68 C -15.15 18.13 -16.1 19.75 -16.99 18.58 C -17.88 17.41 -20.14 18.89 -19.51 19.38 C -18.89 19.87 -21.32 21.77 -22.54 19.08 C -22.87 18.36 -26.27 20.69 -24.63 17.03 C -24.39 16.5 -25.13 16.49 -25.46 16.48 C -28.85 16.37 -27.68 13.27 -27.68 13.27 L -25.67 11.57 C -25.67 11.57 -28.77 10.78 -25.97 9.47 C -25.45 9.22 -26.71 8.58 -27.18 8.26 C -29.17 6.92 -26.67 5.56 -26.67 5.56 C -26.67 5.56 -26.58 4.71 -27.18 4.66 C -28.37 4.55 -27.77 3.19 -27.99 3.56 C -29.53 6.14 -31.69 4.58 -32.63 3.36 C -33.15 2.67 -32.02 0.85 -32.02 0.85 C -32.02 0.85 -35.23 1.49 -33.87 -0.12 C -33.66 -0.37 -36.72 1.27 -36.06 -0.85 C -36.01 -1.01 -36.91 -1.28 -37.07 -1.35 C -38.57 -2.09 -38.1 -4.73 -33.64 -6.66 C -32.19 -7.28 -34.39 -8.03 -33.03 -9.97 C -31.86 -11.63 -30.19 -10.79 -30 -10.97 C -29.46 -11.49 -28.85 -13.31 -27.59 -12.18 C -26.13 -10.88 -25.56 -12.87 -25.56 -12.87 C -25.56 -12.87 -24.28 -14.03 -22.84 -13.07 C -21.67 -12.29 -22.26 -13.22 -22.13 -13.17 C -21.65 -12.98 -20.43 -13.12 -20.76 -13.62 C -22.3 -15.96 -22.66 -18.06 -18.7 -18.18 C -18.58 -18.18 -19.57 -19.75 -18.7 -20.08 C -17.56 -20.51 -18.74 -21.22 -18.7 -21.28 C -16.52 -24.95 -15.19 -21.28 -14.77 -22.59 C -12.84 -28.57 -11.4 -24.65 -9.83 -23.99 C -9.27 -23.75 -9.55 -25.56 -8.21 -24.99 C -7.7 -24.77 -6.96 -24.17 -6.6 -24.59 C -1.13 -30.97 0.93 -24.9 0.87 -23.89 C 0.85 -23.6 2.54 -25.2 2.88 -25.19 C 6.19 -25.12 4.09 -21.98 4.09 -21.98 C 4.09 -21.98 4.19 -21.05 5.71 -22.18 C 6.08 -22.46 6.87 -22.42 6.92 -22.89 C 7.24 -25.98 10.55 -24.09 10.55 -24.09 C 10.55 -24.09 10.92 -24.09 10.9 -23.86 C 10.72 -22.13 11.72 -23.46 11.86 -23.79 C 13.37 -27.15 15.8 -23.09 15.8 -23.09 C 15.8 -23.09 18.5 -24.6 18.12 -21.88 C 17.98 -20.93 16.97 -23.38 19.83 -21.58 C 21.11 -20.78 20.84 -19.48 20.84 -19.48 C 20.84 -19.48 23.65 -17.41 20.13 -16.07 C 18.76 -15.55 22.5 -16.39 23.67 -14.07 C 24.54 -12.34 23.67 -12.37 23.67 -12.37 C 23.67 -12.37 24.83 -11.51 25.1 -11.93 C 26.39 -13.93 26.86 -11.55 27.5 -11.67 C 28.76 -11.9 29.82 -8.96 29.82 -8.96 C 29.82 -8.96 32.22 -10.2 32.54 -7.76 C 32.69 -6.65 32.5 -4.62 31.43 -4.76 C 31.1 -4.8 31.97 -4.32 32.14 -3.76 C 32.29 -3.25 31.36 -2.76 31.74 -2.65 C 35.76 -1.52 33.96 1.75 33.96 1.75 C 33.96 1.75 37.27 3.78 33.15 6.76 C 32.5 7.23 33.55 8.56 33.55 8.56 C 33.55 8.56 32.66 10.37 31.43 9.77 C 30.71 9.41 33.6 10.42 33.85 11.97 C 33.97 12.68 32.94 13.62 32.44 13.27 C 31.94 12.92 32.81 15.15 32.85 15.78 C 32.91 16.89 31.49 18.2 30.63 18.28 C 29.65 18.37 29.84 16.5 27.7 18.68 C 27.15 19.24 29.53 19.84 26.49 20.68 C 25.23 21.03 23.72 21.71 22.56 20.58 C 22.11 20.15 23.39 18.61 21.45 19.08 C 21.02 19.19 20.67 19.75 20.74 20.18 C 21.29 23.73 17.81 23.09 17.81 23.09 C 17.81 23.09 15.84 21.71 15.09 22.29 C 14.08 23.06 13.88 21.59 13.88 21.59 C 13.88 21.59 12.78 21.05 12.17 22.89 C 11.92 23.63 14.17 23.83 11.76 25.19 C 11.17 25.53 11.63 27.28 10.05 26.29 C 9.5 25.95 9.07 27.13 8.53 27.49 C 6.96 28.56 6.59 25.65 6.11 26.39 C 4.6 28.75 3.49 26.19 3.49 26.19 C 3.49 26.19 1.91 28.08 1.27 25.09 C 1.16 24.59 0.76 23.86 0.97 23.49 C 1.44 22.64 1.39 22.89 0.51 23.31 C 0.31 23.41 0.57 24.07 -0.15 23.62 C -0.97 23.11 -0.98 24.04 -0.95 24.49 C -0.78 26.83 -2.87 25.89 -2.87 25.89 C -2.87 25.89 -2.9 27.6 -5.09 27.69 C -6.8 27.77 -7.09 24.13 -7.2 25.19 C -7.5 27.81 -8.9 25.43 -9.02 26.09 C -9.48 28.51 -10.55 25.93 -10.74 26.69 C -11 27.81 -11.18 26.48 -11.24 26.49 C -15.05 27.01 -13.06 25.64 -13.96 25.19 C -16.08 24.13 -13.96 23.26 -14.67 23.19 C -19.13 22.71 -14.27 19.48 -14.27 19.48 C -14.27 19.48 -15.53 19.8 -15.27 18.68 Z", "#090", "#060", '');
+				      construc.params.width = 200;
+	            construc.params.height = 200;
+	            construc.family = 'free';
+	        }
+					
+					
+					
+	        if (typeObj === 'pond') {
+            pushToConstruc(construc, qSVG.circlePath(0, 0, 40), "#47aae7", "#47aae7", '');
+            construc.params.width = 80;
+            construc.params.height = 80;
+            construc.family = 'free';
+	        }
+					/*
+	        if (typeObj === 'pool') {
+            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#99f", "#99f", '');
+            construc.params.width = 80;
+            construc.params.height = 80;
+            construc.family = 'free';
+	        }
+					*/
 					
 					
 					// Fire escape map
@@ -6099,6 +6324,17 @@
 	            construc.family = 'free';
 	        }
 					
+	        if (typeObj === 'fire-hose') {
+	            pushToConstruc(construc, "m 29.77 -29.77 L 29.77 30.03 L -30.03 30.03 L -30.03 -29.77 Z", "#f00", "#333", '');
+							pushToConstruc(construc, "m 17.36 22.11 L 17.36 20.07 L 21.46 20.07 L 21.46 22.11 L 17.36 22.11 Z M 18.04 19.18 L 17.55 5.05 L 21.28 5.05 L 20.81 19.17 L 18.04 19.18 Z M 16.48 4.24 L 16.48 1.8 L 22.33 1.8 L 22.33 4.24 L 16.48 4.24 Z", "#fff", "#333", '');
+							pushToConstruc(construc, "m -3.27 -2.47 C -1.99 -3.47 -0.23 -2.48 0.38 -1.2 C 1.42 0.99 -0.09 3.47 -2.21 4.25 C -5.28 5.39 -8.53 3.32 -9.48 0.35 C -10.72 -3.57 -8.07 -7.63 -4.25 -8.72 C 0.53 -10.09 5.39 -6.85 6.63 -2.18 C 8.12 3.45 4.29 9.13 -1.23 10.51 C -7.72 12.12 -14.21 7.7 -15.73 1.33 C -17.47 -6.01 -12.45 -13.32 -5.23 -14.97 C 2.96 -16.85 11.09 -11.23 12.88 -3.16 C 14.89 5.88 8.67 14.83 -0.25 16.76 C -10.15 18.89 -19.92 12.08 -21.98 2.31 C -24.25 -8.44 -16.84 -19.03 -6.21 -21.23 C 5.39 -23.62 16.8 -15.62 19.13 -4.14 C 19.47 -2.48 19.62 -0.78 19.57 0.91", "#fff", "#333", '');
+	            construc.params.width = 40;
+	            construc.params.height = 40;
+	            construc.family = 'free';
+	        }
+					
+					
+					
 	        if (typeObj === 'fire-exit') {
 	            pushToConstruc(construc, "m -40,-20 l 80,0 l0,40 l-80,0 Z", "#0f0", "#333", '');
 	            construc.push({
@@ -6115,12 +6351,37 @@
 	            construc.family = 'free';
 	        }
 					
+	        if (typeObj === 'fire-exit2') {
+						
+							//pushToConstruc(construc, "m 22.42 11.08 L 22.42 -10.84 L -22.83 -10.84 L -22.83 11.08 L 22.42 11.08 Z", "#00B200", "#fff", '');
+	            pushToConstruc(construc, "m 44.83 22.17 L 44.83 -21.69 L -45.66 -21.69 L -45.66 22.17 L 44.83 22.17 Z", "#00B200", "#fff", '');
+							pushToConstruc(construc, "m -41.16 17.31 L -41.16 -16.79 L -23.96 -16.79 L -23.96 17.31 L -41.16 17.31 Z M -12.98 4.39 L -20.23 0.34 L -12.98 -3.72 L -12.98 -0.66 L 11.22 -0.66 L 11.22 1.08 L -12.98 1.08 L -12.98 4.39 Z", "#fff", "none", '');
+							pushToConstruc(construc, "m 22.25 17.69 L 21.89 6.75 L 26.76 3.68 C 26.76 3.68 27.49 2.92 27.13 2.34 C 26.76 1.76 25.5 -1.11 25.5 -1.11 L 24.59 1.96 L 16.1 2.72 L 15.74 -1.3 L 20.8 -1.5 C 20.8 -1.5 20.44 -7.45 21.16 -7.64 C 21.89 -7.83 25.32 -9.75 25.86 -10.71 L 34 -10.33 L 37.07 -4.19 L 34.54 -2.27 L 31.1 -7.26 L 29.29 -6.49 L 33.82 1.19 C 33.82 1.19 34.54 7.52 34.18 8.48 C 33.82 9.44 39.6 6.56 40.69 8.29 L 40.14 12.32 L 30.38 12.32 L 30.74 6.37 L 26.59 9.25 L 25.86 17.69 L 22.25 17.69 Z M 21.21 -8.89 C 18.95 -8.89 17.12 -10.83 17.12 -13.23 C 17.12 -15.63 18.95 -17.57 21.21 -17.57 C 23.47 -17.57 25.3 -15.63 25.3 -13.23 C 25.3 -10.83 23.47 -8.89 21.21 -8.89 Z", "#fff", "none", '');
+	            construc.params.width = 60;
+	            construc.params.height = 30;
+	            construc.family = 'free';
+	        }
 					
-					
-	        if (typeObj === 'gtl') {
-	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#333", '');
+	        if (typeObj === 'fire-extinguisher') {
+	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#f00", '');
 	            construc.push({
-	                'text': " ⚡ ",
+	                'text': "🧯",
+	                'x': '0',
+	                'y': '10',
+	                'fill': "#333333",
+	                'stroke': "none",
+	                'fontSize': '1.5em',
+	                "strokeWidth": "0.4px"
+	            });
+	            construc.params.width = 40;
+	            construc.params.height = 40;
+	            construc.family = 'free';
+	        }
+					
+	        if (typeObj === 'meeting-point') {
+	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#f00", '');
+	            construc.push({
+	                'text': " 🚩 ",
 	                'x': '0',
 	                'y': '5',
 	                'fill': "#333333",
@@ -6130,8 +6391,11 @@
 	            });
 	            construc.params.width = 40;
 	            construc.params.height = 40;
-	            construc.family = 'stick';
+	            construc.family = 'free';
 	        }
+					
+					
+					
 					
 	        if (typeObj === 'switch') {
 	            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#333", '');
@@ -6161,11 +6425,24 @@
 	            construc.params.height = 36;
 	            construc.family = 'stick';
 	        }
+					
+					
+					
 	        if (typeObj === 'plug') {
-	            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#000", '');
-	            pushToConstruc(construc, "M 10,-6 a 10,10 0 0 1 -5,8 10,10 0 0 1 -10,0 10,10 0 0 1 -5,-8", "none", "#333", '');
-	            pushToConstruc(construc, "m 0,3 v 7", "none", "#333", '');
-	            pushToConstruc(construc, "m -10,4 h 20", "none", "#333", '');
+            	pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#333", '');
+            	construc.push({
+                'text': "⚇",
+                'x': '0',
+                'y': '10',
+                'fill': "#333333",
+                'stroke': "none",
+                'fontSize': '2.5rem',
+                "strokeWidth": "0.4px"
+            	});
+	            //pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#000", '');
+	            //pushToConstruc(construc, "M 10,-6 a 10,10 0 0 1 -5,8 10,10 0 0 1 -10,0 10,10 0 0 1 -5,-8", "none", "#333", '');
+	            //pushToConstruc(construc, "m 0,3 v 7", "none", "#333", '');
+	            //pushToConstruc(construc, "m -10,4 h 20", "none", "#333", '');
 	            construc.params.width = 36;
 	            construc.params.height = 36;
 	            construc.family = 'stick';
@@ -6239,7 +6516,7 @@
 	            });
 	            construc.params.width = 40;
 	            construc.params.height = 40;
-	            construc.family = 'free';
+	            construc.family = 'stick';
 	        }
 	        if (typeObj === 'rj45') {
 	            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#000", '');
@@ -6355,7 +6632,14 @@
 	}
 	
 	
-	
+	function getRandomColor() {
+	  var letters = '789ABCDEF';
+	  var color = '#';
+	  for (var i = 0; i < 6; i++) {
+	    color += letters[Math.floor(Math.random() * letters.length)];
+	  }
+	  return color;
+	}
 	
 
 	function get_svg(){
@@ -6425,6 +6709,7 @@
 			hide_submenus();
 			energy_list_el.style.display='block';
 		}
+		set_linked_scaling(true);
 	}
 	
 	
@@ -7146,7 +7431,7 @@
 		currently_cloning_an_object = false;
 		//console.log("in save_object");
 		fonc_button('select_mode');
-		document.querySelector('#extension-floorplanner-boxinfo').innerHTML='Selection mode';
+		document.querySelector('#extension-floorplanner-boxinfo').innerHTML=''; // Selection mode
 		document.querySelector('#extension-floorplanner-objBoundingBox').style.display='none';
 		document.querySelector('#extension-floorplanner-panel').style.display='block';
 		if(typeof binder != 'undefined' && typeof binder.graph != 'undefined') binder.graph.remove(); // superfluous..
@@ -7326,7 +7611,7 @@
 	        //console.log(objTarget.params.resizeLimit.width.min)
 	        document.querySelector('#extension-floorplanner-objBoundingBox').style.display='block'
 	        document.querySelector('#extension-floorplanner-lin').style.cursor ='default';
-	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Modify the object';
+	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = ''; // Modify the object
 	        //console.log(objTarget)
 					if(objTarget.params.resizeLimit){
 						console.log("object has resize limit: ", objTarget.params.resizeLimit);
