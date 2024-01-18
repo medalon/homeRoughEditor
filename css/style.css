@@ -915,7 +915,7 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 }
 
 .extension-floorplanner-slow-fade-out{
-	animation: extension-floorplanner-slow-fade-out 10s linear 1;
+	animation: extension-floorplanner-slow-fade-out 5s linear 1;
 	animation-fill-mode: forwards;
 }
 
@@ -1384,8 +1384,11 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
 	width:calc(100vw - 100px);
 	font-size:1rem;
 	color:#08d;
-	font-style:italic;
 	pointer-events:none;
+}
+
+#extension-floorplanner-current-filename{
+	font-style:italic;
 }
 
 .extension-floorplanner-text-bg{
