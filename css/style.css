@@ -29,22 +29,58 @@ input::placeholder{
 *:fullscreen, *:-webkit-full-screen, *:-moz-full-screen {
     background-color: rgba(255,255,255,0);
 }
+
+#extension-floorplanner-content{
+	color:#333;
+}
+
 #extension-floorplanner-content #h2 {
   font-size:1.4em;
+}
+
+#extension-floorplanner-text-colors-container{
+	display:flex;
+	justify-content:flex-end;
+	margin-bottom:1rem;
+}
+#extension-floorplanner-content.extension-floorplanner-touch #extension-floorplanner-text-colors-container{
+	justify-content:flex-end;
 }
 
 #extension-floorplanner-content .extension-floorplanner-color {
   width:30px;
   height:30px;
-  border:0.5px solid #eee;
+  border:0.5px solid transparent;
   border-radius:3px;
   transition:  0.15s;
-  margin-right:5px;
-  float:left;
+  margin-left:.2rem;
 }
 #extension-floorplanner-content .extension-floorplanner-color:hover {
   border: 0.5px solid #aaa;
   transform: scale(1.3);
+}
+#extension-floorplanner-content.extension-floorplanner-touch .extension-floorplanner-color{
+	flex-grow:1;
+	margin-left:.4rem;
+	height:4rem;
+}
+
+#extension-floorplanner-text-size-container{
+	display:flex; 
+	align-items:center;
+	justify-content:flex-end;
+	margin-bottom:2rem;
+}
+#extension-floorplanner-content.extension-floorplanner-touch #extension-floorplanner-text-size-container{
+	margin: 2rem 0;
+}
+
+
+#extension-floorplanner-text-size-slider{
+	width:50%;
+}
+#extension-floorplanner-content.extension-floorplanner-touch #extension-floorplanner-text-size-slider{
+	width:90%;
 }
 
 #extension-floorplanner-content .extension-floorplanner-boxMouseOver {transition:0.2s;border:3px solid #fff;}
@@ -258,6 +294,7 @@ display: none;
 position: relative;
 /*line-height: 2rem;
 text-indent: 3.25em;*/
+border-color:transparent;
 cursor: pointer;
 -webkit-user-select: none;
  -moz-user-select: none;
@@ -295,6 +332,7 @@ color: #C2C2C2;
 #extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:checked ~ label,
 #extension-floorplanner-content .extension-floorplanner-funkyradio input[type="checkbox"]:checked ~ label {
 color: #777;
+border-color:transparent;
 }
 
 #extension-floorplanner-content .extension-floorplanner-funkyradio input[type="radio"]:checked ~ label:before,
@@ -388,12 +426,25 @@ background-color: #5bc0de;
         display: none;
     }
     #extension-floorplanner-content header {display:block}
-    #extension-floorplanner-content #extension-floorplanner-boxScale {display:none;}
-    #extension-floorplanner-content #extension-floorplanner-boxbind {display:none;}
-    #extension-floorplanner-content #extension-floorplanner-boxScale {display:none;}
-    #extension-floorplanner-content #extension-floorplanner-moveBox {display:none;}
-    #extension-floorplanner-content #extension-floorplanner-zoomBox {display:none;}
-    #extension-floorplanner-content #extension-floorplanner-boxinfo {display:none;}
+	
+	#extension-floorplanner-content #extension-floorplanner-lin{
+		transform: scale(0.95);
+	}
+	#extension-floorplanner-content .extension-floorplanner-leftBox,
+	#extension-floorplanner-content #extension-floorplanner-floorplans-list,
+	#extension-floorplanner-content #extension-floorplanner-areaValue,
+	#extension-floorplanner-content #extension-floorplanner-modals-container,
+	#extension-floorplanner-content #extension-floorplanner-start-floorplanner-button-container,
+	#extension-floorplanner-content #extension-floorplanner-zoomBox2,
+	#extension-floorplanner-content #extension-floorplanner-panel,
+	#extension-floorplanner-content #extension-floorplanner-moveBox,
+	#extension-floorplanner-content #extension-floorplanner-panel-level2,
+    #extension-floorplanner-content #extension-floorplanner-boxScale,
+    #extension-floorplanner-content #extension-floorplanner-boxbindm
+    #extension-floorplanner-content #extension-floorplanner-boxScale,
+    #extension-floorplanner-content #extension-floorplanner-moveBoxm
+    #extension-floorplanner-content #extension-floorplanner-zoomBox,
+    #extension-floorplanner-content #extension-floorplanner-boxinfo {display:none!important}
     #extension-floorplanner-content #extension-floorplanner-lin {height:19cm;width:27cm}
     #extension-floorplanner-content #extension-floorplanner-boxgrid {height:19cm;width:27cm}
     #extension-floorplanner-content #extension-floorplanner-areaValue {left:0px;top:10px}
@@ -433,9 +484,16 @@ background-color: #5bc0de;
 	padding:.5rem .6rem;
 	border-radius:.5rem;
 	border:none;
-	background-color:#ccc;
+	background-color:#bbb;
+	color:inherit;
 	cursor:pointer;
 }
+
+#extension-floorplanner-content .extension-floorplanner-modal-footer button{
+	font-size:1.4rem;
+	padding:.5rem .8rem;
+}
+
 
 #extension-floorplanner-first-run-hint{
 	display:none;
@@ -539,10 +597,11 @@ background-color: #5bc0de;
 	width:47%;
 	box-sizing:border-box;
 }
-
+/*
 #extension-floorplanner-tool-root .extension-floorplanner-flex-between.extension-floorplanner-menu-area{
 	align-items:baseline;
 }
+*/
 
 #extension-floorplanner-tool-root .extension-floorplanner-flex-between.extension-floorplanner-menu-area > *{
 	width:auto;
@@ -627,6 +686,7 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	align-items:center;
 	justify-content:center;
 	font-weight:bold;
+	color:white!important;
 }
 
 #extension-floorplanner-content #extension-floorplanner-objTools{
@@ -962,7 +1022,7 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 	/*box-shadow:2px 1px 3px #ccc;*/
 	display:none;
 }
-	
+
 
 .extension-floorplanner-slider-value{
 	font-weight:bold;
@@ -973,11 +1033,12 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 }
 
 .extension-floorplanner-menu-area{
-	background-color:rgba(0,0,0,.15);
+	background-color:#bbb;
 	border-radius:.5rem;
 	padding:.1rem .5rem .8rem .5rem;
 	box-sizing:border-box;
 	margin-bottom:.5rem;
+	color:black;
 }
 
 .extension-floorplanner-menu-area p{
@@ -1206,6 +1267,14 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
 	margin:0;
 }
 
+#extension-floorplanner-text-suggestions-select{
+	width:3rem;
+    padding: 0.75rem 0;
+    font-size: 1.5rem;
+	background-color: #999;
+	border-radius: 0.5rem;
+}
+
 #extension-floorplanner-content #extension-floorplanner-tool-root #extension-floorplanner-text-toggle-emojis-button{
 	padding:.75rem;
 	font-size:1.5rem;
@@ -1231,6 +1300,11 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
 	margin:.3rem;
 	font-size:1.5rem;
 	cursor:pointer;
+	color:#333;
+}
+#extension-floorplanner-content.extension-floorplanner-touch #extension-floorplanner-text-emojis-list > span{
+	font-size:1.7rem;
+	margin:.4rem;
 }
 
 #extension-floorplanner-textToLayer.extension-floorplanner-hide-emojis-list #extension-floorplanner-text-emojis-list{
@@ -1247,6 +1321,7 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
 	padding:1rem;
 	box-sizing:border-box;
 	margin:1rem 0;
+	background-color:#ddd;
 }
 
 
@@ -1359,12 +1434,12 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
     /*padding: 0.5rem 0.7rem;*/
     border-radius: 0.5rem;
     border: none;
-    background-color: #ccc;
+    background-color: #bbb;
     cursor: pointer;
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	color:black;
+	color:inherit;
 }
 #extension-floorplanner-upload-background-image-label:hover{
 	background: #08d;
@@ -1775,43 +1850,46 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
 
 
 
-@media (prefers-color-scheme: dark) {
-  #extension-floorplanner-tool-root {
+/*@media (prefers-color-scheme: dark) {} */
+
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-tool-root {
     background-color:black;
 	color:#666;
-  }
+}
   
-  #extension-floorplanner-content #extension-floorplanner-tool-root button{
- 	 color:black
-  }
-  #extension-floorplanner-content #extension-floorplanner-tool-root button.extension-floorplanner-btn-done{
- 	 color:white
-  }
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-tool-root button{
+	color:black
+}
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-tool-root button.extension-floorplanner-btn-done{
+	color:white
+}
   
-  #extension-floorplanner-content #extension-floorplanner-tool-root #extension-floorplanner-text_mode.extension-floorplanner-btn-success > span{
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-tool-root #extension-floorplanner-text_mode.extension-floorplanner-btn-success > span{
   	color:white;
-  }  
-  #extension-floorplanner-content #extension-floorplanner-areaValue {
+}  
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-areaValue {
     color:rgba(255,255,255,.4);
-  }
-  #extension-floorplanner-content #extension-floorplanner-panel{
+}
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-panel{
 	background-color:#444;
-  }
-  #extension-floorplanner-content #extension-floorplanner-panel #extension-floorplanner-select_mode{
+}
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-panel #extension-floorplanner-select_mode{
 	color:white;
-  }
+}
   
-  #extension-floorplanner-content #extension-floorplanner-panel .extension-floorplanner-leftBox button{
-	  text:white;
-  }
-  .extension-floorplanner-floorplan-item-name{
-	  color:white;
-  }
+#extension-floorplanner-content.extension-floorplanner-dark-mode #extension-floorplanner-panel .extension-floorplanner-leftBox button{
+	text:white;
+}
+#extension-floorplanner-content.extension-floorplanner-dark-mode  .extension-floorplanner-floorplan-item-name{
+	color:white;
+}
   
-  .extension-floorplanner-text-bg{
-    background-color:rgba(0,0,0,.7);
-  }
+#extension-floorplanner-content.extension-floorplanner-dark-mode  .extension-floorplanner-text-bg{
+	background-color:rgba(0,0,0,.7);
+}
 
+#extension-floorplanner-content.extension-floorplanner-dark-mode  #extension-floorplanner-upload-background-image-label{
+	color:black;
 }
 
 

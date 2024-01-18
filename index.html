@@ -16,7 +16,7 @@
 
 <body style="background:#f2eee5;margin:0;padding:0;" class="developerX">
 
-<div id="extension-floorplanner-content">
+<div id="extension-floorplanner-content" class="extension-floorplanner-touch">
     
   <div id="extension-floorplanner-content-container">
 		<!--
@@ -167,7 +167,7 @@
 
 
 
-		    <div id="extension-floorplanner-settings" class="extension-floorplanner-leftBox">
+		    <div id="extension-floorplanner-settings" class="extension-floorplanner-leftBox extension-floorplanner-sub">
 		      <div class="extension-floorplanner-vertical-flex-between">
 						<div>
 							<h2><span class="extension-floorplanner-unicode-icon-medium">⚙️</span> Settings</h2>
@@ -193,6 +193,17 @@
 									<div class="extension-floorplanner-funkyradio">
 										<input type="checkbox" id="extension-floorplanner-multi" checked="">
 										<label for="extension-floorplanner-multi"></label>
+									</div>
+								<li>
+										
+								<li class="extension-floorplanner-flex-between extension-floorplanner-menu-area" style="align-items:flex-start">
+									<div>
+										<h4>Dark mode</h4>
+										<p>Forces the interface to use darker colors, for working at night. By default this is automatic.</p>
+									</div>
+									<div class="extension-floorplanner-funkyradio">
+										<input type="checkbox" id="extension-floorplanner-dark-mode">
+										<label for="extension-floorplanner-dark-mode"></label>
 									</div>
 								<li>
 								
@@ -222,7 +233,7 @@
 		      <section id="extension-floorplanner-reportRooms" class="extension-floorplanner-toHide" style="display:none">
 		      </section>
 		      <button class="extension-floorplanner-btn extension-floorplanner-btn-info extension-floorplanner-btn-done extension-floorplanner-fully" id="extension-floorplanner-reportTools-done-button" style="margin-top:50px"
-		            onclick="document.querySelector('#extension-floorplanner-reportTools').style.display='none';document.querySelector('#extension-floorplanner-panel').style.display='block';mode = 'select_mode';">DONE</button>
+		            onclick="document.querySelector('#extension-floorplanner-reportTools').style.display='none';panel_el.style.display='block';mode = 'select_mode';">DONE</button>
 		    </div>
 
 		    <div id="extension-floorplanner-wallTools" class="extension-floorplanner-leftBox">
@@ -255,7 +266,7 @@
 				      </ul>
 							<ul class="extension-floorplanner-list-unstyled">
 				        <li><button class="extension-floorplanner-btn extension-floorplanner-btn-info extension-floorplanner-btn-done extension-floorplanner-fully" style="margin-top:2rem"
-				            onclick="fonc_button('select_mode');document.querySelector('#extension-floorplanner-boxinfo').innerHTML='';document.querySelector('#extension-floorplanner-wallTools').style.display='none';document.querySelector('#extension-floorplanner-panel').style.display='block'">DONE</button></li>
+				            onclick="fonc_button('select_mode');box_info_el.innerHTML='';document.querySelector('#extension-floorplanner-wallTools').style.display='none';panel_el.style.display='block'">DONE</button></li>
 							</ul>
 						</div>
 						<div>
@@ -371,7 +382,7 @@
 								<li><br/><br/><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-objToolsHinge">Reverse hinges</button></li>
 			        
 				        <li><button class="extension-floorplanner-btn extension-floorplanner-btn-info extension-floorplanner-btn-done" style="margin-top:100px"
-				            onclick="fonc_button('select_mode');document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Selection mode';document.querySelector('#extension-floorplanner-objTools').style.display='none';document.querySelector('#extension-floorplanner-panel').style.display='block';binder.graph.remove();bye_binder();rib();">DONE</button></li>
+				            onclick="fonc_button('select_mode');box_info_el.innerHTML = 'Selection mode';document.querySelector('#extension-floorplanner-objTools').style.display='none';panel_el.style.display='block';binder.graph.remove();bye_binder();rib();">DONE</button></li>
 				      </ul>
 						</div>
 						<div>
@@ -699,11 +710,11 @@
 			        <li class="extension-floorplanner-show-if-room"><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-show-if-developer" id="extension-floorplanner-report_mode" title="Show report">📊 Report</button></li>
 					
 			        <li class="extension-floorplanner-flex-between">
-								<label id="extension-floorplanner-upload-background-image-label" for="extension-floorplanner-upload-background-image">
+								<label id="extension-floorplanner-upload-background-image-label" for="extension-floorplanner-upload-background-image"  title="Upload a background image to trace over">
 								  <input type="file" id="extension-floorplanner-upload-background-image" name="background-image" style="display:none"/>
 								  <span class="extension-floorplanner-unicode-icon-medium" >⤒</span>
 								</label>
-								<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow" id="extension-floorplanner-svg-download-button" title="Download"><!--<span class="extension-floorplanner-unicode-icon-medium" style="font-weight:bold">⤓</span>--><u class="extension-floorplanner-unicode-icon-medium" >⤓</u></button>
+								<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow" id="extension-floorplanner-svg-download-button" title="Download as .svg file"><!--<span class="extension-floorplanner-unicode-icon-medium" style="font-weight:bold">⤓</span>--><u class="extension-floorplanner-unicode-icon-medium" >⤓</u></button>
 			        <li>
 						
 						
@@ -737,9 +748,16 @@
 			                data-toggle="tooltip" data-placement="right" title="Full screen"><span class="extension-floorplanner-unicode-icon-medium" style="transform:rotate(-90deg);display:inline-block"><sup>⇲</sup><sub>⇱</sub></span></button>
 							</li>
 
-							<li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-show-floorplanner-settings"
-	            	   onclick="show_floorplanner_settings();"><span>⚙️</span> Settings</button>
+			        <li>
+								<div class="extension-floorplanner-vertical-shrinker">
+									<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-show-floorplanner-settings"
+										            	   onclick="show_floorplanner_settings();"><span>⚙️</span> Settings</button>
+
+									<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-print-button"
+																	      onclick="print_floorplan();"><span>🖨</span> Print</button>
+								</div>
 							</li>
+
 							
 
 							<li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-stop-floorplanner"
@@ -946,11 +964,11 @@
 
 
 				<div id="extension-floorplanner-modals-container">
-			    <div class="extension-floorplanner-modal extension-floorplanner-fade " id="extension-floorplanner-myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			    <div class="extension-floorplanner-modal extension-floorplanner-fade " id="extension-floorplanner-newFileModal" tabindex="-1" role="dialog" aria-labelledby="newFileModalLabel">
 			      <div class="extension-floorplanner-modal-dialog modal-lg  modal-dialog-centered" role="document">
 			        <div class="extension-floorplanner-modal-content" style="text-align:center">
 			          <div class="extension-floorplanner-modal-header">
-			            <h2 class="extension-floorplanner-modal-title" id="extension-floorplanner-myModalLabel">📃 Start a new floorplan</h2>
+			            <h2 class="extension-floorplanner-modal-title" id="extension-floorplanner-newFileModalLabel">📃 Start a new floorplan</h2>
 									<p id="extension-floorplanner-plan-exists-warning">Last chance to save your current floorplan!</p>
 			          </div>
 								
@@ -999,13 +1017,159 @@
 								
 			            <div style="display:flex;align-items:center;min-height:9rem">
 										<input type="text" id="extension-floorplanner-labelBox" placeholder="Your text"> <!-- onfocus="this.value='';"  -->
+										
+										<div style="width:3rem;margin:0 1px;">
+								      <select class="extension-floorplanner-form-select" aria-label="Default select example" id="extension-floorplanner-text-suggestions-select">
+								        <option selected value="0">📒</option>
+								        <option value="1">Lounge</option>
+												<option value="51">Living room</option>
+								        <option value="2">Lunchroom</option>
+								        <option value="3">Kitchen</option>
+												<option value="23">Pantry</option>
+												<option value="52">Dining room</option>
+								        <option value="4">Toilet</option>
+												<option value="14">Toilet 2</option>
+								        <option value="5">Bathroom</option>
+												<option value="13">Bathroom 2</option>
+								        <option value="6">Bedroom</option>
+								        <option value="7">Bedroom 2</option>
+								        <option value="8">Bedroom 3</option>
+								        <option value="15">Bedroom 4</option>
+								        <option value="16">Bedroom 5</option>
+								        <option value="9">Locker</option>
+								        <option value="10">Office</option>
+								        <option value="11">Hall</option>
+												<option value="19">Corridor</option>
+								        <option value="12">Loggia</option>
+								        <option value="17">Balcony</option>
+												<option value="21">Balcony 2</option>
+								        <option value="18">Terrace</option>
+												<option value="46">Shed</option>
+								        <option value="20">Garage</option>
+												<option value="21">Garden</option>
+								        <option value="22">Clearance</option>
+												<option value="24">Porch</option>
+												<option value="25">Playroom</option>
+												<option value="26">Mezzanine</option>
+												<option value="27">Cellar</option>
+												<option value="28">Doghouse</option>
+												<option value="29">Treehouse</option>
+												<option value="30">Dock</option>
+												<option value="31">Utility room</option>
+												<option value="32">Heating</option>
+												<option value="33">Pool</option>
+												<option value="34">Serre</option>
+												<option value="35">Waiting room</option>
+												<option value="36">Guest room</option>
+												<option value="48">Foyer</option>
+												<option value="37">Bar</option>
+												<option value="38">Cinema</option>
+												<option value="63">Game room</option>
+												<option value="39">Storage</option>
+												<option value="40">Storage 2</option>
+												<option value="47">Cold storage</option>
+												<option value="41">Veranda</option>
+												<option value="42">Front garden</option>
+												<option value="43">Rear garden</option>
+												<option value="44">Firepit</option>
+												<option value="45">Playground</option>
+												<option value="46">Parking</option>
+												<option value="49">Workshop</option>
+												<option value="50">Kitchenette</option>
+												<option value="53">Reception</option>
+												<option value="54">Family room</option>
+												<option value="55">Sun room</option>
+												<option value="56">Library</option>
+												<option value="57">Closet</option>
+												<option value="58">Laundry room</option>
+												<option value="59">Attic</option>
+												<option value="60">Broom closet</option>
+												<option value="61">Linnen closet</option>
+												<option value="62">Nursery</option>
+												<option value="64">Meeting room</option>
+												<option value="65">Loft</option>
+												<option value="66">Gym</option>
+												<option value="67">Den</option>
+												<option value="68">Staircase</option>
+												<option value="69">Elevator</option>
+												<option value="70">Powder room</option>
+												<option value="71">Dressing room</option>
+												<option value="72">En suite</option>
+												<option value="73">Meditation space</option>
+												<option value="74">Billiards Room</option>
+												<option value="75">Spa</option>
+												<option value="76">Media room</option>
+												<option value="77">Studio</option>
+												<option value="78">Study</option>
+												<option value="79">Nook</option>
+												<option value="80">Cave</option>
+												<option value="81">Pet room</option>
+												<option value="82">Safe room</option>
+												<option value="83">Conservatory</option>
+												<option value="84">Observatory</option>
+												<option value="85">Shrine</option>
+												<option value="86">Crawl space</option>
+												<option value="87">Keeping room</option>
+												<option value="88">Great room</option>
+												<option value="89">Music room</option>
+												<option value="90">Mud room</option>
+												<option value="91">Server room</option>
+												<option value="92">Solarium</option>
+												<option value="93">Sauna</option>
+												<option value="94">Dark room</option>
+												<option value="95">Deck</option>
+												<option value="96">Greenhouse</option>
+												<option value="97">Gazebo</option>
+												<option value="98">Wood shed</option>
+												<option value="99">Dry room</option>
+												<option value="100">Boiler room</option>
+												<option value="101">Classroom</option>
+												<option value="102">Observation room</option>
+												<option value="103">Observation deck</option>
+												<option value="104">Boat house</option>
+												<option value="105">Back room</option>
+												<option value="106">Patio</option>
+												<option value="107">Bike shed</option>
+												<option value="108">Smoking room</option>
+												<option value="109">Garbage room</option>
+												<option value="110">Freezer</option>
+												<option value="111">Breakfast room</option>
+												<option value="112">Guest suite</option>
+												<option value="113">Rooftop</option>
+												<option value="114">Crafts room</option>
+												<option value="115">Panic room</option>
+												<option value="116">Half bath</option>
+												<option value="117">Ritual room</option>
+												<option value="118">Shoe closet</option>
+												<option value="119">Outdoor seating</option>
+												<option value="120">Orchard</option>
+												<option value="121">Driveway</option>
+												<option value="122">Secret room</option>
+												<option value="123">Vegetable garden</option>
+												<option value="124">Outhouse</option>
+												<option value="125">Composting</option>
+												<option value="126">Kennel</option>
+												<option value="127">Stable</option>
+												<option value="128">Kennel</option>
+												<option value="129">Minarette</option>
+												<option value="130">Cupola</option>
+												<option value="131">Enfilade</option>
+												<option value="132">Fireplace</option>
+												<option value="133">Tower</option>
+												<option value="134">Dormer</option>
+												<option value="135">Nook</option>
+												<option value="136">Guard house</option>
+								
+								      </select>
+										</div>
+										
 										<button id="extension-floorplanner-text-toggle-emojis-button">😀</button>
 									</div>
 									<div id="extension-floorplanner-text-emojis-list">
 										Loading emojis...
 									</div>
 								
-									<div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+									<div id="extension-floorplanner-text-colors-container">
 				            <div class="extension-floorplanner-color extension-floorplanner-textEditorColor" data-type="gradientRed"
 				              style="color:#f55847;background:linear-gradient(30deg, #f55847, #f00);"></div>
 				            <div class="extension-floorplanner-color extension-floorplanner-textEditorColor" data-type="gradientYellow"
@@ -1032,7 +1196,7 @@
 				              style="color:#e2c695;background:linear-gradient(30deg,#e2c695, #c69d56);"></div>
 									</div>
 									
-			            <div style="display:flex; align-items:center;justify-content:flex-end;margin-bottom:2rem">
+			            <div id="extension-floorplanner-text-size-container">
 										<p style="display:inline-block;margin-right:1rem;font-weight:bold">Size </p>
 			            	<input type="range" list="tickmarks" id="extension-floorplanner-text-size-slider" step="0.1" min="10" max="60" value="15" class="extension-floorplanner-range" style="width:200px" />
 									</div>
@@ -1128,7 +1292,8 @@
 	var currently_cloning_an_object = false;
 	let settings = {
 		'auto_save':true,
-		'multi_line':true
+		'multi_line':true,
+		'dark_mode':null
 	}
 	
 	if(localStorage.getItem('extension-floorplanner-settings') != null){
@@ -1166,16 +1331,24 @@
 	
 	let floorplanner_started = false;
 	
-	let bg_image_el = document.getElementById('extension-floorplanner-svg-container-bg-image');
-	let floorplans_list_el = document.getElementById('extension-floorplanner-floorplans-list');
+	
+	let content_el = document.getElementById('extension-floorplanner-content');
 	let root_el = document.getElementById('extension-floorplanner-tool-root');
-	let linElement = document.querySelector('#extension-floorplanner-lin');
+	let panel_el = document.getElementById('extension-floorplanner-panel');
+	let box_info_el = document.getElementById('extension-floorplanner-boxinfo');
+	let bg_image_el = document.getElementById('extension-floorplanner-svg-container-bg-image');
+	let linElement = document.getElementById('extension-floorplanner-lin');
+	let floorplans_list_el = document.getElementById('extension-floorplanner-floorplans-list');
 	//let layers_list_el = document.querySelector('#extension-floorplanner-layer_list');
-	let myModal = document.querySelector('#extension-floorplanner-myModal');
+	let newFileModal = document.getElementById('extension-floorplanner-newFileModal');
 	
 	
 	let emojis = ['🧯','🚪','🛏️','🛋️','🪑','🚽','🚿','🛁','🚰','💘','💝','💖','💗','💓','💞','💕','💟','❣️','💔','❤️','🧡','💛','💚','💙','💜','🤎','🖤','🤍','❤️‍','🔥','❤️‍','🩹','💯','♨️','💢','💬','👁️‍🗨️','🗨️','🗯️','💭','💤','🌐','♠️','♥️','♦️','♣️','🃏','🀄️','🎴','🎭️','🔇','🔈️','🔉','🔊','🔔','🔕','🎼','🎵','🎶','💹','🏧','🚮','♿️','🚹️','🚺️','🚻','🚼️','🚾','🛂','🛃','🛄','🛅','⚠️','🚸','⛔️','🚫','🚳','🚭️','🚯','🚱','🚷','📵','🔞','☢️','☣️','⬆️','↗️','↕️','↔️','↩️','↪️','⤴️','⤵️','🔃','🔄','🔙','🔚','🔛','🔜','🔝','🛐','⚛️','🕉️','✡️','☸️','☯️','✝️','☦️','☪️','☮️','🕎','🔯','♈️','♉️','♊️','♋️','♌️','♍️','♎️','♏️','♐️','♑️','♒️','♓️','⛎','🔀','🔁','▶️','⏩️','⏭️','⏯️','⏸️','⏹️','⏺️','⏏️','🎦','🔅','🔆','📶','📳','📴','♀️','♂️','⚧','♾️','〰️','💱','⚕️','♻️','⚜️','🔱','📛','🔰','⭕️','✅','☑️','✔️','❌','❎','➰','➿','〽️','✳️','✴️','❇️','©️','®️','™️','#️⃣','*️⃣','0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟','🔠','🔡','🔢','🔣','🔤','🅰️','🆎','🅱️','🆑','🆒','🆓','ℹ️','🆔','Ⓜ️','🆕','🆖','🅾️','🆗','🅿️','🆘','🆙','🆚','🈁','🈂️','🈷️','🈶','🈯️','🉐','🈹','🈚️','🈲','🉑','🈸','🈴','🈳','㊗️','㊙️','🈺','🈵','🔴','🟠','🟡','🟢','🔵','🟣','🟤','⚫️','⚪️','🟥','🟧','🟨','🟩','🟦','🟪','🟫','⬛️','⬜️','◼️','◻️','🔶','🔷','🔺','💠','🔘','🔳','🔲','🛎️','🧳','⌛️','⏳️','⌚️','⏰','🕔️','⏱️','⏲️','🕰️','🌡️','🗺️','🧭','🎃','🎄','🧨','🎈','🎉','🎊','🎎','🎏','🎐','🎀','🎁','🎗️','🎟️','🎫','🔮','🧿','🎮️','🕹️','🎰','🎲','♟️','🧩','🧸','🖼️','🎨','🧵','🧶','👓️','🕶️','🥽','🥼','🦺','👔','👕','👖','🧣','🧤','🧥','🧦','👗','👘','🥻','🩱','🩲','🩳','👙','👚','👛','👜','👝','🛍️','🎒','👞','👟','🥾','🥿','👠','👡','🩰','👢','👑','👒','🎩','🎓️','🧢','⛑️','📿','💄','💍','💎','📢','📣','📯','🎙️','🎚️','🎛️','🎤','🎧️','📻️','🎷','🎸','🎹','🎺','🎻','🪕','🥁','📱','📲','☎️','📞','📟️','📠','🔋','🔌','💻️','🖥️','🖨️','⌨️','🖱️','🖲️','💽','💾','💿️','📀','🧮','🎥','🎞️','📽️','🎬️','📺️','📷️','📸','📹️','📼','🔍️','🔎','🕯️','💡','🔦','🏮','🪔','📔','📕','📖','📗','📘','📙','📚️','📓','📒','📃','📜','📄','📰','🗞️','📑','🔖','🏷️','💰️','💴','💵','💶','💷','💸','💳️','🧾','✉️','💌','📧','🧧','📨','📩','📤️','📥️','📦️','📫️','📪️','📬️','📭️','📮','🗳️','✏️','✒️','🖋️','🖊️','🖌️','🖍️','📝','💼','📁','📂','🗂️','📅','📆','🗒️','🗓️','📇','📈','📉','📊','📋️','📌','📍','📎','🖇️','📏','📐','✂️','🗃️','🗄️','🗑️','🔒️','🔓️','🔏','🔐','🔑','🗝️','🔨','🪓','⛏️','⚒️','🛠️','🗡️','⚔️','💣️','🏹','🛡️','🔧','🔩','⚙️','🗜️','⚖️','🦯','🔗','⛓️','🧰','🧲','⚗️','🧪','🧫','🧬','🔬','🔭','📡','💉','🩸','💊','🩹','🩺','🪒','🧴','🧷','🫧','🧹','🧺','🧻','🧼','🧽','🛒','🚬','⚰️','⚱️','🏺','🕳️','🏔️','⛰️','🌋','🗻','🏕️','🏖️','🏜️','🏝️','🏟️','🏛️','🏗️','🧱','🏘️','🏚️','🏠️','🏡','🏢','🏣','🏤','🏥','🏦','🏨','🏩','🏪','🏫','🏬','🏭️','🏯','🏰','💒','🗼','🗽','⛪️','🕌','🛕','🕍','⛩️','🕋','⛲️','⛺️','🌁','🌃','🏙️','🌄','🌅','🌆','🌇','🌉','🗾','🏞️','🎠','🎡','🎢','💈','🎪','🚂','🚃','🚄','🚅','🚆','🚇️','🚈','🚉','🚊','🚝','🚞','🚋','🚌','🚍️','🚎','🚐','🚑️','🚒','🚓','🚔️','🚕','🚖','🚗','🚘️','🚙','🚚','🚛','🚜','🏎️','🏍️','🛵','🦽','🦼','🛺','🚲️','🛴','🛹','🚏','🛣️','🛤️','🛢️','⛽️','🚨','🚦','🛑','🚧','⚓️','⛵️','🛶','🚤','🛳️','⛴️','🛥️','🚢','✈️','🛩️','🛫','🛬','🪂','💺','🚁','🚟','🚠','🚡','🛰️','🚀','🛸','🎆','🎇','🎑','🗿','⚽️','⚾️','🥎','🏀','🏐','🏈','🏉','🎾','🥏','🎳','🏏','🏑','🏒','🥍','🏓','🏸','🥊','🥋','🥅','⛳️','⛸️','🎣','🤿','🎽','🎿','🛷','🥌','🎯','🪀','🪁','🎱','🎖️','🏆️','🏅','🥇','🥈','🥉','🍇','🍈','🍉','🍊','🍋','🍌','🍍','🥭','🍎','🍏','🍐','🍑','🍒','🍓','🥝','🍅','🥥','🥑','🍆','🥔','🥕','🌽','🌶️','🥒','🥬','🥦','🧄','🧅','🍄','🥜','🌰','🍞','🥐','🥖','🥨','🥯','🥞','🧇','🧀','🍖','🍗','🥩','🥓','🍔','🍟','🍕','🌭','🥪','🌮','🌯','🥙','🧆','🥚','🍳','🥘','🍲','🥣','🥗','🍿','🧈','🧂','🥫','🍱','🍘','🍙','🍚','🍛','🍜','🍝','🍠','🍢','🍣','🍤','🍥','🥮','🍡','🥟','🥠','🥡','🍦','🍧','🍨','🍩','🍪','🎂','🍰','🧁','🥧','🍫','🍬','🍭','🍮','🍯','🍼','🥛','☕️','🍵','🍶','🍾','🍷','🍸️','🍹','🍺','🍻','🥂','🥃','🥤','🧃','🧉','🧊','🥢','🍽️','🍴','🥄','🔪','🐵','🐒','🦍','🦧','🐶','🐈️','🐕️','🦮','🦺','🐩','🐺','🦊','🦝','🐱','🦁','🐯','🐅','🐆','🐴','🐎','🦄','🦓','🦌','🐮','🐂','🐃','🐄','🐷','🐖','🐗','🐽','🐏','🐑','🐐','🐪','🐫','🦙','🦒','🐘','🦏','🦛','🐭','🐁','🐀','🐹','🐰','🐇','🐿️','🦔','🦇','🐻','🐻‍','❄️','🐨','🐼','🦥','🦦','🦨','🦘','🦡','🐾','🦃','🐔','🐓','🐣','🐤','🐥','🐦️','🐧','🕊️','🦅','🦆','🦢','🦉','🦩','🦚','🦜','🐸','🐊','🐢','🦎','🐍','🐲','🐉','🦕','🦖','🐳','🐋','🐬','🐟️','🐠','🐡','🦈','🐙','🦑','🦀','🦞','🦐','🦪','🐚','🐌','🦋','🐛','🐜','🐝','🐞','🦗','🕷️','🕸️','🦂','🦟','🦠','💐','🌸','💮','🏵️','🌹','🥀','🌺','🌻','🌼','🌷','🌱','🌲','🌳','🌴','🌵','🎋','🎍','🌾','🌿','☘️','🍀','🍁','🍂','🍃','🌍️','🌎️','🌏️','🌑','🌒','🌓','🌔','🌕️','🌖','🌗','🌘','🌙','🌚','🌛','🌜️','☀️','🌝','🌞','🪐','💫','⭐️','🌟','✨','🌠','🌌','☁️','⛅️','⛈️','🌤️','🌥️','🌦️','🌧️','🌨️','🌩️','🌪️','🌫️','🌬️','🌀','🌈','🌂','☂️','☔️','⛱️','⚡️','❄️','☃️','⛄️','☄️','🔥','💧','🌊','💥','💦','💨','😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐️','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','😮‍','💨','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','😶‍','🌫️','🥴','😵‍','💫','😵','🤯','🤠','🥳','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽️','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🙈','🙉','🙊','👋','🤚','🖐️','✋','🖖','👌','🤏','✌️','🤞','🤟','🤘','🤙','👈️','👉️','👆️','🖕','👇️','☝️','👍️','👎️','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','✍️','💅','🤳','💪','🦾','🦿','🦵','🦶','👂️','🦻','👃','🧠','🦷','🦴','👀','👁️','👅','👄','💋','👶','🧒','👦','👧','🧑','👨','👩','👴','👵','🙍','🙍‍♂️','🙍‍♀️','🍼','🎄','🚶','🚶‍♂️','🚶‍♀️','🧍','🧍‍♂️','🧍‍♀️','🧎','🧎‍♂️','🧎‍♀️','🦽','🏃','🏃‍♂️','🏃‍♀️','💃','🕺','🕴️','🤾','🤹‍♀️','🧘','🛀','🛌','🤝‍','👭','👫','👬','💏','👩‍❤️‍💋‍👨','👨‍❤️‍💋‍👨','🗣️','👤','👥','👣','🔫','∥','⨻','⟁','▢','⬨','⊠','▤','▥','▦','▦','▦','▦','⧇','⊡','⊞','⧄','◫','◰','❑','⛋','⌑','⟤','◙','⬟','⬡','⏣','◉','⌾','⊕','◴','⎉','⎊','◌','⌽','⊖','⊜','⬬','⬭','⌂','▱','▰','➟','➞','⭤','⮂','᭚']; 
 	// '
+	
+	if(touch_ui){
+		content_el.classList.add('extension-floorplanner-touch');
+	}
 	
 	
 	let floorplans = JSON.parse(localStorage.getItem('extension-floorplanner-floorplans'));
@@ -1267,6 +1440,20 @@
 	
 	const text_modal_el = document.getElementById('extension-floorplanner-textToLayer');
 	
+	
+	const text_suggestions_select_el = document.querySelector('#extension-floorplanner-text-suggestions-select');
+	text_suggestions_select_el.addEventListener("change", function (event) {
+		if (text_suggestions_select_el.selectedIndex == -1){
+			return null;
+		}
+		else{
+			if(document.getElementById('extension-floorplanner-labelBox').value != ''){
+				document.getElementById('extension-floorplanner-labelBox').value = document.getElementById('extension-floorplanner-labelBox').value + ' ';
+			}
+			document.getElementById('extension-floorplanner-labelBox').value = document.getElementById('extension-floorplanner-labelBox').value + text_suggestions_select_el.options[text_suggestions_select_el.selectedIndex].text;
+		}
+	});
+	
 	document.querySelector('#extension-floorplanner-text-toggle-emojis-button').addEventListener("click", function (event) {
 		if(text_modal_el.classList.contains('extension-floorplanner-hide-emojis-list')){
 			text_modal_el.classList.remove('extension-floorplanner-hide-emojis-list');
@@ -1287,6 +1474,35 @@
 		});
 		emojis_list_el.appendChild(emoji_el);
 	}
+	
+	
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && settings.dark_mode == null){
+		content_el.classList.add('extension-floorplanner-dark-mode');
+		document.getElementById('extension-floorplanner-dark-mode').checked = true;
+	}
+	else if(settings.dark_mode === true){
+		content_el.classList.add('extension-floorplanner-dark-mode');
+		document.getElementById('extension-floorplanner-dark-mode').checked = true;
+	}
+	else if(settings.dark_mode === false){
+		//console.log("dark mode check fell through or was disabled, keeping UI in light mode");
+	}
+		
+	
+
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+		if(settings.dark_mode == null){
+			const newColorScheme = e.matches ? "dark" : "light";
+			if(newColorScheme == 'dark'){
+				content_el.classList.add('extension-floorplanner-dark-mode');
+				document.getElementById('extension-floorplanner-dark-mode').checked = true;
+			}
+			else{
+				content_el.classList.remove('extension-floorplanner-dark-mode');
+				document.getElementById('extension-floorplanner-dark-mode').checked = false;
+			}
+		}
+	});
 	
 	
 	
@@ -1335,7 +1551,7 @@
 	});
  
 
-	document.querySelector('#extension-floorplanner-panel').addEventListener('mousemove', function (event) {
+	panel_el.addEventListener('mousemove', function (event) {
 	  if ((mode == 'line_mode' || mode == 'partition_mode') && action == 1) {
 	    action = 0;
 	    if (typeof (binder) != 'undefined') {
@@ -1433,8 +1649,7 @@
 	function _MOUSEMOVE(event) {
 		//console.log("in _MOUSEMOVE. event, mode: ", event, mode);
 	  event.preventDefault();
-	  document.querySelector('.extension-floorplanner-sub').style.display='none';
-
+	  //document.querySelector('.extension-floorplanner-sub').style.display='none';
 		//console.log("ROOM: ", ROOM);
 		if(typeof binder != 'undefined'){
 			//console.log("mousemove -> mode, binder: ", mode, binder);
@@ -2903,9 +3118,9 @@
 			currently_editing_an_object = false;
 			currently_cloning_an_object = false;
 			fonc_button('select_mode');
-			document.querySelector('#extension-floorplanner-boxinfo').innerHTML=''; // Selection mode
+			box_info_el.innerHTML=''; // Selection mode
 			document.querySelector('#extension-floorplanner-objBoundingBox').style.display='none';
-			document.querySelector('#extension-floorplanner-panel').style.display='block';
+			panel_el.style.display='block';
 			//if(typeof binder != 'undefined' && typeof binder.graph != 'undefined') binder.graph.remove(); // superfluous..
 			//bye_binder();
 		}
@@ -3309,7 +3524,7 @@
 	    document.querySelector('g#extension-floorplanner-' + targetBox).append(OBJDATA[OBJDATA.length - 1].graph);
 	    //delete binder;
 		  bye_binder();
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Object added';
+	    box_info_el.innerHTML = 'Object added';
 	    fonc_button('select_mode');
 	    floorplanSave();
 	  }
@@ -3390,7 +3605,7 @@
 					console.error("distance_mode: could not delete cross: ", e);
 				}
 	      
-	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measurement added';
+	      box_info_el.innerHTML = 'Measurement added';
 	      fonc_button('select_mode');
 	      floorplanSave();
 	    }
@@ -3427,10 +3642,10 @@
 
 	    var actionToDo = ROOM[binder.id].action;
 	    document.querySelector('#extension-floorplanner-' + actionToDo + 'Action').checked = true;
-	    document.querySelector('#extension-floorplanner-panel').style.display='none';
+	    panel_el.style.display='none';
 	    document.querySelector('#extension-floorplanner-roomTools').style.display='block';
 	    document.querySelector('#extension-floorplanner-lin').style.cursor = 'default';
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select a room';
+	    box_info_el.innerHTML = 'Select a room';
 
 	    mode = 'edit_room_mode';
 	    floorplanSave();
@@ -3460,7 +3675,7 @@
 
 	  if (mode == 'door_mode') {
 	    if (typeof (binder) == "undefined") {
-	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Draw a wall first';
+	      box_info_el.innerHTML = 'Draw a wall first';
 	      fonc_button('select_mode');
 	      return false;
 	    }
@@ -3469,7 +3684,7 @@
 	    document.querySelector('#extension-floorplanner-boxcarpentry').append(OBJDATA[OBJDATA.length - 1].graph);
 	    //delete binder;
 			bye_binder();
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Element added';
+	    box_info_el.innerHTML = 'Element added';
 	    fonc_button('select_mode');
 	    floorplanSave();
 	  }
@@ -3509,7 +3724,7 @@
 	        action = 1;
 	      }
 	      else action = 0;
-	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Wall added <span style=\'font-size:0.6em\'> ' + (qSVG.measure(
+	      box_info_el.innerHTML = 'Wall added <span style=\'font-size:0.6em\'> ' + (qSVG.measure(
 	        { x: pox, y: poy }, { x: x, y: y }) / 60).toFixed(2) + ' m</span>';
 	      document.querySelector('#extension-floorplanner-line_construc').remove(); // DEL LINE CONSTRUC HELP TO VIEW NEW SEG PATH
 	      lengthTemp.remove();
@@ -3524,7 +3739,7 @@
 	    else {
 	      action = 0;
 	      construc = 0;
-	      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = ''; // Select mode
+	      box_info_el.innerHTML = ''; // Select mode
 	      fonc_button('select_mode');
 	      if (typeof (binder) != 'undefined') {
 	        //binder.remove();
@@ -3564,9 +3779,9 @@
 	        }
 
 	        if (found) {
-	          document.querySelector('#extension-floorplanner-panel').style.display='none'
+	          panel_el.style.display='none'
 	          var objWall = floorplanEditor.objFromWall(wallBind);
-	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Modify a wall'; // <br/><span style="font-size:0.7em;color:#de9b43">This wall can\'t become a separation (it contains doors or windows)</span>
+	          box_info_el.innerHTML = 'Modify a wall'; // <br/><span style="font-size:0.7em;color:#de9b43">This wall can\'t become a separation (it contains doors or windows)</span>
 	          if (objWall.length > 0) document.querySelector('#extension-floorplanner-separate').style.display='none';
 	          else if (binder.wall.type == 'separate') {
 	            document.querySelector('#extension-floorplanner-separate').style.display='none';
@@ -3581,7 +3796,7 @@
 	            document.querySelector('#extension-floorplanner-rangeThick').style.display='block';
 	            document.querySelector('#extension-floorplanner-recombine').style.display='none';
 	            document.getElementById('extension-floorplanner-titleWallTools').textContent = "Modify the wall";
-	            document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Modify the wall';
+	            box_info_el.innerHTML = 'Modify the wall';
 	          }
 	          document.querySelector('#extension-floorplanner-wallTools').style.display = 'block'
 	          document.getElementById('extension-floorplanner-wallWidth').setAttribute('min', 1);
@@ -3602,10 +3817,10 @@
 	        var moveObj = Math.abs(binder.oldXY.x - binder.x) + Math.abs(binder.oldXY.y - binder.y);
 	        if (moveObj < 1) {
 						//console.log("setting edit_door_mode");
-				    document.querySelector('#extension-floorplanner-panel').style.display='none';
+				    panel_el.style.display='none';
 				    document.querySelector('#extension-floorplanner-objTools').style.display='block';
 	          document.querySelector('#extension-floorplanner-lin').style.cursor = 'default';
-	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Configure the door/window';
+	          box_info_el.innerHTML = 'Configure the door/window';
 	          //console.log('obj ??', obj);
 	          document.getElementById('extension-floorplanner-doorWindowWidth').setAttribute('min', binder.obj.params.resizeLimit.width.min);
 	          document.getElementById('extension-floorplanner-doorWindowWidth').setAttribute('max', binder.obj.params.resizeLimit.width.max);
@@ -3634,7 +3849,7 @@
 	          // TO REMOVE MEASURE ON PLAN
 	          objTarget.graph.remove();
 	          OBJDATA.splice(OBJDATA.indexOf(objTarget), 1);
-	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measurement deleted';
+	          box_info_el.innerHTML = 'Measurement deleted';
 	        }
 					//console.log("prior OBJDATA: ", OBJDATA);
 					//console.log("moving object to end of OBJDATA array. length before: ", OBJDATA.length);
@@ -3669,7 +3884,7 @@
 	          else document.querySelector('#extension-floorplanner-objBoundingBoxScale').style.display='block';
 	          if (!objTarget.params.rotate) document.querySelector('#extension-floorplanner-objBoundingBoxRotation').style.display='none';
 	          else document.querySelector('#extension-floorplanner-objBoundingBoxRotation').style.display='block';
-	          document.querySelector('#extension-floorplanner-panel').style.display='none'
+	          panel_el.style.display='none'
 	          //console.log(objTarget.params.resizeLimit.width.min)
 						setTimeout(()=>{
 							currently_editing_an_object = true;
@@ -3677,7 +3892,7 @@
 						
 	          document.querySelector('#extension-floorplanner-objBoundingBox').style.display='block'
 	          document.querySelector('#extension-floorplanner-lin').style.cursor ='default';
-	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Modify the object';
+	          box_info_el.innerHTML = 'Modify the object';
 	          //console.log(objTarget)
 						if(objTarget.params.resizeLimit){
 							//console.log("object has resize limit: ", objTarget.params.resizeLimit);
@@ -3790,7 +4005,7 @@
 				clear_floorplan(true);
 				current_filename = new_floorplan_name;
 				localStorage.setItem('extension-floorplanner-current-filename', JSON.stringify(new_floorplan_name));
-				document.getElementById('extension-floorplanner-myModal').style.display = 'none';
+				document.getElementById('extension-floorplanner-newFileModal').style.display = 'none';
 				
 			}
 			else if (boot !== "recovery") {
@@ -4244,7 +4459,7 @@
 	document.getElementById('extension-floorplanner-report_mode').addEventListener("click", function () {
 	    if (typeof (globalArea) === "undefined") return false;
 	    mode = "report_mode";
-	    document.querySelector('#extension-floorplanner-panel').style.display='none';
+	    panel_el.style.display='none';
 	    document.querySelector('#extension-floorplanner-reportTools').style.display='block';
 	    document.getElementById('extension-floorplanner-reportTotalSurface').innerHTML = "Total surface : <b>" + (globalArea / 3600).toFixed(1) + "</b> m²";
 	    document.querySelector('#extension-floorplanner-reportTotalSurface').style.display='block';
@@ -4524,9 +4739,9 @@
     if(typeof binder.graph != 'undefined') binder.graph.remove();
     if(typeof binder.obj != 'undefined') OBJDATA.splice(OBJDATA.indexOf(binder.obj), 1);
     document.querySelector('#extension-floorplanner-objBoundingBox').style.display = 'none';
-    document.querySelector('#extension-floorplanner-panel').style.display='block';
+    panel_el.style.display='block';
     fonc_button('select_mode');
-    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Deleted object';
+    box_info_el.innerHTML = 'Deleted object';
     //delete binder;
 		bye_binder();
     rib();
@@ -4706,17 +4921,19 @@
         OBJDATA[OBJDATA.length - 1].update();
         //delete binder;
 				bye_binder();
-        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Added text';
+        box_info_el.innerHTML = 'Added text';
         floorplanSave();
     } else {
 			console.warn("no relevant text provided");
-      document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Selection mode';
+      box_info_el.innerHTML = 'Selection mode';
     }
     //document.getElementById('extension-floorplanner-labelBox').textContent = "Your text";
 		document.getElementById('extension-floorplanner-labelBox').value == '';
+		/*
     document.getElementById('extension-floorplanner-labelBox').style.color = "#333333";
     document.getElementById('extension-floorplanner-labelBox').style.fontSize = "15px";
     document.getElementById('extension-floorplanner-text-size-slider').value = 15;
+		*/
 	});
 
 
@@ -4874,7 +5091,7 @@
 	
 	function change_room_background(){
     document.querySelector('#extension-floorplanner-roomTools').style.display = 'none';
-    document.querySelector('#extension-floorplanner-panel').style.display='block';
+    panel_el.style.display='block';
     //binder.remove();
     //delete binder;
 		bye_binder();
@@ -4907,17 +5124,17 @@
     document.querySelector('#extension-floorplanner-boxRoom').replaceChildren();
     document.querySelector('#extension-floorplanner-boxSurface').replaceChildren();
     floorplanEditor.roomMaker(Rooms);
-    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Updated room';
+    box_info_el.innerHTML = 'Updated room';
     fonc_button('select_mode');
 	}
 
 	document.getElementById("extension-floorplanner-resetRoomTools").addEventListener("click", function () {
 	    document.querySelector('#extension-floorplanner-roomTools').style.display = 'none';
-	    document.querySelector('#extension-floorplanner-panel').style.display='block';
+	    panel_el.style.display='block';
 	    //binder.remove();
 	    //delete binder;
 			bye_binder();
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Updated room';
+	    box_info_el.innerHTML = 'Updated room';
 	    fonc_button('select_mode');
 
 	});
@@ -4937,7 +5154,7 @@
 	    floorplanEditor.architect(WALLS);
 	    rib();
 	    mode = "select_mode";
-	    document.querySelector('#extension-floorplanner-panel').style.display='block';
+	    panel_el.style.display='block';
 	});
 
 	let textEditorColorBtn = document.querySelectorAll('.extension-floorplanner-textEditorColor');
@@ -4977,13 +5194,13 @@
 	        obj.graph.remove();
 	        OBJDATA.splice(OBJDATA.indexOf(obj), 1);
 	        fonc_button('select_mode');
-	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Selection mode';
-	        document.querySelector('#extension-floorplanner-panel').style.display = 'block';
+	        box_info_el.innerHTML = 'Selection mode';
+	        panel_el.style.display = 'block';
 	        if(typeof binder.graph != 'undefined') binder.graph.remove();
 	        //delete binder;
 					bye_binder();
 	        rib();
-	        document.querySelector('#extension-floorplanner-panel').style.display = 'block';
+	        panel_el.style.display = 'block';
 	    });
 	}
 
@@ -5701,7 +5918,7 @@
 		//document.querySelector('#extension-floorplanner-boxMeasure').replaceChildren();
 	  linElement.style.cursor = 'crosshair';
 		document.querySelector("g#extension-floorplanner-boxMeasure").replaceChildren();
-	  document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add a measurement';
+	  box_info_el.innerHTML = 'Add a measurement';
 	  fonc_button('distance_mode');
 		setTimeout(()=>{
 			root_el.classList.add('extension-floorplanner-do-not-pulsate');
@@ -5711,7 +5928,7 @@
 	document.querySelector('#extension-floorplanner-room_mode').addEventListener('click',function () {
 		//console.log("clicked on room color button");
 	  linElement.style.cursor = 'pointer';
-	  document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select a room';
+	  box_info_el.innerHTML = 'Select a room';
 	  fonc_button('room_mode');
 		//console.log("adding do-not-pulsate to root_el");
 		setTimeout(()=>{
@@ -5731,7 +5948,7 @@
 	});
 
 	function do_select_mode(){
-    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = ''; // Select
+    box_info_el.innerHTML = ''; // Select
     if (typeof (binder) != 'undefined') {
 				bye_binder();
     }
@@ -5746,7 +5963,7 @@
 		},100);
 	  
     linElement.style.cursor = 'crosshair';
-    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Drag to create walls';
+    box_info_el.innerHTML = 'Drag to create walls';
     multi = 0;
     action = 0;
     // snap = calcul_snap(event, grid_snap);
@@ -5758,7 +5975,7 @@
 
 	document.querySelector('#extension-floorplanner-partition_mode').addEventListener('click',function () {
 	    linElement.style.cursor = 'crosshair';
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Create thin walls';
+	    box_info_el.innerHTML = 'Create thin walls';
 	    multi = 0;
 	    fonc_button('partition_mode');
 			setTimeout(()=>{
@@ -5770,7 +5987,7 @@
 	if(document.querySelector('#extension-floorplanner-rect_mode')){
 		document.querySelector('#extension-floorplanner-rect_mode').addEventListener('click',function () {
 		    linElement.style.cursor = 'crosshair';
-		    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Room(s) creation';
+		    box_info_el.innerHTML = 'Room(s) creation';
 		    fonc_button('rect_mode');
 		});
 	}
@@ -5779,7 +5996,7 @@
 	document.querySelectorAll('.extension-floorplanner-door').forEach(function (element) {
 		element.addEventListener('click',function () {
 	    	linElement.style.cursor = 'crosshair';
-	    	document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add a door';
+	    	box_info_el.innerHTML = 'Add a door';
 	    	document.querySelector('#extension-floorplanner-door_list').style.display = 'none';
 	    	fonc_button('door_mode', element.getAttribute('data-type'));
 		});
@@ -5788,7 +6005,7 @@
 	document.querySelectorAll('.extension-floorplanner-window').forEach(function (element) {
 		element.addEventListener('click',function () {
 	    linElement.style.cursor = 'crosshair';
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add a window';
+	    box_info_el.innerHTML = 'Add a window';
 	    document.querySelector('#extension-floorplanner-door_list').style.display = 'none';
 	    document.querySelector('#extension-floorplanner-window_list').style.display = 'none';
 	    fonc_button('door_mode', element.id.replace('extension-floorplanner-',''));
@@ -5798,7 +6015,7 @@
 	document.querySelectorAll('.extension-floorplanner-object').forEach(function (element) {
 		element.addEventListener('click',function () {
 	    cursor('move');
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add an object';
+	    box_info_el.innerHTML = 'Add an object';
 	    fonc_button('object_mode', element.id.replace('extension-floorplanner-',''));
 	        //element.setAttribute('viewBox', originX_viewbox + ' ' + originY_viewbox + ' ' + width_viewbox + ' ' + height_viewbox);
 		});
@@ -5806,7 +6023,7 @@
 /*
 	document.querySelectorAll('.extension-floorplanner-object').forEach(function (element) {
 	    cursor('move');
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add an object';
+	    box_info_el.innerHTML = 'Add an object';
 	    fonc_button('object_mode', element.id.replace('extension-floorplanner-',''));
 	        //element.setAttribute('viewBox', originX_viewbox + ' ' + originY_viewbox + ' ' + width_viewbox + ' ' + height_viewbox);
 		//});
@@ -5814,12 +6031,12 @@
 */
 	document.querySelector('#extension-floorplanner-stair_mode').addEventListener('click',function () {
 	    cursor('move');
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add staircase';
+	    box_info_el.innerHTML = 'Add staircase';
 	    fonc_button('object_mode', 'simpleStair');
 	});
 
 	document.querySelector('#extension-floorplanner-node_mode').addEventListener('click',function () {
-	    document.querySelector('#extension-floorplanner-boxinfo')
+	    box_info_el
 					.innerHTML = 'Add a joint to a wall<br/><span style=\"font-size:0.7em\">Note: this may remove windows or doors already on that wall.</span>';
 	    fonc_button('node_mode');
 			setTimeout(()=>{
@@ -5829,7 +6046,7 @@
 
 	document.querySelector('#extension-floorplanner-text_mode').addEventListener('click',function () {
 		document.getElementById('extension-floorplanner-labelBox').value = '';
-		document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add text<br/><span style=\"font-size:0.7em\">Place the cursor at the desired location</span>';
+		box_info_el.innerHTML = 'Add text<br/><span style=\"font-size:0.7em\">Place the cursor at the desired location</span>';
 		fonc_button('text_mode');
 	});
 
@@ -5837,14 +6054,14 @@
 		document.querySelector('#extension-floorplanner-grid_mode').addEventListener('click',function () {
 		    if (grid_snap === 'on') {
 		        grid_snap = 'off';
-		        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Help grid off';
+		        box_info_el.innerHTML = 'Help grid off';
 		        document.querySelector('#extension-floorplanner-grid_mode').classList.remove('extension-floorplanner-btn-success');
 		        document.querySelector('#extension-floorplanner-grid_mode').classList.add('btn-warning');
 		        document.querySelector('#extension-floorplanner-grid_mode').innerHTML = 'GRID OFF';
 		        document.querySelector('#extension-floorplanner-boxgrid').style.opacity='0.5';
 		    } else {
 		        grid_snap = 'on';
-		        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Help grid on';
+		        box_info_el.innerHTML = 'Help grid on';
 		        document.querySelector('#extension-floorplanner-grid_mode').classList.remove('btn-warning');
 		        document.querySelector('#extension-floorplanner-grid_mode').classList.add('extension-floorplanner-btn-success');
 		        document.querySelector('#extension-floorplanner-grid_mode').innerHTML = 'GRID ON';
@@ -6089,14 +6306,14 @@
               thickObj / 2 + " L " + sizeObj / 2 + "," + (-thickObj / 2) + " Z", "#fff", "#000", '');
 					*/
 	        if (typeObj === 'circle') {
-            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "", "#333", '');
+            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "rgba(255,255,255,.1)", "#333", '');
             construc.params.width = 80;
             construc.params.height = 80;
             construc.family = 'free';
 	        }
 					
 	        if (typeObj === 'half-circle') {
-            pushToConstruc(construc, "m 40 20 L 40 20 C 40 -2.09 22.09 -20 0 -20 C -22.09 -20 -40 -2.09 -40 20 L 40 20 Z", "#fff", "#333", '');
+            pushToConstruc(construc, "m 40 20 L 40 20 C 40 -2.09 22.09 -20 0 -20 C -22.09 -20 -40 -2.09 -40 20 L 40 20 Z", "rgba(255,255,255,.1)", "#333", '');
             construc.params.width = 80;
             construc.params.height = 40;
             construc.family = 'free';
@@ -6110,8 +6327,8 @@
 	        }
 					
 	        if (typeObj === 'crossed-square') {
-	            pushToConstruc(construc, "m -18.97 19.51 L -18.97 -18.54 L -18.97 -19.51 L 19 -19.51 L 19 19.51 L 18.05 19.51 Z", "", "#888", '');
-							pushToConstruc(construc, "m -18.97 19.51 L 18.97 -19.51 L -18.97 -19.51 L 19 19.51 Z", "", "#888", '');
+	            pushToConstruc(construc, "m -18.97 19.51 L -18.97 -18.54 L -18.97 -19.51 L 19 -19.51 L 19 19.51 L 18.05 19.51 Z", "rgba(255,255,255,.1)", "#888", '');
+							pushToConstruc(construc, "m -18.97 19.51 L 18.97 -19.51 L -18.97 -19.51 L 19 19.51 Z", "rgba(255,255,255,.0)", "#888", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -6814,6 +7031,7 @@
 		document.querySelectorAll('.extension-floorplanner-sub').forEach(function (element) {
 			element.style.display='none';
 		});
+		panel_el.style.display = 'block';
 	}
 
 
@@ -6869,7 +7087,7 @@
 		else{
 			document.getElementById('extension-floorplanner-plan-exists-warning').style.display = 'none';
 		}
-		document.querySelector('#extension-floorplanner-myModal').style.display = 'block';
+		document.querySelector('#extension-floorplanner-newFileModal').style.display = 'block';
 	}
 	
 
@@ -7416,7 +7634,7 @@
 			//console.log("in clone_object. objTarget, binder: ", objTarget,binder);
 		
 	    cursor('move');
-	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Cloning an object: ' + objTarget.type;
+	    box_info_el.innerHTML = 'Cloning an object: ' + objTarget.type;
 	    //fonc_button('object_mode', objTarget.type);
 			
 			if(typeof binder.obj != 'undefined'){
@@ -7584,9 +7802,9 @@
 		currently_cloning_an_object = false;
 		//console.log("in save_object");
 		fonc_button('select_mode');
-		document.querySelector('#extension-floorplanner-boxinfo').innerHTML=''; // Selection mode
+		box_info_el.innerHTML=''; // Selection mode
 		document.querySelector('#extension-floorplanner-objBoundingBox').style.display='none';
-		document.querySelector('#extension-floorplanner-panel').style.display='block';
+		panel_el.style.display='block';
 		if(typeof binder != 'undefined' && typeof binder.graph != 'undefined') binder.graph.remove(); // superfluous..
 		bye_binder();
 		//floorplanner_debug();
@@ -7597,12 +7815,12 @@
 	// Settings
 	function show_floorplanner_settings(){
 		document.querySelector('#extension-floorplanner-settings').style.display='block';
-		document.querySelector('#extension-floorplanner-panel').style.display='none';
+		panel_el.style.display='none';
 	}
 
 	function close_floorplanner_settings(){
 		document.querySelector('#extension-floorplanner-settings').style.display='none';
-		document.querySelector('#extension-floorplanner-panel').style.display='block';
+		panel_el.style.display='block';
 	}
 	
 	document.getElementById('extension-floorplanner-auto-save-checkbox').addEventListener('change', () => {
@@ -7612,6 +7830,16 @@
 	
 	document.getElementById('extension-floorplanner-multi').addEventListener('change', () => {
 		settings.multi_line = document.getElementById('extension-floorplanner-multi').checked;
+		save_floorplanner_settings();
+	}, true);
+	document.getElementById('extension-floorplanner-dark-mode').addEventListener('change', () => {
+		console.log("dark mode checkbox toggled");
+		settings.dark_mode = document.getElementById('extension-floorplanner-dark-mode').checked;
+		if(settings.dark_mode){
+			content_el.classList.add('extension-floorplanner-dark-mode');
+		}else{
+			content_el.classList.remove('extension-floorplanner-dark-mode');
+		}
 		save_floorplanner_settings();
 	}, true);
 	
@@ -7637,8 +7865,33 @@
 	}
 	*/
 
+
+	// If on Candle, get the image and send it to the backend to print on a network printer. Otherwise start normal print procedure.
+	function print_floorplan(){
+		
+		if(document.body.classList.contains('cups-printing')){
+			// send svg to Candle backend to print
+		}
+		else if(document.body.classList.contains('kiosk')){
+			// heck, try to print? Or show a warning that printing is not possible from the kiosk?
+			//window.print();
+		}
+		else{
+			window.print();
+		}
+		//if( document.getElementById('main-menu') == null){}
+		
+	}
+
+
 	function generate_object_list(){
-		return;
+		
+		if( ! document.body.classList.contains('developer')){
+			return; // DISABLED FOR NOW
+		}
+		
+		
+		
 		if(!floorplanner_started){return}
 		object_list_el = document.getElementById('extension-floorplanner-object_list');
 		object_list_el.innerHTML = '';
@@ -7783,7 +8036,7 @@
 	        // TO REMOVE MEASURE ON PLAN
 	        objTarget.graph.remove();
 	        OBJDATA.splice(OBJDATA.indexOf(objTarget), 1);
-	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measurement deleted';
+	        box_info_el.innerHTML = 'Measurement deleted';
 	      }
 				*/
 	      //if (moveObj < 1 && objTarget.params.move) {
@@ -7791,11 +8044,11 @@
 	        else document.querySelector('#extension-floorplanner-objBoundingBoxScale').style.display='block';
 	        if (!objTarget.params.rotate) document.querySelector('#extension-floorplanner-objBoundingBoxRotation').style.display='none';
 	        else document.querySelector('#extension-floorplanner-objBoundingBoxRotation').style.display='block';
-	        document.querySelector('#extension-floorplanner-panel').style.display='none'
+	        panel_el.style.display='none'
 	        //console.log(objTarget.params.resizeLimit.width.min)
 	        document.querySelector('#extension-floorplanner-objBoundingBox').style.display='block'
 	        document.querySelector('#extension-floorplanner-lin').style.cursor ='default';
-	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = ''; // Modify the object
+	        box_info_el.innerHTML = ''; // Modify the object
 	        //console.log(objTarget)
 					if(objTarget.params.resizeLimit){
 						//console.log("object has resize limit: ", objTarget.params.resizeLimit);
@@ -7904,7 +8157,7 @@
 						}
 						else{
 							console.error("details did not have name?: ", details);
-							myModal.style.display='block';
+							newFileModal.style.display='block';
 						}
 						
 					}
@@ -7912,17 +8165,17 @@
 				}
 				else{
 					console.warn("floorplans_length failed: ", floorplans_length);
-					myModal.style.display='block';
+					newFileModal.style.display='block';
 				}
 			}
 			else{
 				//console.log("temp_floorplans was not an object: ", temp_floorplans);
-				myModal.style.display='block';
+				newFileModal.style.display='block';
 			}
 			
 		}
 		else{
-			myModal.style.display='block';
+			newFileModal.style.display='block';
 		}
 		bg_image_el.style.backgroundImage = "none";
 	}	
@@ -7942,7 +8195,7 @@
 			clear_floorplan(true,false); // force clear, but don't reset the local storage
 			bg_image_el.style.backgroundImage = "none";
 			root_el.classList.add('extension-floorplanner-view-mode');
-			myModal.style.display='none';
+			newFileModal.style.display='none';
 		}
 		else{
 			alert("Please create and save at least one floorplan");
@@ -7967,6 +8220,8 @@
 		console.log("binder:", binder);
 		console.log("current_filename:", current_filename);
 		console.log("floorplans:", floorplans);
+		console.log("zoom level:", zoom);
+		console.log("zoom factor:", factor);
 	}
 	
 	
