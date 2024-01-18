@@ -38,6 +38,7 @@
 			    <svg id="extension-floorplanner-lin" class="extension-floorplanner-current-svg" viewBox="0 0 1100 700" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
 
 			      <defs>
+							<!--
 							<filter id="filter1" x="0" y="0">
 							           <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
 							           <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" flood-opacity="0.5"/>
@@ -58,7 +59,8 @@
 							        flood-color="pink"
 							        flood-opacity="0.5" />
 							    </filter>
-							
+							// -->
+								
 			        <linearGradient id="extension-floorplanner-gradientRed" x1="0%" y1="0%" x2="100%" y2="100%" spreadMethod="pad">
 			          <stop offset="0%" stop-color="#e65d5e" stop-opacity="1" />
 			          <stop offset="100%" stop-color="#e33b3c" stop-opacity="1" />
@@ -162,6 +164,55 @@
 
 		    <div id="extension-floorplanner-areaValue"></div>
 
+
+
+
+		    <div id="extension-floorplanner-settings" class="extension-floorplanner-leftBox">
+		      <div class="extension-floorplanner-vertical-flex-between">
+						<div>
+							<h2><span class="extension-floorplanner-unicode-icon-medium">⚙️</span> Settings</h2>
+							<br />
+				      <ul class="extension-floorplanner-list-unstyled">
+								
+								<li class="extension-floorplanner-flex-between extension-floorplanner-menu-area" style="align-items:flex-start">
+									<div>
+										<h4>Auto-save</h4>
+										<p>Normally any change you make is immediately saved.</p>
+									</div>
+									<div class="extension-floorplanner-funkyradio">
+										<input type="checkbox" id="extension-floorplanner-auto-save-checkbox" checked="">
+										<label for="extension-floorplanner-auto-save-checkbox"></label>
+									</div>
+								<li>
+								
+								<li class="extension-floorplanner-flex-between extension-floorplanner-menu-area" style="align-items:flex-start">
+									<div>
+										<h4>Continue walls</h4>
+										<p>Draw multiple lines in a row.</p>
+									</div>
+									<div class="extension-floorplanner-funkyradio">
+										<input type="checkbox" id="extension-floorplanner-multi" checked="">
+										<label for="extension-floorplanner-multi"></label>
+									</div>
+								<li>
+								
+				      </ul>
+						</div>
+						
+						<div>
+							<ul class="extension-floorplanner-list-unstyled">
+				        <li>
+									<button type="button" class="extension-floorplanner-btn extension-floorplanner-btn-primary extension-floorplanner-btn-done" id="extension-floorplanner-applySettings" onclick="close_floorplanner_settings();">Done</button>
+				        </li>
+							</ul>
+						</div>
+						
+					</div>
+		    </div>
+
+
+
+
 		    <div id="extension-floorplanner-reportTools" class="extension-floorplanner-leftBox" style="width:500px;overflow-y: scroll;overflow-x: hidden;position:fixed;left:0;top:0;height:100vh;z-index:100">
 		      <h2>CALCULATOR Report plan.</h2>
 		      <br /><br />
@@ -226,7 +277,7 @@
 				        <div class="extension-floorplanner-flex-between extension-floorplanner-scale-slider-min-max"><span id="extension-floorplanner-bboxWidthScale-min"></span><span id="extension-floorplanner-bboxWidthScale-max"></span></div>
 								<div style="text-align:center"><span id="extension-floorplanner-bboxWidthVal" class="extension-floorplanner-slider-value"></span> cm</div>
 				        
-								<div id="extension-floorplanner-scale-link-toggle-button-container"><div id="extension-floorplanner-scale-link-toggle-button"><span class="extension-floorplanner-scale-linked-true">🔗</span><span class="extension-floorplanner-scale-linked-false">┊︙</span></div></div>
+								<div id="extension-floorplanner-scale-link-toggle-button-container"><div id="extension-floorplanner-scale-link-toggle-button"><span class="extension-floorplanner-scale-linked-true">🔗</span><span class="extension-floorplanner-scale-linked-false">┊</span></div></div>
 								<div>
 									<p>Length</p>
 					        <input type="range" id="extension-floorplanner-bboxHeight" step="1" class="extension-floorplanner-range" />
@@ -585,9 +636,11 @@
 				            data-placement="right" title="Make walls"><span class="extension-floorplanner-unicode-icon-large">🧱</span></button>-->
 									<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" style="margin-bottom:0px" id="extension-floorplanner-line_mode" data-toggle="tooltip"
 													            data-placement="right" title="Make walls"><img src="img/wall.svg" alt="Wall" title="Wall" style="opacity:.85;width:70%"/></button>
-				          <button class="extension-floorplanner-mt-2 expansion-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-show-if-room extension-floorplanner-shadow extension-floorplanner-fully" style="margin-bottom:0px" id="extension-floorplanner-partition_mode"
+				          <button class="extension-floorplanner-mt-2 extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-show-if-room extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-partition_mode"
 				            data-toggle="tooltip" data-placement="right" title="Make room dividers (small walls)"><span class="extension-floorplanner-unicode-icon-medium">━</span></button>
 								</div>
+								
+								<!--
 								<div id="extension-floorplanner-multi-container" class="extension-floorplanner-funkyradio extension-floorplanner-flex-between" title="Draw multiple lines in a row">
 									<div id="extension-floorplanner-multi-container-zigzag"><span>⦚</span></div>
 			            <div class="extension-floorplanner-funkyradio-success">
@@ -595,6 +648,7 @@
 			              <label for="extension-floorplanner-multi"></label>
 			            </div>
 			          </div>
+								// -->
 			        </li>
 
 							<li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-node_mode" title="Cut walls, giving them an extra joint to move"><span class="extension-floorplanner-unicode-icon-medium">✂</span></button></li>
@@ -683,10 +737,17 @@
 			                data-toggle="tooltip" data-placement="right" title="Full screen"><span class="extension-floorplanner-unicode-icon-medium" style="transform:rotate(-90deg);display:inline-block"><sup>⇲</sup><sub>⇱</sub></span></button>
 							</li>
 
+							<li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-show-floorplanner-settings"
+	            	   onclick="show_floorplanner_settings();"><span>⚙️</span> Settings</button>
+							</li>
+							
+
 							<li><button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-fully" id="extension-floorplanner-stop-floorplanner"
 	            	   onclick="stop_floorplanner();"><span class="extension-floorplanner-unicode-icon-large">🏁</span> Stop</button>
 							</li>
 
+
+							
 
 			      </ul>
 		      </div>
@@ -704,16 +765,16 @@
 	        </div>
 					
 	        <div id="extension-floorplanner-window_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub">
-	          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-fix">Fix</button>
+	          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-fix">Fixed</button>
 	          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-flap">Simple</button>
 	          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-twin">Double</button>
 	          <button class="extension-floorplanner-btn extension-floorplanner-fully extension-floorplanner-window" id="extension-floorplanner-bay">Slide</button>
 	        </div>
 					
 	        <div id="extension-floorplanner-energy_list" class="extension-floorplanner-list-unstyled extension-floorplanner-sub">
-
+						<!--
             <h2 style="text-align:center"><span class="extension-floorplanner-unicode-icon-large">🛋️</span> Add items</h2>
-				
+						// -->
 				
 				
 						<div>
@@ -738,9 +799,10 @@
 						
 						<div>
 							<p>Plants</p>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-leaf">🌿 Plant</button>
-							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tree">🌳 Tree</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-plant">𖧷 Plant</button>
 							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-flower">✿ Flower</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-leaf">🌿 Leaf</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-fully extension-floorplanner-object" id="extension-floorplanner-tree">🌳 Tree</button>
 						</div>
 						
 						
@@ -988,39 +1050,42 @@
 				</div>
 
 		    
-				<div id="extension-floorplanner-current-filename-container"><span id="extension-floorplanner-current-filename"></span></div>
+				<div id="extension-floorplanner-current-filename-container"><span class="extension-floorplanner-unicode-icon-medium">⌂</span> Floorplanner <span id="extension-floorplanner-current-filename"></span></div>
 
-		    <div style="position:absolute;bottom:10px;left:210px;font-size:1.5em;color:#08d" id="extension-floorplanner-boxinfo"></div>
+		    <div id="extension-floorplanner-boxinfo"></div>
 
 		    <div id="extension-floorplanner-moveBox">
 		      
 					<p id="extension-floorplanner-title">
-		        <span class="extension-floorplanner-unicode-icon-medium">⌂</span> Floorplanner
+		        
 		      </p>
-		      <div class="extension-floorplanner-pull-right" style="margin:10px">
+		      <div class="extension-floorplanner-pull-right">
 		        <p style="margin:0">
-							<button class="extension-floorplanner-btn btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoomtop">↑</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom extension-floorplanner-zoom-in-out-button" data-zoom="zoomout">-</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoomtop">↑</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom extension-floorplanner-zoom-in-out-button" data-zoom="zoomin">+</button>
 						</p>
 		        <p style="margin:0">
-		          <button class="extension-floorplanner-btn btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoomleft">←</button>
-		          <button class="extension-floorplanner-btn btn-xs extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomreset">⊙</button>
-		          <button class="extension-floorplanner-btn btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoomright">→</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoomleft">←</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-btn-xs extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomreset">⊙</button>
+		          <button class="extension-floorplanner-btn extension-floorplanner-btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoomright">→</button>
 		        </p>
 		        <p style="margin:0">
-							<button class="extension-floorplanner-btn btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoombottom">↓</button>
+							<button class="extension-floorplanner-btn extension-floorplanner-btn-xs extension-floorplanner-btn-info extension-floorplanner-zoom" data-zoom="zoombottom">↓</button>
 						</p>
 		      </div>
 		    </div>
 
+				<!--
 		    <div id="extension-floorplanner-zoomBox">
 		      <div class="extension-floorplanner-pull-right" style="margin-right:10px">
 						<p>
-		        	<button class="extension-floorplanner-btn expansion-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomin">+</button>
-		        	<button class="extension-floorplanner-btn expansion-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomout">-</button>
+		        	<button class="extension-floorplanner-btn extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomin">+</button>
+		        	<button class="extension-floorplanner-btn extension-floorplanner-btn extension-floorplanner-btn-light extension-floorplanner-shadow extension-floorplanner-zoom" data-zoom="zoomout">-</button>
 						</p>
 		      </div>
 		    </div>
-				
+				//-->
 		    <div id="extension-floorplanner-zoomBox2">
 					<div id="extension-floorplanner-scaleVal" class="extension-floorplanner-pull-right">
 						1m
@@ -1055,22 +1120,36 @@
 
 <script>
 	
+	
+	
+	
 	var currently_editing = true;
 	var currently_editing_an_object = false;
 	var currently_cloning_an_object = false;
+	let settings = {
+		'auto_save':true,
+		'multi_line':true
+	}
+	
+	if(localStorage.getItem('extension-floorplanner-settings') != null){
+		settings = JSON.parse(localStorage.getItem('extension-floorplanner-settings'));
+		load_floorplanner_settings();
+	}
+	
+	
 	if(localStorage.getItem('extension-floorplanner-currently-editing') != null){
 		currently_editing = JSON.parse(localStorage.getItem('extension-floorplanner-currently-editing'));
 	}
 	else{
 		localStorage.setItem('extension-floorplanner-currently-editing',JSON.stringify(true));
 	}
-	console.log("currently_editing: ", typeof currently_editing, currently_editing);
+	//console.log("currently_editing: ", typeof currently_editing, currently_editing);
 	
 	let current_filename = JSON.parse(localStorage.getItem('extension-floorplanner-current-filename'));
 	if(current_filename != null){
 		document.getElementById('extension-floorplanner-current-filename').textContent = current_filename;
 	}
-	console.log("current_filename: ", current_filename);
+	//console.log("current_filename: ", current_filename);
 	
 	let touch_ui = false;
 	function is_touch_device() {  
@@ -1099,15 +1178,13 @@
 	// '
 	
 	
-	
-	
-	
-	
-	
 	let floorplans = JSON.parse(localStorage.getItem('extension-floorplanner-floorplans'));
-	if(floorplans == null){floorplans = {};}else{console.log("FLOORPLANS FROM LOCAL STORAGE: ", floorplans)}
+	if(floorplans == null){
+		floorplans = {};
+	}else{
+		//console.log("FLOORPLANS FROM LOCAL STORAGE: ", floorplans);
+	}
 	generate_floorplans_list();
-	
 	
 	let bounding_padding = -10;
 	let rotation_snappyness = 5;
@@ -1116,17 +1193,74 @@
 	let manual_bg_upload = false;
 	
 	
+	//init
+	let WALLS = [];
+	let OBJDATA = [];
+	let ROOM = [];
+	let HISTORY = [];
+	let wallSize = 20;
+	let partitionSize = 8;
+	let drag = 'off';
+	let action = 0;
+	let magnetic = 0;
+	let construc = 0;
+	let Rcirclebinder = 8;
+	let mode = 'select_mode';
+	let modeOption;
+	//console.log("linElement: ", linElement);
+	
+	let binder;
+	let objTarget = null;
+	
+	var rect = linElement.getBoundingClientRect(); // get the bounding rectangle
+
+	//console.log( rect.width );
+	//console.log( rect.height);
+	
+	let taille_w = rect.width; //linElement.getBBox().width;
+	let taille_h = rect.height; //linElement.getBBox().height;
+	let offset = getOffset(linElement);
+	//console.error("taille_w: ", taille_w);
+	//console.log("lin element offset.top: ", offset.top);
+	let grid = 20;
+	let showRib = true;
+	let showArea = true;
+	let meter = 60;
+	let grid_snap = 'off';
+	let colorbackground = "#ffffff";
+	let colorline = "#fff";
+	let colorroom = "#f0daaf";
+	let colorWall = "#666";
+	let pox = 0;
+	let poy = 0;
+	let segment = 0;
+	let xpath = 0;
+	let ypath = 0;
+	let width_viewbox = taille_w;
+	let height_viewbox = taille_h;
+	let ratio_viewbox = height_viewbox / width_viewbox;
+	let originX_viewbox = 0;
+	let originY_viewbox = 0;
+	let zoom = 9;
+	let factor = 1;
+
+	let sizeText = [];
+	let showAllSizeStatus = 0;
+	
+	
 	
 	
 	const linked_scaling_container_el = document.querySelector('#extension-floorplanner-scale-link-toggle-button-container');
 	document.querySelector('#extension-floorplanner-scale-link-toggle-button').addEventListener("click", function (event) {
-		if(linked_scaling){
-			root_el.classList.remove('extension-floorplanner-scale-linked');
-			linked_scaling = false;
-		}
-		else{
-			root_el.classList.add('extension-floorplanner-scale-linked');
-			linked_scaling = true;
+		set_linked_scaling(!linked_scaling);
+		
+		if(typeof binder != 'undefined'){
+			if(typeof binder.update != 'undefined'){
+				binder.update();
+			}
+			if(typeof binder.obj != 'undefined' && typeof binder.obj.update != 'undefined'){
+				binder.obj.update();
+			}
 		}
 		//console.log("linked scaling is now: ", linked_scaling);
 	});
@@ -1276,7 +1410,7 @@
 		  // else {
 		  //   if (action == 1) {
 		  //     binder.textContent = binder.textContent + event.key;
-		  //     console.log(field.value);
+		  //      //console.log(field.value);
 		  //   }
 		  // }
 		});
@@ -1286,7 +1420,7 @@
 
 
 	function _TOUCH_START(event){
-		console.log("in _TOUCH_START.  event: ", event);
+		//console.log("in _TOUCH_START.  event: ", event);
 		_MOUSEMOVE(event);
 		_MOUSEDOWN(event);
 	}
@@ -1333,9 +1467,9 @@
 	  //*******************   MOUSE MOVE:   OBJECT   MODE   ************************************
 	  //**************************************************************************
 	  if (mode == 'object_mode') {
-			console.log("---> in object mode");
+			//console.log("---> in object mode");
 	    snap = calcul_snap(event, grid_snap);
-			console.log("---> object mode: snap: ", snap);
+			//console.log("---> object mode: snap: ", snap);
 	    if (typeof (binder) != 'undefined') {
 				if(typeof binder.family != 'undefined'){
 		      if ((binder.family != 'stick' && binder.family != 'collision') || WALLS.length == 0) {
@@ -1389,7 +1523,7 @@
 		      }
 				}
 				else{
-					console.log("binder, but no family");
+					//console.log("binder, but no family");
 				}
 	      
 	    }
@@ -1457,7 +1591,7 @@
 	          x: x,
 	          y: y
 	        });
-					console.log("measure: valueText: ", valueText);
+					//console.log("measure: valueText: ", valueText);
 	        binder.size = valueText;
 	        binder.x = startText.x;
 	        binder.y = startText.y;
@@ -1683,7 +1817,7 @@
 
 	  //**********************************  SELECT MODE ***************************************************************
 	  if (mode == 'select_mode' && drag == 'off') { // FIRST TEST ON SELECT MODE (and drag OFF) to detect MOUSEOVER DOOR
-		  console.log("in select_mode.  drag: ", drag);
+		  //console.log("in select_mode.  drag: ", drag);
 	    snap = calcul_snap(event, 'off');
 			//console.log("select mode: snap: ", snap);
 	    
@@ -1691,15 +1825,15 @@
 			//console.log("select_mode: OBJDATA: ", OBJDATA);
 	    //for (var i = OBJDATA.length -1; i >= 0; i--) {
 			for (var i = 0; i < OBJDATA.length; i++) {
-				console.log(i, ": OBJDATA[i]: ",  OBJDATA[i]);
-				console.log(i, ": OBJDATA[i].type: ", OBJDATA[i].type);
+				//console.log(i, ": OBJDATA[i]: ",  OBJDATA[i]);
+				//console.log(i, ": OBJDATA[i].type: ", OBJDATA[i].type);
 				if(typeof OBJDATA[i].type == 'undefined'){
 					console.error("OBJ has undefined type. This should not happen. position: ", i);
-					console.log("OBJDATA type?", typeof OBJDATA, OBJDATA.constructor);
-					console.log("OBJDATA.length before slice: ", OBJDATA.length);
+					//console.log("OBJDATA type?", typeof OBJDATA, OBJDATA.constructor);
+					//console.log("OBJDATA.length before slice: ", OBJDATA.length);
 					//OBJDATA.splice(i,1);
 					//OBJDATA.array.splice(index, 1);
-					console.log("OBJDATA.length after slice: ", OBJDATA.length);
+					//console.log("OBJDATA.length after slice: ", OBJDATA.length);
 					//objTarget = false;
 					//bye_binder();
 					continue;
@@ -1762,11 +1896,11 @@
 					}
 	      }
 	      else {  // DOOR, WINDOW, APERTURE.. -- OBJ WITHOUT BINDBOX (params.bindBox = False) -- !!!!
-			    console.log("select_mode: DOOR, WINDOW, APERTURE.. -- NEARBY OBJTARGET, but WITHOUT BINDBOX");
-	        console.log("++objTarget: ", objTarget);
+			     //console.log("select_mode: DOOR, WINDOW, APERTURE.. -- NEARBY OBJTARGET, but WITHOUT BINDBOX");
+	         //console.log("++objTarget: ", objTarget);
 					
 					if(typeof objTarget.family != 'undefined' && objTarget.family == 'inWall' && typeof (binder) == 'undefined'){
-						console.log("++binder is undefined. Creating socle");
+						//console.log("++binder is undefined. Creating socle");
 						
 						var wallList = floorplanEditor.rayCastingWall(objTarget);
 	          if (wallList.length > 1) wallList = wallList[0];
@@ -1781,38 +1915,6 @@
 	          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
 						
 						
-						/*
-						//console.log("event.target =?= binder.graph.firstChild: ", event.target, binder.graph.firstChild)
-	          
-						if (typeof binder.graph != 'undefined' && event.target == binder.graph.firstChild) {
-	            cursor('move');
-	            binder.graph.firstChild.setAttribute("class", "extension-floorplanner-circle_css_2");
-	            binder.type = "obj";
-	            binder.obj = objTarget;
-	          }
-	          else if(typeof binder.graph != 'undefined'){
-	            cursor('default');
-	            binder.graph.firstChild.setAttribute("class", "extension-floorplanner-circle_css_1");
-	            binder.type = false;
-	          }
-						else{
-							console.error("eh? binder but no graph, unexpectedly");
-							bye_binder();
-							
-		          var wallList = floorplanEditor.rayCastingWall(objTarget);
-		          if (wallList.length > 1) wallList = wallList[0];
-		          inWallRib(wallList);
-		          var thickObj = wallList.thick;
-		          var sizeObj = objTarget.size;
-
-		          binder = new floorplanEditor.obj2D("inWall", "socle", "", objTarget, objTarget.angle, 0, sizeObj, "normal", thickObj);
-				  		console.log("select_mode: binder or inWall type: ", binder);
-		          binder.update();
-
-		          binder.oldXY = { x: objTarget.x, y: objTarget.y }; // FOR OBJECT MENU
-		          document.querySelector('#extension-floorplanner-boxbind').append(binder.graph);
-						}
-						*/
 					}
 					else {
 						
@@ -1826,7 +1928,7 @@
 		            binder.obj = objTarget;
 								if(typeof binder.graph != 'undefined'){
 									if(typeof binder.graph.firstChild != 'undefined'){
-										console.log("binder.graph.firstChild: ", binder.graph.firstChild);
+										//console.log("binder.graph.firstChild: ", binder.graph.firstChild);
 										if(binder.graph.firstChild != null){
 											binder.graph.firstChild.setAttribute("class", "extension-floorplanner-circle_css_2");
 										}
@@ -1848,7 +1950,7 @@
 		            binder.type = false;
 								if(typeof binder.graph != 'undefined'){
 									if(typeof binder.graph.firstChild != 'undefined'){
-										console.log("binder.graph.firstChild: ", binder.graph.firstChild);
+										//console.log("binder.graph.firstChild: ", binder.graph.firstChild);
 										if(binder.graph.firstChild != null){
 											binder.graph.firstChild.setAttribute("class", "extension-floorplanner-circle_css_1");
 										}
@@ -1876,7 +1978,7 @@
 	          var sizeObj = objTarget.size;
 
 	          binder = new floorplanEditor.obj2D("inWall", "socle", "", objTarget, objTarget.angle, 0, sizeObj, "normal", thickObj);
-			  		console.log("select_mode: binder or inWall type: ", binder);
+			  		//console.log("select_mode: binder or inWall type: ", binder);
 	          binder.update();
 
 	          binder.oldXY = { x: objTarget.x, y: objTarget.y }; // FOR OBJECT MENU
@@ -1891,12 +1993,12 @@
 
 	    // BIND CIRCLE IF nearNode and GROUP ALL SAME XY SEG POINTS
 	    if (wallNode = floorplanEditor.nearWallNode(snap, 20)) {
-				console.log("POINTER IS NEAR WALL NODE");
+				//console.log("POINTER IS NEAR WALL NODE");
 				if(typeof binder != 'undefined'){
-					console.log("--binder already exists: ", binder);
+					//console.log("--binder already exists: ", binder);
 				}
 	      if (typeof binder == 'undefined' || (typeof binder != 'undefined' && typeof binder.type != 'undefined' && binder.type == 'segment')) {
-	        console.log("replacing binder of type segment with unkillable circlebinder");
+	         //console.log("replacing binder of type segment with unkillable circlebinder");
 					bye_binder();
 					binder = qSVG.create('boxbind', 'circle', {
 	          id: "extension-floorplanner-circlebinder",
@@ -1910,7 +2012,7 @@
 					if (document.querySelectorAll('#extension-floorplanner-linebinder').length) document.querySelector('#extension-floorplanner-linebinder').remove();
 	        
 	      } else {
-					console.log("...nothing here")
+					//console.log("...nothing here")
 	        // REMAKE CIRCLE_CSS ON BINDER AND TAKE DATA SEG GROUP
 	        // if (typeof(binder) != 'undefined') {
 	        //     binder.attr({
@@ -1940,7 +2042,7 @@
 							&& objTarget.family == 'inWall' 
 							&& objTarget.class == 'doorWindow'){
 					
-					console.warn("spotted the repeating wall box issue");
+					//console.warn("spotted the repeating wall box issue");
 					//hideAllSize();
 					//bye_binder();
 					//hideAllSize();
@@ -2368,13 +2470,13 @@
 	  // **************************************************************************************************
 
 	  if (mode == 'bind_mode') {
-		  console.log("in bind_mode. binder: ", binder);
-		  console.log("--binder.type: ", binder.type);
+		   //console.log("in bind_mode. binder: ", binder);
+		   //console.log("--binder.type: ", binder.type);
 	    snap = calcul_snap(event, grid_snap);
-		  console.log("snap: ", snap);
+		   //console.log("snap: ", snap);
 		
 	    if (binder.type == 'node') {
-				console.log("binder type is node");
+				//console.log("binder type is node");
 	      var coords = snap;
 	      var magnetic = false;
 	      for (var k in wallListRun) {
@@ -2388,21 +2490,21 @@
 	        }
 	      }
 
-				console.log("near wall? ", floorplanEditor.nearWallNode(snap, 15, wallListRun));
+				//console.log("near wall? ", floorplanEditor.nearWallNode(snap, 15, wallListRun));
 	      if (nodeMove = floorplanEditor.nearWallNode(snap, 15, wallListRun)) { // sic: single =
 	        coords.x = nodeMove.x;
 	        coords.y = nodeMove.y;
 					
-					console.log("WRONG BINDER?! ", binder);
+					//console.log("WRONG BINDER?! ", binder);
 					
 					if(document.querySelector('#extension-floorplanner-circlebinder')){
-						console.log("circlebinder el existed: ", document.querySelector('#extension-floorplanner-circlebinder'));
+						//console.log("circlebinder el existed: ", document.querySelector('#extension-floorplanner-circlebinder'));
 						document.querySelector('#extension-floorplanner-circlebinder').setAttribute( "class","extension-floorplanner-circleGum");
 						document.querySelector('#extension-floorplanner-circlebinder').setAttribute( "cx",coords.x);
 						document.querySelector('#extension-floorplanner-circlebinder').setAttribute( "cy",coords.y);
 					}
 					else{
-						console.log("circlebinder el did not exist");
+						//console.log("circlebinder el did not exist");
 						/*
 						bye_binder();
 		        binder = qSVG.create('boxbind', 'circle', {
@@ -2419,7 +2521,7 @@
 					
 	        cursor('grab');
 	      } else {
-					console.log("RIGHT BINDER?!", binder);
+					//console.log("RIGHT BINDER?!", binder);
 	        if (magnetic != false) {
 	          if (magnetic == "H") snap.x = coords.x;
 	          else snap.y = coords.y;
@@ -2638,9 +2740,9 @@
 				
 				if(typeof binder.obj != 'undefined' &&  typeof binder.obj.graph != 'undefined'){
 					if(OBJDATA.indexOf(binder.obj) != -1 && OBJDATA.indexOf(binder.obj) != OBJDATA.length - 1){
-						console.log("attempting to move object to end of OBJDATA array");
-						console.log("objTarget.graph: ", binder.obj.graph);
-						console.log("objTarget.graph.parentElement: ", binder.obj.graph.parentElement);
+						//console.log("attempting to move object to end of OBJDATA array");
+						//console.log("objTarget.graph: ", binder.obj.graph);
+						//console.log("objTarget.graph.parentElement: ", binder.obj.graph.parentElement);
 				
 						binder.obj.graph.parentElement.appendChild(binder.obj.graph);
 						// removeChild(objTarget.graph)
@@ -2651,23 +2753,23 @@
 						//console.log("moved object to end of OBJDATA array. length halfway: ", OBJDATA.length);
 						//console.log("spliced object: ", typeof spliced_object, spliced_object, JSON.stringify(spliced_object));
 						//OBJDATA.push(spliced_object);
-						console.log("moving object to end of OBJDATA array. length at the end: ", OBJDATA.length);
-						console.log("spliced OBJDATA: ", OBJDATA, JSON.stringify(OBJDATA));
+						//console.log("moving object to end of OBJDATA array. length at the end: ", OBJDATA.length);
+						//console.log("spliced OBJDATA: ", OBJDATA, JSON.stringify(OBJDATA));
 					}
 					else{
-						console.log("object was already at the end of the OBJDATA array, no need to shift it");
+						//console.log("object was already at the end of the OBJDATA array, no need to shift it");
 					}
 					
 					binder.obj.graph.style.filter = 'drop-shadow(0px 0px 5px rgb(0 0 0 / 0.4))';
 					/*
 					let paths = binder.obj.graph.querySelectorAll('path');
-					console.log("paths: ", paths);
+					//console.log("paths: ", paths);
 					if(paths.length){
 						//paths[0].setAttribute('filter','url(#filter1)');
 					}
 					
 					for(var p=0; p<paths.length; ++p) {
-						console.log("paths[p]: ", paths[p]);
+						//console.log("paths[p]: ", paths[p]);
 						paths[p].setAttribute('filter','url(#shadow3)');
 					  //paths[p].setAttribute('filter','url(#dropshadow)');
 					}
@@ -2794,7 +2896,23 @@
 	// *****************************************************************************************************
 
 	function _MOUSEDOWN(event) {
-		console.warn("MOUSEDOWN");
+		//console.warn("MOUSEDOWN");
+		
+		if(currently_editing_an_object || currently_cloning_an_object){
+			//console.log("mousedown:  currently_editing_an_object, currently_cloning_an_object, binder: ", currently_editing_an_object, currently_cloning_an_object, binder);
+			currently_editing_an_object = false;
+			currently_cloning_an_object = false;
+			fonc_button('select_mode');
+			document.querySelector('#extension-floorplanner-boxinfo').innerHTML=''; // Selection mode
+			document.querySelector('#extension-floorplanner-objBoundingBox').style.display='none';
+			document.querySelector('#extension-floorplanner-panel').style.display='block';
+			//if(typeof binder != 'undefined' && typeof binder.graph != 'undefined') binder.graph.remove(); // superfluous..
+			//bye_binder();
+		}
+		
+		
+		
+		document.querySelector('#extension-floorplanner-objBoundingBox').style.display = 'none';
 	  event.preventDefault();
 		hide_submenus();
 	  // *******************************************************************
@@ -2806,6 +2924,8 @@
 	      snap = calcul_snap(event, grid_snap);
 	      pox = snap.x;
 	      poy = snap.y;
+				
+				//document.querySelector('#extension-floorplanner-boxMeasure').replaceChildren();
 	    }
 	  }
 
@@ -2852,20 +2972,20 @@
 
 			if (typeof (binder) != 'undefined'){
 				
-				if(typeof binder.obj != 'undefined')
-					console.log("MOUSEDOWN: OK, binder is defined and has type: ", binder, binder.type);
+				if(typeof binder.obj != 'undefined'){
+					//console.log("MOUSEDOWN: OK, binder is defined and has type: ", binder, binder.type);
 				}
 				else{
-					console.log("MOUSEDOWN: binder is defined but has no type: ", binder);
+					//console.log("MOUSEDOWN: binder is defined but has no type: ", binder);
 				}
 			}
 			else{
-				console.error("MOUSEDOWN: binder is undefined");
+				//console.error("MOUSEDOWN: binder is undefined");
 			}
 			// the binder.type check shouldn't be here...
 	    if (typeof (binder) != 'undefined' && typeof (binder.type) != 'undefined' && (binder.type == 'segment' || binder.type == 'node' || binder.type == 'obj' || binder.type == 'boundingBox')) {
 	      mode = 'bind_mode';
-				console.log("mouse down -> select_mode switching to bind_mode.");
+				//console.log("mouse down -> select_mode switching to bind_mode.");
 				
 
 	      if (binder.type == 'obj') {
@@ -2894,7 +3014,7 @@
 	            break;
 	          }
 	        }
-					console.log("wallListRun: ", wallListRun);
+					//console.log("wallListRun: ", wallListRun);
 					if(wallListRun.length){
 		        if (wallListRun[0].child != null) {
 		          if (isObjectsEquals(wallListRun[0].child.start, nodeControl) || isObjectsEquals(wallListRun[0].child.end, nodeControl)) wallListRun.push(wallListRun[0].child);
@@ -3078,17 +3198,19 @@
 	    }
 
 	    else {
-				console.log("mousedown: assuming this is a start of a drag because binder did not exist or had no type");
+				//console.log("mousedown: assuming this is a start of a drag because binder did not exist or had no type");
 	      action = 0;
-				console.warn("DRAG ON");
+				//console.warn("DRAG ON");
 	      drag = 'on';
 	      snap = calcul_snap(event, grid_snap);
 	      pox = snap.xMouse;
 	      poy = snap.yMouse;
 				document.getElementById('extension-floorplanner-tool-root').classList.add("extension-floorplanner-do-not-pulsate");
+				
+				
 	    }
 	  }
-	//}
+	}
 
 	//******************************************************************************************************
 	//*******************  *****  ******        ************************************************************
@@ -3099,13 +3221,13 @@
 	//**********************************  ******************************************************************
 
 	function _MOUSEUP(event) {
-		console.warn("MOUSEUP");
+		//console.warn("MOUSEUP");
 	  if (showRib) document.querySelector('#extension-floorplanner-boxScale').style.display = 'block';
 		if(drag == 'on'){
-			console.log("MOUSEUP: END OF A DRAG");
+			//console.log("MOUSEUP: END OF A DRAG");
 		}
 		
-		if(typeof binder != 'undefined' && typeof binder.type != 'undefined' && typeof binder.obj.graph != 'undefined'){
+		if(typeof binder != 'undefined' && typeof binder.type != 'undefined' && typeof binder.obj != 'undefined' && typeof binder.obj.graph != 'undefined'){
 			binder.obj.graph.style.filter = 'none';
 		}
 		
@@ -3115,7 +3237,7 @@
 			&& document.querySelector('#extension-floorplanner-distance_mode.extension-floorplanner-btn-success') == null
 			
 		){
-			console.log("Allowing pulsate");
+			//console.log("Allowing pulsate");
 			root_el.classList.remove('extension-floorplanner-do-not-pulsate');
 		}
 		
@@ -3130,7 +3252,7 @@
 		
 	  if (mode == 'select_mode') {
 	    if (typeof (binder) != 'undefined') {
-				console.log("mouseup, and binder still existed, which is not supposed to happen. calling byebinder");
+				//console.log("mouseup, and binder still existed, which is not supposed to happen. calling byebinder");
 	      //binder.remove();
 	      //delete binder;
 				bye_binder();
@@ -3154,7 +3276,7 @@
 	  //**************        OBJECT   MODE **************************************
 	  //**************************************************************************
 	  if (mode == 'object_mode') {
-		  console.log("mouse_up: in object_mode. this fixates a binder as an object in OBJDATA.  binder:", binder);
+		   //console.log("mouse_up: in object_mode. this fixates a binder as an object in OBJDATA.  binder:", binder);
 	    if(typeof binder.graph != 'undefined' && typeof binder.type != 'undefined'){
 				
 				if(binder.type != 'boundingBox'){
@@ -3366,7 +3488,7 @@
 				|| document.querySelector('#extension-floorplanner-partition_mode.extension-floorplanner-btn-success') != null
 				|| document.querySelector('#extension-floorplanner-distance_mode.extension-floorplanner-btn-success') != null
 			){
-				console.log("forbidding pulsate because of wall/line mode");
+				//console.log("forbidding pulsate because of wall/line mode");
 				root_el.classList.add('extension-floorplanner-do-not-pulsate');
 			}
 		
@@ -3479,7 +3601,7 @@
 					
 	        var moveObj = Math.abs(binder.oldXY.x - binder.x) + Math.abs(binder.oldXY.y - binder.y);
 	        if (moveObj < 1) {
-						console.log("setting edit_door_mode");
+						//console.log("setting edit_door_mode");
 				    document.querySelector('#extension-floorplanner-panel').style.display='none';
 				    document.querySelector('#extension-floorplanner-objTools').style.display='block';
 	          document.querySelector('#extension-floorplanner-lin').style.cursor = 'default';
@@ -3496,7 +3618,7 @@
 	          mode = 'edit_door_mode';
 	        }
 	        else {
-						console.log("modify door failure because object has moved: ", moveObj);
+						//console.log("modify door failure because object has moved: ", moveObj);
 	          mode = "select_mode";
 	          action = 0;
 	          if(typeof binder.graph != 'undefined') binder.graph.remove();
@@ -3514,15 +3636,15 @@
 	          OBJDATA.splice(OBJDATA.indexOf(objTarget), 1);
 	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Measurement deleted';
 	        }
-					console.log("prior OBJDATA: ", OBJDATA);
-					console.log("moving object to end of OBJDATA array. length before: ", OBJDATA.length);
+					//console.log("prior OBJDATA: ", OBJDATA);
+					//console.log("moving object to end of OBJDATA array. length before: ", OBJDATA.length);
 					// Move selected item to the end of the array, to ensure it's draw on top.
 					//objTarget.graph.remove();
 					/*
 					if(OBJDATA.indexOf(objTarget) != OBJDATA.length - 1){
-						console.log("attempting to move object to end of OBJDATA array");
-						console.log("objTarget.graph: ", objTarget.graph);
-						console.log("objTarget.graph.parentElement: ", objTarget.graph.parentElement);
+						//console.log("attempting to move object to end of OBJDATA array");
+						//console.log("objTarget.graph: ", objTarget.graph);
+						//console.log("objTarget.graph.parentElement: ", objTarget.graph.parentElement);
 						
 						objTarget.graph.parentElement.appendChild(objTarget.graph);
 						// removeChild(objTarget.graph)
@@ -3533,11 +3655,11 @@
 						//console.log("moved object to end of OBJDATA array. length halfway: ", OBJDATA.length);
 						//console.log("spliced object: ", typeof spliced_object, spliced_object, JSON.stringify(spliced_object));
 						//OBJDATA.push(spliced_object);
-						console.log("moving object to end of OBJDATA array. length at the end: ", OBJDATA.length);
-						console.log("spliced OBJDATA: ", OBJDATA, JSON.stringify(OBJDATA));
+						//console.log("moving object to end of OBJDATA array. length at the end: ", OBJDATA.length);
+						//console.log("spliced OBJDATA: ", OBJDATA, JSON.stringify(OBJDATA));
 					}
 					else{
-						console.log("object was already at the end of the OBJDATA array, no need to shift it");
+						//console.log("object was already at the end of the OBJDATA array, no need to shift it");
 					}
 					*/
 					
@@ -3558,7 +3680,7 @@
 	          document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Modify the object';
 	          //console.log(objTarget)
 						if(objTarget.params.resizeLimit){
-							console.log("object has resize limit: ", objTarget.params.resizeLimit);
+							//console.log("object has resize limit: ", objTarget.params.resizeLimit);
 							
 		          document.getElementById('extension-floorplanner-bboxWidth').setAttribute('min', objTarget.params.resizeLimit.width.min);
 		          document.getElementById('extension-floorplanner-bboxWidth').setAttribute('max', objTarget.params.resizeLimit.width.max);
@@ -3648,59 +3770,7 @@
 	
 	
 	
-	//init
-	let WALLS = [];
-	let OBJDATA = [];
-	let ROOM = [];
-	let HISTORY = [];
-	let wallSize = 20;
-	let partitionSize = 8;
-	let drag = 'off';
-	let action = 0;
-	let magnetic = 0;
-	let construc = 0;
-	let Rcirclebinder = 8;
-	let mode = 'select_mode';
-	let modeOption;
-	//console.log("linElement: ", linElement);
 	
-	let binder;
-	let objTarget = null;
-	
-	var rect = linElement.getBoundingClientRect(); // get the bounding rectangle
-
-	//console.log( rect.width );
-	//console.log( rect.height);
-	
-	let taille_w = rect.width; //linElement.getBBox().width;
-	let taille_h = rect.height; //linElement.getBBox().height;
-	let offset = getOffset(linElement);
-	//console.error("taille_w: ", taille_w);
-	//console.log("lin element offset.top: ", offset.top);
-	let grid = 20;
-	let showRib = true;
-	let showArea = true;
-	let meter = 60;
-	let grid_snap = 'off';
-	let colorbackground = "#ffffff";
-	let colorline = "#fff";
-	let colorroom = "#f0daaf";
-	let colorWall = "#666";
-	let pox = 0;
-	let poy = 0;
-	let segment = 0;
-	let xpath = 0;
-	let ypath = 0;
-	let width_viewbox = taille_w;
-	let height_viewbox = taille_h;
-	let ratio_viewbox = height_viewbox / width_viewbox;
-	let originX_viewbox = 0;
-	let originY_viewbox = 0;
-	let zoom = 9;
-	let factor = 1;
-
-	let sizeText = [];
-	let showAllSizeStatus = 0;
 
 	//console.error("in func.js. ratio_viewbox: ", ratio_viewbox);
 
@@ -3709,7 +3779,7 @@
 	// **************************************************************************
 
 	function initHistory(boot = false) {
-		console.log("in initHistory. boot,current_filename: ", boot, current_filename);
+		//console.log("in initHistory. boot,current_filename: ", boot, current_filename);
 		
 		//clear_floorplan();
 		
@@ -3736,7 +3806,7 @@
 	  if (!boot && localStorage.getItem('extension-floorplanner-history')) localStorage.removeItem('extension-floorplanner-history');
     if (localStorage.getItem('extension-floorplanner-history') && boot === "recovery") {
 			try{
-				console.log("initHistory attempting recovery");
+				//console.log("initHistory attempting recovery");
         let historyTemp = JSON.parse(localStorage.getItem('extension-floorplanner-history'));
         floorplanLoad(historyTemp.length - 1, "boot");
         floorplanSave("boot");
@@ -3966,7 +4036,7 @@
 	});
 	
 	function floorplanner_undo(){
-		console.log("in floorplanner undo. HISTORY.index ?<? HISTORY.length", HISTORY.index, HISTORY.length);
+		//console.log("in floorplanner undo. HISTORY.index ?<? HISTORY.length", HISTORY.index, HISTORY.length);
     if (HISTORY.index < HISTORY.length) {
         floorplanLoad(HISTORY.index);
         HISTORY.index++;
@@ -4030,7 +4100,7 @@
                 WALLS[k].parent = WALLS[WALLS[k].parent];
             }
         }
-				console.warn("not saving because no real change");
+				//console.warn("not saving because no real change");
         return false;
     }
 
@@ -4058,6 +4128,11 @@
         }
     }
 		
+		if(settings.auto_save){
+			//console.log("auto-saving to floorplans");
+			save_to_floorplans();
+		}
+		
 		generate_object_list();
 		if(!boot) unsaved = true;
     return true;
@@ -4072,6 +4147,16 @@
 		else{
 			root_el.classList.remove('extension-floorplanner-scale-linked');
 		}
+		/*
+		if(typeof binder != 'undefined'){
+			if(typeof binder.update != 'undefined'){
+				binder.update();
+			}
+			if(typeof binder.obj != 'undefined' && typeof binder.obj.update != 'undefined'){
+				binder.obj.update();
+			}
+		}
+		*/
 	}
 
 
@@ -4413,14 +4498,14 @@
 
 	document.getElementById('extension-floorplanner-wallWidth').addEventListener("input", function (event) {
     let sliderValue = this.value;
-		console.log("sliderValue before: ", sliderValue);
+		//console.log("sliderValue before: ", sliderValue);
 		
 		if(sliderValue > 20 - rotation_snappyness && sliderValue < 20 + rotation_snappyness){
-			console.log("snapping wall to 20");
+			//console.log("snapping wall to 20");
 			sliderValue = 20;
 			document.getElementById('extension-floorplanner-wallWidth').value = sliderValue;
 		}
-		console.log("sliderValue after: ", sliderValue);
+		//console.log("sliderValue after: ", sliderValue);
     binder.wall.thick = sliderValue;
     binder.wall.type = "normal";
     floorplanEditor.architect(WALLS);
@@ -4515,7 +4600,7 @@
 				document.getElementById('extension-floorplanner-bboxRotation').value = sliderValue;
 			}
 			else if(sliderValue > 90-rotation_snappyness && sliderValue < 90+rotation_snappyness){
-				console.log("optimizing");
+				//console.log("optimizing");
 				sliderValue = 90;
 				document.getElementById('extension-floorplanner-bboxRotationVal').textContent = sliderValue;
 				document.getElementById('extension-floorplanner-bboxRotation').value = sliderValue;
@@ -4526,25 +4611,25 @@
 				document.getElementById('extension-floorplanner-bboxRotation').value = sliderValue;
 			}
 			else if(sliderValue > 45-rotation_snappyness && sliderValue < 45+rotation_snappyness){
-				console.log("optimizing");
+				//console.log("optimizing");
 				sliderValue = 45;
 				document.getElementById('extension-floorplanner-bboxRotationVal').textContent = sliderValue;
 				document.getElementById('extension-floorplanner-bboxRotation').value = sliderValue;
 			}
 			else if(sliderValue < -40+rotation_snappyness && sliderValue > -45-rotation_snappyness){
-				console.log("optimizing");
+				//console.log("optimizing");
 				sliderValue = -45;
 				document.getElementById('extension-floorplanner-bboxRotationVal').textContent = sliderValue;
 				document.getElementById('extension-floorplanner-bboxRotation').value = sliderValue;
 			}
 			else if(sliderValue > 135-rotation_snappyness && sliderValue < 135+rotation_snappyness){
-				console.log("optimizing");
+				//console.log("optimizing");
 				sliderValue = 135;
 				document.getElementById('extension-floorplanner-bboxRotationVal').textContent = sliderValue;
 				document.getElementById('extension-floorplanner-bboxRotation').value = sliderValue;
 			}
 			else if(sliderValue < -130+rotation_snappyness && sliderValue > -135-rotation_snappyness){
-				console.log("optimizing");
+				//console.log("optimizing");
 				sliderValue = -135;
 				document.getElementById('extension-floorplanner-bboxRotationVal').textContent = sliderValue;
 				document.getElementById('extension-floorplanner-bboxRotation').value = sliderValue;
@@ -4637,7 +4722,7 @@
 
 	// Cancel adding text
 	document.querySelector('#extension-floorplanner-cancel-text').addEventListener("click",function (e) {
-		console.log("cancelling text");
+		//console.log("cancelling text");
 		document.querySelector('#extension-floorplanner-textToLayer').style.display='none';
     fonc_button('select_mode');
     action = 0;
@@ -4679,7 +4764,9 @@
 	}
 
 	function isObjectsEquals(a, b, message = false) {
-	    if (message) console.log("equals message: ", message);
+	    if (message){
+				console.log("equals message: ", message);
+			}
 	    let isOK = true;
 	    for (let prop in a) {
 	        if (a[prop] !== b[prop]) {
@@ -4792,7 +4879,7 @@
     //delete binder;
 		bye_binder();
     let id = document.querySelector('#extension-floorplanner-roomIndex').value;
-		console.log("roomIndex: ", id);
+		//console.log("roomIndex: ", id);
     //COLOR
     let data = document.querySelector('#extension-floorplanner-roomBackground').value;
     ROOM[id].color = "extension-floorplanner-" + data;
@@ -4913,7 +5000,9 @@
 
 	// TRY MATRIX CALC FOR BBOX REAL COORDS WITH TRAS + ROT.
 	function matrixCalc(el, message = false) {
-	    if (message) console.log("matrixCalc called by -> ", message);
+	    if (message){
+				console.log("matrixCalc called by -> ", message);
+			}
 	    let m = el.getCTM();
 	    let bb = el.getBBox();
 	    let tpts = [
@@ -4937,7 +5026,7 @@
 
 	function limitObj(equation, size, coords, message = false) {
 	    if (message) {
-	        console.log("limitObj: message: ", message);
+	         //console.log("limitObj: message: ", message);
 	    }
 	    let Px = coords.x;
 	    let Py = coords.y;
@@ -4966,11 +5055,11 @@
 	function zoom_maker(lens, xmove, xview) {
 			
 		if(Math.abs(xmove) > 200 || Math.abs(xview) > 200){
-			console.warn("zoom_maker: unlikely move speed");
+			//console.warn("zoom_maker: unlikely move speed");
 			return
 		}
 		
-		  console.log("in zoom_maker.  lens, xmove, xview: ", lens, xmove, xview);
+		   //console.log("in zoom_maker.  lens, xmove, xview: ", lens, xmove, xview);
 	    if (lens === 'zoomout' && zoom > 1 && zoom < 17) {
 	        zoom--;
 	        width_viewbox += xmove;
@@ -4996,12 +5085,12 @@
 	    factor = width_viewbox / taille_w;
 			//console.log("zoom factor: ", factor);
 			if(factor < 0){
-				console.warn("zoom_maker: factor was below 1, forcing zoomreset");
+				//console.warn("zoom_maker: factor was below 1, forcing zoomreset");
 				factor = 1;
 				lens = 'zoomreset';
 			}
 	    if (lens === 'zoomreset') {
-				console.warn("zoom_maker: zoomreset");
+				//console.warn("zoom_maker: zoomreset");
         originX_viewbox = 0;
         originY_viewbox = 0;
         width_viewbox = taille_w;
@@ -5192,7 +5281,7 @@
 	}
 
 	function debugPoint(point, name, color = "#00ff00") {
-		console.warn("in debugPoint. point, name, color: ", point, name, color);
+		//console.warn("in debugPoint. point, name, color: ", point, name, color);
     qSVG.create('boxDebug', 'circle', {
         cx: point.x,
         cy: point.y,
@@ -5233,7 +5322,7 @@
 	}
 
 	function inWallRib(wall, option = false) {
-		console.log("inWallRib:  wall, option:",wall, option);
+		//console.log("inWallRib:  wall, option:",wall, option);
     if (!option) document.querySelector('#extension-floorplanner-boxRib').replaceChildren(); //.innerHTML = '';
     ribMaster = [];
     ribMaster.push([]);
@@ -5342,7 +5431,7 @@
 	}
 
 	function rib(shift = 5) {
-			console.log("in rib. shift (5 by defalt): ", shift);
+			//console.log("in rib. shift (5 by defalt): ", shift);
 	    // return false;
 	    let ribMaster = [];
 	    ribMaster.push([]);
@@ -5578,7 +5667,7 @@
 	}
 
 	function fonc_button(modesetting, option) {
-		console.error("in fonc_button.  modesetting, option: ", modesetting, option);
+		//console.error("in fonc_button.  modesetting, option: ", modesetting, option);
 		if(modesetting == 'door_mode'){
 			//bye_binder();
 		}
@@ -5611,6 +5700,7 @@
 	document.querySelector('#extension-floorplanner-distance_mode').addEventListener('click',function () {
 		//document.querySelector('#extension-floorplanner-boxMeasure').replaceChildren();
 	  linElement.style.cursor = 'crosshair';
+		document.querySelector("g#extension-floorplanner-boxMeasure").replaceChildren();
 	  document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Add a measurement';
 	  fonc_button('distance_mode');
 		setTimeout(()=>{
@@ -5619,11 +5709,11 @@
 	});
 
 	document.querySelector('#extension-floorplanner-room_mode').addEventListener('click',function () {
-		console.log("clicked on room color button");
+		//console.log("clicked on room color button");
 	  linElement.style.cursor = 'pointer';
 	  document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Select a room';
 	  fonc_button('room_mode');
-		console.log("adding do-not-pulsate to root_el");
+		//console.log("adding do-not-pulsate to root_el");
 		setTimeout(()=>{
 			root_el.classList.add('extension-floorplanner-do-not-pulsate');
 		},100);
@@ -5650,7 +5740,7 @@
 	}
 
 	document.querySelector('#extension-floorplanner-line_mode').addEventListener('click',function () {
-		console.log("floorplanner: clicked on wall button");
+		//console.log("floorplanner: clicked on wall button");
 		setTimeout(()=>{
 			root_el.classList.add('extension-floorplanner-do-not-pulsate');
 		},100);
@@ -5779,7 +5869,7 @@
 	    construc.params.rotate = false;
 
 	    if (classObj === 'socle') {
-				console.warn("carpentrycalc: mysterious socle spotted.");
+				//console.warn("carpentrycalc: mysterious socle spotted.");
 					
 	        pushToConstruc(construc, "M " + (-sizeObj / 2) + "," + (-thickObj / 2) + " L " + (-sizeObj / 2) + "," +
 	            thickObj / 2 + " L " + sizeObj / 2 + "," + thickObj / 2 + " L " + sizeObj / 2 + "," + (-thickObj / 2) +
@@ -6013,7 +6103,7 @@
 	        }
 					
 	        if (typeObj === 'square') {
-	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "", "#333", '');
+	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "rgba(255,255,255,.8)", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -6050,7 +6140,7 @@
 	        }
 					
 	        if (typeObj === 'triangle') {
-	            pushToConstruc(construc, "m 0 -16.5 L -18 15 L 18 15 Z", "", "#333", '');
+	            pushToConstruc(construc, "m 0 -16.5 L -18 15 L 18 15 Z", "#fff", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -6058,14 +6148,14 @@
 					
 	        if (typeObj === 'dome') {
 	            pushToConstruc(construc, "m 20 0 L 20 0 C 20 -11.05 11.05 -20 0 -20 C -11.05 -20 -20 -11.05 -20 0 L -20 20 L 20 20 L 20 0 Z", "", "#333", '');
-	            construc.params.width = 40;
-	            construc.params.height = 40;
+	            construc.params.width = 50;
+	            construc.params.height = 50;
 	            construc.family = 'free';
 	        }
 					
 	        if (typeObj === 'flower') {
-						let random_color = getRandomColor();
-						console.log("random color: ", random_color);
+							let random_color = getRandomColor();
+							//console.log("random color: ", random_color);
 	            pushToConstruc(construc, "m 4.1 -9.9 C 9.13 -22.03 -9.13 -22.03 -4.1 -9.9 C -9.13 -22.03 -22.03 -9.13 -9.9 -4.1 C -22.03 -9.13 -22.03 9.13 -9.9 4.1 C -22.03 9.13 -9.13 22.03 -4.1 9.9 C -9.13 22.03 9.13 22.03 4.1 9.9 C 9.13 22.03 22.03 9.13 9.9 4.1 C 22.03 9.13 22.03 -9.13 9.9 -4.1 C 22.03 -9.13 9.12 -22.03 4.1 -9.9 Z", random_color, "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
@@ -6073,7 +6163,7 @@
 	        }
 					
 	        if (typeObj === 'leaf') {
-	            pushToConstruc(construc, "m19.538679-40s1.891464 5.83535 4.961239 14.263565c3.069777 8.428215 5.674416 12.220772.310078 18.294571-4.326512 4.897369-17.178302 10.222321-18.294574 13.333336-1.099219 3.067901.667281 7.162781 4.651163 4.961243 3.792242-2.096428 15.893952-16.933655 17.364341-17.984498 0 0 1.24031 6.008683 1.24031 10.23256 0 3.279373-.263879 10.123413-2.170541 11.782943-1.391943 1.211468-9.629778 5.660164-16.744188 6.511628-4.704797.563095-9.841857 2.546974-6.20155 4.961242 4.446521 2.949143 16.91535-5.32465 22.63566-5.891475 0 0-.305422 5.133655-.930233 7.131786-1.195967 3.82481-5.292099 12.403099-14.263566 12.403099-6.09674 0-9.839066-3.082474-9.922481-4.961239-.089925-2.028526-3.199065-1.971786-3.410853-.310078-.174882 1.371464-2.181396 5.271317-9.302325 5.271317-7.144804 0-19.077206-6.942638-20.155039-14.263565-1.047751-7.117516.930233-7.44186.930233-7.44186s13.401863 9.922477 22.945736 9.922477c9.319075 0-1.297362-4.880313-4.651162-6.201549-3.353802-1.321236-17.364341-7.713478-17.364341-11.782944 0-4.17643-.755966-10.595039 8.992247-18.604652 0 0 6.223874 14.475662 9.612403 18.604652 3.38853 4.128983 9.79566 4.826981 9.302326.310074-.473803-4.338303-16.397516-21.178291-13.643411-25.736435 3.143879-5.204964 9.436281-11.968994 14.573644-13.023254 0 0 .003718 9.0093.930232 13.953491s4.439385 9.322174 6.821706 5.891472c2.600003-3.744492-4.031008-15.547295-4.031008-17.984497 0-2.437203 7.127127-13.64341 15.813954-13.64341z", "#8f8", "#333", '');
+	            pushToConstruc(construc, "m19-40s2 6 5 14c3 8.4 5.7 12.220772.3 18-4.3 4.9-17 10-18 13-1 3.067901.6 7 4.6 5 3.8-2 16-17 17-18 0 0 1.2 6 1 10 0 3-.3 10-2 11.8-1.4 1.2-9.6 5.7-17 6.5-4.704797.6-9.8 2.5-6.2 5 4.4 3 17-5 22.6-5.9 0 0-.3 5-1 7.1-1.2 3.9-5 12.4-14 12.4-6 0-10-3-10-5-.1-2-3.2-2-3.4-.3-.2 1.4-2.2 5.3-9.3 5.3-7 0-19-7-20-14-1-7.117516.9-7.44186.9-7.5s13.4 10 23 10c9.3 0-1.3-4.8-4.6-6.2-3.4-1.3-17.4-7.7-17.4-11.8 0-4.2-.755966-10 9-18.6 0 0 6.2 14.5 9.6 18.6 3.4 4.1 9.8 4.8 9.302326.3-.5-4.3-16.4-21.2-13.6-25.7 3.1-5.2 9.4-12 14.6-13 0 0 .0 9.0093.9 14s4.4 9.3 6.8 5.9c2.6-3.7-4-15.5-4-18 0-2.4 7.1-13.6 15.8-13.6z", "#8f8", "#333", '');
 	            construc.params.width = 30;
 	            construc.params.height = 30;
 	            construc.family = 'free';
@@ -6087,7 +6177,7 @@
 	        }
 					
 	        if (typeObj === 'rounded-square') {
-	            pushToConstruc(construc, "m -18 11 C -18 15.97 -13.97 20 -9 20 L 11 20 C 15.97 20 20 15.97 20 11 L 20 -9 C 20 -13.97 15.97 -18 11 -18 L -9 -18 C -13.97 -18 -18 -13.97 -18 -9 Z", "", "#333", '');
+	            pushToConstruc(construc, "m -18 11 C -18 15.97 -13.97 20 -9 20 L 11 20 C 15.97 20 20 15.97 20 11 L 20 -9 C 20 -13.97 15.97 -18 11 -18 L -9 -18 C -13.97 -18 -18 -13.97 -18 -9 Z", "rgba(255,255,255,.8)", "#333", '');
 	            construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -6102,7 +6192,7 @@
 					
 					// 17.85 28.54
 	        if (typeObj === 'note') {
-	            pushToConstruc(construc, "m 8.85 8.54 C 10.55 6.59 11.47 3.73 11.47 0.59 C 11.47 -5.7 3.62 -8.84 3.62 -8.84 L 3.62 12.96 L 3.62 12.96 C 3.62 14.91 2.1 17.06 -0.35 18.22 C -1.38 18.72 -2.5 18.98 -3.64 19 C -5.49 19 -7.06 18.24 -7.7 16.83 C -7.9 16.4 -8 15.94 -8 15.47 C -8 13.52 -6.47 11.37 -4.03 10.21 C -3 9.71 -1.88 9.44 -0.74 9.43 C 0.53 9.42 1.66 9.79 2.46 10.47 L 2.46 -19 L 3.62 -19 C 3.62 -14.2 6.82 -12.24 9.58 -8.4 C 11.26 -6.05 12.63 -3.42 12.63 -0.29 C 12.63 3.24 11.24 6.33 8.85 8.54 Z", "#ff8", "#333", '');
+	            pushToConstruc(construc, "m 8.85 8.54 C 10.55 6.59 11.47 3.73 11.47 0.59 C 11.47 -5.7 3.62 -8.84 3.62 -8.84 L 3.62 12.96 L 3.62 12.96 C 3.62 14.91 2.1 17.06 -0.35 18.22 C -1.38 18.72 -2.5 18.98 -3.64 19 C -5.49 19 -7.06 18.24 -7.7 16.83 C -7.9 16.4 -8 15.94 -8 15.47 C -8 13.52 -6.47 11.37 -4.03 10.21 C -3 9.71 -1.88 9.44 -0.74 9.43 C 0.53 9.42 1.66 9.79 2.46 10.47 L 2.46 -19 L 3.62 -19 C 3.62 -14.2 6.82 -12.24 9.58 -8.4 C 11.26 -6.05 12.63 -3.42 12.63 -0.29 C 12.63 3.24 11.24 6.33 8.85 8.54 Z", "#333", "#333", '');
 	            construc.params.width = 30;
 	            construc.params.height = 60;
 	            construc.family = 'free';
@@ -6185,7 +6275,7 @@
 					
 	        if (typeObj === 'stove') {
 	            //pushToConstruc(construc, "m160 49.5c0-70.968597-57.531403-128.5-128.5-128.5-70.96859 0-128.5 57.531403-128.5 128.5 0 70.96859 57.53141 128.5 128.5 128.5 70.968597 0 128.5-57.53141 128.5-128.5z", "#fff", "#333", '');
-							pushToConstruc(construc, "m -30 30 L -30 -30 L 30 -30 L 30 30 L -30 30 Z M -12.38 20.25 C -8.44 20.25 -5.25 17.06 -5.25 13.13 C -5.25 9.19 -8.44 6 -12.38 6 C -16.31 6 -19.5 9.19 -19.5 13.13 C -19.5 17.06 -16.31 20.25 -12.38 20.25 Z M 12.38 20.25 C 16.31 20.25 19.5 17.06 19.5 13.13 C 19.5 9.19 16.31 6 12.38 6 C 8.44 6 5.25 9.19 5.25 13.13 C 5.25 17.06 8.44 20.25 12.38 20.25 Z M -12.38 -4.5 C -8.44 -4.5 -5.25 -7.69 -5.25 -11.63 C -5.25 -15.56 -8.44 -18.75 -12.38 -18.75 C -16.31 -18.75 -19.5 -15.56 -19.5 -11.63 C -19.5 -7.69 -16.31 -4.5 -12.38 -4.5 Z M 12.38 -4.5 C 16.31 -4.5 19.5 -7.69 19.5 -11.63 C 19.5 -15.56 16.31 -18.75 12.38 -18.75 C 8.44 -18.75 5.25 -15.56 5.25 -11.63 C 5.25 -7.69 8.44 -4.5 12.38 -4.5 Z", "#ddd", "#333", '');
+							pushToConstruc(construc, "m -30 30 L -30 -30 L 30 -30 L 30 30 L -30 30 Z M -12.38 20.25 C -8.44 20.25 -5.25 17.06 -5.25 13.13 C -5.25 9.19 -8.44 6 -12.38 6 C -16.31 6 -19.5 9.19 -19.5 13.13 C -19.5 17.06 -16.31 20.25 -12.38 20.25 Z M 12.38 20.25 C 16.31 20.25 19.5 17.06 19.5 13.13 C 19.5 9.19 16.31 6 12.38 6 C 8.44 6 5.25 9.19 5.25 13.13 C 5.25 17.06 8.44 20.25 12.38 20.25 Z M -12.38 -4.5 C -8.44 -4.5 -5.25 -7.69 -5.25 -11.63 C -5.25 -15.56 -8.44 -18.75 -12.38 -18.75 C -16.31 -18.75 -19.5 -15.56 -19.5 -11.63 C -19.5 -7.69 -16.31 -4.5 -12.38 -4.5 Z M 12.38 -4.5 C 16.31 -4.5 19.5 -7.69 19.5 -11.63 C 19.5 -15.56 16.31 -18.75 12.38 -18.75 C 8.44 -18.75 5.25 -15.56 5.25 -11.63 C 5.25 -7.69 8.44 -4.5 12.38 -4.5 Z", "#eee", "#333", '');
 				      construc.params.width = 40;
 	            construc.params.height = 40;
 	            construc.family = 'free';
@@ -6205,7 +6295,7 @@
 					
 	        if (typeObj === 'toilet') {
 	            //pushToConstruc(construc, "m160 49.5c0-70.968597-57.531403-128.5-128.5-128.5-70.96859 0-128.5 57.531403-128.5 128.5 0 70.96859 57.53141 128.5 128.5 128.5 70.968597 0 128.5-57.53141 128.5-128.5z", "#fff", "#333", '');
-							pushToConstruc(construc, "m -20 -8.5 C -20 5.58 -11.49 17 -1 17 C 9.49 17 18 5.58 18 -8.5 C 18 -22.58 9.49 -34 -1 -34 C -11.49 -34 -20 -22.58 -20 -8.5 Z", "", "#333", '');
+							pushToConstruc(construc, "m -20 -8.5 C -20 5.58 -11.49 17 -1 17 C 9.49 17 18 5.58 18 -8.5 C 18 -22.58 9.49 -34 -1 -34 C -11.49 -34 -20 -22.58 -20 -8.5 Z", "#fff", "#333", '');
 				      pushToConstruc(construc, "m 20 18 C 20 15.79 18.21 14 16 14 L -18 14 C -20.21 14 -22 15.79 -22 18 L -22 29 C -22 31.21 -20.21 33 -18 33 L 16 33 C 18.21 33 20 31.21 20 29 Z", "#fff", "#333", '');
 							construc.params.width = 32;
 	            construc.params.height = 40;
@@ -6216,8 +6306,8 @@
 	            //pushToConstruc(construc, "m160 49.5c0-70.968597-57.531403-128.5-128.5-128.5-70.96859 0-128.5 57.531403-128.5 128.5 0 70.96859 57.53141 128.5 128.5 128.5 70.968597 0 128.5-57.53141 128.5-128.5z", "#fff", "#333", '');
 							pushToConstruc(construc, "m -0.31 15.15 C -1.87 15.16 -3.3 14.13 -3.73 12.55 C -4.23 10.69 -3.12 8.77 -1.25 8.27 C 0.62 7.77 2.53 8.87 3.04 10.74 L 6.15 15.15 L 0.56 15.03 C 0.27 15.11 -0.02 15.14 -0.31 15.15 Z M -11.78 11.45 C -12.7 11.41 -13.52 10.79 -13.77 9.85 C -14.08 8.71 -13.4 7.53 -12.25 7.22 C -11.1 6.91 -9.92 7.59 -9.62 8.74 L -9.06 10.82 L -11.14 11.38 C -11.35 11.43 -11.57 11.46 -11.78 11.45 Z M 9.53 10.44 L -15.93 -16.44 L 10.94 9.02 L 9.53 10.44 Z M 14.15 8.15 L 10.08 3.91 C 8.41 2.94 7.83 0.8 8.8 -0.87 C 9.77 -2.55 11.91 -3.12 13.58 -2.15 C 15.25 -1.19 15.83 0.95 14.86 2.63 L 14.15 8.15 Z M -5.21 4.55 C -5.94 4.52 -6.59 4.03 -6.79 3.29 C -7.03 2.38 -6.49 1.45 -5.58 1.2 C -4.68 0.96 -3.74 1.5 -3.5 2.41 L -3.06 4.05 L -4.7 4.49 C -4.87 4.54 -5.04 4.56 -5.21 4.55 Z M 6.25 -5.87 L 4.39 -6.94 C 3.36 -7.54 3.01 -8.85 3.6 -9.88 C 4.2 -10.91 5.51 -11.26 6.54 -10.67 C 7.57 -10.08 7.92 -8.76 7.33 -7.73 L 6.25 -5.87 Z M 15.28 -6.41 L 13.81 -7.26 C 12.99 -7.73 12.72 -8.77 13.19 -9.59 C 13.66 -10.4 14.7 -10.68 15.51 -10.21 C 16.32 -9.74 16.6 -8.7 16.13 -7.88 L 15.28 -6.41 Z M 19.52 -29 L 18.5 8 L 20.5 8 Z M -32 21.48 L 5 22.5 L 5 20.5 Z", "#47aae7", "#47aae7", '');
 				      pushToConstruc(construc, "m 9.15 21.65 C 9.15 27.45 13.86 32.15 19.65 32.15 C 25.45 32.15 30.15 27.45 30.15 21.65 C 30.15 15.85 25.45 11.15 19.65 11.15 C 13.86 11.15 9.15 15.85 9.15 21.65 Z", "#ccc", "#aaa", '');
-							construc.params.width = 32;
-	            construc.params.height = 40;
+							construc.params.width = 40;
+	            construc.params.height = 50;
 	            construc.family = 'free';
 	        }
 					
@@ -6261,11 +6351,28 @@
 					
 					
 	        if (typeObj === 'tree') {
-	            pushToConstruc(construc, "m -15.27 18.68 C -15.15 18.13 -16.1 19.75 -16.99 18.58 C -17.88 17.41 -20.14 18.89 -19.51 19.38 C -18.89 19.87 -21.32 21.77 -22.54 19.08 C -22.87 18.36 -26.27 20.69 -24.63 17.03 C -24.39 16.5 -25.13 16.49 -25.46 16.48 C -28.85 16.37 -27.68 13.27 -27.68 13.27 L -25.67 11.57 C -25.67 11.57 -28.77 10.78 -25.97 9.47 C -25.45 9.22 -26.71 8.58 -27.18 8.26 C -29.17 6.92 -26.67 5.56 -26.67 5.56 C -26.67 5.56 -26.58 4.71 -27.18 4.66 C -28.37 4.55 -27.77 3.19 -27.99 3.56 C -29.53 6.14 -31.69 4.58 -32.63 3.36 C -33.15 2.67 -32.02 0.85 -32.02 0.85 C -32.02 0.85 -35.23 1.49 -33.87 -0.12 C -33.66 -0.37 -36.72 1.27 -36.06 -0.85 C -36.01 -1.01 -36.91 -1.28 -37.07 -1.35 C -38.57 -2.09 -38.1 -4.73 -33.64 -6.66 C -32.19 -7.28 -34.39 -8.03 -33.03 -9.97 C -31.86 -11.63 -30.19 -10.79 -30 -10.97 C -29.46 -11.49 -28.85 -13.31 -27.59 -12.18 C -26.13 -10.88 -25.56 -12.87 -25.56 -12.87 C -25.56 -12.87 -24.28 -14.03 -22.84 -13.07 C -21.67 -12.29 -22.26 -13.22 -22.13 -13.17 C -21.65 -12.98 -20.43 -13.12 -20.76 -13.62 C -22.3 -15.96 -22.66 -18.06 -18.7 -18.18 C -18.58 -18.18 -19.57 -19.75 -18.7 -20.08 C -17.56 -20.51 -18.74 -21.22 -18.7 -21.28 C -16.52 -24.95 -15.19 -21.28 -14.77 -22.59 C -12.84 -28.57 -11.4 -24.65 -9.83 -23.99 C -9.27 -23.75 -9.55 -25.56 -8.21 -24.99 C -7.7 -24.77 -6.96 -24.17 -6.6 -24.59 C -1.13 -30.97 0.93 -24.9 0.87 -23.89 C 0.85 -23.6 2.54 -25.2 2.88 -25.19 C 6.19 -25.12 4.09 -21.98 4.09 -21.98 C 4.09 -21.98 4.19 -21.05 5.71 -22.18 C 6.08 -22.46 6.87 -22.42 6.92 -22.89 C 7.24 -25.98 10.55 -24.09 10.55 -24.09 C 10.55 -24.09 10.92 -24.09 10.9 -23.86 C 10.72 -22.13 11.72 -23.46 11.86 -23.79 C 13.37 -27.15 15.8 -23.09 15.8 -23.09 C 15.8 -23.09 18.5 -24.6 18.12 -21.88 C 17.98 -20.93 16.97 -23.38 19.83 -21.58 C 21.11 -20.78 20.84 -19.48 20.84 -19.48 C 20.84 -19.48 23.65 -17.41 20.13 -16.07 C 18.76 -15.55 22.5 -16.39 23.67 -14.07 C 24.54 -12.34 23.67 -12.37 23.67 -12.37 C 23.67 -12.37 24.83 -11.51 25.1 -11.93 C 26.39 -13.93 26.86 -11.55 27.5 -11.67 C 28.76 -11.9 29.82 -8.96 29.82 -8.96 C 29.82 -8.96 32.22 -10.2 32.54 -7.76 C 32.69 -6.65 32.5 -4.62 31.43 -4.76 C 31.1 -4.8 31.97 -4.32 32.14 -3.76 C 32.29 -3.25 31.36 -2.76 31.74 -2.65 C 35.76 -1.52 33.96 1.75 33.96 1.75 C 33.96 1.75 37.27 3.78 33.15 6.76 C 32.5 7.23 33.55 8.56 33.55 8.56 C 33.55 8.56 32.66 10.37 31.43 9.77 C 30.71 9.41 33.6 10.42 33.85 11.97 C 33.97 12.68 32.94 13.62 32.44 13.27 C 31.94 12.92 32.81 15.15 32.85 15.78 C 32.91 16.89 31.49 18.2 30.63 18.28 C 29.65 18.37 29.84 16.5 27.7 18.68 C 27.15 19.24 29.53 19.84 26.49 20.68 C 25.23 21.03 23.72 21.71 22.56 20.58 C 22.11 20.15 23.39 18.61 21.45 19.08 C 21.02 19.19 20.67 19.75 20.74 20.18 C 21.29 23.73 17.81 23.09 17.81 23.09 C 17.81 23.09 15.84 21.71 15.09 22.29 C 14.08 23.06 13.88 21.59 13.88 21.59 C 13.88 21.59 12.78 21.05 12.17 22.89 C 11.92 23.63 14.17 23.83 11.76 25.19 C 11.17 25.53 11.63 27.28 10.05 26.29 C 9.5 25.95 9.07 27.13 8.53 27.49 C 6.96 28.56 6.59 25.65 6.11 26.39 C 4.6 28.75 3.49 26.19 3.49 26.19 C 3.49 26.19 1.91 28.08 1.27 25.09 C 1.16 24.59 0.76 23.86 0.97 23.49 C 1.44 22.64 1.39 22.89 0.51 23.31 C 0.31 23.41 0.57 24.07 -0.15 23.62 C -0.97 23.11 -0.98 24.04 -0.95 24.49 C -0.78 26.83 -2.87 25.89 -2.87 25.89 C -2.87 25.89 -2.9 27.6 -5.09 27.69 C -6.8 27.77 -7.09 24.13 -7.2 25.19 C -7.5 27.81 -8.9 25.43 -9.02 26.09 C -9.48 28.51 -10.55 25.93 -10.74 26.69 C -11 27.81 -11.18 26.48 -11.24 26.49 C -15.05 27.01 -13.06 25.64 -13.96 25.19 C -16.08 24.13 -13.96 23.26 -14.67 23.19 C -19.13 22.71 -14.27 19.48 -14.27 19.48 C -14.27 19.48 -15.53 19.8 -15.27 18.68 Z", "#090", "#060", '');
+						let tree_color = "#090";
+						let green = 190 + Math.floor(Math.random() * 64);
+						tree_color = 'rgba(64,' + green + ',64,.8)';
+	            pushToConstruc(construc, "m -15.27 18.68 C -15.15 18.13 -16.1 19.75 -16.99 18.58 C -17.88 17.41 -20.14 18.89 -19.51 19.38 C -18.89 19.87 -21.32 21.77 -22.54 19.08 C -22.87 18.36 -26.27 20.69 -24.63 17.03 C -24.39 16.5 -25.13 16.49 -25.46 16.48 C -28.85 16.37 -27.68 13.27 -27.68 13.27 L -25.67 11.57 C -25.67 11.57 -28.77 10.78 -25.97 9.47 C -25.45 9.22 -26.71 8.58 -27.18 8.26 C -29.17 6.92 -26.67 5.56 -26.67 5.56 C -26.67 5.56 -26.58 4.71 -27.18 4.66 C -28.37 4.55 -27.77 3.19 -27.99 3.56 C -29.53 6.14 -31.69 4.58 -32.63 3.36 C -33.15 2.67 -32.02 0.85 -32.02 0.85 C -32.02 0.85 -35.23 1.49 -33.87 -0.12 C -33.66 -0.37 -36.72 1.27 -36.06 -0.85 C -36.01 -1.01 -36.91 -1.28 -37.07 -1.35 C -38.57 -2.09 -38.1 -4.73 -33.64 -6.66 C -32.19 -7.28 -34.39 -8.03 -33.03 -9.97 C -31.86 -11.63 -30.19 -10.79 -30 -10.97 C -29.46 -11.49 -28.85 -13.31 -27.59 -12.18 C -26.13 -10.88 -25.56 -12.87 -25.56 -12.87 C -25.56 -12.87 -24.28 -14.03 -22.84 -13.07 C -21.67 -12.29 -22.26 -13.22 -22.13 -13.17 C -21.65 -12.98 -20.43 -13.12 -20.76 -13.62 C -22.3 -15.96 -22.66 -18.06 -18.7 -18.18 C -18.58 -18.18 -19.57 -19.75 -18.7 -20.08 C -17.56 -20.51 -18.74 -21.22 -18.7 -21.28 C -16.52 -24.95 -15.19 -21.28 -14.77 -22.59 C -12.84 -28.57 -11.4 -24.65 -9.83 -23.99 C -9.27 -23.75 -9.55 -25.56 -8.21 -24.99 C -7.7 -24.77 -6.96 -24.17 -6.6 -24.59 C -1.13 -30.97 0.93 -24.9 0.87 -23.89 C 0.85 -23.6 2.54 -25.2 2.88 -25.19 C 6.19 -25.12 4.09 -21.98 4.09 -21.98 C 4.09 -21.98 4.19 -21.05 5.71 -22.18 C 6.08 -22.46 6.87 -22.42 6.92 -22.89 C 7.24 -25.98 10.55 -24.09 10.55 -24.09 C 10.55 -24.09 10.92 -24.09 10.9 -23.86 C 10.72 -22.13 11.72 -23.46 11.86 -23.79 C 13.37 -27.15 15.8 -23.09 15.8 -23.09 C 15.8 -23.09 18.5 -24.6 18.12 -21.88 C 17.98 -20.93 16.97 -23.38 19.83 -21.58 C 21.11 -20.78 20.84 -19.48 20.84 -19.48 C 20.84 -19.48 23.65 -17.41 20.13 -16.07 C 18.76 -15.55 22.5 -16.39 23.67 -14.07 C 24.54 -12.34 23.67 -12.37 23.67 -12.37 C 23.67 -12.37 24.83 -11.51 25.1 -11.93 C 26.39 -13.93 26.86 -11.55 27.5 -11.67 C 28.76 -11.9 29.82 -8.96 29.82 -8.96 C 29.82 -8.96 32.22 -10.2 32.54 -7.76 C 32.69 -6.65 32.5 -4.62 31.43 -4.76 C 31.1 -4.8 31.97 -4.32 32.14 -3.76 C 32.29 -3.25 31.36 -2.76 31.74 -2.65 C 35.76 -1.52 33.96 1.75 33.96 1.75 C 33.96 1.75 37.27 3.78 33.15 6.76 C 32.5 7.23 33.55 8.56 33.55 8.56 C 33.55 8.56 32.66 10.37 31.43 9.77 C 30.71 9.41 33.6 10.42 33.85 11.97 C 33.97 12.68 32.94 13.62 32.44 13.27 C 31.94 12.92 32.81 15.15 32.85 15.78 C 32.91 16.89 31.49 18.2 30.63 18.28 C 29.65 18.37 29.84 16.5 27.7 18.68 C 27.15 19.24 29.53 19.84 26.49 20.68 C 25.23 21.03 23.72 21.71 22.56 20.58 C 22.11 20.15 23.39 18.61 21.45 19.08 C 21.02 19.19 20.67 19.75 20.74 20.18 C 21.29 23.73 17.81 23.09 17.81 23.09 C 17.81 23.09 15.84 21.71 15.09 22.29 C 14.08 23.06 13.88 21.59 13.88 21.59 C 13.88 21.59 12.78 21.05 12.17 22.89 C 11.92 23.63 14.17 23.83 11.76 25.19 C 11.17 25.53 11.63 27.28 10.05 26.29 C 9.5 25.95 9.07 27.13 8.53 27.49 C 6.96 28.56 6.59 25.65 6.11 26.39 C 4.6 28.75 3.49 26.19 3.49 26.19 C 3.49 26.19 1.91 28.08 1.27 25.09 C 1.16 24.59 0.76 23.86 0.97 23.49 C 1.44 22.64 1.39 22.89 0.51 23.31 C 0.31 23.41 0.57 24.07 -0.15 23.62 C -0.97 23.11 -0.98 24.04 -0.95 24.49 C -0.78 26.83 -2.87 25.89 -2.87 25.89 C -2.87 25.89 -2.9 27.6 -5.09 27.69 C -6.8 27.77 -7.09 24.13 -7.2 25.19 C -7.5 27.81 -8.9 25.43 -9.02 26.09 C -9.48 28.51 -10.55 25.93 -10.74 26.69 C -11 27.81 -11.18 26.48 -11.24 26.49 C -15.05 27.01 -13.06 25.64 -13.96 25.19 C -16.08 24.13 -13.96 23.26 -14.67 23.19 C -19.13 22.71 -14.27 19.48 -14.27 19.48 C -14.27 19.48 -15.53 19.8 -15.27 18.68 Z", tree_color, "#060", '');
 				      construc.params.width = 200;
 	            construc.params.height = 200;
 	            construc.family = 'free';
 	        }
+					
+	        if (typeObj === 'plant') {
+						let tree_color = "#090";
+						let tree_color2 = "#080";
+						let green = 190 + Math.floor(Math.random() * 64);
+						tree_color = 'rgba(64,' + green + ',64,.8)';
+						tree_color2 = 'rgba(64,' + (green - 32) + ',64,.8)';
+	            pushToConstruc(construc, "m -5.29 21.79 C -4.63 16.56 -9.47 10.43 0 6.65 L 0 4.6 L -7.51 2.82 C -8.75 3.66 -9.96 3.97 -11.15 3.96 C -14.28 3.93 -17.27 1.72 -20.38 1.44 C -19.67 0.3 -18.79 -1.02 -17.76 -2.24 L -14.06 -1.29 L -19.57 1.28 L -14.42 -0.66 C -16.41 1.45 -15.62 1.57 -15.85 2.42 C -15.37 1.38 -15 0.11 -14.23 -0.32 L -9.66 -1.6 C -12.04 0.08 -11.53 1.55 -12.19 3.11 C -11.39 1.22 -10.84 -1.03 -9.08 -1.52 L -5 -2.26 C -8.92 -0.97 -7.96 0.73 -9.1 2.26 C -7.89 0.68 -7.34 -1.03 -4.67 -2.3 L -4.46 -2.39 L -4.65 -2.68 L -8.4 -2.25 C -11.15 -2.3 -14.05 -2.14 -15.73 -3.83 C -15.16 -2.24 -12.56 -1.98 -9.52 -1.98 L -13.36 -1.44 L -17.75 -2.25 C -14.98 -5.53 -11.06 -8.13 -6.03 -4.75 L -6.2 -5 L -2.4 -5.4 L -0.63 -9.1 C -5.13 -14.9 0.39 -18.66 1.46 -23.32 C 2.49 -22.46 3.68 -21.41 4.75 -20.21 L 3.29 -16.68 L 1.51 -22.5 L 2.72 -17.13 C 0.9 -19.39 0.68 -18.61 -0.13 -18.97 C 0.83 -18.35 2.04 -17.8 2.36 -16.98 L 3 -12.28 C 1.66 -14.87 0.13 -14.57 -1.32 -15.43 C 0.44 -14.38 2.6 -13.53 2.84 -11.71 L 3.01 -7.58 C 2.27 -11.63 0.46 -10.92 -0.9 -12.26 C 0.49 -10.84 2.12 -10.06 3.01 -7.24 L 3.12 -6.84 L 3.58 -6.99 C 4.59 -9.54 5.58 -12.17 6.83 -13.3 C 5.05 -12.32 4.2 -9.74 3.38 -7.11 L 3.47 -10.94 C 3.9 -13.66 4.14 -16.55 6.04 -17.98 C 4.39 -17.64 3.77 -15.1 3.36 -12.09 L 3.35 -15.96 L 4.75 -20.21 C 7.8 -16.81 9.92 -12.23 4.78 -7.39 L 6.6 -8 L 7.4 -4.2 L 7.79 -3.47 C 17.05 -8.38 18.05 -0.48 22.21 2.53 C 21.04 3.21 19.64 3.98 18.15 4.58 L 15.57 1.92 L 21.46 2.28 L 16.19 1.52 C 18.92 0.58 18.32 0.09 18.96 -0.57 C 18.02 0.14 17.06 1.1 16.21 1.12 L 11.76 0.05 C 14.59 -0.31 14.92 -1.89 16.26 -2.98 C 14.64 -1.66 13.03 0.11 11.32 -0.3 L 9.03 -1.11 L 9.4 -0.4 L 10.38 0.03 C 12.64 1.42 15.12 2.68 15.66 5.03 C 16 3.32 13.97 1.8 11.45 0.33 L 14.91 1.71 L 18.14 4.59 C 16.59 5.22 14.94 5.67 13.37 5.66 C 10.76 5.64 8.35 4.35 6.88 0.48 L 5.4 1 L 3.41 8.31 C 6.43 14.55 2.89 18.01 -1.12 20.07 L -0.98 15.62 L 0.37 12.02 C -0.28 14.96 -0.57 17.55 0.86 18.46 C -0.44 16.45 0.34 13.67 0.87 10.98 L 0.94 10.76 L 0.16 11.12 L 0.01 11.48 C -0.85 13.08 -3.17 13.1 -5.18 13.45 C -3.52 13.17 -2.18 13.99 -0.04 12.06 L -2.26 16.21 C -2.84 16.86 -4.16 16.94 -5.29 17.17 C -4.4 17.13 -4.46 17.93 -1.96 16.48 L -4.95 21.05 L -1.27 16.27 L -1.12 20.08 C -2.54 20.81 -4.02 21.36 -5.29 21.79 Z M 3.22 14.38 C 2.7 13.38 2.51 11.81 2.42 10.07 L 2.04 10.25 C 2.09 11.9 2.36 13.38 3.22 14.38 Z M -3.71 10.65 C -2.44 10.09 -1.32 10.64 0 9.63 L 0 9 C -1.24 9.84 -2.47 10.08 -3.71 10.65 Z M 11.17 4.11 C 11.03 2.58 9.92 1.22 8.52 -0.09 L 8.13 0.04 C 9.53 1.48 10.77 2.88 11.17 4.11 Z M 9.13 -1.46 C 11.53 -1.48 11.81 -3.01 13.26 -3.71 C 11.78 -3.02 10.61 -2.04 8.67 -1.79 L 8.84 -1.46 C 8.94 -1.46 9.04 -1.46 9.13 -1.46 Z M -4.66 -2.7 L -4.86 -2.99 C -7.41 -3.6 -9.96 -4.22 -11.19 -5.25 C -9.99 -3.64 -7.36 -3.15 -4.66 -2.7 Z", tree_color, "#060", '');
+				      pushToConstruc(construc, "m 22.62 27.37 C 14.5 20.86 -0.58 23.82 4.07 -0.04 C 20.7 -1.41 23.73 9.01 23.5 18.73 L 16.64 14.24 L 12.15 8.54 C 16.21 12.45 20.02 15.41 22.67 13.88 C 18.4 14.13 14.71 10.17 10.96 6.72 L 6.38 1.21 C 10.56 4.05 14.73 6.78 18.29 6.03 C 14.96 5.9 9.95 2.72 5.2 0.02 L 6.04 1.85 C 8.06 7.02 6.81 10.16 6.54 13.91 C 6.9 10.38 10.09 9.13 6.42 2.34 L 11.01 8.62 C 12.78 11.59 10.82 15.5 9.64 19.2 C 10.63 16.15 13.06 14.7 11.88 9.26 L 16.47 16.95 C 16.98 18.55 15.98 20.84 15.38 22.94 C 16.08 21.42 17.28 22.28 17.14 16.71 L 21.73 26.09 L 17.4 15.36 L 23.5 18.75 C 23.42 21.82 23.02 24.83 22.62 27.37 Z M -11.08 17.95 C -13.45 17.94 -15.95 17.38 -18.35 16.58 L -13.34 11.42 L -7.7 8.76 C -11.73 11.48 -14.92 14.23 -14.06 17.07 C -13.54 13.07 -9.53 10.7 -5.94 8.14 L -0.45 5.35 C -3.59 8.47 -6.63 11.6 -6.59 15.09 C -5.92 12.04 -2.34 8.25 0.77 4.57 L -0.94 4.86 C -5.78 5.39 -8.26 3.34 -11.49 2.11 C -8.39 3.32 -7.96 6.73 -1.42 5.09 L -7.57 7.68 C -10.42 8.54 -13.43 5.71 -16.4 3.65 C -13.96 5.36 -13.13 7.99 -8.27 8.32 L -15.64 10.55 C -17.09 10.61 -18.88 9.08 -20.58 7.97 C -19.39 9.02 -20.33 9.91 -15.55 11.23 L -24.35 13.02 L -14.43 11.83 L -18.37 16.57 C -20.99 15.7 -23.49 14.54 -25.6 13.5 C -18.65 7.71 -18.62 -6.99 1.01 3.54 C -0.16 14.7 -5.26 17.98 -11.08 17.95 Z M 6.33 -3.59 C 1 -18.37 9.35 -23.02 17.91 -24.59 L 15.68 -17.57 L 11.82 -12.47 C 14.23 -16.85 15.87 -20.83 13.88 -22.95 C 15.15 -19.14 12.6 -15.08 10.52 -11.05 L 6.84 -5.91 C 8.29 -10.21 9.64 -14.47 8.09 -17.56 C 8.81 -14.52 7.28 -9.41 6.1 -4.63 L 7.49 -5.72 C 11.57 -8.54 14.65 -7.92 18.06 -8.4 C 14.78 -7.97 12.92 -10.78 7.82 -6.16 L 12.17 -11.45 C 14.33 -13.59 18.23 -12.54 21.76 -12.15 C 18.85 -12.48 16.98 -14.42 12.52 -12.35 L 18.09 -17.91 C 19.36 -18.67 21.62 -18.17 23.61 -18.02 C 22.1 -18.37 22.55 -19.62 17.72 -18.47 L 24.78 -24.34 L 16.47 -18.46 L 17.92 -24.59 C 20.63 -25.08 23.35 -25.27 25.67 -25.37 C 22 -16.85 28.34 -3.76 6.33 -3.59 Z M -4.67 -4.64 C -23.23 -4.73 -18.35 -17.34 -22.31 -25.22 C -19.99 -25.27 -17.26 -25.26 -14.53 -24.94 L -12.73 -18.91 L -21.35 -24.24 L -13.98 -18.84 C -18.86 -19.68 -18.34 -18.47 -19.83 -18.01 C -17.85 -18.3 -15.63 -18.93 -14.32 -18.26 L -8.44 -13.07 C -13.01 -14.85 -14.76 -12.79 -17.65 -12.28 C -14.15 -12.89 -10.32 -14.19 -8.04 -12.19 L -3.39 -7.19 C -8.76 -11.48 -10.45 -8.54 -13.75 -8.77 C -10.32 -8.5 -7.28 -9.33 -3.04 -6.77 L -1.58 -5.77 C -3.03 -10.47 -4.86 -15.47 -4.32 -18.55 C -5.68 -15.37 -4.09 -11.2 -2.4 -7 L -6.37 -11.9 C -8.68 -15.79 -11.45 -19.67 -10.4 -23.55 C -12.27 -21.32 -10.39 -17.45 -7.74 -13.23 L -11.89 -18.07 L -14.51 -24.93 C -5.89 -23.92 2.72 -19.82 -1.76 -4.72 C -2.79 -4.66 -3.76 -4.64 -4.67 -4.64 Z",  tree_color, "#090", '');
+							construc.params.width = 40;
+	            construc.params.height = 40;
+	            construc.family = 'free';
+	        }
+					
 					
 					
 					
@@ -6382,11 +6489,11 @@
 	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#f00", '');
 	            construc.push({
 	                'text': " 🚩 ",
-	                'x': '0',
-	                'y': '5',
+	                'x': '3',
+	                'y': '10',
 	                'fill': "#333333",
 	                'stroke': "none",
-	                'fontSize': '0.9em',
+	                'fontSize': '1.8rem',
 	                "strokeWidth": "0.4px"
 	            });
 	            construc.params.width = 40;
@@ -6486,13 +6593,21 @@
 	            construc.family = 'stick';
 	        }
 	        if (typeObj === 'roofLight') {
-	            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#000", '');
-	            pushToConstruc(construc, "M -8,-8 L 8,8 M -8,8 L 8,-8", "none", "#333", '');
+	            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "rgba(255,255,200,.7)", "rgba(0,0,0,.5)", '');
+	            //pushToConstruc(construc, "M -8,-8 L 8,8 M -8,8 L 8,-8", "none", "#333", '');
 
 	            construc.params.width = 36;
 	            construc.params.height = 36;
 	            construc.family = 'free';
 	        }
+					
+	        if (typeObj === 'wallLight') {
+            pushToConstruc(construc, "m 40 20 L 40 20 C 40 -2.09 22.09 -20 0 -20 C -22.09 -20 -40 -2.09 -40 20 L 40 20 Z", "rgba(255,255,200,.7)", "rgba(0,0,0,.5)", '');
+            construc.params.width = 36;
+            construc.params.height = 36;
+            construc.family = 'stick';
+	        }
+					/*
 	        if (typeObj === 'wallLight') {
 	            pushToConstruc(construc, qSVG.circlePath(0, 0, 16), "#fff", "#000", '');
 	            pushToConstruc(construc, "M -8,-8 L 8,8 M -8,8 L 8,-8", "none", "#333", '');
@@ -6502,16 +6617,19 @@
 	            construc.params.height = 36;
 	            construc.family = 'stick';
 	        }
+					*/
+					
+					
 	        if (typeObj === 'www') {
 	            pushToConstruc(construc, "m -20,-20 l 40,0 l0,40 l-40,0 Z", "#fff", "#333", '');
 
 	            construc.push({
 	                'text': "@",
 	                'x': '0',
-	                'y': '4',
+	                'y': '10',
 	                'fill': "#333333",
 	                'stroke': "none",
-	                'fontSize': '1.2em',
+	                'fontSize': '1.6rem',
 	                "strokeWidth": "0.4px"
 	            });
 	            construc.params.width = 40;
@@ -6573,6 +6691,7 @@
 	            construc.family = 'stick';
 	        }
 	        if (typeObj === 'radiator') {
+						/*
 	            pushToConstruc(construc, "m -20,-10 l 40,0 l0,20 l-40,0 Z", "#fff", "#333", '');
 	            pushToConstruc(construc, "M -15,-10 L -15,10", "#fff", "#333", '');
 	            pushToConstruc(construc, "M -10,-10 L -10,10", "#fff", "#333", '');
@@ -6581,10 +6700,12 @@
 	            pushToConstruc(construc, "M 5,-10 L 5,10", "#fff", "#333", '');
 	            pushToConstruc(construc, "M 10,-10 L 10,10", "#fff", "#333", '');
 	            pushToConstruc(construc, "M 15,-10 L 15,10", "#fff", "#333", '');
-
-	            construc.params.width = 40;
-	            construc.params.height = 20;
-	            construc.family = 'stick';
+						*/
+						
+            pushToConstruc(construc, "m -67.87 15 C -71.63 15 -74.68 13.89 -74.68 12.52 L -74.68 -12.9 C -74.68 -14.27 -71.63 -15.39 -67.87 -15.39 C -64.11 -15.39 -61.06 -14.27 -61.06 -12.9 L -61.06 12.52 C -61.06 13.89 -64.11 15 -67.87 15 Z M -54.24 15 C -58 15 -61.05 13.89 -61.05 12.52 L -61.05 -12.9 C -61.05 -14.27 -58 -15.39 -54.24 -15.39 C -50.48 -15.39 -47.44 -14.27 -47.44 -12.9 L -47.44 12.52 C -47.44 13.89 -50.48 15 -54.24 15 Z M -40.62 15 C -44.38 15 -47.43 13.89 -47.43 12.52 L -47.43 -12.9 C -47.43 -14.27 -44.38 -15.39 -40.62 -15.39 C -36.86 -15.39 -33.81 -14.27 -33.81 -12.9 L -33.81 12.52 C -33.81 13.89 -36.86 15 -40.62 15 Z M -27 15 C -30.76 15 -33.81 13.89 -33.81 12.52 L -33.81 -12.9 C -33.81 -14.27 -30.76 -15.39 -27 -15.39 C -23.24 -15.39 -20.19 -14.27 -20.19 -12.9 L -20.19 12.52 C -20.19 13.89 -23.24 15 -27 15 Z M -13.37 15 C -17.13 15 -20.18 13.89 -20.18 12.52 L -20.18 -12.9 C -20.18 -14.27 -17.13 -15.39 -13.37 -15.39 C -9.61 -15.39 -6.56 -14.27 -6.56 -12.9 L -6.56 12.52 C -6.56 13.89 -9.61 15 -13.37 15 Z M 0.25 15 C -3.51 15 -6.56 13.89 -6.56 12.52 L -6.56 -12.9 C -6.56 -14.27 -3.51 -15.39 0.25 -15.39 C 4.01 -15.39 7.06 -14.27 7.06 -12.9 L 7.06 12.52 C 7.06 13.89 4.01 15 0.25 15 Z M 13.88 15 C 10.11 15 7.07 13.89 7.07 12.52 L 7.07 -12.9 C 7.07 -14.27 10.11 -15.39 13.88 -15.39 C 17.62 -15.39 20.66 -14.28 20.68 -12.92 C 20.71 -14.28 23.74 -15.39 27.49 -15.39 C 31.25 -15.39 34.3 -14.27 34.3 -12.9 L 34.3 12.52 C 34.3 13.89 31.25 15 27.49 15 C 23.73 15 21.06 15.03 21.06 13.66 L 20.68 -12.77 L 20.68 12.52 C 20.68 13.89 17.63 15 13.88 15 Z M 47.92 12.52 C 47.92 13.89 44.87 15 41.11 15 C 37.35 15 34.31 13.89 34.31 12.52 L 34.31 -12.9 C 34.31 -14.27 37.35 -15.39 41.11 -15.39 C 44.87 -15.39 47.92 -14.27 47.92 -12.9 L 47.92 12.52 Z M 61.55 12.52 C 61.55 13.89 58.5 15 54.74 15 C 50.98 15 47.93 13.89 47.93 12.52 L 47.93 -12.9 C 47.93 -14.27 50.98 -15.39 54.74 -15.39 C 58.5 -15.39 61.55 -14.27 61.55 -12.9 L 61.55 12.52 Z M 75.17 12.52 C 75.17 13.89 72.12 15 68.36 15 C 64.6 15 61.55 13.89 61.55 12.52 L 61.55 -12.9 C 61.55 -14.27 64.6 -15.39 68.36 -15.39 C 72.12 -15.39 75.17 -14.27 75.17 -12.9 L 75.17 12.52 Z", "#fff", "#333", '');
+						construc.params.width = 40;
+						construc.params.height = 10;
+						construc.family = 'stick';
 	        }
 	    }
 
@@ -6701,7 +6822,7 @@
 		
 		let energy_list_el = document.getElementById('extension-floorplanner-energy_list');
 		
-		console.log("display?", energy_list_el.style.display);
+		//console.log("display?", energy_list_el.style.display);
 		if( energy_list_el.style.display == 'block' ){
 			hide_submenus();
 			//energy_list_el.style.display='none';
@@ -6725,6 +6846,7 @@
 			document.querySelector('#extension-floorplanner-layer_list').style.display='block';
 		}
 	}
+	
 	
 	function toggle_object_list(){
 		let showing = window.getComputedStyle(document.getElementById("extension-floorplanner-object_list"), null); //.getPropertyCSSValue("display").cssText;
@@ -6764,7 +6886,7 @@
 		}
 		
 		if(force){
-			console.log("clearing floorplan");
+			//console.log("clearing floorplan");
 			if(clear_local_storage){
 				localStorage.removeItem('extension-floorplanner-history');
 				//current_filename = null;
@@ -6794,18 +6916,18 @@
 			colorline = "#fff";
 			colorroom = "#f0daaf";
 			colorWall = "#666";
-			pox = 0;
-			poy = 0;
+			//pox = 0;
+			//poy = 0;
 			segment = 0;
-			xpath = 0;
-			ypath = 0;
-			width_viewbox = taille_w;
-			height_viewbox = taille_h;
-			ratio_viewbox = height_viewbox / width_viewbox;
-			originX_viewbox = 0;
-			originY_viewbox = 0;
-			zoom = 9;
-			factor = 1;
+			//xpath = 0;
+			//ypath = 0;
+			//width_viewbox = taille_w;
+			//height_viewbox = taille_h;
+			//ratio_viewbox = height_viewbox / width_viewbox;
+			//originX_viewbox = 0;
+			//originY_viewbox = 0;
+			//zoom = 9;
+			//factor = 1;
 
 			sizeText = [];
 			showAllSizeStatus = 0;
@@ -6844,7 +6966,7 @@
 			}
 		
 			if(floorplans.length == 0){
-				console.log("all floorplans have been deleted");
+				//console.log("all floorplans have been deleted");
 			}
 			else{
 				console.warn('cannot delete, no current_filename');
@@ -6891,7 +7013,7 @@
 					floorplans[current_filename]['floorplan'] = last_version;
 				}
 				
-				console.log("floorplans is now: ", floorplans);
+				//console.log("floorplans is now: ", floorplans);
 				localStorage.setItem('extension-floorplanner-floorplans', JSON.stringify(floorplans));
 				unsaved = false;
 				document.getElementById('extension-floorplanner-plan-exists-warning').style.display = 'none';
@@ -6936,7 +7058,7 @@
 
 	
 	function generate_floorplans_list(load_whatever = false){
-		console.log("in generate_floorplans_list. floorplanner_started,current_filename: ", floorplanner_started,current_filename);
+		//console.log("in generate_floorplans_list. floorplanner_started,current_filename: ", floorplanner_started,current_filename);
 		floorplans_list_el.innerHTML = '';
 		let floorplans_length = Object.keys(floorplans).length;
 		
@@ -6950,12 +7072,14 @@
 						let floorplan_el = document.createElement('li');
 						floorplan_el.classList.add('extension-floorplanner-floorplan-item');
 						
-						
 						if(typeof floorplans[key].name == 'string' && typeof current_filename == 'string'){
 							//console.log("both strings");
 							if(floorplans[key].name == current_filename){
-								console.log("NAMES MATCH. floorplan_el: ", floorplan_el);
+								//console.log("NAMES MATCH. floorplan_el: ", floorplan_el);
 								floorplan_el.classList.add('extension-floorplanner-floorplan-icon-current');
+								setTimeout(() => {
+									floorplan_el.scrollIntoView(true);
+								},1);
 								//floorplan_el.style.backgroundColor='purple';
 								//floorplan_name_el.classList.add('extension-floorplanner-floorplan-icon-current');
 							}
@@ -6987,9 +7111,17 @@
 						floorplan_name_el.textContent = details.name;
 						floorplan_el.appendChild(floorplan_name_el);
 						
-						
+						if(load_whatever && typeof current_filename == 'string' && typeof floorplans[current_filename] != 'undefined'){
+							load_whatever = false;
+						}
+						/*
 						if(load_whatever){
-							console.log("loadwhatever.  details.name: ", details.name);
+							if(current_filename != null){
+								if(typeof floorplans[current_filename] != 'undefined'){
+									
+								}
+							}
+							//console.log("loadwhatever.  details.name: ", details.name);
 							load_whatever = false;
 							current_filename = details.name;
 							//current_filename = floorplans[key].name;
@@ -6998,6 +7130,7 @@
 							load_from_floorplans(details);
 							unsaved = false;
 						}
+						*/
 						
 						//console.log("floorplanner_started: ", floorplanner_started);
 						
@@ -7045,17 +7178,23 @@
 										//console.log("calling load_from_floorplans");
 										load_from_floorplans(details);
 										unsaved = false;
+										//zoom_maker('zoomreset',0,0);
+										//zoom_maker('zoomout', 1);
 									}
 									else{
 										if(unsaved){
 											if(confirm("Are you sure you want to revert to the old version of the floorplan? This will undo any changes you have made.")){
 												load_from_floorplans(details);
 												unsaved = false;
+												//zoom_maker('zoomreset',0,0);
+												//zoom_maker('zoomout', 1);
 											}
 										}
 										else{
 											load_from_floorplans(details);
 											unsaved = false;
+											//zoom_maker('zoomreset',0,0);
+											//zoom_maker('zoomout', 1);
 										}
 									}
 								}
@@ -7065,10 +7204,21 @@
 								bg_image_el.style.backgroundImage = 'none';
 								generate_floorplans_list();
 						  });
+							
 						}
 						else{
 							floorplan_el.addEventListener("click", () => {
+								
+								if(current_filename == null){
+									localStorage.removeItem('extension-floorplanner-history');
+								}
+								
 								if(typeof floorplans[key].name == 'string'){
+
+									if(typeof current_filename == 'string' && current_filename != floorplans[key].name){
+										//console.log("clearing floorplanner history");
+										localStorage.removeItem('extension-floorplanner-history');
+									}
 							    //var preface = '<?xml version="1.0" standalone="no"?>\r\n';
 							    //var svgBlob = new Blob([preface, details.svg_data], {type:"image/svg+xml;charset=utf-8"});
 							    //var svgUrl = URL.createObjectURL(svgBlob);
@@ -7090,14 +7240,14 @@
 									bg_image_el.style.backgroundImage = 'none';
 									//generate_floorplans_list();
 								}
-								generate_floorplans_list()
+								generate_floorplans_list();
 							});
 							
-							console.log("generate_floorplans_list: floorplans[key].name =?= current_filename: ", floorplans[key].name, current_filename);
+							//console.log("generate_floorplans_list: floorplans[key].name =?= current_filename: ", floorplans[key].name, current_filename);
 							if(typeof floorplans[key].name == 'string' && typeof current_filename == 'string'){
-								//console.log("both strings");
+								//console.log("both strings: ", floorplans[key].name, current_filename);
 								if(floorplans[key].name == current_filename){
-									console.log("NAMES MATCH. floorplan_el: ", floorplan_el);
+									//console.log("NAMES MATCH. floorplan_el: ", floorplans[key].name, floorplan_el);
 									//floorplan_el.classList.add('extension-floorplanner-floorplan-icon-current');
 									//floorplan_el.style.backgroundColor='purple';
 									//floorplan_name_el.classList.add('extension-floorplanner-floorplan-icon-current');
@@ -7107,6 +7257,9 @@
 							    //var svgUrl = URL.createObjectURL(svgBlob);
 								
 									//bg_image_el.style.backgroundImage = "url(" + svgUrl + ")";
+									//console.log("details.svg_data: ", details.svg_data);
+									
+									bg_image_el.classList.remove('extension-floorplanner-slow-fade-out');
 									bg_image_el.innerHTML = details.svg_data;
 									let bg_svg = bg_image_el.querySelector('svg');
 									if(bg_svg){
@@ -7208,7 +7361,7 @@
 	
 	
 	function load_from_floorplans(details){
-		//console.log("in load_from_floorplans. details: ", details);
+		//console.log("in load_from_floorplans. details: ", details.name, details);
 		if(typeof details == 'object'){
 			clear_floorplan(true);
 			//zoom_maker('zoomreset',0,0);
@@ -7260,21 +7413,21 @@
 		if(objTarget != null && typeof objTarget.type == 'string' && typeof objTarget.params != 'undefined' && typeof objTarget.params.bindBox != 'undefined' && objTarget.params.bindBox == true){
 			
 			currently_cloning_an_object = true;
-			console.log("in clone_object. objTarget, binder: ", objTarget,binder);
+			//console.log("in clone_object. objTarget, binder: ", objTarget,binder);
 		
 	    cursor('move');
 	    document.querySelector('#extension-floorplanner-boxinfo').innerHTML = 'Cloning an object: ' + objTarget.type;
 	    //fonc_button('object_mode', objTarget.type);
 			
 			if(typeof binder.obj != 'undefined'){
-				console.log("cloner: binder.obj: ",  binder.obj);
+				//console.log("cloner: binder.obj: ",  binder.obj);
 				//bye_binder();
 				//binder = binder.obj.cloneNode(true);
 				//const clone = structuredClone(binder.obj);
 				let path_copy = binder.graph.cloneNode(true);
-				console.log("cloner: path_copy: ", path_copy)
+				//console.log("cloner: path_copy: ", path_copy)
 				const clone1 =JSON.parse(JSON.stringify(binder.obj)); //binder.obj.cloneNode(true);
-				console.log("json clone1: ", clone1);
+				//console.log("json clone1: ", clone1);
 				
 				let load = true;
         let obj = new floorplanEditor.obj2D(binder.obj.family, binder.obj.class, binder.obj.type, {
@@ -7282,7 +7435,7 @@
 					y: binder.obj.y + 50 + Math.floor(Math.random() * 20),
         }, binder.obj.angle, binder.obj.angleSign, binder.obj.size, binder.obj.hinge = 'normal', binder.obj.thick, binder.obj.value, load);// true indicates this is a load, so to ignore the params size and thickness
         obj.limit = binder.obj.limit;
-				console.log("clone obj.limit? ", obj.limit);
+				//console.log("clone obj.limit? ", obj.limit);
         OBJDATA.push(obj);
 				
 				
@@ -7319,7 +7472,7 @@
 				//bye_binder();
 				//binder = clone;
 				//binder.graph = path_copy;
-				console.log("extracted binder: ", binder);
+				//console.log("extracted binder: ", binder);
 				//hideAllSize();
         //binder.x = startCoords.x;
         //binder.y = startCoords.y;
@@ -7395,7 +7548,7 @@
 				
 				
 			}
-			console.log("cloning mostly done");
+			//console.log("cloning mostly done");
 			
 	    //mode = 'object_mode';
 	    //modeOption = objTarget.type;
@@ -7440,11 +7593,42 @@
 		
 	}
 	
+	
+	// Settings
+	function show_floorplanner_settings(){
+		document.querySelector('#extension-floorplanner-settings').style.display='block';
+		document.querySelector('#extension-floorplanner-panel').style.display='none';
+	}
 
-
+	function close_floorplanner_settings(){
+		document.querySelector('#extension-floorplanner-settings').style.display='none';
+		document.querySelector('#extension-floorplanner-panel').style.display='block';
+	}
+	
+	document.getElementById('extension-floorplanner-auto-save-checkbox').addEventListener('change', () => {
+		settings.auto_save = document.getElementById('extension-floorplanner-auto-save-checkbox').checked;
+		save_floorplanner_settings();
+	}, true);
+	
+	document.getElementById('extension-floorplanner-multi').addEventListener('change', () => {
+		settings.multi_line = document.getElementById('extension-floorplanner-multi').checked;
+		save_floorplanner_settings();
+	}, true);
+	
+	function load_floorplanner_settings(){
+		document.getElementById('extension-floorplanner-auto-save-checkbox').checked = settings.auto_save;
+		document.getElementById('extension-floorplanner-multi').checked = settings.multi_line;
+	}
+	function save_floorplanner_settings(){
+		localStorage.setItem('extension-floorplanner-settings',JSON.stringify(settings));
+	}
+	
+	
+	
+	
 	/*
 	function get_object_icon(object_name){
-		console.log('in get_object_icon. object_name: ', object_name);
+		//console.log('in get_object_icon. object_name: ', object_name);
 		let object_button_el = document.querySelector('#extension-floorplanner-energy_list #extension-floorplanner-' + object_name);
 		if(object_button_el){
 			return object_button_el.textContent[0];
@@ -7486,7 +7670,7 @@
 					//console.log("found the furniture button for ", details.type);
 					
 					object_icon = object_button_el.textContent; //[0];
-					console.log("object_icon: ", object_icon);
+					//console.log("object_icon: ", object_icon);
 					object_name_el.textContent = object_icon;
 					object_el.appendChild(object_name_el);
 			
@@ -7507,7 +7691,7 @@
 					
 				}
 				else{
-					console.log("Warning, could not find the furniture button for: ", details.type);
+					//console.log("Warning, could not find the furniture button for: ", details.type);
 				}
 				
 			}
@@ -7614,7 +7798,7 @@
 	        document.querySelector('#extension-floorplanner-boxinfo').innerHTML = ''; // Modify the object
 	        //console.log(objTarget)
 					if(objTarget.params.resizeLimit){
-						console.log("object has resize limit: ", objTarget.params.resizeLimit);
+						//console.log("object has resize limit: ", objTarget.params.resizeLimit);
 					
 	          document.getElementById('extension-floorplanner-bboxWidth').setAttribute('min', objTarget.params.resizeLimit.width.min);
 	          document.getElementById('extension-floorplanner-bboxWidth').setAttribute('max', objTarget.params.resizeLimit.width.max);
@@ -7668,7 +7852,7 @@
 			 manual_bg_upload = true;
 	     bg_image_el.style.backgroundImage = "url(" + reader.result + ")";   
 			 bg_image_el.classList.remove('extension-floorplanner-slow-fade-out');
-			 //bg_image_el.style.opacity = '.3';
+			 bg_image_el.style.opacity = '.3';
 	   }
 	   if(file){
 	      reader.readAsDataURL(file);
@@ -7677,8 +7861,7 @@
 	}
 	
 	
-	
-	
+
 	
 	
 	
@@ -7686,10 +7869,10 @@
 		
 		
 	function start_floorplanner(){
-		console.log("STARTING FLOORPLANNER");
+		//console.log("STARTING FLOORPLANNER");
 		floorplanner_started = true;
-		localStorage.setItem('extension-floorplanner-currently-editing',JSON.stringify(true));
-
+		localStorage.setItem('extension-floorplanner-currently-editing', JSON.stringify(true));
+		
 		//document.querySelector('#extension-floorplanner-recover').innerHTML = "<p>Select a plan type.</p>";
     
 		hide_submenus();
@@ -7699,7 +7882,7 @@
     if (localStorage.getItem('extension-floorplanner-history')) {
 			setTimeout(() => {
 				initHistory('recovery');
-			},500);
+			},10);
     }
 		else if (localStorage.getItem('extension-floorplanner-floorplans')) {
 			let temp_floorplans = JSON.parse(localStorage.getItem('extension-floorplanner-floorplans'));
@@ -7713,31 +7896,27 @@
 					//console.log("start_floorplanner: current_filename: ", current_filename);
 					if(current_filename != null && typeof floorplans[current_filename] != 'undefined'){
 						let details = floorplans[current_filename];
-						if(typeof details != 'undefined'){
-							//console.log("start_floorplanner: current_filename details: ", details);
-							if(typeof details.name != 'undefined'){
-								//current_filename = details.name;
-								load_from_floorplans(details);
-							}
-							else{
-								console.log("details did not have name?: ", details);
-								//myModal.style.display='block';
-							}
+						
+						//console.log("start_floorplanner: current_filename details: ", details);
+						if(typeof details.name != 'undefined'){
+							//current_filename = details.name;
+							load_from_floorplans(details);
 						}
 						else{
-							console.log("page load: details was undefined: ", floorplans_length);
+							console.error("details did not have name?: ", details);
 							myModal.style.display='block';
 						}
+						
 					}
 					
 				}
 				else{
-					console.log("floorplans_length failed: ", floorplans_length);
+					console.warn("floorplans_length failed: ", floorplans_length);
 					myModal.style.display='block';
 				}
 			}
 			else{
-				console.log("temp_floorplans was not an object: ", temp_floorplans);
+				//console.log("temp_floorplans was not an object: ", temp_floorplans);
 				myModal.style.display='block';
 			}
 			
@@ -7758,7 +7937,7 @@
 		}
 		
 		if(Object.keys(floorplans).length > 0){
-			floorplanner_started = false;
+			//floorplanner_started = false;
 			hide_submenus();
 			clear_floorplan(true,false); // force clear, but don't reset the local storage
 			bg_image_el.style.backgroundImage = "none";
@@ -7768,9 +7947,9 @@
 		else{
 			alert("Please create and save at least one floorplan");
 		}
-		floorplanner_started = false;
-		generate_floorplans_list();
-		
+		//floorplanner_started = false;
+		generate_floorplans_list(true);
+		bg_image_el.style.opacity = '1';
 	}
 	
 	
@@ -7782,7 +7961,9 @@
 		console.log("OBJDATA:", OBJDATA);
 		console.log("WALLS:", WALLS);
 		console.log("ROOM:", ROOM);
-		console.log("objTarget:", objTarget);
+		if(typeof objTarget != undefined){
+			console.log("objTarget:", objTarget);
+		}
 		console.log("binder:", binder);
 		console.log("current_filename:", current_filename);
 		console.log("floorplans:", floorplans);
@@ -7791,26 +7972,31 @@
 	
 	
 	window.addEventListener("load", () => {
-		console.log("in window.addEventListener LOAD");
+		//console.log("in window.addEventListener LOAD");
     document.getElementById('extension-floorplanner-moveBox').style.transform = "translateX(-215px)";
+		/*
 		setTimeout(()=>{
 			document.getElementById('extension-floorplanner-zoomBox').style.transform = "translateX(-165px)";
 		},300);
+		*/
     setTimeout(()=>{
-			document.getElementById('extension-floorplanner-zoomBox2').style.transform = "translateX(-165px)";
+			document.getElementById('extension-floorplanner-zoomBox2').style.transform = "translateX(-330px)";
 		},300);
-		console.log("window load:  currently_editing,current_filename: ", currently_editing,current_filename);
+    setTimeout(()=>{
+			document.getElementById('extension-floorplanner-floorplans-list').style.transform = "translateX(-11rem)";
+		},400);
+		//console.log("window load:  currently_editing,current_filename: ", currently_editing,current_filename);
 		
 		if(currently_editing === true){
-			console.log("window load: starting floorplanner because was already editing");
+			//console.log("window load: starting floorplanner because was already editing");
 			start_floorplanner();
 		}
 		else if(Object.keys(floorplans).length == 0){
-			console.log("window load: starting floorplanner because there are no floorplans yet");
+			//console.log("window load: starting floorplanner because there are no floorplans yet");
 			start_floorplanner();
 		}
 		else{
-			console.log("what the hack is going on. currently_editing: ", typeof currently_editing, currently_editing);
+			//console.log("what the hack is going on. currently_editing: ", typeof currently_editing, currently_editing);
 		}
 	});
 	

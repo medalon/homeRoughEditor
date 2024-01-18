@@ -592,7 +592,7 @@ var floorplanEditor = {
 		 catch(e){
 			 console.error("floorplaneditor.js: tt error: ", e);
 		 }
-		 console.log("obj2D: type: ", type);
+		 //console.log("obj2D: type: ", typeof type, type);
 		 if(type == 'boundingBox'){
 			 //continue
 		 }
@@ -658,7 +658,7 @@ var floorplanEditor = {
 			this.thick = thick
 		}
    
-		console.log("obj2D: original size and thick at end of init: ", this.size);
+		//console.log("obj2D: original size and thick at end of init: ", this.size);
 		this.original_size = this.size;
 		this.original_thick = this.thick;
 	 
@@ -670,11 +670,13 @@ var floorplanEditor = {
 		//
 		
 		this.update = function () {
-	 		console.log("in update. this.size, this.thick, meter: ", this.size, this.thick);
+	 		//console.log("in update. this.size, this.thick, meter: ", this.size, this.thick);
 	 		if(this.class == 'energy' || this.class == 'text'){
+				/*
 	 			if(document.querySelector('#extension-floorplanner-tool-root.extension-floorplanner-scale-linked')){
 	 				this.thick = this.size;
 	 			}
+				*/
 	 		}
 	 		if(this.class == 'measure'){
 	 	      this.width = this.size; //(this.size / meter).toFixed(2);
@@ -684,8 +686,8 @@ var floorplanEditor = {
 	 	      this.width = (this.size / meter).toFixed(2);
 	 	      this.height = (this.thick / meter).toFixed(2);
 	 		}
-    
-    
+    	
+    	
 	 		//console.log("floorplanEditor: obj2D: update: calling cc with:  classe, type, size, thick, value", this.class, this.type, this.size, this.thick, this.value);
 			cc = carpentryCalc(this.class, this.type, this.size, this.thick, this.value);
 	 		//console.log("floorplanEditor: obj2D: update: cc result: ", cc);
@@ -705,7 +707,7 @@ var floorplanEditor = {
 					}
 				}
 				else {
-					console.error("cc update would have set text now...?  cc[tt]:", cc[tt]);
+					//console.error("cc update would have set text now...?  cc[tt]:", cc[tt]);
 					//this.graph.find('text').context.textContent = cc[tt].text;
 					//this.graph.querySelectorAll('text')[tt].context.textContent = cc[tt].text;
 	      }
@@ -718,12 +720,15 @@ var floorplanEditor = {
 			if(typeof this.x == 'undefined'){
 				console.error("floorplaneditor.js: this.x was undefined.  this: ", this);
 			}
+			
 			if(this.class == 'energy' || this.class == 'text'){ //  || this.class == 'measure'
 				//console.warn("UPDATE: this.width: ", this.width);
-				if(this.class != 'measure' && document.querySelector('#extension-floorplanner-scale-link-toggle-button-container').classList.contains('extension-floorplanner-scale-linked')){
-					this.height = this.width;
-				}
+				//console.warn("UPDATE: this.height: ", this.height);
+				//if(this.class != 'measure' && document.querySelector('#extension-floorplanner-scale-link-toggle-button-container').classList.contains('extension-floorplanner-scale-linked')){
+				//	this.height = this.width;
+				//}
 				this.graph.setAttribute("transform", "translate(" + (this.x) + "," + (this.y) + ") rotate(" + this.angle + ",0,0) scale(" + this.width + ", " + this.height + ")" );
+				//this.graph.setAttribute("transform", "translate(" + (this.x) + "," + (this.y) + ")" );
 			}
 			else{
 				this.graph.setAttribute("transform", "translate(" + (this.x) + "," + (this.y) + ") rotate(" + this.angle + ",0,0) scale(" + hingeUpdate + ", 1)" );
