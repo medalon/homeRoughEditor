@@ -1387,11 +1387,16 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
 	font-style:italic;
 	pointer-events:none;
 }
-#extension-floorplanner-current-filename{
-	background-color:white;
-	display:inline-block;
-	padding:.2rem .4rem;
-	border-radius:.2rem;
+
+.extension-floorplanner-text-bg{
+  background-color: rgba(255,255,255,.7);
+  display: inline-flex;
+  align-items:center;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
+}
+.extension-floorplanner-text-bg > *{
+	display:inline-block;margin:0 .3rem;
 }
 
 
@@ -1473,6 +1478,7 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
 /*  VIEW MODE  */
 
 
+.extension-floorplanner-view-mode #extension-floorplanner-areaValue,
 .extension-floorplanner-view-mode #extension-floorplanner-panel,
 .extension-floorplanner-view-mode #extension-floorplanner-boxgrid{
 	display:none!important;
@@ -1798,8 +1804,9 @@ body.touch #extension-floorplanner-content .extension-floorplanner-floorplan-ite
   .extension-floorplanner-floorplan-item-name{
 	  color:white;
   }
-  #extension-floorplanner-current-filename{
-	  background-color:black;
+  
+  .extension-floorplanner-text-bg{
+    background-color:rgba(0,0,0,.7);
   }
 
 }
