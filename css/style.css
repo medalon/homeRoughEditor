@@ -889,11 +889,11 @@ body:not(.developer) .extension-floorplanner-show-if-developer{
 }
 */
 
-/*
+
 #extension-floorplanner-content #extension-floorplanner-svg-download-button{
-	width:40%;
+	width:100%;
 }
-*/
+
 
 #extension-floorplanner-content .extension-floorplanner-btn-success{
 	/*background-color:blue;*/

@@ -26,9 +26,6 @@ Start by clicking on the wall button, and then press and hold the mouse button t
 - Switch between edit mode and a simpler view mode.
 
 
-### Screenshot
-
-![Floorplanner example](screenshot.png?raw=true "Floorplanner example")
 
 ### Other options / BETA
 - Add a CSS class called "developer" to the HTML body tag to see additional hidden options.
